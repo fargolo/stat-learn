@@ -27,7 +27,7 @@ O quarto capítulo ilustra o uso de grafos/redes para a construção de modelos 
 
 # Sumário
 
-Capítulo 0 - Ferramentas: programação com estatística básica
+Capítulo 0 - Ferramentas: programação com estatística básica   
 * Computadores
 * R : Curso rápido
   * Instalação, R e Rstudio
@@ -38,21 +38,22 @@ Capítulo 0 - Ferramentas: programação com estatística básica
   *  Matrizes e dataframes
   * Gramática dos gráficos e ggplot
 
-Capítulo 1 - Os pássaros de Darwin e o método hipotético dedutivo
+Capítulo 1 - Os pássaros de Darwin e o método hipotético dedutivo  
+
 * Teorema do limite central e Distribuição normal
 * Distribuição t
 * Método hipotético-dedutivo e Testes de hipótese
 * Valor p
 
-**Em construção:**
+**Em construção:**  
 
-Capítulo 2 - Expectativa de vida e assistência em saúde
+Capítulo 2 - Expectativa de vida e assistência em saúde  
 * Relações lineares
 * Coeficiente de correlação r de Pearson
 * Regressão linear
 
 
-Capítulo 3 - Contexto e inferência Bayesiana
+Capítulo 3 - Contexto e inferência Bayesiana  
 * Intuições sobre distribuições probabilísticas
 * Inferência Bayesiana para teste de diferenças e correlação linear
 * Classificação
@@ -62,19 +63,19 @@ Capítulo 3 - Contexto e inferência Bayesiana
   * Usando priors
   * O estimador Markov Chain Monte Carlo
 
-Capítulo 4 - Redes neurais
+Capítulo 4 - Redes neurais  
 * Support Vector Machines
 * Gradient Descending
 * Redes Neurais
   * Backpropagation
   * Deep learning (múltiplas camadas)
 
-Capítulo 5 - Programação probabilística para contextos gerais
+Capítulo 5 - Programação probabilística para contextos gerais  
 * Inferência Bayesiana para cosmologia
 * Prevendo halos de matéria escura (Kaggle top solution)
 * Redes neurais probabilísticas com PyMC3
 
-Capítulo 6 - Ambientes desconhecidos
+Capítulo 6 - Ambientes desconhecidos  
 * Aprendizagem não supervisionada
 * Redução de dimensões 
 * Clustering
@@ -89,9 +90,8 @@ Todos os exemplos podem ser reproduzidos usando software livre.
 
 ###Leitura recomendada:
 
-Neurociências
+Neurociências  
 * Principles of neural science - Eric Kandel
-
 * Matemática pura e programação
 * Better Explained ( https://betterexplained.com/ )
 * What is mathematics - Courant & Robbins
@@ -107,7 +107,7 @@ Neurociências
 * Algorithms unlocked
 * Portais: statsexchange, stackoverflow, mathexchange, cross-validated.
  
-Machine Learning
+Machine Learning  
 * An Introduction to Statistical Learning: with Applications in R
 * Neural Networks and Learning Machines - Simon Haykin
 * Stanford course on computer vision: http://cs231n.stanford.edu/
