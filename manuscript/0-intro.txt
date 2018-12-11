@@ -1,4 +1,5 @@
 ![](images/0-intro-cover.png)
+{pagebreak}
 ## Aprendizagem estatística para ciências.
 ## Aplicações com software.
 
@@ -28,6 +29,7 @@ O quarto capítulo ilustra o uso de grafos/redes para a construção de modelos 
 # Sumário
 
 Capítulo 0 - Ferramentas: programação com estatística básica   
+
 * Computadores
 * R : Curso rápido
   * Instalação, R e Rstudio
@@ -48,12 +50,14 @@ Capítulo 1 - Os pássaros de Darwin e o método hipotético dedutivo
 **Em construção:**  
 
 Capítulo 2 - Expectativa de vida e assistência em saúde  
+
 * Relações lineares
 * Coeficiente de correlação r de Pearson
 * Regressão linear
 
 
 Capítulo 3 - Contexto e inferência Bayesiana  
+
 * Intuições sobre distribuições probabilísticas
 * Inferência Bayesiana para teste de diferenças e correlação linear
 * Classificação
@@ -64,6 +68,7 @@ Capítulo 3 - Contexto e inferência Bayesiana
   * O estimador Markov Chain Monte Carlo
 
 Capítulo 4 - Redes neurais  
+
 * Support Vector Machines
 * Gradient Descending
 * Redes Neurais
@@ -71,11 +76,13 @@ Capítulo 4 - Redes neurais
   * Deep learning (múltiplas camadas)
 
 Capítulo 5 - Programação probabilística para contextos gerais  
+
 * Inferência Bayesiana para cosmologia
 * Prevendo halos de matéria escura (Kaggle top solution)
 * Redes neurais probabilísticas com PyMC3
 
 Capítulo 6 - Ambientes desconhecidos  
+
 * Aprendizagem não supervisionada
 * Redução de dimensões 
 * Clustering
@@ -91,6 +98,7 @@ Todos os exemplos podem ser reproduzidos usando software livre.
 ###Leitura recomendada:
 
 Neurociências  
+
 * Principles of neural science - Eric Kandel
 * Matemática pura e programação
 * Better Explained ( https://betterexplained.com/ )
@@ -108,6 +116,7 @@ Neurociências
 * Portais: statsexchange, stackoverflow, mathexchange, cross-validated.
  
 Machine Learning  
+
 * An Introduction to Statistical Learning: with Applications in R
 * Neural Networks and Learning Machines - Simon Haykin
 * Stanford course on computer vision: http://cs231n.stanford.edu/
