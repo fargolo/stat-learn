@@ -54,13 +54,18 @@ Veremos diversas maneiras de escrever um programa para calcular a variância σ2
 ## Instalação
 
 ### R
+
 Instruções para download e instalação podem ser encontradas em:  
 https://cloud.r-project.org/  
 Em Windows, o processo costuma consistir em clicar no executável de instalação e concordar com os prompts.   
 Para Linux, envolve adiciona o CRAN à lista de repositórios e baixar o r-base ou baixar o código/tarball diretamente do website. Há inúmeros tutoriais explicando a instalação.  
+
 ### Rstudio
+
 Com o R instalado, recomendo o uso do ambiente de desenvolvimento RStudio ( https://www.rstudio.com/ ) para obter algumas facilidades. Entre elas: atalhos vim, editor com highlight de sintaxe, autocompletar, go to function definition, renderização em tempo real de animações e plots, visualização de datasets, ambiente de desenvolvimento, logs, suporte a markup languages, como Markdown, RMarkdown e Latex.   
+
 ## Tipos
+
 Primeiro, vamos conhecer as entidades básicas do R. Lidamos rotineiramente com vetores, que são células contíguas contendo dados.  Os dados podem ser:  
 "logical": a vector containing logical values  (TRUE/FALSE)  
 "integer": a vector containing integer values  (1,2,3,4…,23,26...)  
@@ -87,7 +92,7 @@ Além dos operadores clássicos (+,-,/,-, ...), usamos constantemente dois opera
     > a <- 3
     > a
     [1] 3
-O operador “%>%” da biblioteca magrittr fornece o resultado da expressão à sua esquerda como argumento para a expressão à sua direita. Evita aninhamento de expressões, tornando fluxos de computações mais legíveis.   
+O operador *“%>%”* da biblioteca magrittr fornece o resultado da expressão à sua esquerda como argumento para a expressão à sua direita. Evita aninhamento de expressões, tornando fluxos de computações mais legíveis.   
 As expressões a seguir são equivalentes.  
 
 {lang="R"}
@@ -97,7 +102,7 @@ As expressões a seguir são equivalentes.
     [1] 528491311
     >result == exp(exp(3))
     [1] TRUE
-Onde “3 %>% exp %>% exp” equivale a “exp(exp(3))”. exp(a) = ea, e ~ 2.72… Usando parênteses, partimos da última computação. Usando o pipe (%>%), começamos com a primeira operação.  
+Onde *“3 %>% exp %>% exp”* equivale a *“exp(exp(3))”*. *exp(a) = ea, e ~ 2.72…* Usando parênteses, partimos da última computação. Usando o pipe (%>%), começamos com a primeira operação.  
 
 ## Funções
 
@@ -378,7 +383,7 @@ Ainda, existem temas prontos para mudar o estilo geral da imagem:
   * Selecione os 10 maiores exemplares. O tamanho aqui é dado pela média das 4 medidas fornecidas. 
   * Calcule a média e o desvio-padrão para duas medidas em cada espécie.
   * Faça um scatterplot entre duas medidas
-    * Adicione cores de acordo com a espécie
-    * Adicione o rótulo de texto a um dos pontos
-    * Mude títulos (principal, eixos x e y, legenda)
-    * Mude o tema de fundo. Dica: experimente os temas da lib ggthemes
+    * -Adicione cores de acordo com a espécie
+    * -Adicione o rótulo de texto a um dos pontos
+    * -Mude títulos (principal, eixos x e y, legenda)
+    * -Mude o tema de fundo. Dica: experimente os temas da lib ggthemes
