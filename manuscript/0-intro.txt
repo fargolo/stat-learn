@@ -1,15 +1,21 @@
 ![](images/0-intro-cover.png)  
+
 {pagebreak}  
+
 Página intencionalmente deixada em branco.
+
 {pagebreak}
+
 ## Aprendizagem estatística para ciências.
+
 ## Aplicações com software.
 
 {pagebreak}
 
 ## Prefácio
-*Remember that all models are wrong; the practical question is how wrong do they have to be to not be useful*
---   George Box & Norman R. Draper, Empirical Model-Building and Response Surfaces
+
+>C *Remember that all models are wrong; the practical question is how wrong do they have to be to not be useful*  
+>C *George Box & Norman R. Draper, Empirical Model-Building and Response Surfaces* 
 
 Uma antiga aplicação da matemática é fazer inferências com base em observações de cenários parecidos. Civilizações antigas, como os babilônios, usavam interpolação linear para estimar informações. Fazendo o censo populacional com intervalo de anos, estimavam o valor dos anos não medidos, supondo que eles eram medidas centrais daquelas que ao seu redor. Métodos iterativos também foram usados para aproximar a raiz quadrada de números naturais (√2) e números irracionais (ⲡ).  
   
