@@ -13,7 +13,7 @@ Usamos as distribuições citadas para estudar as medidas dos bicos dos tentilh�
 
 {pagebreak}
 
-##Pássaros em Galápagos
+## Pássaros em Galápagos
 Em sua viagem pelo mundo a bordo do Beagle, Charles Darwin descreveu um grupo de pássaros que habita as Ilhas Galápagos, arquipélago localizado a aproximadamente 900 km da costa do Equador (América do Sul). A variedade em tamanhos dos bicos chamou atenção: “It is very remarkable that a nearly perfect gradation of structure in this one group can be traced in the form of the beak, from one exceeding in dimensions that of the largest gros-beak, to another differing but little from that of a warbler".[^1] The Voyage of the Beagle (1839).  
 É interessante notar que a linguagem usada para denotar diferenças é eminentemente quantitativa (dimensions, largest, differing). Darwin não conduziu estudos quantitativos por razões práticas. Neste capítulo, simularemos o mesmo cenário empregando métodos estatísticos para comparar os pássaros.  
 Antes da publicação de A origem das Espécies, o caso dos fringilíddeos (nome destas aves) já continha um embrião do processo de seleção natural. Na segunda edição, em 1845, ele especula sobre um grupo ancestral comum moldado por fins específicos:  
@@ -30,11 +30,12 @@ Darwin observou que a variedade dos bicos era adaptada à dieta de cada grupo: f
 A inspeção visual de um naturalista treinado foi capaz detectar essas nuances. Sob sua percepção, havia um total de 3 espécies em 4 ilhas: 1 na Ilha Charles, 1 na Ilha Albemarle e 1 nas ilhas James e Chatham.  Inicialmente, notou que os pássaros eram semelhantes àqueles vistos no Chile. Darwin coletou 26 pássaros e os levou de volta para que um ornitólogo os estudasse com mais detalhe.  John Gould sugeriu que os 26 pássaros representavam 12 espécies completamente novas, número que posteriormente passou para 25. Hoje, os taxonomistas sugerem um número de 15 espécies para os fringilíddeos de Darwin.   
 Pensaremos como biólogos interessados em estudar quantitativamente o tamanho dos bicos. Usaremos estatística e probabilidades para testar hipóteses e fazer conclusões mais acuradas sobre as medidas, explorando diferenças entre os grupos de pássaros de Galápagos.  
 
-##A distribuição normal e um curioso teorema
+## A distribuição normal e um curioso teorema
+
 Em trabalhos empíricos, é comum a suposição de que medidas de uma variável aleatória vêm de uma população com distribuição normal. A seguir, vamos estudar o comportamento dessa função probabilística.
 Abraham de Moivre (26 May 1667 – 27 November 1754) , sem financiamento exclusivo para estudos e pesquisa, prestava serviços. Entre eles, cálculos de probabilidades em jogos de azar para clientes. Em 1733, de Moivre percebeu que as probabilidades de uma distribuição binomial, como o lançamento de moedas (p=0.5), aproximam-se de uma curva suave (contínua) à medida em que o n aumenta.
 
-![Figura 2. Distribuição binomial com p = 0.5 (e.g: lançamento de uma moeda). Para n >1, valores extremos indicam resultados com apenas caras (cauda à esquerda, 0000…) ou coroas (cauda à direita, 1111…).](images/chap1-binomials.png)
+![Figura 2. Distribuição binomial com p = 0.5 (e.g: lançamento de uma moeda). Para n >1, valores extremos indicam resultados com apenas caras (cauda à esquerda, 0000…) ou coroas (cauda à direita, 1111…)](images/chap1-binomials.png)
 
 Para n = 1, temos uma distribuição uniforme P(1) = P(0) = 0.5. Para um número maior de lançamentos, os resultados mais frequentes são números parecidos de caras (0s) e coroas (1s).   
 Para n = 10, é muito mais provável obter um número de caras próximo a 5 (centro das curvas) que um resultado com 9 ou 10 lançamentos iguais. É possível demonstrar que aumentar o valor de n faz que com que a distribuição se aproxime da seguinte curva contínua:  
@@ -179,7 +180,7 @@ A descoberta das equações que regem esses mecanismos de convergência foi um g
 ## Exercícios
 1. Sobre a distribuição normal para uma variável aleatória, é verdadeiro (mais de uma possibilidade):
     * a.  A soma da probabilidade de todos os valores possíveis é 1.
-        * i.  {$$}\int_{-\infty}^{+\infty} f(x) dx= 1.  
+        * i.  {$$}\int_{-\infty}^{+\infty} f(x) dx= 1.{/$$}  
     * b. É simétrica em relação à moda.
     * c. O valor esperado é dado por 1/σ√(2π).
     * d. 95% dos valores estão próximos à média.
