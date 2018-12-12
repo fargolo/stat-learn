@@ -45,9 +45,9 @@ Para n = 10, é muito mais provável obter um número de caras próximo a 5 (cen
 Algumas características nesta curva são desejáveis e/ou plausíveis para o estudo de fenômenos naturais: simetria; valores mais prováveis concentrados ao redor de um pico, valores extremos improváveis; distribuição governada por poucos parâmetros (média e variância). 
 De Moivre intuiu que a distribuição de binomiais com muitos lançamentos aproximava o de uma função suave. Mas qual curva?  Parecia o de um número elevado aos valores de uma quadrática negativa: {$$}P(x) = ?^{-x^{2}}{/$$}. Em verdade, ele deduziu a solução para o problema das moedas (p = ½). A seguinte expressão geral descreve a probabilidade (P(x)) correspondente à curva que procuramos.  
 
-{$$}P(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x²}{2}}{/$$}
+{$$}P(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}}{/$$}
 
-O número misterioso em questão é o número de Euler {$$}(e ~ 2.72…){/$$}, que será melhor explicado no capítulo 3. Há um fator, {$$}\frac{1}{\sqrt{2\pi}}{/$$} (aproximadamente 0.4), multiplicando o resultado. Em R, podemos definir a função
+O número misterioso em questão é o número de Euler {$$}(e ~ 2.72…){/$$}, que será melhor explicado no capítulo 3. Há um fator, {$$}\frac{1}{\sqrt{2\pi}}{/$$} (aproximadamente 0.4), multiplicando o resultado. Em R, podemos definir a função:
 
 {lang="R"}
     >mgauss <- function(x) 0.4*exp((-1)*(x^2)/2)
@@ -73,7 +73,7 @@ Examinando o comportamento da equação, notamos que valores próximos à média
 Isso reflete diretamente o fato de que valores próximos à média serão mais prováveis e valores extremos menos prováveis. Para comparação: ƒ(2) = 0.4 * e-2²/2 = 0.4 * e-2 =  0.4 * 0.135 ~ 0.05 (linha azul). A probabilidade de se obter o valor médio (x = 0, p ~ 0.4) é oito vezes maior que a probabilidade de obter o valor 2 (x = 2; p = 0.05).   
 O termo quadrático torna a distribuição simétrica para valores opostos em relação à média. P(x) = P(-x). Como calculamos P(2)  antes, sabemos que: P(-2) = P(2) = 0.05 para μ = 0. É igualmente provável encontrar valores duas unidades maiores ou duas unidades menores que a média.  Esses pontos estão marcados por uma linhas azuis na figura.  
 Podemos trabalhar com curvas  normais com centros (média μ) deslocados para a esquerda (μ < 0) ou para a direita (μ > 0), subtraindo o termo de x em nosso expoente. Além disso, diferentes variâncias (σ²) refletem a frequência de valores longe da média e o quão distante dela eles são. Visualmente, determina o tamanho da base do sino na ilustração (Figura 3). Usamos a notação  N ~ (μ, σ²) para descrever uma distribuição gaussiana arbitrária:
-{$$}P(x)=\frac{1}{sqrt{2\pi\sigma^{2}}}e^{ -\frac{(x-\mu)^{2}}{2\sigma^{2} } {/$$}
+{$$}P(x)=\frac{1}{sqrt{2\pi\sigma^{2}}}e^{ -\frac{(x-\mu)^{2}}{2\sigma^{2}}}{/$$}
 
 Poderíamos encontrar características desejáveis, como a simetria citada acima, em outras distribuições. Então, por que usamos uma equação mais complexa? Distribuições binomiais grandes e lançamentos de moedas são tão importantes?  
 
@@ -318,11 +318,11 @@ Qual a dispersão das estimativas  {$$}\mu_{1}', \mu_{2}', ..., \mu_{j}'{/$$}?
 Para um conjunto de estimativas {$$}\mu_{1}', \mu_{2}', ..., \mu_{j}'{/$$} chamamos ela de **erro padrão** (*standard error of the mean*), dado pelo desvio-padrão populacional dividido pela raiz quadrada do tamanho da família de amostras em questão (std. err. = σ/√n). Como não sabemos o desvio-padrão na população, usamos o valor de σ’j das amostras.
 Student propôs o uso de uma quantidade para estimar a probabilidade de uma estimativa μ’ dado centro  μ. Essa quantidade pivotal é a razão entre (1) distância das estimativas e média real, μ’ - μ, e (2) o erro padrão.  A estatística  t:
 
-{$$}t = \frac{Z}{s}=(X-\mu)/\frac{\sigma}{sqrt{n}}{/$$}
+{$$}t = \frac{Z}{s}=(X-\mu)/\frac{\sigma}{\sqrt{n}}{/$$}
 
 Assim, a estatística t para nosso exemplo (μ’=38; μ= 40; n=30; σ’=0.3) é:
 
-{$$}t = (38-40)/\frac{\0.3}{sqrt{30}}{/$$}
+{$$}t = (38-40)/\frac{\0.3}{\sqrt{30}}{/$$}
 
 Student (Gosset) mostrou que essa estatística segue uma distribuição probabilística (t de Student) definida:
 
@@ -397,7 +397,7 @@ Obtemos o valor p somando os valores de probabilidades correspondentes às difer
 
 Vamos computar um teste t para 2 amostras independentes. A estatística t é calculada com algumas mudanças: os graus de liberdade são somados e o erro padrão é balanceado entre amostras.  
 
-{$$} t = \frac{ X_{1} - X_{2}}{s_{p}\sqrt{2/n}} ; s_{p} = \sqrt{\frac{s_{1}²+s_{2}²}{2}}
+{$$} t = \frac{ X_{1} - X_{2}}{s_{p}\sqrt{2/n}} ; s_{p} = \sqrt{\frac{{s_{1}}^{2}+{s_{2}}^{2}}{2}}{/$$}
 
 {$$}s_{p}{/$$} corresponde ao desvio-padrão balanceado.
 
@@ -423,7 +423,7 @@ Considerando {$$}(n_{1}-1) + (n_{2}-1){/$$} graus de liberdade, calculamos a est
 
 Aqui, ao invés de comparar as estimativas das médias de distribuição t para amostras A e B.  
 
-Calculamos a (1) Diferença esperada na vigência da hipótese nula ({$$}diff_{H_{0}} = 0){/$$}, (2) estimativa da diferença {$$}(diff = \,u_{A}-\mu_{B}){/$$}, graus de liberdade (df) e erro padrão balanceado {$$}(se_{pooled}){/$$} para a distribuição das diferenças de médias:
+Calculamos a (1) Diferença esperada na vigência da hipótese nula ({$$}diff_{H_{0}} = 0){/$$}, (2) estimativa da diferença {$$}(diff = \mu_{A}-\mu_{B}){/$$}, graus de liberdade (df) e erro padrão balanceado {$$}(se_{pooled}){/$$} para a distribuição das diferenças de médias:
 
 {lang="R"} 
     >expected_diff <- 0
