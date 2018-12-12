@@ -82,12 +82,14 @@ Para saber o tipo de um objeto em R, use typeof(objeto). Podemos acessar element
 A função *combine*: c(arg1,arg1,...) combina argumentos em um vetor. Para nossas aplicações, vamos usar números reais (double) na maioria dos casos.   
 ## Operadores
 Além dos operadores clássicos (+,-,/,-, ...), usamos constantemente dois operadores pouco comuns: O operador “<-” atribui o valor da expressão a sua direita ao objeto à sua esquerda. É preferível ao operador “=” para evitar confusão ao passar argumentos de funções e fazer comparações lógicas.  
+
 {lang="R"}
     > a <- 3
     > a
     [1] 3
 O operador “%>%” da biblioteca magrittr fornece o resultado da expressão à sua esquerda como argumento para a expressão à sua direita. Evita aninhamento de expressões, tornando fluxos de computações mais legíveis.   
 As expressões a seguir são equivalentes.  
+
 {lang="R"}
     >library(magrittr)
     >result <- 3 %>% exp %>% exp
@@ -108,20 +110,24 @@ Assim, podemos criar a função soma2, que recebe dois argumentos numéricos e r
       return(argumento1+argumento2)
     }
 Ao invocarmos soma2 com os argumentos 2 e 5, recebemos soma2(argumento1=2, argumento2=5) = 2+5 = 7.  
+
 {lang="R"}
     >soma2(2,5)
     [1] 7
 Podemos omitir o nome dos argumentos. Assim os objetos  são passados na ordem  de entrada.  
+
 {lang="R"}
     >soma2(2,3)
     [1] 5
 Por padrão, o valor retornado é mostrado no console.   
 R aceita em sua sintaxe que uma função seja argumento de outra numa mesma instrução:  
+
 {lang="R"}
     > soma2( 2, soma2(3,2) )
     [1] 7
 A expressão acima é equivalente a (2 + (3+2)) = 7.  
 Podemos definir a função de média para um vetor de números, dado pela soma dividida pelo tamanho do vetor:  
+
 {lang="R"}
     >mean_vec <- function(x){
       sum(x)/length(x)
@@ -130,48 +136,62 @@ Podemos definir a função de média para um vetor de números, dado pela soma d
     [1] 4.033333
 sum(x) retorna a soma de todos os elementos do vetor x. length(x) retorna o tamanho do vetor x.  
 A média é uma medida de tendência central para um conjunto de observações. É o ponto mais perto de todos os outros.  
+
 ## Muitas formas de calcular a variância
 Também podemos calcular uma medida relacionada ao quanto nossos valores  se afastam do centro. 
 Primeiro, calculamos uma distância entre cada elemento x e a média das observações μ. A distância deve ser um valor positivo. Supondo que x e μ são medidas num espaço ordenado, podemos usa o módulo da diferença entre os valores: |x -  μ|. Ainda, podemos usar o quadrado da diferença: di = (xi -  μ)².   
 A variância σ² das observações é uma medida da dispersão de toda a amostra.  
 Para calcular σ², somamos todas as distâncias di  e dividimos o resultado por n-1.  
+
 {lang="R"}
     >var_2 <- function(x) sum((x - mean(x))^2) / (length(x) - 1) 
     >var_2 (b)
     [1] 2.823333
 A variância σ² tende a ser maior quando os valores são muito distintos entre si:  
+
 {lang="R"}
     >c <- c(100,200,1,45,-24)
     >var_2(c)
     [1] 7966.3
 Outra medida de dispersão, dada nas unidades originais da medida observada, é o desvio-padrão σ, dado pela raiz da variância σ².  
+
+{lang="R"}
     > var_2(b) %>% sqrt
     [1] 1.680278
 O R possui funções embutidas para muitas aplicações estatísticas: sd (desvio-padrão), var (variância), mean (média)... Em especial, temos funções prontas para trabalhar com diversas distribuições probabilísticas de variáveis aleatórias. Para sortear 10 números de uma distribuição normal:  
+
 {lang="R"}
     > rnorm(n=10, mean=0, sd=1)
      [1]  0.2874490  0.2931469  3.1897423  1.7445002  3.3998010 -0.1482911
      [7]  2.0257046 -0.6002109 -0.2840376 -0.7715565
 Distribuição gamma.   
+
 {lang="R"}
     > rgamma(n=10, shape=1)
      [1] 1.1183441 1.2770135 1.0972053 1.4820536 2.3542620 0.8231831 0.5535210
      [8] 5.0481559 0.2853060 0.1623315
 Exponencial:  
+
+{lang="R"}
     > rexp(n=10, rate = 1)
      [1] 0.31657586 0.26676766 0.02288276 0.92801416 0.44006133 0.05238540
      [7] 1.10213153 0.91931786 2.58807134 0.41825081
+
 ## Vetores, loops e recursões
 Anteriormente, definimos a função para calcular variância como:  
+
 {lang="R"}
     >var_2 <- function(x) sum((x - mean(x))^2) / (length(x) - 1)
+
 Isso só é possível porque o R aplicar funções a vetores de maneira automática. Assim, a expressão (x - mean(x))^2 subtrai a média de cada elemento do vetor x.  
 Normalmente, é necessário usar estruturas recursivas para isso. O laço for (for loop) define uma sequência de tamanho n definido e repete um bloco de comandos n vezes. Se queremos imprimir números entre 1 e 10:  
+
 {lang="R"}
     > for (i in 1:10) print(i)  
 A instrução avalia print(i) para valores i=1,2,3..,10 de forma repetida.  
 Vamos reescrever nossa função para calcular variância σ². Podemos definir um loop com o tamanho do vetor x e calcular o quadrado da diferença em cada elemento.   
 Assim,:  
+
 {lang="R"}
     var_3 <- function(x){
       accumulator <- numeric() #armazena distâncias
@@ -180,6 +200,7 @@ Assim,:
       return (sum (accumulator) / (length(x) - 1) ) #calcula media
     }
 Ambas definições apresentam o mesmo resultado que a implementação nativa do R:  
+
 {lang="R"}
     > var(b)
     [1] 2.823333
@@ -189,10 +210,12 @@ Ambas definições apresentam o mesmo resultado que a implementação nativa do 
     [1] 2.823333
 Ainda, uma maneira de manipular muitos elementos é através de funções de alta ordem. Estas funções recebem outras funções como argumentos. Um exemplo é a função map da lib purrr. Definimos uma função para a distância, f(y) = (y - μ)², e aplicamos ela a todos os elementos. Só então, somamos os resultados e dividimos por n-1.  
 Tudo pode ser feito em apenas um pipe:  
+
 {lang="R"}
     >map(.f = function(y) (y - mean(arg))^2, .x = arg) %>% 
 	unlist %>% sum(.)/(length(arg) - 1)
 Nossa função pode ser escrita:  
+
 {lang="R"}
     var_4 <- function(arg){
       purrr::map(.f = function(y) (y - mean(arg))^2, .x = arg) %>% # Define e aplica função
@@ -200,9 +223,12 @@ Nossa função pode ser escrita:
     }
     > var_4(b)
     [1] 2.823333
+
 ## Matrizes e data frames
+
 O R possui estruturas  que ajudam a manipulação de dados estruturados como os que vemos comumente em ciências.  
 A mais simples é a lista. Uma lista é um conjunto de objeto de quaisquer tipos. Assim, podemos ter uma lista contendo vetores, doubles, matrizes e gráficos! Tudo em uma estrutura.  
+ 
 {lang="R"}
     > mlist <- list(a = c(1,5,6,7), b = c("a","b","c",”d”))
     > mlist
@@ -218,6 +244,7 @@ A mais simples é a lista. Uma lista é um conjunto de objeto de quaisquer tipos
     > typeof(mlist$b)
     [1] "character"
 Outro tipo útil é composto pelas matrizes, que correspondem às matrizes da matemática, podendo também conter caracteres em suas células.  
+
 {lang="R"}
     >matrix(data=c(mlist$a,mlist$b),ncol=2)
            [,1] [,2]
@@ -225,7 +252,9 @@ Outro tipo útil é composto pelas matrizes, que correspondem às matrizes da ma
     [2,] "5"  "b"
     [3,] "6"  "c"
     [4,] "7"  "d"
+
 Podemos conduzir multiplicação de matrizes facilmente.  
+
 {lang="R"}
     >mat_example <- matrix(c(.5,.25,.25,.5,0,.5,.25,.25,.5), nrow=3, byrow=TRUE)
     > mat_example
@@ -235,6 +264,7 @@ Podemos conduzir multiplicação de matrizes facilmente.
     [3,] 0.25 0.25 0.50
     > mat_example %*% c(1,0,1) 
 Por fim, data.frames são extensões das matrizes:  
+
 {lang="R"}
     > mat_example %>% data.frame
            X1   X2   X3
@@ -250,6 +280,7 @@ Um exemplo visual torna as coisas mais fáceis. A seguir, um recorte do banco de
 
 Note que cada linha corresponde a apenas um país (observação) e cada coluna representa uma variável. Se queremos ver a observação 9, vamos à linha correspondente e podemos encontrar os valores: “Armenia” (País), “2,845” (Médicos/1.000 hab. em 2011) e “71” (Expectativa de vida ao nascer).   
 Para acessar o valor correspondente,usamos índices separados por vírgula. O primeiro espaço é reservado às linhas selecionadas e deve ser um vetor de números (linhas selecionadas) ou vetor com valores lógico do tamanho do dataset (valores com índices TRUE serão incluídos). O segundo espaço corresponde às colunas e deve conter índices numéricos ou nomes das variáveis.  
+
 {lang="R"}
     >iris[1:5,c("Species",'Sepal.Length')] # primeiras 5 linhas com variaveis especies e sepal.length’  
      Species Sepal.Length
@@ -258,8 +289,11 @@ Para acessar o valor correspondente,usamos índices separados por vírgula. O pr
     3  setosa      	4.7
     4  setosa      	4.6
     5  setosa      	5.0 
+
 ## Gramática dos gráficos e ggplot
+
 Uma das ferramentas de destaque no ecossistema R é a ggplot. Ela provê uma sintaxe bastante poderosa e flexível para plotar visualizações. O segredo está em seu design, que utiliza gramática de gráficos (GrammarOfGraphicsPlot). Bertin1 delineou essa abordagem, que consiste em mapear características dos dados a elementos visuais seguindo uma sintaxe consistente. A lib ggplot implementa uma gramática em camadas2, possibilitando superposições para gráficos complexos.  
+
 {lang="R"}
     >head(sleep)
      extra group ID
@@ -269,12 +303,14 @@ Uma das ferramentas de destaque no ecossistema R é a ggplot. Ela provê uma sin
 Para usarmos o ggplot, podemos declarar (1) o dataframe usado, (2) a relação entre medidas e parâmetros estéticos e (3) objetos geométricos. Parâmetros opcionais podem ser usados, aumentando o número de camadas ou criando transformações.  
 Assim, podemos plotar um histograma das medidas dos dois grupos com (1) dataset iris; (2) dimensão y: tamanho da pétala, cores:espécie, dimensão x: espécie; e (3) objeto geométrico: ponto.  
 Assim, teremos pontos com a altura (dimensão y) correspondente à medida da pétala e separados ao longo do eixo x por espécies. O ggplot automaticamente discretiza o eixo x.   
+
 {lang="R"}
     >library(ggplot2)
     >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
       geom_point()
 ![](images/chap0-gg-one.png)
 Para ilustrar a flexibilidade da biblioteca, note que mudando apenas o objeto geométrico (geom), obtemos um gráfico diferente, mantendo dados e relações (mappings) iguais :  
+
 {lang="R"}
     >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
      geom_boxplot()
@@ -282,6 +318,7 @@ Para ilustrar a flexibilidade da biblioteca, note que mudando apenas o objeto ge
 
 As figuras acimas são conhecidas como boxplots. O centro correspondente à mediana (percentil 50), as bordas correspondem aos percentis 25 (inferior) e 75 (superior). Os fios, conhecidos como “bigodes”, estendem-se até 1,5* IQR (onde IQR = Percentil 75 - Percentil 25).  
 É possível adicionar camadas e estas podem sobrescrever informação de camadas anteriores. Isso torna a sintaxe do ggplot altamente modular. A seguir, superpomos pontos e boxplot:  
+
 {lang="R"}
     >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
       geom_point(alpha=0.4)+ # camada 1
@@ -289,6 +326,7 @@ As figuras acimas são conhecidas como boxplots. O centro correspondente à medi
 ![](images/chap0-gg-three.png)
 
 O parâmetro *alpha* regula a transparência dos objetos. Colocamos os boxplot com transparência total (alpha=0), dando visibilidade aos pontos (alpha=0.4). Adicionamos algum grau de transparência para que pontos superpostos sejam mais escuros que pontos individuais. Adicionaremos uma terceira camada, que  substitui o rótulo do eixo y para uma legenda em português:  
+
 {lang="R"}
     >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
       geom_point(alpha=0.4)+ # camada 1
