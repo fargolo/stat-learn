@@ -138,3 +138,6 @@ Machine Learning
 * Neural Networks and Learning Machines - Simon Haykin
 * Stanford course on computer vision: http://cs231n.stanford.edu/
 * Deep learning at Oxford 2015: (https://www.youtube.com/watch?v=dV80NAlEins&list=PLE6Wd9FR--EfW8dtjAuPoTuPcqmOV53Fu) 
+
+{pagebreak}
+
