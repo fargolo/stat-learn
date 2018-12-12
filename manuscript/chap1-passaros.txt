@@ -14,6 +14,7 @@ Usamos as distribuições citadas para estudar as medidas dos bicos dos tentilh�
 {pagebreak}
 
 ## Pássaros em Galápagos
+
 Em sua viagem pelo mundo a bordo do Beagle, Charles Darwin descreveu um grupo de pássaros que habita as Ilhas Galápagos, arquipélago localizado a aproximadamente 900 km da costa do Equador (América do Sul). A variedade em tamanhos dos bicos chamou atenção: “It is very remarkable that a nearly perfect gradation of structure in this one group can be traced in the form of the beak, from one exceeding in dimensions that of the largest gros-beak, to another differing but little from that of a warbler".[^1] The Voyage of the Beagle (1839).  
 É interessante notar que a linguagem usada para denotar diferenças é eminentemente quantitativa (dimensions, largest, differing). Darwin não conduziu estudos quantitativos por razões práticas. Neste capítulo, simularemos o mesmo cenário empregando métodos estatísticos para comparar os pássaros.  
 Antes da publicação de A origem das Espécies, o caso dos fringilíddeos (nome destas aves) já continha um embrião do processo de seleção natural. Na segunda edição, em 1845, ele especula sobre um grupo ancestral comum moldado por fins específicos:  
@@ -73,6 +74,7 @@ Examinando o comportamento da equação, notamos que valores próximos à média
 Isso reflete diretamente o fato de que valores próximos à média serão mais prováveis e valores extremos menos prováveis. Para comparação: ƒ(2) = 0.4 * e-2²/2 = 0.4 * e-2 =  0.4 * 0.135 ~ 0.05 (linha azul). A probabilidade de se obter o valor médio (x = 0, p ~ 0.4) é oito vezes maior que a probabilidade de obter o valor 2 (x = 2; p = 0.05).   
 O termo quadrático torna a distribuição simétrica para valores opostos em relação à média. P(x) = P(-x). Como calculamos P(2)  antes, sabemos que: P(-2) = P(2) = 0.05 para μ = 0. É igualmente provável encontrar valores duas unidades maiores ou duas unidades menores que a média.  Esses pontos estão marcados por uma linhas azuis na figura.  
 Podemos trabalhar com curvas  normais com centros (média μ) deslocados para a esquerda (μ < 0) ou para a direita (μ > 0), subtraindo o termo de x em nosso expoente. Além disso, diferentes variâncias (σ²) refletem a frequência de valores longe da média e o quão distante dela eles são. Visualmente, determina o tamanho da base do sino na ilustração (Figura 3). Usamos a notação  N ~ (μ, σ²) para descrever uma distribuição gaussiana arbitrária:
+
 {$$}P(x)=\frac{1}{sqrt{2\pi\sigma^{2}}}e^{ -\frac{(x-\mu)^{2}}{2\sigma^{2}}}{/$$}
 
 Poderíamos encontrar características desejáveis, como a simetria citada acima, em outras distribuições. Então, por que usamos uma equação mais complexa? Distribuições binomiais grandes e lançamentos de moedas são tão importantes?  
@@ -150,7 +152,7 @@ A figura 2 mostra a soma de distribuições uniformes para dados honestos, evide
 
 Vamos visualizar o mesmo processo para uma outra família de distribuições, gamma:  
 
-{$$} X ~ \gamma_{1}(\alpha, \beta) + ... + \gamma{n}(\alpha, \beta) = X ~ N(\mu’,\sigma’) {/$$}
+{$$} X ~ \gamma_{1}(\alpha, \beta) + ... + \gamma_{n}(\alpha, \beta) = X ~ N(\mu',\sigma') {/$$}
 
 Para valores grandes de n:
  
