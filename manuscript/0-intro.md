@@ -12,6 +12,12 @@ Página intencionalmente deixada em branco.
 
 \pagebreak
 
+Versão 0.2: Introdução; Capítulo 0; Capítulo 1.
+26 de Dezembro de 2018
+
+\pagebreak
+
+
 ## Prefácio
 
 *Remember that all models are wrong; the practical question is how wrong do they have to be to not be useful*  
