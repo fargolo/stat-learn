@@ -120,6 +120,7 @@ Imaginemos um conjunto de medidas antropométricas, com altura e peso e indivíd
 
 Podemos simular este cenário partindo de variáveis idênticas e adicionando ruído aleatório.
 ```r
+    set.seed(2600)
     a <- seq(1:100)+rnorm(n=100,sd=3)
     b <- seq(1:100)+rnorm(n=100,sd=3)
 
@@ -130,7 +131,21 @@ Podemos simular este cenário partindo de variáveis idênticas e adicionando ru
 ```
 ![](images/chap2-scatterline.png)  
 
-O resultado sugere que há uma forte relação linear entre $x$ e $y$. Por outro lado, notamos que é impossível para uma reta cruzar todos os pontos. A seguir, vamos investigar como quantificar a correlação linear, assim como encontrar a reta que minimiza a distancia para todas as observações.
+O resultado sugere que há uma forte relação linear entre $x$ e $y$. Por outro lado, notamos que é impossível para uma reta cruzar todos os pontos. A seguir, vamos investigar como quantificar a correlação linear, assim como encontrar a reta que minimiza a distancia para todas as observações.  
+
+Com essas ferramentas, podemos estender nossas inferências. Além de comparações, teremos noções sobre a magnitude de uma relação, assim como poderemos prever o valor esperado para novas observações.   
 
 [^10]:A natureza da aleatoriedade é uma questão filosófica. Em última instância, podemos imaginar que seria possível explicar flutuações randômicas através de variáveis desconhecidas (*hidden variables*). Isso é verdade para a maioria dos fenômenos naturais. Entretanto, descobertas experimentais recentes em física quântica (*Bell's inequality experiment*) sugerem que variáveis ocultas não podem explicar a natureza probabilística das observações.  
 
+### O coeficiente de correlação produto-momento de Pearson, ou, simplesmente, $\rho$ de Pearson.
+
+O coeficiente de correlação $(\rho)$ de Pearson é um número real garantidamente[^11] entre -1 e 1. Expressa a magnitude e o sentido de uma relação linear, sendo -1 uma relação inversa perfeita e 1 uma relação direta perfeita.  
+
+Para os dados que geramos, a correlação é quase perfeita: $\rho = 0.989$.  
+O coeficiente possui *produto-momento* em seu nome, pois usa uma abstração originalmente empregada na física: o momento.  
+
+[^11]: Inequalidade de Cauchy–Schwarz
+
+\pagebreak
+
+### Momentum
