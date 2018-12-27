@@ -1,3 +1,5 @@
+![](images/chap1-darw-ill.png)
+
 # Capítulo 1 
 
 ## Os pássaros de Darwin e o método hipotético-dedutivo.
@@ -55,7 +57,7 @@ De Moivre intuiu que a distribuição de binomiais com muitos lançamentos aprox
 
 Primeiro, de Moivre deduziu a solução para o problema das moedas $(p = \frac{1}{2})$. A seguinte expressão geral descreve a probabilidade $P(x)$ correspondente à curva que procuramos, conhecida como *gaussiana*.  
 
-$P(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}}$
+$$P(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}}$$
 
 O número misterioso em questão é o número de Euler $(e \sim 2.72…)$, que será melhor explicado no capítulo 3. 
 A fórmula consiste em um fator, $\frac{1}{\sqrt{2\pi}}$ (aproximadamente 0.4), multiplicando o resultado da exponencial.  
@@ -97,7 +99,7 @@ O termo quadrático torna a distribuição simétrica para valores opostos em re
 Podemos trabalhar com curvas  normais com centros (média $\mu$) deslocados para a esquerda ($\mu$ < 0) ou para a direita ($\mu$ > 0), subtraindo o termo de x em nosso expoente. Além disso, diferentes variâncias ($\sigma^{2}$) refletem a frequência de valores longe da média e o quão distante dela eles são. Visualmente, determina o tamanho da base do sino na ilustração (Figura 3).  
 Usamos a notação $N \sim (\mu, \sigma^{2})$ para descrever uma distribuição gaussiana com média $\mu$ e variância $\sigma^{2}$ arbitrárias:
 
-$P(x)=\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{ -\frac{(x-\mu)^{2}}{2\sigma^{2}}}$
+$$P(x)=\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{ -\frac{(x-\mu)^{2}}{2\sigma^{2}}}$$
 
 Poderíamos encontrar características desejáveis, como a simetria citada acima, em outras distribuições. 
 Então, por que usamos uma equação mais complexa?  
@@ -330,18 +332,18 @@ Estruturando os passos:
 Então, podemos fazer um experimento, coletando medidas experimentais para o comprimento dos bicos. Essas medidas, junto a premissas matemáticas razoáveis, permitem especular: qual a probabilidade p de obter nossas observações considerando distribuições iguais entre A e B? Isto é, considerando $H_{0}$ verdade, nossos resultados seriam raros ou comuns? 
 
 Caso p seja menor que um limiar pré-definido (convencionalmente, 0.05), rejeitamos $H_{0}$. A probabilidade é muito pequena para $H_{0}$ ser verdade.  
-A interpretação do valor p não é muito intuitiva.  
-Envolve mensurar quão improváveis são as observações em um cenário hipotético na vigência da hipótese nula.  
-Sua tradução (errada) mais popular é de que representa "a chance de o resultado deste estudo estar errado".  
 
 A domínio dos procedimentos hipotético-dedutivos nas ciências produziu resultados interessantes.  
 Especialmente no eixo de trabalho denominado por Thomas Kuhn de "ciência normal", focada no acúmulo de evidências e testagem de hipóteses. O fantasma de desenhar um experimento imparcial com possibilidade de falha aguçou a percepção de pesquisadores para a falibidade de ideias.  
 O grau de sofisticação em reprodutibilidade de procedimentos foi amplificada.  
 
-Em contrapartida, o arcabouço acima é suficiente para produzir um trabalho científico críptico para leigos.   
-Ao seguir receitas pré-definidas (formulação de $H_{0}$ e $H_{1}$, cálculo de estatísticas e valores p), um texto parece estar em conformação com os padrões acadêmicos, mesmo que a hipótese elementar em torno do objeto de pesquisa seja simplória. Assim, inadvertidamente, priorizamos a forma e relegamos a segundo plano o miolo de propostas científicas. 
-Trabalhos de pouca originalidade recebem grande atenção pelo rigor e por atributos quantitativos (e.g. tamanho amostral grande, valor p baixo), enquanto criativos experimentos menores levam anos ou décadas até atingirem a comunidade.  
-Outro efeito colateral é a busca por valores p que rejeitem $H_{0}$, desprezando precedentes teóricos e premissas probabilísticas (múltiplos testes).
+#### Nota
+
+*Usamos o limite inferior de 0.05 como critério para rejeitar a hipótese nula, o que pode parecer arbitrário. E é. Os valores p eram interpretados de acordo com sua magnitude e estatística com base em que foram calculados. Foi Ronald Fisher, em Statistical Methods for Research Workers (1925), quem propôs (e posteriormente popularizou) o número: "The value for which $p=0.05$, or 1 in 20, is 1.96 or nearly 2; it is convenient to take this point as a limit in judging whether a deviation ought to be considered significant or not.[^8]"*  
+
+[^8]: O valor [da estatística z em uma curva normal] para o qual $p=0.05$, ou 1 em 20, é de 1.96 ou aproximadamente 2; é conveniente pegar esse ponto como um limite ao julgar quando um desvio deve ser considerado significante ou não.
+
+
 
 ## Um exemplo prático: Teste t para amostras independentes
 
@@ -349,8 +351,8 @@ Para testar estatisticamente se as medidas são diferentes, executaremos um test
 
 A distribuição t surge quando queremos entender quão improváveis são nossas estimativas ($\mu'$) supondo uma média real hipotética ($\mu$) de origem em uma variável de distribuição normal desconhecida. 
 
-**Exemplo**: Medimos os bicos de 30 pássaros. Obtivemos média amostral $\mu'$ = 38 mm e desvio-padrão $\sigma'$ = 0.3 mm. 
-**Problema**: Supondo que a média real ($\mu$) da população é de 40 mm, qual é a probabilidade de obtermos $\mu'$ = 38 mm em uma amostra aleatória, como aconteceu em nosso experimento?
+**Exemplo**: Medimos os bicos de 30 pássaros. Obtivemos média amostral $\mu'$ = 38 mm e desvio-padrão $\sigma'$ = 0.3 mm.  
+**Problema**: Supondo que a média real ($\mu$) da população é de 40 mm, qual é a probabilidade de obtermos $\mu'$ = 38 mm em uma amostra aleatória, como aconteceu em nosso experimento?  
 
 Entender a imprecisão da estimativa de uma média foi o eixo principal para a descrição dessa distribuição por William Gosset. Sob o pseudônimo Student, o estatístico, que trabalhava para a fábrica de cerveja Guiness, publicou na Biometrika (1908) o famoso artigo *The probable error of a mean*.   
 
@@ -366,15 +368,15 @@ Student propôs o uso de uma quantidade para estimar a probabilidade de uma esti
 Essa quantidade pivotal é a razão entre *(1)* distância das estimativas e média real, $\mu'$ - $\mu$, e *(2)* o erro padrão.  
 A estatística t:
 
-$t = \frac{Z}{s}=(\mu'-\mu)/\frac{\sigma}{\sqrt{n}}$
+$$t = \frac{Z}{s}=(\mu'-\mu)/\frac{\sigma}{\sqrt{n}}$$
 
 Assim, a estatística t para nosso exemplo ($\mu$’=38; $\mu$= 40; n=30; $\sigma$’=0.3) é:
 
 $t = \frac{(38-40)}{\frac{0.3}{\sqrt{30}}}$
 
-Student (Gosset) mostrou que essa estatística segue uma distribuição probabilística (t de Student) definida:
+Student (Gosset) mostrou que essa estatística segue uma distribuição probabilística (t de Student) definida por:
 
-$f(t)={\frac {1}{{\sqrt {\nu }}\,\mathrm {B} ({\frac {1}{2}},{\frac {\nu }{2}})}}\left(1+{\frac {t^{2}}{\nu }}\right)^{\!-{\frac {\nu +1}{2}}}$
+$$f(t)={\frac {1}{{\sqrt {\nu }}\,\mathrm {B} ({\frac {1}{2}},{\frac {\nu }{2}})}}\left(1+{\frac {t^{2}}{\nu }}\right)^{\!-{\frac {\nu +1}{2}}}$$
 
 B é a função Beta e v são graus de liberdade. 
 Possui densidade parecida com a da distribuição normal, porém com probabilidades maiores para valores extremos. O parâmetro $\nu$ (graus de liberdade) expressa essa característica. Empiricamente é estimado pelo tamanho das amostras usadas na estimativa de $\mu'$. 
@@ -385,32 +387,50 @@ Associamos uma amostra (tamanho n) retirada de uma população normal (tamanho a
 Maiores valores correspondem a amostras maiores e fazem com que a distribuição t se aproxime de uma distribuição normal. Em um caso extremo, temos $n_{samples}=n_{pop}$ e as amostras são idênticas à distribuição de origem. 
 
 Sabendo a estatística t (-36.51) e os graus de liberdade para nossa família de amostras ($\nu$ = 29), podemos usar a expressão $f(t)$ para saber a probabilidade de obtermos nossa média 38 mm numa amostra (n = 30) se a média populacional for de 40 mm. 
-Em R, a função pt retorna a probabilidade total de valores extremos menores que a estatística t fornecida. 
+
+Para tanto, somamos as probabilidades de valores extremos menores que a estatística t fornecida.  
+$$\int_{-\infty}^{-36.51}f(t)dt$$
+
+Em R, a função nativa *pt* faz o trabalho sujo: 
 
 ```r
-    >pt(36.51, df = 29)
+    >pt(-36.51, df = 29)
     [1] 4.262e-26
 ``` 
 
 Esse valor reflete a probabilidade de valores t negativos mais extremos (menores) que os nosso ($t < -36.51$).  
 
-Parece ser nosso valor p, porém precisa de um ajuste:  
-Por outro lado, valores extremos (negativos ou positivos) em relação à média são duas vezes mais prováveis que valores negativamente extremos.
+#### Teste bicaudal 
 
-Consideramos significativos valores t muito maiores (direita) ou menores (esquerda) que a média. Então, nosso limiar deve ser robusto à possibilidade de extremos maiores que a estatística t simétrica positiva $(t_{min}= -36.51; t_{max} = 36.61)$. É o que encontraríamos com a medida simétrica em relação à média de 42 mm. Ao fazer esse ajuste, chamamos o teste de bicaudal.
+Parece ser nosso valor p, porém precisa de um ajuste: queremos saber a probabilidade associada a obter valores tão extremos em geral, não nos restringindo a valores extremamente menores. 
 
-Sabendo que a distribuição t é simétrica, podemos fazer então usar o seguinte truque:
+Uma vez que a distribuição é simétrica, a cauda à esquerda (negativos) é idêntica à cauda à direita (positivos). Valores extremos (negativos ou positivos) em relação à média são duas vezes mais prováveis que valores negativamente extremos.  
+Consideramos significativos valores t muito maiores (direita) ou menores (esquerda) que a média. Então, nosso limiar deve ser robusto à possibilidade de extremos maiores que a estatística t simétrica positiva.  
+
+O valor $t=36.51$ seria a estatística resultante de uma amostra com média simétrica (42 mm) em relação à média (40 mm). Recorde-se de que a medida original foi 38 mm.  
+
+$(t_{min}= -36.51; t_{max} = 36.51)$.  
+Ao fazer esse ajuste, chamamos o teste de bicaudal.
+
+Sabendo da simetria na distribuição t, podemos fazer então usar o seguinte truque:
 
 ```r
     > 2*pt(-36.51, df = 29)
     [1] 8.524e-26 # valor p 'bicaudal'
 ```
 
+Não é possível calcular diretamente as probabilidades para t = 36.51, pois o R aproxima a integral acima $(p \sim 1 - 4.262^{-26}) \sim 1$.
+```r
+    > pt(36.51, df = 29)
+    [1] 1
+```
+
+
 #### Nota
 
 *Uma percepção errônea comum sobre a distribuição t é de que ela descreve amostras pequenas retiradas de uma população com distribuição  normal. Qualquer amostra retirada de uma variável de distribuição normal terá, por definição, distribuição normal, ainda que seja composta por 1 ou 2 observações. O que segue distribuição t é a quantidade pivotal descrita acima.*
 
-Na sessão IX do artigo, Student (Gosset) demonstra como seu insight pode ser usado para testar o efeito de isômeros da escopolamina como indutora do sono.[^8]  São usadas duas amostras (levo e dextro hidrobromido de hyoscyamina).
+Na sessão IX do artigo, Student (Gosset) demonstra como seu insight pode ser usado para testar o efeito de isômeros da escopolamina como indutora do sono.[^9]  São usadas duas amostras (levo e dextro hidrobromido de hyoscyamina).
 
 ![Retirado de The probable error of a mean, pag. 20. Is dados estão disponíveis na biblioteca de base do R, sob o nome 'school’.](images/chap1-hyosc.png)
 
@@ -420,10 +440,9 @@ O primeiro procedimento é idêntico ao que realizamos com a medida dos bicos e 
 
 O segundo procedimento é chamado de teste t de amostras independentes. Hipotetizamos um valor para diferença de médias entre duas populações $(\mu_{a}-\mu_{b}= 0)$ e calculamos a probabilidade de nossa estimativa. Exemplo prático: existe diferença de peso entre os bicos dos pássaros A e B?
 
-![](images/chap1-darw-ill.png)
 
 
-[^8]:https://atmos.washington.edu/~robwood/teaching/451/student_in_biometrika_vol6_no1.pdf
+[^9]:https://atmos.washington.edu/~robwood/teaching/451/student_in_biometrika_vol6_no1.pdf
 
 \pagebreak
 
@@ -446,11 +465,13 @@ Obtemos o valor p somando os valores de probabilidades correspondentes às difer
 
 ## Aplicação com software 
 
-Vamos computar um teste t para 2 amostras independentes. A estatística t é calculada com algumas mudanças: os graus de liberdade são somados e o erro padrão (dispersão das estimativas) estimado é balanceado entre amostras.  
+Vamos computar um teste t para 2 amostras independentes. A estatística t é calculada com algumas mudanças.  
+Os graus de liberdade são somados e o erro padrão (dispersão das estimativas) é balanceado através da média ponderada (pelos graus de liberdade, n-1) entre amostras.  
 
-$t = \frac{ X_{1} - X_{2}}{s_{p}\sqrt{2/n}} ; s_{p} = \sqrt{\frac{{s_{1}}^{2}+{s_{2}}^{2}}{2}}$
+$$t = \frac{ X_{1} - X_{2}}{\sigma_{pooled}\sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}}}$$
 
-$s_{p}$ corresponde ao erro-padrão balanceado.
+$$\sigma_{pooled} = \sqrt{ \frac{(n_{1}-1)\sigma_{1}^{2}+(n_{2}-1)\sigma_{2}^{2}}{(n_{1}-1)+(n_{2}-1)}}$$
+
 
 Considerando $(n_{1}-1) + (n_{2}-1)$ graus de liberdade, calculamos a estatística t e o valor p correspondente para nossos graus de liberdade. Usando as amostras criadas anteriormente, correspondentes às  barras cinza (A) e azul(B), vamos plotar os histogramas.
 
@@ -476,26 +497,27 @@ Considerando $(n_{1}-1) + (n_{2}-1)$ graus de liberdade, calculamos a estatísti
 
 Aqui, ao invés de comparar as estimativas das médias de distribuição t para amostras A e B.  
 
-Calculamos a (1) Diferença esperada na vigência da hipótese nula ($diff_{H_{0}} = 0)$, (2) estimativa da diferença $(diff = \mu_{A}-\mu_{B})$, graus de liberdade (df) e erro padrão balanceado $(se_{pooled})$ para a distribuição das diferenças de médias:
+Calculamos a (1) Diferença esperada na vigência da hipótese nula ($diff_{H_{0}} = 0)$, (2) estimativa da diferença $(diff = \mu_{A}-\mu_{B})$, graus de liberdade (df) e erro padrão balanceado $(se_{pooled})$ para a distribuição das diferenças de médias.
 
 ```r 
     >expected_diff <- 0
-    >mean_diff <- mean(a) - mean(b) #mean difference
+    >mean_diff <- mean(a) - mean(b) #diferença de medias
     
-    >df_pool <- length(a) + length(b) - 2 # degrees of freedom
-    >se_pool  <- sqrt(((length(a) - 1) * sd_a^2 + (length(b) - 1) * sd_b^2)/
-                   	df_pool) # pooled std. error 
+    >df_pool <- length(a) + length(b) - 2 # graus de liberdade balanceados
+    >sd_pool  <- sqrt(((length(a) - 1) * sd_a^2 + (length(b) - 1) * sd_b^2)/
+                   	df_pool) # desvio padrao balanceado 
 ```
 A estatística t correspondente à diferença observada, considerando uma distribuição t com os parâmetros calculados acima.
 
 ```r
-    >t   <- (mean_diff - expected_diff)/ (se_pool * sqrt(1/length(a) + 1/length(b))) # t-statistic
+    # Diferenca dividida por erro padrao
+    >t   <- (mean_diff - expected_diff)/ (sd_pool * sqrt(1/length(a) + 1/length(b))) # t-statistic
 
 ```
 Valor p para hipótese bicaudal (resultados extremos considerando a possibilidade de a diferença ser maior ou menor que 0): 
 
 ```r
-    >p <- 2*pt(-abs(t), df = df_pool) # two-sided p-value
+    >p <- 2*pt(-abs(t), df = df_pool)
 ```
 
 Finalmente, agregando o sumário dos resultados (médias A e B, diferença verificada, estatística t resultante, valor p):
@@ -524,7 +546,8 @@ Sendo uma linguagem voltada à estatatística, R possui em sua biblioteca de bas
      43.52244  41.98912
 ```
 
-Estatística t e graus de liberdade apresentados pela implementação da biblioteca base do R(base::t.test) são idênticos aos que encontramos realizando o procedimento passo a passo. O valor p $(p=1.53^{-140})$ é apresentado como $p < 2.2^{-16}$  
+Estatística t e graus de liberdade apresentados pela implementação nativa do R(t.test) são idênticos aos que encontramos realizando o procedimento passo a passo.  
+Ao invés do valor exato $(p=1.53^{-140})$, recebemos a informação de que $p < 2.2^{-16}$.  
 Diante do valor p obtido, concluiríamos que a distribuição dos dados como observada é improvável se for verdade a hipótese nula $H_{0}$ de que a diferença entre amostras é 0.   
 
 #### Exemplo de relatório

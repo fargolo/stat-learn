@@ -74,8 +74,9 @@ Capítulo 1 - Os pássaros de Darwin e o método hipotético dedutivo
 
 **Em construção:**  
 
-Capítulo 2 - Expectativa de vida e assistência em saúde  
+Capítulo 2 - Sobre a natureza das relações
 
+* Tamanho de efeito
 * Relações lineares
 * Coeficiente de correlação r de Pearson
 * Regressão linear

@@ -130,18 +130,18 @@ R possui estruturas que ajudam a manipulação de dados estruturados como os que
 A mais simples é a lista. Uma lista é um conjunto de objeto de quaisquer tipos. Assim, podemos ter uma lista contendo vetores, doubles, matrizes e gráficos! Tudo em uma estrutura.  
  
 ```r
-    > mlist <- list(a = c(1,5,6,7), b = c("a","b","c",”d”))
-    > mlist
+    >mlist <- list(a = c(1,5,6,7), b = c("a","b","c",”d”))
+    >mlist
     $a
     [1] 1 5 6 7
     $b
     [1] "a" "b" "c" “d”
-    > class(mlist)
+    >class(mlist)
     [1] "list"
     Podemos acessar estruturas internas pelo nome usando o operador $:
-    > typeof(mlist$a)
+    >typeof(mlist$a)
     [1] "double"
-    > typeof(mlist$b)
+    >typeof(mlist$b)
     [1] "character"
 ```
 Outro tipo útil é composto pelas matrizes, que correspondem às matrizes da matemática, podendo também conter caracteres em suas células.  
@@ -183,7 +183,9 @@ Por fim, data.frames são extensões das matrizes:
 Data frames são os objetos mais comumente tratados em R e seguem o formato tidy.  
 
 $\qquad$ Cada variável corresponde a uma coluna.  
+
 $\qquad$ Cada observação corresponde a uma linha.  
+
 $\qquad$ Cada tipo de unidade observacional forma uma tabela.  
   
 Um exemplo visual torna as coisas mais fáceis. A seguir, temos uma variável categórica (País) e duas numéricas (Número de médicos por 1.000 habitantes em 2011 e Expectativa de vida ao nascer) em formato tidy:   
@@ -195,7 +197,8 @@ Note que cada linha corresponde a apenas um país (observação) e cada coluna r
 Para acessar o valor correspondente, usamos índices separados por vírgula. O primeiro espaço é reservado às linhas selecionadas e deve ser um vetor de números (linhas selecionadas) ou vetor com valores lógico do tamanho do dataset (valores com índices TRUE serão incluídos). O segundo espaço corresponde às colunas e deve conter índices numéricos ou nomes das variáveis.  
 
 ```r
-    >iris[1:5,c("Species",'Sepal.Length')] # primeiras 5 linhas com variaveis especies e sepal.length’  
+    # primeiras 5 linhas com variaveis especies e sepal.length’  
+    >iris[1:5,c("Species",'Sepal.Length')]
      Species Sepal.Length
     1  setosa      	5.1
     2  setosa      	4.9
@@ -437,16 +440,16 @@ Ainda, uma maneira de manipular muitos elementos é através de funções de alt
 Tudo pode ser feito em apenas um pipe:  
 
 ```r
-    >map(.f = function(y) (y - mean(arg))^2, .x = arg) %>% 
-	unlist(.) %>% sum(.)/(length(arg) - 1)
+    >map(.f = function(y) (y - mean(arg))^2, .x = arg) %>% # Define e aplica função 
+	unlist(.) %>% sum(.)/(length(arg) - 1) # Soma as distancias e divide por n-1
 ```
 Quando usamos o pipe, o caractere de ponto (.) se refere ao valor fornecido como entrada pela pipe anterior. Assim, sum(.), no exemplo, acima soma os valores passados pela função unlist(.), que por sua vez, transforma em vetor uma lista de valores passada pela função *map*.
 Nossa função pode ser escrita:  
 
 ```r
     var_4 <- function(arg){
-      purrr::map(.f = function(y) (y - mean(arg))^2, .x = arg) %>% # Define e aplica função
-    	unlist %>% sum(.)/(length(arg) - 1) # Soma as distancias e divide por n-1
+      purrr::map(.f = function(y) (y - mean(arg))^2, .x = arg) %>% 
+    	unlist %>% sum(.)/(length(arg) - 1) 
     }
     > var_4(b)
     [1] 2.823333
