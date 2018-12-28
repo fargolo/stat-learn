@@ -12,8 +12,8 @@ Página intencionalmente deixada em branco.
 
 \pagebreak
 
-Versão 0.2: Introdução; Capítulo 0; Capítulo 1.
-26 de Dezembro de 2018
+Versão 0.21: Introdução; Capítulo 0; Capítulo 1; Capítulo 2 (em progresso).
+27 de Dezembro de 2018
 
 \pagebreak
 
