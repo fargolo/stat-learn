@@ -14,6 +14,7 @@ Sua tradução (errada) mais popular é de que representa *"a chance de o result
 O arcabouço descrito no capítulo anterior é suficiente para produzir um trabalho científico críptico para leigos.   
 
 Ao seguir receitas pré-definidas (formulação de $H_{0}$ e $H_{1}$, cálculo de estatísticas e valores p), um texto parece estar em conformação com os padrões acadêmicos, mesmo que a hipótese elementar em torno do objeto de pesquisa seja simplória. Assim, inadvertidamente, priorizamos a forma e relegamos a segundo plano o miolo de propostas científicas.  
+
 Trabalhos de pouca originalidade recebem grande atenção pelo rigor por atributos quantitativos (e.g. tamanho amostral grande, valor p baixo), enquanto criativos e revolucionários experimentos menores levam anos ou décadas até atingirem a comunidade.  
 Outro efeito colateral é a busca por valores p que rejeitem $H_{0}$, desprezando precedentes teóricos e premissas probabilísticas (múltiplos testes).  
 
@@ -28,6 +29,7 @@ Neste capítulos, vamos aprender a estimar (1) a magnitude da diferença entre d
 
 O tamanho de efeito nos ajuda a expressar magnitudes.  
 Retomando o exemplo anterior, de que adianta uma diferença significativa entre o tamanho dos bicos dos pássaros, se ela for de 0.00001 mm?  
+
 Ainda, existem casos em que estudos pequenos sugerem efeitos importantes, porém o tamanho amostral não fornece poder estatístico suficiente para rejeição da hipótese nula.  
 
 
@@ -205,9 +207,9 @@ $$\mu_{n}= \int_{-\infty}^{\infty} d(x,x_{0})^{n}f(x)dx$$
 
 A integral acima corresponde à versão contínua da soma de partes discretas apresentadas antes para uma grandeza física, como a massa: $M_{n} = (\sum_{i=1}^{N}d_{i}^{n}m_{i})$  
 
-**Momento zero**: $$\mu_{0}= \int_{-\infty}^{\infty} d(x,x_{0})^{0}f(x)dx = \int_{-\infty}^{\infty} f(x)dx = 1$$  
-**Primeiro momento**: $$\mu_{1}= \int_{-\infty}^{\infty} d(x,x_{0})f(x)dx$$ , supondo centro em 0 $(x_{0}=0)$, temos $$ \mu_{1} = \int_{-\infty}^{\infty} xf(x)dx$$, também chamado valor esperado $E[X]$  
-**Segundo momento**: $$\mu_{2}= \int_{-\infty}^{\infty} d(x,x_{0})^{2}f(x)dx$$. Como vimos anteriormente, a soma dos quadrados dos desvios, nossa variância, $\sigma^{2} = E[(x-\mu)^{2}]$.
+**Momento zero**: $$\mu_{0}= \int_{-\infty}^{\infty} d(x,x_{0})^{0}f(x)dx = \int_{-\infty}^{\infty} f(x)dx = 1$$.   
+**Primeiro momento**: $$\mu_{1}= \int_{-\infty}^{\infty} d(x,x_{0})f(x)dx$$ , supondo centro em 0 $(x_{0}=0)$, temos a média, $$ \mu_{1} = \int_{-\infty}^{\infty} xf(x)dx$$, também chamado valor esperado $E[X]$.  
+**Segundo momento**: $$\mu_{2}= \int_{-\infty}^{\infty} d(x,x_{0})^{2}f(x)dx$$. Como vimos anteriormente, a soma dos quadrados dos desvios, nossa variância, $\sigma^{2} = E[(x-\mu)^{2}]$.  
 
 Com os conceitos adquiridos em mãos, é fácil entender o $\rho$ de Pearson.  
 
@@ -216,13 +218,96 @@ Com os conceitos adquiridos em mãos, é fácil entender o $\rho$ de Pearson.
 A noção de **distância** ou **desvio** se repetiu muitas vezes.  
 De fato, o coeficiente de correlação linear nasceu quando Francis Galton (1888) estudava numericamente dois problemas aparentemente distintos em antropometria [^14]:
 
-1.  **Antropologia:**Se recuperássemos de um túmulo antigo apenas um osso da coxa (fêmur) de um indivíduo, o que podereríamos dizer sobre sua altura?
-2.  **Ciência forense:**Com o intuito de identificar criminosos, o que pode ser dito sobre medidas diferentes de uma mesma pessoa?
+1.  **Antropologia:** Se recuperássemos de um túmulo antigo apenas um osso da coxa (fêmur) de um indivíduo, o que podereríamos dizer sobre sua altura?
+2.  **Ciência forense:** Com o intuito de identificar criminosos, o que pode ser dito sobre medidas diferentes de uma mesma pessoa?
 
 Galton percebeu que, na verdade, estava lidando com o mesmo problema. Dadas medidas pareadas, $(x_{i},x_{i}')$, o que o desvio de $x_{i}$ informa sobre o desvio de $x_{i}'$?
 
-O fêmur de um faraó é 5 cm maior que a média. Qual distante da média esperamos que seja sua altura? Ingenuamente, podemos pensar que se uma das medidas é 5% maior que a média, a outra também será 5% maior. Galton percebeu que havia um armadilha nesse pensamento. Apesar de haver uma relação entre as medidas, há também flutuações aleatórias. Então, propôs calcular um coeficiente para quantificar o grau de associação.
+O fêmur recuperado do esqueleto de um faraó é 5 cm maior que a média. Quão distante da média esperamos que seja sua altura? Ingenuamente, podemos pensar que se uma das medidas é 5% maior que a média, a outra também será 5% maior. Galton percebeu que havia um armadilha nesse pensamento.  
+Apesar de haver uma relação entre as medidas, há também flutuações aleatórias: parte do desvio é resultante disso. Precisamos entender o grau de correlação pra fazer um bom palpite.  
 
+Então, propôs um coeficiente mensurando a relação entre desvios de variáveis. Se tamanho do fêmur e altura estão muito relacionadas, um fêmur grande sugere indivíduo igualmente alto. Caso contrário (baixa correlação), um fêmur grande (desvio alto) não implica desvio grande estatura.  
 
+Para quantificar a relação, multiplicamos os desvios de cada par de medidas:  
+$$\sum_{i=1}^{N}(x_{i}-\mu_{x_{i}})(x_{i}'-\mu_{x_{i}'})$$
+A expressão acima expressa a **covariância** entre $X$ e $X'$ e será útil em outros contextos. A expressão lembra o cálculo do primeiro momento, porém cada desvio é multiplicado pelo desvio correspondente da medida pareada. Daí o nome coeficiente de correlação *produto-momento*.  
+
+O coeficiente de correlação de Pearson é a razão entre covariância e o produto dos desvios-padrão:
+$$\rho_{XX'}= \frac{cov(X,X')}{\sigma_{X}\sigma_{X'}}$$
+De forma extensa:  
+$$\rho_{XX'}= \frac{\sum_{i=1}^{N}(x_{i}-\mu_{x_{i}})(x_{i}'-\mu_{x_{i}'})}{\sqrt{\sum_{i}^{N}(x_{i}-\mu_{x})^{2}}\sqrt{\sum_{i}^{N}(x_{i}'-\mu_{x'})^{2}}}$$
+Uma boa notícia: $\rho$ segue uma distribuição conhecida, a distribuição t, com n-2 graus de liberdade. Podemos usar as ferramentas anteriores para testar hipóteses. 
 
 [^14]: Francis Galton's account of the invention of correlation. Stephen M. Stigler. Statistical Science. 1989, Vol. 4, No. 2, 73-86.
+
+### Exemplo prático
+
+O exemplo a seguir foi um feliz achado. À época, o governo brasileiro discutia a necessidade da formação de médicos para melhorar a assistência à saúde. Por curiosidade, acessei os dados da WHO (World Health Organization) e do banco mundial (World Bank) sobre quantidade de médicos por país e indicadores de saúde. Minha expectativa era encontrar pelo menos uma tímida relação entre indicadores. Fui surpreendido por uma forte correlação, que exploraremos a seguir.  
+
+Adotamos países como unidade observacional para $x$, o número de médicos 1,000 habitantes, e $y$, a expectativa de vida saudável ao nascer.  
+Usando dados obtidos dos portais da WHO e do World Bank, plotamos os pontos no plano cartesiano.  
+
+```r
+    # http://apps.who.int/gho/data/view.main.HALEXv
+    # https://data.worldbank.org/indicator/SH.MED.PHYS.ZS
+    library(magrittr)
+    library(ggplot2)
+    library(dplyr)    
+
+    worldbank_df <- read.csv("data/API_SH.MED.PHYS.ZS_DS2_en_csv_v2_10227587.csv",
+                         	header = T,skip = 3)
+    colnames(worldbank_df)[1] <- "Country"    
+
+    worldbank_df$n_docs <- sapply(split(worldbank_df[,53:62], #lists of values
+                                    	seq(nrow(worldbank_df))),
+       	function(x) tail(x[!is.na(x)],1)) %>% #last non missing value
+      as.numeric    
+
+    who_df <- read.csv("data/who_lifeexpect.csv",skip=2)
+    who_df$hale <- who_df$X2016
+    uni_df <- left_join(worldbank_df[,c("Country","n_docs")],
+                    	who_df[,c("Country","hale")],by="Country")    
+
+    ggplot(uni_df,aes(x=n_docs,y=hale))+
+      geom_point(alpha=0.5,size=3) +
+      xlab("No. de medicos / 1,000 hab.")+
+      ylab("Expectativa de vida saudavel ao nascer")
+```
+![](images/chap2-logcurve.jpg)
+
+É evidente que o padrão não é aleatório. Visualmente, notamos que o valor da expectativa de vida aumenta com maior Nº de médicos. 
+Ainda, notamos um aumento inicialmente rápido, com um platô em seguida. O padrão é semelhante ao de uma curva logarítmica.  
+
+$y = log(x)$ ou $HALE = log(N_{médicos})$
+
+Se isso for verdade, transformar o número de médicos usando função logaritmica tornará a relação linear. Se $y = log (x)$, fazemos a transformação $x’ = log(x)$ para obtermos $y = x'$.
+
+Então y (expectativa de vida) se torna linearmente porcional a nossa variável transformada (logaritmo do número de médicos).
+```r
+    >uni_df$log_docs <- log(uni_df$n_docs)
+    >ggplot(uni_df,aes(x=log_docs,y=hale))+
+      geom_point(alpha=0.5,size=3) +
+      xlab("ln de No. de medicos / 1,000 hab.")+
+      ylab("Expectativa de vida saudavel ao nascer")
+```
+![](images/chap2-logtransf.png)
+
+De fato, verificamos uma notável tendência linear para os pontos. 
+
+Usando a implementação nativa em R para o coeficiente de Pearson:
+
+```r
+    > cor.test(uni_df$log_docs,uni_df$hale)
+    Pearson's product-moment correlation
+    data:  uni_df$log_docs and uni_df$hale
+    t = 18.572, df = 143, p-value < 2.2e-16
+    alternative hypothesis: true correlation is not equal to 0
+    95 percent confidence interval: 0.7854248 0.8828027
+    sample estimates:
+      	cor
+    0.8407869
+```
+
+A correlação linear obtida para nossa amostra de países é surpreendentemente grande, como sugeria a visualização $(\rho \sim 0.841)$.  
+
+O valor p é baixo (p <0.001) considerando a hipótese nula $H_{0}$ de $\rho=0$. Concluímos então que há uma relação linear significativa de forte magnitude entre o logaritmo do número de médicos e a expectativa de vida dos países em nossa amostra.

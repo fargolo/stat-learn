@@ -1,8 +1,8 @@
 ![](images/0-intro-cover.png)  
 
-## Aprendizagem estatística para ciências.
+## Ciência de dados.
 
-## Aplicações com software.
+## Filosofia e aplicações.
 
 <div style="text-align: right"> Felipe Coelho Argolo </div>
 
@@ -12,8 +12,8 @@ Página intencionalmente deixada em branco.
 
 \pagebreak
 
-Versão 0.21: Introdução; Capítulo 0; Capítulo 1; Capítulo 2 (em progresso).
-27 de Dezembro de 2018
+Versão 0.22: Introdução; Capítulo 0; Capítulo 1; Capítulo 2 (em progresso).
+28 de Dezembro de 2018
 
 \pagebreak
 
@@ -23,10 +23,10 @@ Versão 0.21: Introdução; Capítulo 0; Capítulo 1; Capítulo 2 (em progresso)
 *Remember that all models are wrong; the practical question is how wrong do they have to be to not be useful*  
 *George Box & Norman R. Draper, Empirical Model-Building and Response Surfaces* 
 
-Uma antiga aplicação da matemática é fazer inferências com base em observações de cenários parecidos. Civilizações antigas, como os babilônios, usavam interpolação linear para estimar informações. Fazendo o censo populacional com intervalo de anos, estimavam o valor dos anos não medidos, supondo que eles eram medidas centrais daquelas que ao seu redor. 
-Métodos iterativos também foram usados para aproximar a raiz quadrada de números naturais ($\sqrt{2}$) e números irracionais $\pi$.  
+Uma antiga aplicação da matemática é fazer inferências com base em observações de cenários parecidos. Civilizações antigas, como os babilônios, usavam interpolação linear para estimar informações. Fazendo o censo populacional com intervalo de anos, estimavam o valor dos anos não medidos, supondo que eles eram medidas centrais daquelas ao seu redor. 
+Métodos iterativos também foram usados para aproximar a raiz quadrada de números naturais ($\sqrt{2}$) e números irracionais $(\pi)$.  
   
-Essas técnicas deram fruto a abstrações mais gerais, aos campos da estatística e dos métodos numéricos. Em particular, o último século contou com a invenção do computador universal e dos processadores eletrônicos, impulsionando o poder de cálculos vertiginosamente. 
+Essas técnicas deram fruto a abstrações mais gerais, aos campos da estatística e dos métodos numéricos. Em particular, o último século (XX) contou com a invenção do computador universal e dos processadores eletrônicos, impulsionando o poder de cálculos vertiginosamente. 
 
 O aperfeiçoamento teórico e instrumental trouxe ferramentas mais adequadas para cientistas e também algoritmos mais potentes para aplicações práticas.
    
@@ -72,13 +72,14 @@ Capítulo 1 - Os pássaros de Darwin e o método hipotético dedutivo
 * Método hipotético-dedutivo e Testes de hipótese
 * Valor p
 
-**Em construção:**  
 
 Capítulo 2 - Sobre a natureza das relações
 
+* Prelúdio: Quem precisa do valor p?
 * Tamanho de efeito
-* Relações lineares
-* Coeficiente de correlação r de Pearson
+* Correlações
+* Coeficiente de correlação $\rho$ de Pearson
+**Em construção:**  
 * Regressão linear
 
 
