@@ -1,8 +1,6 @@
 ![](images/chap2-vitruv.jpg)
 
-# Capítulo 2
-
-## Sobre a natureza das relações 
+# Capítulo 2: Sobre a natureza das relações 
 
 ## Prelúdio: Quem precisa do valor p?
 
@@ -197,7 +195,7 @@ Podemos generalizar ainda mais a abstração e calcular momentos de entidades ab
 
 Seja $f(x)$ a função que descreve uma distribuição de probabilidades para a variável,  
 Assim como o **momento zero** representa a massa total, aqui ele representa a probabilidade total (1).  
-O **primeiro momento**, correspondente ao centro de massa, é a **média**.  
+O **primeiro momento**, correspondente ao centro de massa na mecânica estática, é a **média**.    
 O **segundo momento**, correspondente ao momento inercial, é a **variância**.  
 Os momentos **terceiro** e **quarto** normalizados informam sobre assimetrias *(skewness)* e peso de valores extremos *(kurtosis)*.  
 
@@ -205,7 +203,7 @@ Formalmente, seja $d(x,x_{0})$ o valor da distância ao centro $x_{0}$ de refer�
 
 $$\mu_{n}= \int_{-\infty}^{\infty} d(x,x_{0})^{n}f(x)dx$$  
 
-A integral acima corresponde à versão contínua da soma de partes discretas apresentadas antes para uma grandeza física, como a massa: $M_{n} = (\sum_{i=1}^{N}d_{i}^{n}m_{i})$  
+A integral acima corresponde à versão contínua da soma de partes discretas apresentadas antes para uma grandeza física, como a massa: $M_{n} = \sum_{i=1}^{N}d_{i}^{n}m_{i}$  
 
 **Momento zero**: $$\mu_{0}= \int_{-\infty}^{\infty} d(x,x_{0})^{0}f(x)dx = \int_{-\infty}^{\infty} f(x)dx = 1$$.   
 **Primeiro momento**: $$\mu_{1}= \int_{-\infty}^{\infty} d(x,x_{0})f(x)dx$$ , supondo centro em 0 $(x_{0}=0)$, temos a média, $$ \mu_{1} = \int_{-\infty}^{\infty} xf(x)dx$$, também chamado valor esperado $E[X]$.  
@@ -223,66 +221,77 @@ De fato, o coeficiente de correlação linear nasceu quando Francis Galton (1888
 
 Galton percebeu que, na verdade, estava lidando com o mesmo problema. Dadas medidas pareadas, $(x_{i},x_{i}')$, o que o desvio de $x_{i}$ informa sobre o desvio de $x_{i}'$?
 
-O fêmur recuperado do esqueleto de um faraó é 5 cm maior que a média. Quão distante da média esperamos que seja sua altura? Ingenuamente, podemos pensar que se uma das medidas é 5% maior que a média, a outra também será 5% maior. Galton percebeu que havia um armadilha nesse pensamento.  
+O fêmur recuperado do esqueleto de um faraó é 5 cm maior que a média. Quão distante da média esperamos que seja sua altura? Ingenuamente, podemos pensar que se uma das medidas é 1 desvio-padrão maior que a média, a outra também será 1 desvio-padrão maior. Galton percebeu que havia um armadilha nesse pensamento.   
+
 Apesar de haver uma relação entre as medidas, há também flutuações aleatórias: parte do desvio é resultante disso. Precisamos entender o grau de correlação pra fazer um bom palpite.  
 
-Então, propôs um coeficiente mensurando a relação entre desvios de variáveis. Se tamanho do fêmur e altura estão muito relacionadas, um fêmur grande sugere indivíduo igualmente alto. Caso contrário (baixa correlação), um fêmur grande (desvio alto) não implica desvio grande estatura.  
+Então, propôs um coeficiente mensurando a relação entre desvios de variáveis. Se tamanho do fêmur e altura estão muito relacionadas, um fêmur grande sugere indivíduo igualmente alto. Caso contrário (baixa correlação), um fêmur grande (desvio alto) não implica grande estatura.  
 
 Para quantificar a relação, multiplicamos os desvios de cada par de medidas:  
 $$\sum_{i=1}^{N}(x_{i}-\mu_{x_{i}})(x_{i}'-\mu_{x_{i}'})$$
 A expressão acima expressa a **covariância** entre $X$ e $X'$ e será útil em outros contextos. A expressão lembra o cálculo do primeiro momento, porém cada desvio é multiplicado pelo desvio correspondente da medida pareada. Daí o nome coeficiente de correlação *produto-momento*.  
 
-O coeficiente de correlação de Pearson é a razão entre covariância e o produto dos desvios-padrão:
+Note que, se ambos os desvios concordam em sentido (sinal), o resultado da multiplicaçao será positivo. Pares consistentemente concordantes aumentam o valor da soma final. Se ambos os desvios discordam em sentido (sinal), o resultado será negativo. Pares consistentemente discordantes diminuem o valor da soma final.  
+
+Assim, podemos ter variáveis altamente correlacionadas positivamente negativamente, desde que o sentido da associação seja constante. Em contrapartida, se as medidas são ora discordantes e ora concordantes, os valores tendem a se anular na soma e o resultado se aproxima de zero.  
+
+Observar apenas a covariância é perigoso, pois os valores dependem da unidade de medida e da dispersão dos dados. 
+
+Calculamos o coeficiente de correlação de Pearson, normalizando[^15] a covariância ao dividí-la pelo produto dos desvios-padrão:
 $$\rho_{XX'}= \frac{cov(X,X')}{\sigma_{X}\sigma_{X'}}$$
 De forma extensa:  
 $$\rho_{XX'}= \frac{\sum_{i=1}^{N}(x_{i}-\mu_{x_{i}})(x_{i}'-\mu_{x_{i}'})}{\sqrt{\sum_{i}^{N}(x_{i}-\mu_{x})^{2}}\sqrt{\sum_{i}^{N}(x_{i}'-\mu_{x'})^{2}}}$$
 Uma boa notícia: $\rho$ segue uma distribuição conhecida, a distribuição t, com n-2 graus de liberdade. Podemos usar as ferramentas anteriores para testar hipóteses. 
 
-[^14]: Francis Galton's account of the invention of correlation. Stephen M. Stigler. Statistical Science. 1989, Vol. 4, No. 2, 73-86.
+[^14]: Francis Galton's account of the invention of correlation. Stephen M. Stigler. Statistical Science. 1989, Vol. 4, No. 2, 73-86.  
+[^15]: Aqui, normalização tem o sentido de ajustar a escala das medidas. Não confundir com transformações para que os dados passem a ter distribuição gaussiana.  
 
 ### Exemplo prático
 
-O exemplo a seguir foi um feliz achado. À época, o governo brasileiro discutia a necessidade da formação de médicos para melhorar a assistência à saúde. Por curiosidade, acessei os dados da WHO (World Health Organization) e do banco mundial (World Bank) sobre quantidade de médicos por país e indicadores de saúde. Minha expectativa era encontrar pelo menos uma tímida relação entre indicadores. Fui surpreendido por uma forte correlação, que exploraremos a seguir.  
+O exemplo a seguir foi um feliz achado. Na época, o governo brasileiro discutia a necessidade da ampliar número de médicos para melhorar a assistência à saúde. Alguns defendiam ser uma decisão acertada, enquanto outros advogavam que os investimentos deveriam ser feitos em outras áreas da saúde.  
 
-Adotamos países como unidade observacional para $x$, o número de médicos 1,000 habitantes, e $y$, a expectativa de vida saudável ao nascer.  
+Por curiosidade, acessei os dados da WHO (World Health Organization) e do banco mundial (World Bank) sobre quantidade de médicos por país e indicadores de saúde. Minha expectativa era encontrar pelo menos uma tímida relação entre indicadores. Mais do que isso, entender qual a localização do Brasil em relação a outros países. Fui surpreendido por uma forte correlação, que exploraremos a seguir.  
+
+Adotamos países como unidade observacional com medidas $x$, o número de médicos 1,000 habitantes, e $y$, a expectativa de vida saudável ao nascer.  
 Usando dados obtidos dos portais da WHO e do World Bank, plotamos os pontos no plano cartesiano.  
 
 ```r
     # http://apps.who.int/gho/data/view.main.HALEXv
     # https://data.worldbank.org/indicator/SH.MED.PHYS.ZS
-    library(magrittr)
-    library(ggplot2)
-    library(dplyr)    
+    >library(magrittr)
+    >library(ggplot2)
+    >library(dplyr)    
 
-    worldbank_df <- read.csv("data/API_SH.MED.PHYS.ZS_DS2_en_csv_v2_10227587.csv",
+    >worldbank_df <- read.csv("data/API_SH.MED.PHYS.ZS_DS2_en_csv_v2_10227587.csv",
                          	header = T,skip = 3)
-    colnames(worldbank_df)[1] <- "Country"    
+    >colnames(worldbank_df)[1] <- "Country"    
 
-    worldbank_df$n_docs <- sapply(split(worldbank_df[,53:62], #lists of values
+    >worldbank_df$n_docs <- sapply(split(worldbank_df[,53:62], #lists of values
                                     	seq(nrow(worldbank_df))),
-       	function(x) tail(x[!is.na(x)],1)) %>% #last non missing value
+       	function(x) tail(x[!is.na(x)],1)) %>% #ultimos valores não nulos
       as.numeric    
 
-    who_df <- read.csv("data/who_lifeexpect.csv",skip=2)
-    who_df$hale <- who_df$X2016
-    uni_df <- left_join(worldbank_df[,c("Country","n_docs")],
+    >who_df <- read.csv("data/who_lifeexpect.csv",skip=2)
+    >who_df$hale <- who_df$X2016
+    >uni_df <- left_join(worldbank_df[,c("Country","n_docs")],
                     	who_df[,c("Country","hale")],by="Country")    
 
-    ggplot(uni_df,aes(x=n_docs,y=hale))+
+    >ggplot(uni_df,aes(x=n_docs,y=hale))+
       geom_point(alpha=0.5,size=3) +
       xlab("No. de medicos / 1,000 hab.")+
       ylab("Expectativa de vida saudavel ao nascer")
 ```
-![](images/chap2-logcurve.jpg)
+![](images/chap2-logcurve.png)
 
 É evidente que o padrão não é aleatório. Visualmente, notamos que o valor da expectativa de vida aumenta com maior Nº de médicos. 
-Ainda, notamos um aumento inicialmente rápido, com um platô em seguida. O padrão é semelhante ao de uma curva logarítmica.  
+Ainda, notamos um aumento inicialmente rápido até atingir um platô. O padrão é semelhante ao de uma curva logarítmica.  
 
 $y = log(x)$ ou $HALE = log(N_{médicos})$
 
-Se isso for verdade, transformar o número de médicos usando função logaritmica tornará a relação linear. Se $y = log (x)$, fazemos a transformação $x’ = log(x)$ para obtermos $y = x'$.
+Se essa hipótese for verdade, transformar o número de médicos usando função logaritmica tornará a relação linear com a variável transformada:  
+Se $y = log (x)$, fazemos a substituição $x’ = log(x)$ para obtermos $y = x'$.  
 
-Então y (expectativa de vida) se torna linearmente porcional a nossa variável transformada (logaritmo do número de médicos).
+Então a expectativa de vida se torna linearmente correlacionada ao logaritmo do número de médicos.  
 ```r
     >uni_df$log_docs <- log(uni_df$n_docs)
     >ggplot(uni_df,aes(x=log_docs,y=hale))+
@@ -290,14 +299,14 @@ Então y (expectativa de vida) se torna linearmente porcional a nossa variável 
       xlab("ln de No. de medicos / 1,000 hab.")+
       ylab("Expectativa de vida saudavel ao nascer")
 ```
-![](images/chap2-logtransf.png)
+![](images/chap2-logtransf.png) 
 
 De fato, verificamos uma notável tendência linear para os pontos. 
 
 Usando a implementação nativa em R para o coeficiente de Pearson:
 
 ```r
-    > cor.test(uni_df$log_docs,uni_df$hale)
+    >cor.test(uni_df$log_docs,uni_df$hale)
     Pearson's product-moment correlation
     data:  uni_df$log_docs and uni_df$hale
     t = 18.572, df = 143, p-value < 2.2e-16
@@ -310,4 +319,109 @@ Usando a implementação nativa em R para o coeficiente de Pearson:
 
 A correlação linear obtida para nossa amostra de países é surpreendentemente grande, como sugeria a visualização $(\rho \sim 0.841)$.  
 
-O valor p é baixo (p <0.001) considerando a hipótese nula $H_{0}$ de $\rho=0$. Concluímos então que há uma relação linear significativa de forte magnitude entre o logaritmo do número de médicos e a expectativa de vida dos países em nossa amostra.
+O valor p é baixo $(p<0.001)$ considerando a hipótese nula $H_{0}$ de $\rho=0$. Concluímos então que há uma relação linear significativa de forte magnitude entre o logaritmo do número de médicos e a expectativa de vida dos países em nossa amostra.  
+
+É realmente curioso que exista uma relação matemática tão evidente entre construtos tenuamente conectados. O tempo médio que um organismo leva entre nascimento e morte e o número de profissionais atuantes. É virtualmente impossível explicitar cada relação causal por trás dessa relação, que se manifesta de forma robusta através da soma de muitos fatores relacionados.   
+
+## Previsões
+
+Agora, sabemos que é razoável assumir uma relação linear entre essas variáveis. Como dito antes, podemos então encontrar a reta que minimiza a distância para as observações. 
+
+A equação que descreve essa reta nos informa o valor esperado para expectativa de vida dado o número de médicos. 
+
+```r
+    >uni_df$log_docs <- log(uni_df$n_docs)
+    >ggplot(uni_df,aes(x=log_docs,y=hale))+
+      geom_point(alpha=0.5,size=3) +
+      geom_point(y=66.0,x=0.61626614,color="red")+
+      geom_text(y=64.5,x=0.61626614,label="Brasil",color="dark red")+
+      geom_point(y=73.2,x=0.93177030,color="blue")+
+      geom_text(y=71.5,x=0.93177030,label="Canada",color="dark blue")+
+      geom_smooth(method="lm")+
+      xlab("ln de No. de medicos / 1,000 hab.")+
+      ylab("Expectativa de vida saudavel ao nascer")
+```
+![](images/chap2-bras-can-line.png) 
+
+Vemos que o Brasil está bastante próximo do esperado para o número de médicos[^16]. O Canadá possui uma expectativa de vida alta para o número de profissionais.  
+Como viemos discutindo ao longo do texto, questões filosóficas e metodológicas devem ser enderaçadas antes de tomar conclusões.  
+
+Entretanto, temos uma boa ilustração de como ciência de dados pode nos ajudar a tomar decisões em contextos reais. O ministro da saúde de um país em desenvolvimento passa a ter métricas acessíveis para seus objetivos.   
+
+[^16]: É praticamente consenso entre especialistas que o Brasil possui problema de distribuição de profissionais, com déficit de médicos em áreas mais pobres e pouco populosas.  
+
+\pagebreak
+
+### Exercícios
+
+\pagebreak
+
+## Predições com modelos lineares
+
+Como adivinhar uma medida com base na outra? Considerando a relação linear descoberta anteriormente, podemos criar uma função que receba como input o valor de uma variável (número de médicos) e retorne como output o valor esperado para a expectativa de vida.  
+
+Descobrir a equação que descreve esta função consiste em encontrar a reta que melhor se ajusta à nuvem de pontos, como na figura anterior.  
+
+Para isso, calculamos a inclinação $(\beta_{1})$ e o ajuste vertical $(\beta_{0})$ que minimizam a soma das distâncias entre a reta e as observações. O termo $\epsilon$ corresponde aos erros, com distribuição normal de média 0 e desvio padrão $\sigma$.  
+$$y_{i} = \beta_{0} + \beta_{1}x_{i} + \epsilon$$
+
+Ajustamos o modelo usando o método lm(linear model) do R:  
+```r
+    # log_docs : x’ = log(x)
+    > lm(log_docs ~ hale, data=uni_df) %>% summary
+    Call:
+    lm(formula = log_docs ~ hale, data = uni_df)
+    Residuals:
+     	Min   	1Q   Median   	3Q  	Max
+    -2.44037 -0.47861 -0.01513  0.55290  2.13418
+    Coefficients:
+            	Estimate Std. Error t value Pr(>|t|)    
+    (Intercept) -12.2731 0.6542  -18.76   <2e-16 ***
+    hale      	0.1895 	0.0102   18.57   <2e-16 ***
+    ---
+    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Residual standard error: 0.8517 on 143 degrees of freedom
+      (119 observations deleted due to missingness)
+    Multiple R-squared:  0.7069,    Adjusted R-squared:  0.7049
+    F-statistic: 344.9 on 1 and 143 DF,  p-value: < 2.2e-16
+```
+
+Temos $\beta_{0} \sim -12.27$ e $\beta_{1} \sim 0.18$.  
+Existe mais de uma maneira de estimar esses parâmetros.  
+Uma de particular interesse, que também servirá em outros contextos, é a de Maximum likelihood (máxima verossimilhança).   
+
+Primeiro, determinamos uma função que descreve a probabilidade da observação na variável alvo $(y_{i})$ ocorrer dadas medidas das variáveis preditoras $(x_{i})$ e um conjunto de parâmetros $(\beta_{k})$.  
+
+Supondo que as observações são independentes, a probabilidade do conjunto de observações é dada pelo produto delas.  
+
+Podemos adotar como função de verossimilhança *(likelihood function)* para os valores $y_{i}$ uma distribuição de probabilidades normal cuja média é dada pela reta $\mu_{yi} = \beta_{0} + \beta_{1}*x_{i}$.  
+Assim, a probabilidade de cada valor $y_{i}$ é dada de acordo com o desvio para o valor previsto pela reta.  
+
+$$L=\prod_{i=1}^{n} P(y_{i}|x_{i}; \beta_{0},\beta_{1},\sigma^{2})$$
+
+$$L(\beta_{0},\beta_{1},\sigma^{2})=\prod_{i=1}^{n}\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{-\frac{y_{i} - (\beta_{0}+\beta_{1}x_{i})^{2}}{2\sigma^{2}}}$$
+
+Essa é nossa função de verossimilhança e expressa a probabilidade de observarmos as medidas $y_{i}$ dadas as medidas $x_{i}$ e considerando um conjunto de parâmetros $(\beta_{0},\beta_{1})$.  
+
+O objetivo então é encontrar parâmetros que maximizem essa função. Por conveniência, aplicamos uma transformação logaritmica nesta função $(log-likelihood function)$. Isso transforma nosso produtório em um somatório e passamos o contradomínio do intervalo $[0;1]$ para $[-\infty,0)$.  
+
+$$log-likelihood(\beta_{0},\beta_{1},\sigma^{2})=log\prod_{i=1}^{n} P(y_{i}|x_{i}; \beta_{0},\beta_{1},\sigma^{2})$$
+$$=\sum_{i=1}^{n} log P(y_{i}|x_{i}; \beta_{0},\beta_{1},\sigma^{2})$$
+$$=-\frac{n}{2}log{2\pi} - n log{\sigma} - \frac{1}{2\sigma^{2}}\sum_{i=1}^{n}(y_{i}-(\beta_{0} + \beta_{1}x_{i}))^{2}$$
+
+Os parâmetros que maximizam a função de verossimilhança(likelihood) são os mesmos que maximizam a o logaritmo da função de verossimilhança(log-likelihood).  
+
+Usando cálculo[^17], encontramos fórmulas fechadas:  
+$$\hat{\beta_{1}}=\frac{cov(XY)}{\sigma_{x}^{2}}$$  
+$$\hat{\beta_{0}}=\mu_{y} - \hat{\beta_{1}}\mu_{x}$$  
+$$\hat{\sigma^{2}} = \frac{1}{n} \sum_{i=1}^{n} (y_{i}-(\hat{\beta_{0}}+\hat{\beta_{1}}x_{i}))^{2}$$  
+
+As soluções acima garantidamente as melhores estimativas que podemos obter.  
+Devemos então nos preocupar em saber se o modelo linear encontrado é bom na predição dados.  
+Existem diferentes parâmetros para avaliar a performance de um modelo. Boa parte da pesquisa em aprendizagem estatística hoje consiste em implementar heurísticas que levem a melhores indicadores de performance.  
+
+#### Avaliando performance
+
+@R² (~ 0,70) @RMSEA @AIC/BIC 
+
+[^17]: Detalhes das deduções dos estimadores OLS and Max. Likelihood:   https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/05/lecture-05.pdf ; https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/06/lecture-06.pdf 

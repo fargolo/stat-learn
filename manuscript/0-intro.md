@@ -1,8 +1,6 @@
 ![](images/0-intro-cover.png)  
 
-## Ciência de dados.
-
-## Filosofia e aplicações.
+# Ciência de dados: Filosofia e aplicações.
 
 <div style="text-align: right"> Felipe Coelho Argolo </div>
 
@@ -13,7 +11,7 @@ Página intencionalmente deixada em branco.
 \pagebreak
 
 Versão 0.22: Introdução; Capítulo 0; Capítulo 1; Capítulo 2 (em progresso).
-28 de Dezembro de 2018
+29 de Dezembro de 2018
 
 \pagebreak
 
@@ -51,7 +49,7 @@ O quarto capítulo ilustra o uso de grafos/redes para a construção de modelos 
 
 \pagebreak
 
-# Sumário
+## Sumário
 
 Capítulo 0 - Ferramentas: programação com estatística básica   
 

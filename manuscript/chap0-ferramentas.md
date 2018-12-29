@@ -1,11 +1,8 @@
 ![](images/chap0-cover.png)
 
-# Capítulo 0
+# Capítulo 0: Ferramentas
 
-## Ferramentas
-
-# Programação com estatística básica
-
+Programação com estatística básica
 
 \pagebreak
 
@@ -28,7 +25,7 @@ E, ao ouvir isso, o aprendiz foi iluminado.*
 
 \pagebreak 
 
-# Computadores
+## Computadores
 
 Ao longo do texto, usaremos exemplos com software. Computadores são úteis para acelerar os cálculos necessárias para nossos objetivos.  
 
@@ -50,30 +47,28 @@ Python é uma linguagem de propósito geral. Bastante popular e dotada de uma ba
 
 \pagebreak 
 
-# R 
-
-## Curso rápido
+## R: Curso rápido
 
 Programas de computador são importantes ao longo dos próximos capítulos para realizar cálculos, gerar dados  e visualizações.  
 Felizmente, os programas que escreveremos são simples, de forma que não precisamos conhecer todos os recursos e características da linguagem R. Neste capítulo, entenderemos os instrumentos básicos para caminharmos.  
 Veremos diversas maneiras de escrever um programa para calcular a variância $\sigma^{2}$ de um conjunto de medidas.   
 
-## Instalação
+### Instalação
 
-### R
+#### R
 
 Instruções para download e instalação podem ser encontradas em:  
 https://cloud.r-project.org/  
 Em Windows, o processo costuma consistir em clicar no executável de instalação e concordar com os prompts.   
 Para Linux, envolve adicionar o CRAN à lista de repositórios e baixar o pacote *r-base* ou o código-fonte/tarball diretamente do website. Há inúmeros tutoriais explicando a instalação.  
 
-### Rstudio
+#### Rstudio
 
 Com o R instalado, recomendo o uso do ambiente de desenvolvimento RStudio ( https://www.rstudio.com/ ) para obter algumas facilidades. Entre elas: atalhos *vim*, editor com highlight de sintaxe, autocompletar, renderização em tempo real de animações e plots, visualização de datasets, ambiente de desenvolvimento, logs, suporte a markup languages, como Markdown, RMarkdown e Latex.[^2]
 
 [^2]: Este texto é escrito em Markdown e o código-fonte pode ser encontrado em https://github.com/fargolo/stat-learn
 
-## Tipos
+### Tipos
 
 Primeiro, vamos conhecer as entidades básicas do R. Lidamos rotineiramente com vetores, que são células contíguas contendo dados.  Os dados podem ser de tipos: lógico (verdadeiro/falso), caracteres, números inteiros, reais e complexos:  
 
@@ -101,7 +96,7 @@ A função *combine*: c(arg1,arg1,...) combina argumentos em um vetor. Para noss
     [1] "numeric"
 ```
   
-## Operadores  
+### Operadores  
 
 Além dos operadores clássicos (+,-,/,-, ...), usamos constantemente dois operadores pouco comuns: O operador *“<-”* atribui o valor da expressão a sua direita ao objeto à sua esquerda. É preferível ao operador “=” para evitar confusão ao passar argumentos de funções e fazer comparações lógicas.  
 
@@ -128,7 +123,7 @@ A expressão  *“3 %>% exp %>% exp”* equivale a *“exp(exp(3))”*. Usando p
 Notem que para usar um recurso da biblioteca magrittr, carregamos ela usando o comando *library(magrittr)*.
 Para instalar uma biblioteca do repositório oficial (CRAN), usamos o comando *install.packages(magrittr)*.
 
-## Matrizes e data frames
+### Matrizes e data frames
 
 R possui estruturas que ajudam a manipulação de dados estruturados como os que vemos comumente em ciências.  
 A mais simples é a lista. Uma lista é um conjunto de objeto de quaisquer tipos. Assim, podemos ter uma lista contendo vetores, doubles, matrizes e gráficos! Tudo em uma estrutura.  
@@ -211,7 +206,7 @@ Para acessar o valor correspondente, usamos índices separados por vírgula. O p
     5  setosa      	5.0 
 ```
 
-## Gramática dos gráficos e ggplot
+### Gramática dos gráficos e ggplot
 
 Uma das ferramentas de destaque no ecossistema R é a **ggplot**. Ela provê uma sintaxe bastante poderosa e flexível para plotar visualizações. O segredo está em seu design, que utiliza gramática de gráficos (**G**rammar of **G**raphics**Plot**). 
 
@@ -287,7 +282,7 @@ Ainda, existem temas prontos para mudar o estilo geral da imagem:
 ```
 ![](images/chap0-gg-six.png)
 
-## Funções
+### Funções
 
 Uma das formas de escrever programas é através de funções.  
 Podemos declarar funções que (1) aceitam argumentos de entrada, (2) executam computações com esses argumentos e (3) devolvem resultados na saída.  
@@ -388,7 +383,7 @@ Exponencial:
      [7] 1.10213153 0.91931786 2.58807134 0.41825081
 ```
 
-## Vetores, loops e recursões
+### Vetores, loops e recursões
 
 Anteriormente, definimos a função para calcular variância como:  
 
@@ -418,7 +413,7 @@ Se queremos imprimir números entre 1 e 10:
 
 A instrução avalia print(i) para valores i=1,2,3..,10 de forma repetida.  
 Vamos reescrever nossa função para calcular variância $\sigma^{2}$ usando um loop. Podemos definir um loop com o tamanho do vetor x e calcular o quadrado da diferença em cada elemento.   
-Assim,:  
+Assim,  
 
 ```r
     var_3 <- function(x){
@@ -461,7 +456,7 @@ Nossa função pode ser escrita:
 
 \pagebreak
 
-# Exercícios
+### Exercícios
 
 1. Qual a diferença entre linguagens compiladas e interpretadas?  
 2. Um programa escrito em R pode ser escrito em qualquer outra linguagem. Está afirmação é verdadeira? Por quê?  

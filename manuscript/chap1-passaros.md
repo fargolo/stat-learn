@@ -1,14 +1,13 @@
 ![](images/chap1-darw-ill.png)
 
-# Capítulo 1 
+# Capítulo 1 : Os pássaros de Darwin e o método hipotético-dedutivo.
 
-## Os pássaros de Darwin e o método hipotético-dedutivo.
+## Testes estatísticos e distribuições probabilísticas
 
-### Testes estatísticos e distribuições probabilísticas
+### Introdução
 
-## Introdução
-
-Charles Darwin observou que os pássaros fringilídeos nas ilhas de Galápagos apresentavam variedades de formato e tamanho dos bicos. Sua intuição sobre a origem das variedades a partir de um ancestral comum foi um dos argumentos mais contundentes do “On the Origin of Species” (1859). Essa história é o ponto de partida para este capítulo.  
+Charles Darwin observou que os pássaros fringilídeos nas ilhas de Galápagos apresentavam variedades de formato e tamanho dos bicos. Sua intuição sobre a origem das variedades a partir de um ancestral comum foi um dos argumentos mais 
+contundentes do “On the Origin of Species” (1859). Essa história é o ponto de partida para este capítulo.  
 
 Estudamos a relação natural entre ciências empíricas e duas distribuições probabilísticas: a distribuição normal e a distribuição t, relacionadas entre si.  A adoção da distribuição normal em trabalhos científicos é popular, porém os motivos são pouco entendidos. O Teorema do Limite Central é fundamental nesse contexto.  
 
@@ -18,7 +17,7 @@ Usamos as distribuições citadas para estudar as medidas dos bicos dos tentilh�
 
 \pagebreak 
 
-## Pássaros em Galápagos
+### Pássaros em Galápagos
 
 Em sua viagem pelo mundo a bordo do Beagle, Charles Darwin descreveu um grupo de pássaros que habita as Ilhas Galápagos, arquipélago localizado a aproximadamente 900 km da costa do Equador (América do Sul). A variedade em tamanhos dos bicos chamou atenção: “It is very remarkable that a nearly perfect gradation of structure in this one group can be traced in the form of the beak, from one exceeding in dimensions that of the largest gros-beak, to another differing but little from that of a warbler".[^4]  
 
@@ -39,7 +38,7 @@ A inspeção visual de um naturalista treinado foi capaz detectar essas nuances.
 
 Pensaremos como biólogos interessados em estudar quantitativamente o tamanho dos bicos. Usaremos estatística e probabilidades para testar hipóteses e fazer conclusões mais acuradas sobre as medidas, explorando diferenças entre os grupos de pássaros de Galápagos.  
 
-## A distribuição normal e um curioso teorema
+### A distribuição normal e um curioso teorema
 
 Em trabalhos empíricos, é comum a suposição de que medidas de uma variável aleatória vêm de uma população com distribuição normal. A seguir, vamos estudar o comportamento dessa função probabilística.
 
@@ -72,9 +71,9 @@ Em seguida, obter valores no intervalo $[-5,5]$ e plotá-los:
 ```r
     >library(ggplot2)
     >x_seq <- seq(-5,5,by = 0.1)
-    > ndist <- purrr::map(.f=mgauss,.x=x_seq) %>% unlist
-    > ggplot(data.frame(ndist,x_seq),aes(x=x_seq,y=ndist))+
-      geom_point()+
+    >ndist <- purrr::map(.f=mgauss,.x=x_seq) %>% unlist
+    >ggplot(data.frame(ndist,x_seq),aes(x=x_seq,y=ndist))+
+     geom_point()+
      geom_vline(xintercept = 2,color="light blue")+
      geom_vline(xintercept = -2,color="light blue")+
      geom_vline(xintercept = 0,color="light pink")+
@@ -94,18 +93,21 @@ Observamos a curva se aproximar do máximo simetricamente para valores próximos
 Isso reflete diretamente o fato de que valores próximos à média serão mais prováveis e valores extremos menos prováveis. 
 
 Para comparação: $f(2) = 0.4 * e^{-2^{2}/2} = 0.4 * e^{-2} =  0.4 * 0.135 \sim 0.05$ (linha azul). A probabilidade de se obter o valor médio $(x = 0, p \sim 0.4)$ é oito vezes maior que a probabilidade de obter o valor 2 $(x = 2; p = 0.05)$.   
+
 O termo quadrático torna a distribuição simétrica para valores opostos em relação à média. $P(x) = P(-x)$. Como calculamos $P(2)$  antes, sabemos que: $P(-2) = P(2) = 0.05$ para $\mu = 0$. É igualmente provável encontrar valores duas unidades maiores ou duas unidades menores que a média.  Esses pontos estão marcados por uma linhas azuis na figura.  
 
 Podemos trabalhar com curvas  normais com centros (média $\mu$) deslocados para a esquerda ($\mu$ < 0) ou para a direita ($\mu$ > 0), subtraindo o termo de x em nosso expoente. Além disso, diferentes variâncias ($\sigma^{2}$) refletem a frequência de valores longe da média e o quão distante dela eles são. Visualmente, determina o tamanho da base do sino na ilustração (Figura 3).  
+
 Usamos a notação $N \sim (\mu, \sigma^{2})$ para descrever uma distribuição gaussiana com média $\mu$ e variância $\sigma^{2}$ arbitrárias:
 
 $$P(x)=\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{ -\frac{(x-\mu)^{2}}{2\sigma^{2}}}$$
 
 Poderíamos encontrar características desejáveis, como a simetria citada acima, em outras distribuições. 
+
 Então, por que usamos uma equação mais complexa?  
 Distribuições binomiais grandes e lançamentos de moedas são tão importantes?  
 
-# O Teorema do Limite Central
+#### O Teorema do Limite Central
 
 A razão é o Teorema do Limite Central.  
 
@@ -163,7 +165,7 @@ Este resultado tem uma sutil importância para o estudo dos fenômenos naturais 
 
 [^6]:Prova formal em http://www.cs.toronto.edu/~yuvalf/CLT.pdf 
 
-# Ciência experimental e o Teorema do Limite Central
+### Ciência experimental e o Teorema do Limite Central
 
 Muitos objetos de interesse para os cientistas são simplificações de fenômenos complexos. Um exemplo trivial está na cor da pele de seres humanos. Uma parte considerável depende do número de genes herdados relacionados à melanina. Eles se comportam de maneira aditiva.  
 Assim, cada variante de gene extra pode contribuir para a cor final com X unidades na escala para medir pigmentação.  
@@ -208,11 +210,12 @@ Para valores grandes de n:
 
 Novamente, verificamos que a soma começa a ser simétrica em torno da média, com formato de sinos (base alargada). 
 Os fenômenos observáveis em nosso universo são naturalmente complexos. Especialmente em sistemas biológicos, há redundância de componentes e um objeto de interesse para cientistas é resultado da combinação de muitas variáveis subjacentes. O teorema do limite central permite que utilizemos distribuições normais para uma grande variedade de problemas. Ainda que as distribuições subjacentes sejam desconhecidas, o efeito resultante de uma grande combinação terá distribuição gaussiana em muitos casos.  
+
 A descoberta das equações que regem esses mecanismos de convergência foi um grande avanço para as ciências experimentais.   
 
 \pagebreak
 
-## Exercícios
+### Exercícios
 
 1. Sobre a distribuição normal para uma variável aleatória, é verdadeiro (mais de uma possibilidade):
     * a.  A soma da probabilidade de todos os valores possíveis é 1.
@@ -232,7 +235,7 @@ A descoberta das equações que regem esses mecanismos de convergência foi um g
 
 \pagebreak
 
-## Darwins’s Finches
+### Darwins’s Finches
 
 Mostraremos como a contribuição individual de genes com efeitos aditivo de distribuição uniforme resulta em medidas aproximadamente normais para os bicos das aves.  
 
@@ -300,7 +303,7 @@ Calculando as diferenças entre distribuições, podemos inferir se duas amostra
 
 \pagebreak
 
-## Testes de hipótese
+### Testes de hipótese
 
 Filósofos da ciência estudam características no modus operandi de outros estudiosos. O que há em comum entre os procedimentos empregados por biólogos e geólogos?  O que distingue Charles Darwin e Paul Dirac de John Dee e Edward Kelley? O que funciona em áreas distintas do conhecimento humano?   
 
@@ -345,8 +348,7 @@ O grau de sofisticação em reprodutibilidade de procedimentos foi amplificada.
 [^8]: O valor [da estatística z em uma curva normal] para o qual $p=0.05$, ou 1 em 20, é de 1.96 ou aproximadamente 2; é conveniente pegar esse ponto como um limite ao julgar quando um desvio deve ser considerado significante ou não.
 
 
-
-## Um exemplo prático: Teste t para amostras independentes
+#### Um exemplo prático: Teste t para amostras independentes
 
 Para testar estatisticamente se as medidas são diferentes, executaremos um teste t para comparação dos grupos. 
 
@@ -426,7 +428,6 @@ Não é possível calcular diretamente as probabilidades para t = 36.51, pois o 
     [1] 1
 ```
 
-
 #### Nota
 
 *Uma percepção errônea comum sobre a distribuição t é de que ela descreve amostras pequenas retiradas de uma população com distribuição  normal. Qualquer amostra retirada de uma variável de distribuição normal terá, por definição, distribuição normal, ainda que seja composta por 1 ou 2 observações. O que segue distribuição t é a quantidade pivotal descrita acima.*
@@ -447,7 +448,7 @@ O segundo procedimento é chamado de teste t de amostras independentes. Hipoteti
 
 \pagebreak
 
-## Aplicação
+### Aplicações
 
 Retornando ao nosso exemplo de Galápagos, faremos um teste t de amostras independentes.  
 
@@ -464,7 +465,7 @@ Obtemos o valor p somando os valores de probabilidades correspondentes às difer
 
 \pagebreak
 
-## Aplicação com software 
+#### Teste t de Student com R 
 
 Vamos computar um teste t para 2 amostras independentes. A estatística t é calculada com algumas mudanças.  
 Os graus de liberdade são somados e o erro padrão (dispersão das estimativas) é balanceado através da média ponderada (pelos graus de liberdade, n-1) entre amostras.  
