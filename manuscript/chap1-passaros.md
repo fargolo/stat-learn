@@ -129,7 +129,7 @@ O código em R para a seguir gera os dados e as visualizações de que precisamo
     >library(magrittr)
     >library(ggthemes)
     >library(ggplot2)
-    >source("multiplot.R")
+    >source("aux/multiplot.R")
     >set.seed(2600)
     >n_plots <- 12
     
@@ -538,7 +538,7 @@ Obtivemos um valor p significativo (p < 0.001) usando n = 150. Os graus de liber
 Sendo uma linguagem voltada à estatatística, R possui em sua biblioteca de base uma função para automatizar o processo em 1 linha:
 
 ```r
-    > t.test(a,b,var.equal = T)
+    >t.test(a,b,var.equal = T)
     Two Sample t-test / data:  a and b
     t = 47.285, df = 298, p-value < 2.2e-16
     Alternative hypothesis: true difference in means is not equal to 0

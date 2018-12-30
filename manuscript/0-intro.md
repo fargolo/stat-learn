@@ -10,8 +10,8 @@ Página intencionalmente deixada em branco.
 
 \pagebreak
 
-Versão 0.22: Introdução; Capítulo 0; Capítulo 1; Capítulo 2 (em progresso).
-29 de Dezembro de 2018
+Versão 0.23: Introdução; Capítulo 0; Capítulo 1; Capítulo 2.
+30 de Dezembro de 2018
 
 \pagebreak
 
@@ -77,10 +77,9 @@ Capítulo 2 - Sobre a natureza das relações
 * Tamanho de efeito
 * Correlações
 * Coeficiente de correlação $\rho$ de Pearson
-**Em construção:**  
 * Regressão linear
 
-
+**Em construção:**  
 Capítulo 3 - Contexto e inferência Bayesiana  
 
 * Intuições sobre distribuições probabilísticas

@@ -92,7 +92,7 @@ Para saber o tipo de um objeto em R, use typeof(objeto). Podemos acessar element
 A função *combine*: c(arg1,arg1,...) combina argumentos em um vetor. Para nossas aplicações, vamos usar números reais (double) na maioria dos casos. Os tipos integer, double e complex fazem parte da classe dos números (*numeric*) 
 
 ```
-    > class(b)
+    >class(b)
     [1] "numeric"
 ```
   
@@ -101,8 +101,8 @@ A função *combine*: c(arg1,arg1,...) combina argumentos em um vetor. Para noss
 Além dos operadores clássicos (+,-,/,-, ...), usamos constantemente dois operadores pouco comuns: O operador *“<-”* atribui o valor da expressão a sua direita ao objeto à sua esquerda. É preferível ao operador “=” para evitar confusão ao passar argumentos de funções e fazer comparações lógicas.  
 
 ```r
-    > a <- 3
-    > a
+    >a <- 3
+    >a
     [1] 3
 ```
 

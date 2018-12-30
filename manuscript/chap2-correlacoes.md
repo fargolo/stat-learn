@@ -91,8 +91,8 @@ Se a correlação é positiva, incrementos em $x$ serão proporcionais a increme
 Num cenário perfeito, se sabemos que há uma relação linear entre variáveis,  precisamos de apenas duas observações para descobrir proporção entre elas. Esse problema é idêntico ao de encontrar a inclinaçaõ da reta que passa por dois pontos. É de fácil resolução usando técnicas elementares.  
 
 ```r
-    library(ggplot2)
-    ggplot()+
+    >library(ggplot2)
+    >ggplot()+
     geom_point(mapping=aes(x=1,y=2))+
     geom_point(mapping=aes(x=2,y=4))+
     xlim(0,3)+ylim(0,5)
@@ -103,7 +103,7 @@ $y=\beta*x$
 $a=(1,2); b=(2,4) \rightarrow \beta = 2$  
 
 ```r
-    ggplot()+
+    >ggplot()+
     geom_point(mapping=aes(x=1,y=2))+
     geom_point(mapping=aes(x=2,y=4))+
     xlim(0,3)+ylim(0,5)+
@@ -122,13 +122,13 @@ Imaginemos um conjunto de medidas antropométricas, com altura e peso e indivíd
 
 Podemos simular este cenário partindo de variáveis idênticas e adicionando ruído aleatório.
 ```r
-    set.seed(2600)
-    a <- seq(1:100)+rnorm(n=100,sd=3)
-    b <- seq(1:100)+rnorm(n=100,sd=3)
+    >set.seed(2600)
+    >a <- seq(1:100)+rnorm(n=100,sd=3)
+    >b <- seq(1:100)+rnorm(n=100,sd=3)
 
-    cor_data <- data.frame(a,b)
+    >cor_data <- data.frame(a,b)
     
-    ggplot(cor_data,aes(x=a,y=b))+
+    >ggplot(cor_data,aes(x=a,y=b))+
     geom_point()
 ```
 ![](images/chap2-scatterline.png)  
@@ -187,7 +187,7 @@ O **segundo momento** de massa é $M_{2} = \sum_{i=1}^{N} m_{i}d_{i}^{2}$ e é o
 O n-ésimo momento $M_{n} = \sum_{i=1}^{N} m_{i}d_{i}^{2}$
 
 [^12]:Pappus de Alexandria, Synagoge, Livro VIII
-[^13]: Perceba que os termos $d_{i}^{2}$ estariam presentes nas área de um círculo com centro idêntico ao do objeto e raio igual à distância entre o centro: $\pi d^{2}$. https://physics.stackexchange.com/a/371165/218274
+[^13]:Perceba que os termos $d_{i}^{2}$ estariam presentes nas área de um círculo com centro idêntico ao do objeto e raio igual à distância entre o centro: $\pi d^{2}$. https://physics.stackexchange.com/a/371165/218274
 
 ### Generalizando momentos 
 
@@ -228,7 +228,7 @@ Apesar de haver uma relação entre as medidas, há também flutuações aleató
 Então, propôs um coeficiente mensurando a relação entre desvios de variáveis. Se tamanho do fêmur e altura estão muito relacionadas, um fêmur grande sugere indivíduo igualmente alto. Caso contrário (baixa correlação), um fêmur grande (desvio alto) não implica grande estatura.  
 
 Para quantificar a relação, multiplicamos os desvios de cada par de medidas:  
-$$\sum_{i=1}^{N}(x_{i}-\mu_{x_{i}})(x_{i}'-\mu_{x_{i}'})$$
+$$\sum_{i=1}^{N}(x_{i}-\mu_{x})(x_{i}'-\mu_{x'})$$
 A expressão acima expressa a **covariância** entre $X$ e $X'$ e será útil em outros contextos. A expressão lembra o cálculo do primeiro momento, porém cada desvio é multiplicado pelo desvio correspondente da medida pareada. Daí o nome coeficiente de correlação *produto-momento*.  
 
 Note que, se ambos os desvios concordam em sentido (sinal), o resultado da multiplicaçao será positivo. Pares consistentemente concordantes aumentam o valor da soma final. Se ambos os desvios discordam em sentido (sinal), o resultado será negativo. Pares consistentemente discordantes diminuem o valor da soma final.  
@@ -240,7 +240,7 @@ Observar apenas a covariância é perigoso, pois os valores dependem da unidade 
 Calculamos o coeficiente de correlação de Pearson, normalizando[^15] a covariância ao dividí-la pelo produto dos desvios-padrão:
 $$\rho_{XX'}= \frac{cov(X,X')}{\sigma_{X}\sigma_{X'}}$$
 De forma extensa:  
-$$\rho_{XX'}= \frac{\sum_{i=1}^{N}(x_{i}-\mu_{x_{i}})(x_{i}'-\mu_{x_{i}'})}{\sqrt{\sum_{i}^{N}(x_{i}-\mu_{x})^{2}}\sqrt{\sum_{i}^{N}(x_{i}'-\mu_{x'})^{2}}}$$
+$$\rho_{XX'}= \frac{\sum_{i=1}^{N}(x_{i}-\mu_{x})(x_{i}'-\mu_{x'})}{\sqrt{\sum_{i}^{N}(x_{i}-\mu_{x})^{2}}\sqrt{\sum_{i}^{N}(x_{i}'-\mu_{x'})^{2}}}$$
 Uma boa notícia: $\rho$ segue uma distribuição conhecida, a distribuição t, com n-2 graus de liberdade. Podemos usar as ferramentas anteriores para testar hipóteses. 
 
 [^14]: Francis Galton's account of the invention of correlation. Stephen M. Stigler. Statistical Science. 1989, Vol. 4, No. 2, 73-86.  
@@ -323,6 +323,12 @@ O valor p é baixo $(p<0.001)$ considerando a hipótese nula $H_{0}$ de $\rho=0$
 
 É realmente curioso que exista uma relação matemática tão evidente entre construtos tenuamente conectados. O tempo médio que um organismo leva entre nascimento e morte e o número de profissionais atuantes. É virtualmente impossível explicitar cada relação causal por trás dessa relação, que se manifesta de forma robusta através da soma de muitos fatores relacionados.   
 
+#### Nota
+
+*É costumaz afirmar que não existe relação entre variáveis caso o coeficiente de relação não se mostre importante. Como vimos, esse indicador informa apenas sobre relações lineares entre variáveis. A visualização dos dados pode ser de grande ajuda na inferência sobre a natureza de relações.*  
+*Dados com distribuições bastante diferentes podem resultar em coeficientes iguais, como mostra o clássico quarteto de Anscombe. As 4 amostras abaixo apresentam o mesmo coeficiente de correlação.*  
+![](images/chap2-anscombe.png)
+
 ## Previsões
 
 Agora, sabemos que é razoável assumir uma relação linear entre essas variáveis. Como dito antes, podemos então encontrar a reta que minimiza a distância para as observações. 
@@ -350,9 +356,6 @@ Entretanto, temos uma boa ilustração de como ciência de dados pode nos ajudar
 
 [^16]: É praticamente consenso entre especialistas que o Brasil possui problema de distribuição de profissionais, com déficit de médicos em áreas mais pobres e pouco populosas.  
 
-\pagebreak
-
-### Exercícios
 
 \pagebreak
 
@@ -365,28 +368,24 @@ Descobrir a equação que descreve esta função consiste em encontrar a reta qu
 Para isso, calculamos a inclinação $(\beta_{1})$ e o ajuste vertical $(\beta_{0})$ que minimizam a soma das distâncias entre a reta e as observações. O termo $\epsilon$ corresponde aos erros, com distribuição normal de média 0 e desvio padrão $\sigma$.  
 $$y_{i} = \beta_{0} + \beta_{1}x_{i} + \epsilon$$
 
-Ajustamos o modelo usando o método lm(linear model) do R:  
+Ajustamos o modelo usando a função lm(linear model) do R:  
 ```r
     # log_docs : x’ = log(x)
-    > lm(log_docs ~ hale, data=uni_df) %>% summary
+    >lm(hale ~ log_docs, data=uni_df) 
+    
     Call:
-    lm(formula = log_docs ~ hale, data = uni_df)
-    Residuals:
-     	Min   	1Q   Median   	3Q  	Max
-    -2.44037 -0.47861 -0.01513  0.55290  2.13418
+    lm(formula = hale ~ log_docs, data = uni_df)    
+
     Coefficients:
-            	Estimate Std. Error t value Pr(>|t|)    
-    (Intercept) -12.2731 0.6542  -18.76   <2e-16 ***
-    hale      	0.1895 	0.0102   18.57   <2e-16 ***
-    ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-    Residual standard error: 0.8517 on 143 degrees of freedom
-      (119 observations deleted due to missingness)
-    Multiple R-squared:  0.7069,    Adjusted R-squared:  0.7049
-    F-statistic: 344.9 on 1 and 143 DF,  p-value: < 2.2e-16
+    (Intercept)     log_docs  
+          64.46         3.73 
 ```
 
-Temos $\beta_{0} \sim -12.27$ e $\beta_{1} \sim 0.18$.  
+Temos $\beta_{0} \sim 64.46$ e $\beta_{1} \sim 3.73$.  
+Nossa estimativa para a expectativa de vida saudável "começa" em 64.46 anos e aumenta com o número de médicos no país. Especificamente, aumenta em 3.73 para cada unidade de nossa variável transformada $(log(x))$.  
+Em nosso dataset, o Brasil possui 1.852 médicos/1,000 hab. Nossa predição então é:  
+$\hat{y}_{Brasil}=log{1.852}*3.73 + 64.46 \sim 66.8$, o que está bastante próximo do número real(66).  
+
 Existe mais de uma maneira de estimar esses parâmetros.  
 Uma de particular interesse, que também servirá em outros contextos, é a de Maximum likelihood (máxima verossimilhança).   
 
@@ -403,25 +402,122 @@ $$L(\beta_{0},\beta_{1},\sigma^{2})=\prod_{i=1}^{n}\frac{1}{\sqrt{2\pi\sigma^{2}
 
 Essa é nossa função de verossimilhança e expressa a probabilidade de observarmos as medidas $y_{i}$ dadas as medidas $x_{i}$ e considerando um conjunto de parâmetros $(\beta_{0},\beta_{1})$.  
 
-O objetivo então é encontrar parâmetros que maximizem essa função. Por conveniência, aplicamos uma transformação logaritmica nesta função $(log-likelihood function)$. Isso transforma nosso produtório em um somatório e passamos o contradomínio do intervalo $[0;1]$ para $[-\infty,0)$.  
+O objetivo então é encontrar parâmetros que maximizem essa função. Por conveniência, aplicamos uma transformação logaritmica nesta função $(log \quad likelihood \quad function)$. Isso transforma nosso produtório em um somatório e passamos o contradomínio do intervalo $[0;1]$ para $[-\infty,0)$.  
 
-$$log-likelihood(\beta_{0},\beta_{1},\sigma^{2})=log\prod_{i=1}^{n} P(y_{i}|x_{i}; \beta_{0},\beta_{1},\sigma^{2})$$
+$$log \quad likelihood(\beta_{0},\beta_{1},\sigma^{2})=log\prod_{i=1}^{n} P(y_{i}|x_{i}; \beta_{0},\beta_{1},\sigma^{2})$$
 $$=\sum_{i=1}^{n} log P(y_{i}|x_{i}; \beta_{0},\beta_{1},\sigma^{2})$$
 $$=-\frac{n}{2}log{2\pi} - n log{\sigma} - \frac{1}{2\sigma^{2}}\sum_{i=1}^{n}(y_{i}-(\beta_{0} + \beta_{1}x_{i}))^{2}$$
 
 Os parâmetros que maximizam a função de verossimilhança(likelihood) são os mesmos que maximizam a o logaritmo da função de verossimilhança(log-likelihood).  
 
-Usando cálculo[^17], encontramos fórmulas fechadas:  
+Com algum esforço[^17], encontramos fórmulas fechadas:  
 $$\hat{\beta_{1}}=\frac{cov(XY)}{\sigma_{x}^{2}}$$  
 $$\hat{\beta_{0}}=\mu_{y} - \hat{\beta_{1}}\mu_{x}$$  
 $$\hat{\sigma^{2}} = \frac{1}{n} \sum_{i=1}^{n} (y_{i}-(\hat{\beta_{0}}+\hat{\beta_{1}}x_{i}))^{2}$$  
 
-As soluções acima garantidamente as melhores estimativas que podemos obter.  
+As soluções acima fornecem as melhores estimativas que podemos obter minimizando a distância da reta aos pontos.    
 Devemos então nos preocupar em saber se o modelo linear encontrado é bom na predição dados.  
-Existem diferentes parâmetros para avaliar a performance de um modelo. Boa parte da pesquisa em aprendizagem estatística hoje consiste em implementar heurísticas que levem a melhores indicadores de performance.  
+
+
+[^17]: Detalhes das deduções dos estimadores OLS and Max. Likelihood:   https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/05/lecture-05.pdf ; https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/06/lecture-06.pdf
+
+\pagebreak
 
 #### Avaliando performance
 
-@R² (~ 0,70) @RMSEA @AIC/BIC 
+Existem diferentes parâmetros para avaliar a performance de um modelo. Boa parte da pesquisa em aprendizagem estatística hoje consiste em implementar heurísticas que levem a melhores indicadores de performance.  
 
-[^17]: Detalhes das deduções dos estimadores OLS and Max. Likelihood:   https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/05/lecture-05.pdf ; https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/06/lecture-06.pdf 
+Para regressão linear, o $R^{2}$ é um coeficiente bastante usado. Expressa a proporção entre **(1)** variância explicada pelo modelo e **(2)** variação total. Chamamos de resíduo(ou erro) a diferença entre valores preditos e valores reais.  
+
+**(1)** Para capturar a magnitude dos erros do modelo, somamos o quadrado de todos os resíduos *(sum of squared residuals, SSR)* em relaçã aos valores preditos. Sejam $y_{i}$ as observações e $\hat{y_{i}}$ as predições:  
+$$SSR=\sum_{i=1}^{n} e_{i}^{2}=\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}$$  
+
+**(2)** A variabilidade total é quantificada pela soma do quadrado dos desvios em relação à média *(total sum of squares, TSS)*, um termo que vimos no cálculo da variância (segundo momento):
+$$TSS=\sum_{i=1}^{n}(y_{i}-\mu_{y})^{2}$$  
+
+Então a fração $\frac{SSR}{TSS}$ é a proporção desejada. Definimos $R^{2}$ como:
+$$R^{2}=1 - \frac{SSR}{TSS}$$  
+
+Uma visualização intuitiva de SSR e TSS:    
+```r
+    >source("aux/multiplot.R")
+    >doc_lmfit <- lm(hale ~ log_docs, data=uni_df)
+    >uni_df$preds[complete.cases(uni_df)] <- predict(doc_lmfit) 
+    >uni_df$hale_mean <- mean(uni_df$hale,na.rm = T)
+    >ssr_res <- ggplot(uni_df,aes(x=log_docs,y=hale))+
+        geom_point(alpha=0.5,size=3) +
+        geom_segment(aes(xend = log_docs, yend = preds)) +
+        geom_smooth(method="lm")+
+        xlab("")+
+        ylab("Expectativa de vida saudavel ao nascer")+
+        ggplot2::ggtitle("SSR")
+    
+    >tss_res <- ggplot(uni_df,aes(x=log_docs,y=hale))+
+        geom_point(alpha=0.5,size=3) +
+        geom_segment(aes(xend = log_docs, yend = hale_mean)) +
+        geom_abline(slope = 0,intercept = 63.28165)+
+        xlab("ln de No. de medicos / 1,000 hab.")+
+        ylab("Expectativa de vida saudavel ao nascer")+
+        ggplot2::ggtitle("TSS")
+    
+    >multiplot(ssr_res,tss_res)
+
+```
+![](images/chap2-residuals.png) 
+
+Valores de $R^{2}$ próximos a 1 indicam soma de resíduos (SSR) similar a 0. Valores de $R^{2}$ próximos a 0 indicam $\frac{SSR}{TSS} \sim 1$ e as predições obtidas pelo modelo são tão boas quanto chutar a média para todos os casos.  
+
+```r
+    >lm(hale ~ log_docs, data=uni_df) %>% summary
+    Call:
+    lm(formula = hale ~ log_docs, data = uni_df)    
+
+    Residuals:
+         Min       1Q   Median       3Q      Max 
+    -12.0964  -2.3988   0.3233   2.8229   8.6708     
+
+    Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+    (Intercept)  64.4613     0.3162  203.84   <2e-16 ***
+    log_docs      3.7303     0.2009   18.57   <2e-16 ***
+    ---
+    Signif. codes:  
+    0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1    
+
+    Residual standard error: 3.779 on 143 degrees of freedom
+      (119 observations deleted due to missingness)
+    Multiple R-squared:  0.7069,	Adjusted R-squared:  0.7049 
+    F-statistic: 344.9 on 1 and 143 DF,  p-value: < 2.2e-16
+```
+
+Para obter os valores preditos, usamos o método *predict*:     
+```r
+    >head(predict(doc_lmfit))
+        
+           2        3        4        7        8        9 
+    59.90747 57.23226 65.39962 66.11533 69.54483 68.30608 
+```
+
+É possível também obter predições para novos valores especificando o argumento *newdata*. Para um país com 1.5 médicos/1,000 habitantes:
+```r
+    >predict(doc_lmfit,newdata = data.frame(log_docs=log(1.5)))
+           1 
+    65.97381 
+``` 
+#### Assumptions
+
+Existem alguns procedimentos auxiliares para checar possíveis falhas e pontos no modelo que precisam de atenção. Por exemplo, os resíduos podem ser assimétricos. Isso indica que o desempenho muda em diferentes intervalos (heteroscedacidade). Uma lista completa de premissas, junto aos códigos em R para testá-las, está disponível no material auxiliar (*lm-asssumptions.R*)
+
+### Exercícios
+
+1. Usando o dataset *iris*:
+  * Calcule medidas de tendência central e dispersão para cada variável.  
+    * Execute um teste t para uma das medidas entre duas espécies.   
+    * Obtenha o tamanho de efeito (D de Cohen) para a diferença.  
+  * Faça um scatterplot entre duas medidas  
+    * Verifique se há correlação linear significativa entre as variáveis.  
+    * Se existir, ajuste um modelo de regressão linear.  
+    * Adicione cores de acordo com a espécie.  
+    * Ajuste um modelo de regressão para cada espécie.  
+    * Observe os valores de $R^{2}$ para cada modelo. Qual a sua impressão sobre as mudanças de performance?  
+    
