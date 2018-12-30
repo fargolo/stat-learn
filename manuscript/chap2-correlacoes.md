@@ -40,7 +40,7 @@ Uma torcedora de futebol conta (feliz) a um amigo que seu time favorito venceu c
 Como é possível comparar gols com cestas? Qual vitória representa pontuações mais discrepantes: 4 *x* 1 ou 102 *x* 93?  
 
 O problema aqui é que as pontuações se comportam de maneiras diferentes entre os esportes. O D de Cohen consiste em expressar essa diferença em desvios-padrão. Bastante simples:  
-$$D_{cohen} = \frac{mu_{1}-mu_{2}}{\sigma_{pooled}}$$  
+$$D_{cohen} = \frac{\mu_{1}-\mu_{2}}{\sigma_{pooled}}$$  
 
 Usando a biblioteca *effects*, podemos calcular diretamente:   
 
