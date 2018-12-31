@@ -10,8 +10,8 @@ Página intencionalmente deixada em branco.
 
 \pagebreak
 
-Versão 0.23: Introdução; Capítulo 0; Capítulo 1; Capítulo 2.
-30 de Dezembro de 2018
+Versão 0.31: Introdução; Capítulo 0; Capítulo 1; Capítulo 2; Capítulo 3 (em progresso).
+31 de Dezembro de 2018
 
 \pagebreak
 
@@ -148,5 +148,12 @@ Machine Learning
 * Neural Networks and Learning Machines - Simon Haykin
 * Stanford course on computer vision: http://cs231n.stanford.edu/
 * Deep learning at Oxford 2015: (https://www.youtube.com/watch?v=dV80NAlEins&list=PLE6Wd9FR--EfW8dtjAuPoTuPcqmOV53Fu) 
+
+Filosofia
+
+* A lógica da pesquisa científica - K. Popper
+* A estrutura das revoluções científicas - Thomas Kuhn
+* Contra o Método - Paul Feyerabend
+* Dois dogmas do empiricismo - Willard van Quine
 
 \pagebreak

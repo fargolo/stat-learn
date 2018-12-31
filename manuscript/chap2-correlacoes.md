@@ -508,6 +508,8 @@ Para obter os valores preditos, usamos o método *predict*:
 
 Existem alguns procedimentos auxiliares para checar possíveis falhas e pontos no modelo que precisam de atenção. Por exemplo, os resíduos podem ser assimétricos. Isso indica que o desempenho muda em diferentes intervalos (heteroscedacidade). Uma lista completa de premissas, junto aos códigos em R para testá-las, está disponível no material auxiliar (*lm-asssumptions.R*)
 
+\pagebreak
+
 ### Exercícios
 
 1. Usando o dataset *iris*:
@@ -521,3 +523,6 @@ Existem alguns procedimentos auxiliares para checar possíveis falhas e pontos n
     * Ajuste um modelo de regressão para cada espécie.  
     * Observe os valores de $R^{2}$ para cada modelo. Qual a sua impressão sobre as mudanças de performance?  
     
+\pagebreak
+
+## Correlações e testes não paramétricos
