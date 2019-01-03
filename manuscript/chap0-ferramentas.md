@@ -1,6 +1,6 @@
 ![](images/chap0-cover.png)
 
-# Capítulo 0: Ferramentas
+# Capítulo 0 : Ferramentas
 
 Programação com estatística básica
 

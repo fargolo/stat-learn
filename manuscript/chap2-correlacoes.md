@@ -1,6 +1,6 @@
 ![](images/chap2-vitruv.jpg)
 
-# Capítulo 2: Sobre a natureza das relações 
+# Capítulo 2 : Sobre a natureza das relações 
 
 ## Prelúdio: Quem precisa do valor p?
 
@@ -181,8 +181,11 @@ Um sistema, como o pássaro apoiado sobre o dedo, está em equilíbrio quando a 
 Os momentos descritos acima são expressões do *primeiro momento*, uma vez que a grandeza é multiplicada pela distância com expoente 1: $d = d^{1}$. 
 
 Podemos calcular outros momentos, exponenciando o componente espacial (distância). Vamos estudar agora momentos de massa de um objeto unidimensional:  
+
 O **momento zero** de massa para um objeto é $M_{0} = \sum_{i=1}^{N} m_{i}d_{i}^{0}$. Como $d^{0}=1$, temos $M_{0} = \sum_{i=1}^{N} m_{i}$, que é simplesmente a soma das massas de todos os pontos. O momento zero é a massa total.  
+
 O **primeiro momento** de massa para um objeto é $M_{1} = \sum_{i=1}^{N} m_{i}d_{i}^{1}$ e determina o centro de massa em relação à dimensão $d$.  
+
 O **segundo momento** de massa é $M_{2} = \sum_{i=1}^{N} m_{i}d_{i}^{2}$ e é o momento de inércia. Corresponde à resistência do sistema a rotações[^13].
 O n-ésimo momento $M_{n} = \sum_{i=1}^{N} m_{i}d_{i}^{2}$
 
@@ -463,7 +466,7 @@ Uma visualização intuitiva de SSR e TSS:
     >multiplot(ssr_res,tss_res)
 
 ```
-![](images/chap2-residuals.png) 
+![O quadrado da distância entre um ponto e a reta corresponde a um resíduo. Obtemos SSR e TSS somando todos os resíduos nas figuras superior e inferior, respectivamente.](images/chap2-residuals.png) 
 
 Valores de $R^{2}$ próximos a 1 indicam soma de resíduos (SSR) similar a 0. Valores de $R^{2}$ próximos a 0 indicam $\frac{SSR}{TSS} \sim 1$ e as predições obtidas pelo modelo são tão boas quanto chutar a média para todos os casos.  
 
@@ -504,9 +507,10 @@ Para obter os valores preditos, usamos o método *predict*:
            1 
     65.97381 
 ``` 
-#### Assumptions
+#### Premissas
 
-Existem alguns procedimentos auxiliares para checar possíveis falhas e pontos no modelo que precisam de atenção. Por exemplo, os resíduos podem ser assimétricos. Isso indica que o desempenho muda em diferentes intervalos (heteroscedacidade). Uma lista completa de premissas, junto aos códigos em R para testá-las, está disponível no material auxiliar (*lm-asssumptions.R*)
+Existem alguns procedimentos auxiliares para checar possíveis falhas e pontos no modelo que precisam de atenção. Por exemplo, os resíduos podem ser assimétricos. Isso indica que o desempenho muda em diferentes intervalos (heteroscedacidade). Diferentes violações necessitam de atitudes diferentes, como tratar outliers ou mudar tipo do modelo.
+Uma lista completa de premissas, junto aos códigos em R para testá-las, está disponível no material auxiliar (*lm-asssumptions.R*)
 
 \pagebreak
 
@@ -526,3 +530,96 @@ Existem alguns procedimentos auxiliares para checar possíveis falhas e pontos n
 \pagebreak
 
 ## Correlações e testes não paramétricos
+
+Verificamos minuciosamente análises envolvendo a distribuição normal, a distribuição t e relações lineares. Entretanto, muitas vezes as medidas não seguem uma distribuição definida. Assim, realizar inferências usando os **parâmetros** descritos $(\mu,\sigma, t...)$ nos levaria a conclusões erradas.  
+Para lidar com distribuições arbitrárias, vamos abrir mão deles e conhecer ferramentas *não-paramétricas*: o coeficiente de correlação de ranks $\rho$ Spearman e o teste U de Mann Whitney.  
+
+### Ranks e o $\rho$ Spearman
+
+Relações lineares mantêm proporções constantes e aprendemos como quantificá-las. Por outro lado, duas variáveis podem ter relações de outros tipos, não lineares. Em especial, se as medidas apresentam valores muito extremos *(outliers)* um cálculo como o anterior sofre bastante com vieses.  
+Uma simples solução para esse problema é ranquear os valores. Assim, os itens do conjunto são tratados pela sua posição em relação a outros itens, de forma independente dos valores associados. Exemplo:  
+$$S = (1,3,89,89,39,209) \rightarrow S_{ranked} = (1,2,4,4,3,5)$$
+
+O $rho$ de Spearman é que o coeficiente produto-momento de Pearson aplicado aos ranks. Assim, medimos o grau em que duas variáveis aumentam (ou diminuem) em magnitude observando apenas a ordem das observações. Isto é: **maior que**, **igual** ou **menor que**. Especificamente, investigamos se há uma relação de *monotonicidade* entre elas.    
+
+Para a relação (sigmoide), entre x e y abaixo:  
+```r
+    >sig_data <- data.frame(y_vals = -(1 / (1 + exp(seq(-10,10,by =0.3) ) ) ),
+                       x_vals = 1:67)
+    >ggplot(sig_data,aes(x=x_vals,y=y_vals))+
+    geom_point()
+```
+![](images/chap2-sigpoints.png)
+
+O coeficiente de Pearson é $\rho \sim 0.936$[^18] :   
+```r
+    >cor.test(sig_data$y_vals,
+    +          sig_data$x_vals)    
+
+    	Pearson's product-moment correlation    
+
+    data:  sig_data$y_vals and sig_data$x_vals
+    t = 21.462, df = 65, p-value < 2.2e-16
+    alternative hypothesis: true correlation is not equal to 0
+    95 percent confidence interval:
+     0.8978064 0.9603803
+    sample estimates:
+          cor 
+    0.9361287  
+    
+    >ggplot(sig_data,aes(x=x_vals,y=y_vals))+
+      geom_point()+
+      geom_smooth(method="lm")
+```
+![](images/chap2-sigline.png)
+
+Como a relação é perfeitamente monotônica, os pares ordenados $(x_{i},y_{i})$ sempre possuem o mesmo rank. O quinto valor mais alto em x é também o quinto valor mais alto em y. Portanto, o coeficiente de Spearman é 1:  
+
+```r
+    >cor.test(sig_data$y_vals,
+    +          sig_data$x_vals,method = "spearman")    
+
+    	Spearman's rank correlation rho    
+
+    data:  sig_data$y_vals and sig_data$x_vals
+    S = 0, p-value < 2.2e-16
+    alternative hypothesis: true rho is not equal to 0
+    sample estimates:
+    rho 
+      1 
+```
+
+O coeficiente $\rho$ de Spearman é preferível quando as medidas diferem bastante de uma distribuição normal. Também oferece robustez quando é necessário lidar com *outliers*.    
+
+[^18]: Como observamos no gráfico, a correlação linear não é tão alta. O coeficiente se aproxima de 1 $\rho \sim 0.936$ pois os desvios superiores compensam simetricamente os inferiores. O exemplo reforça a importância de plotar os dados para um melhor entendimento (ver Quarteto de Anscombe). 
+
+\pagebreak
+
+## Teste U de Mann-Whitney
+
+O teste U de Mann-Whitney faz uso da estatística U para fazer inferências. O racional é idêntico ao do teste t de Student.  
+Estabelecemos hipótese nula $H_{0}$ e hipótese alternativa $H_{1}$.  
+Então, calculamos a probabilidade de nossas observações acontecerem caso a hipótese nula seja verdadeira.  
+Desta vez, usaremos a estatística U. Lembremos que a estatística t era calculada com base em parâmetros extraídos da amostra:  
+$$t = \frac{Z}{s}=(\mu'-\mu)/\frac{\sigma}{\sqrt{n}}$$
+
+A estatística U não depende de parâmetros, sendo calculada com base em cada observação.  
+
+Primeiro, calculamos os ranks de cada medida $r_{i}$ unindo as observações das amostras A e B, de tamanhos amostrais $n_{a}$ e $n_{b}$ em apenas um conjunto $(N_{tot} = n_{a} + n_{b})$.  
+
+Depois, separamos novamente as amostras e calculamos a soma dos ranks em cada grupo, chamadas $R_{a}$ e $R_{b}$.  
+A estatística U é dada pela seguinte expressão: 
+
+$$U_{a}= R_{a} - \frac{n_{a}(n_{a}+1)}{2}$$
+$$U_{b}=R_{b} - \frac{n_{b}(n_{b}+1)}{2}$$
+
+Usamos o menor valor de U para consultar a probabilidade (valor p) correspondente para a hipótese nula.  
+
+O termo $\frac{n(n+1)}{2}$ corresponde à soma mínima dos ranks para a amostra.  
+Os ranks são uma sequência regular $(1,2,3,...)$, de forma que a soma de todos os valores é idêntica à soma de uma progressão aritmética de N termos.  
+$$Soma_{ranks}=\frac{N(N+1)}{2}$$  
+Enquanto $R_{i}$ corresponde à soma dos ranks calculados com as duas amostras, o termo acima corresponderia à soma mínima dos ranks para uma amostra, caso os ranks ocupassem a sequência inicial $A=(1,2,3,4,...,n_{a})$ na amostra conjunta.  
+A definição para o teste não é unânime na literatura, de forma que alguns autores e softwares (e.g. R) implementam o cálculo com a subtração acima e outros (e.g. S-PLUS) não o fazem.  
+Em R, as funções **dwilcox(x,m,n)** e **pwilcox(q,m,n)** retornam a distribuição e a densidade cumulativa para a estatística U correspondente a amostras com tamanhos m e n.  
+
+\pagebreak

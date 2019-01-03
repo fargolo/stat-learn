@@ -1,6 +1,6 @@
-# Capítulo 3: Contexto e Inferência Bayesiana (DRAFT)
+# Capítulo 3 : Contexto e Inferência Bayesiana (DRAFT)
 
-@ Interpretação de cenários possíveis vs. teoria das medidas  
+@ Intuicao de cenários possíveis vs. Axiomatizacao de Kolmogorov  
 @ AIC/BIC  
 
 ## Muitos métodos científicos: Feyerabend, Carnap e Quine
@@ -11,7 +11,7 @@ No primeiro capítulo, entramos em contato com o método hipotético-dedutivo e 
 
 Conhecido pela personalidade ímpar e por suas ideias radicais, Paul Feyerabend é notável por conceber o *anarquismo epistêmico*. Em sua obra mais proeminente, *Contra o Método*(1975), argumenta que boa parte dos avanços científicos significativos aconteceram fora do método.  
 
-O autor destaca o fato de que as previsões do modelo heliocêntrico proposto por Galileo tinha previsões verificáveis piores que os antecessores. Além disso, fazia uso de abstrações mais complexas. Ainda assim, verificamos posteriormente que o Sol é o objeto mais massivo do sistema solar, ocupando um dos epicentros[^18].  
+O autor destaca o fato de que as previsões do modelo heliocêntrico proposto por Galileo tinha previsões verificáveis piores que os antecessores. Além disso, fazia uso de abstrações mais complexas. Ainda assim, verificamos posteriormente que o Sol é o objeto mais massivo do sistema solar, ocupando um dos epicentros[^19].  
 
 Sendo assim, os astrônomos contratados pela igreja à época estavam certos em dizer que o trabalho de Galileo era falso. Ratzinger deveria julgar se a Igreja se retratar quanto ao caso de Galileo (e se comprometer com a verdade) ou manter a postura (e assumir que o melhor que podemos fazer depende dos conhecimentos disponíveis.  
 
@@ -21,7 +21,7 @@ Feyerabend argumenta que outros fatores, especialmente idiossincrasias, detalhes
 
 É tentador pensar que, dada a profundidade do trabalho, a defesa de uma postura tão contundente é obviamente uma aplicação dos preceitos defendidos no livro como necessários para disseminar uma ideia.  
 
-[^18]: Hoje, sabemos que há uma interação de muitos corpos celestes. As órbitas são mais complexas, porém o sol continua sendo o atrator mais forte.  
+[^19]: Hoje, sabemos que há uma interação de muitos corpos celestes. As órbitas são mais complexas, porém o sol continua sendo o atrator mais forte.  
 
 \pagebreak
 

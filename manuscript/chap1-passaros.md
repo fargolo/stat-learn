@@ -348,7 +348,7 @@ O grau de sofisticação em reprodutibilidade de procedimentos foi amplificada.
 [^8]: O valor [da estatística z em uma curva normal] para o qual $p=0.05$, ou 1 em 20, é de 1.96 ou aproximadamente 2; é conveniente pegar esse ponto como um limite ao julgar quando um desvio deve ser considerado significante ou não.
 
 
-#### Um exemplo prático: Teste t para amostras independentes
+### Teste t e distribuição t de Student: Um exemplo prático
 
 Para testar estatisticamente se as medidas são diferentes, executaremos um teste t para comparação dos grupos. 
 

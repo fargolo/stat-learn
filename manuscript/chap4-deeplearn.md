@@ -1,183 +1,172 @@
-# DRAFT de Capítulo 4 - textos base retirados do blog
+# DRAFT de Capítulo 4 : - textos base retirados do blog
 [^30]
 
-Em 28 de Abril de 2016, o então CEO da Google (Sundar Pichai) publicou na carta (https://blog.google/inside-google/alphabet/this-years-founders-letter/) anual dos fundadores sua visão de futuro, compartilhando com acionistas e com o público os objetivos da companhia. O termo ‘machine learning’ foi usado 8 vezes, inclusive como responsável pelas principais inovações recentes, como Google Maps e Google Photos.  
+Em 28 de Abril de 2016, o então CEO da Google (Sundar Pichai) publicou na carta anual dos fundadores (https://blog.google/inside-google/alphabet/this-years-founders-letter/) sua visão de futuro, compartilhando com acionistas e com o público os objetivos da companhia. O termo *‘machine learning’* foi usado 8 vezes, inclusive como responsável pelas principais inovações apresentadas pela companhia, como Google Maps (geonavegação) e Google Photos (visão computacional).  
 
 ![AlphaGo: Monte-Carlo tree search, deep neural networks e reinforcement learning jogando contra si](images/chap4-go.jpg)
 
 “(…) our long-term investment in machine learning and AI. (…) It’s what has allowed us to build products that get better over time, making them increasingly useful and helpful.” Sundar Pichai, CEO,Google, 2016
 
+Em março do mesmo ano, o Google DeepMind AlphaGo tornou-se o primeiro programa de computador a vencer um mestre de Go. O feito é difícil por tratar-se de um jogo quase impossível de ser totalmente computado.  
+Existem $2,08*10^{170}$ maneiras válidas de dispor as peças no tabuleiro. Vale lembrar que o número de átomos no universo observável é de módicos $10^{80}$.  
 
-Em março do mesmo ano, o Google DeepMind AlphaGo tornou-se o primeiro programa de computador a vencer um mestre de Go. O feito é difícil por tratar-se de um jogo quase impossível de ser totalmente computado. Existem $2,08*10^{170}$ maneiras válidas de dispor as peças no tabuleiro. Vale lembrar que o número de átomos no universo observável é de módicos $10^{80}$.
+Inteligência artificial possui aplicações crescentes nas áreas de finanças, saúde, indústria, aviação e segurança.  
 
-Inteligência artificial possui aplicações crescentes nas áreas de finanças, saúde, indústria, aviação e segurança. 
+## Classificadores lineares e visão computacional
 
-## Classificadores lineares
+Neste capítulo, vamos entender como usar classificadores para visão computacional. Uma ferramenta simples é o classificador linear. Como veremos, guarda semelhança com os métodos de regressão mostrados antes.  
+![](images/chap4-ship.jpg)  
 
-Um tipos mais simples de classificador é o linear.
-![](images/chap4-ship.jpg)
-Imaginemos que a imagem tenha 10 pixels de altura e 10 de largura.
-Para simplificação, supomos que a foto acima possua 10 x 10 pixels em preto e branco (100 pixels com valores entre 0,preto, e 255, branco). Esses pixels podem ser esticados e vistos como uma matriz x de dimensão [100 x 1] com valores entre 0 e 255 em cada elemento.
-Podemos simular uma imagem deste tamanho gerando uma matriz de dimensão 10x10 com 100 valores naturais aleatórios (entre 0 e 255) no R :
+Imaginemos que a imagem acima tenha 10 pixels de altura e 10 de largura.  
+Para simplificação, 10 x 10 pixels em preto e branco (100 pixels com valores entre 0,preto, e 255, branco). Esses pixels podem ser esticados e vistos como uma matriz x de dimensão [100 x 1] com valores entre 0 e 255 em cada elemento.  
+Podemos simular uma imagem deste tamanho gerando uma matriz de dimensão 10x10 com 100 valores naturais aleatórios (entre 0 e 255) no R:  
 
 ```r
-#Garante que os valores no exemplo serao iguais aos seus, enviesando o gerador de dados aleatorios
-set.seed(2600)
-#Cria dados com 100 valores inteiros no intervalo [0,255] com reposicao
-my.image.data <- sample(0:255,100,replace=T)
-#Le como uma matrix [10x10]
-x <- matrix(my.image.data,10,10)
+    >set.seed(2600)
+    >my.image.data <- sample(0:255,100,replace=T)
+    >x <- matrix(my.image.data,10,10)
 ```
 ![](images/chap4-shipmat.jpg)
 
-Eis a nossa imagem [10x10]. O computador lê os valores entre 0 (preto) e 255 (branco), dispondo para nós o sinal visual correspondente.
-Vamos supor que nosso classificador recebe imagens de uma câmera noturna no porto da cidade e que as imagens podem ser classificadas em 4(K) tipos: navio, morcego, golfinho ou submarino.
-O classificador linear atribui scores para cada uma das 4 classes aplicando seus pesos em cada pixel da imagem.
-Matematicamente, é uma multiplicação dessa matriz de valores de imagem x [100x1]por uma matriz W [100 X 4] que traz pesos (weights) estimados para cada pixel para os 4 scores. O resultado dessa multiplicação de matrizes são scores para cada classe K.
-Vamos considerar que nossa ordem de rótulos é:
-[navio, morcego, golfinho, submarino]
+Eis a nossa imagem [10x10]. O computador lê os valores entre 0 (preto) e 255 (branco), dispondo para nós o sinal visual correspondente.  
+
+Em nosso exemplo hipotético, o classificador precisam distinguir quatro tipos de animais a partir da imagem: pássaro, tartaruga, golfinho ou peixe.  
+
+O classificador linear atribui scores para cada uma das 4 classes aplicando seus pesos em cada pixel da imagem.  
+Matematicamente, é uma multiplicação da matriz de valores da imagem $x_{i}$, de dimensão $[100 x 1]$ por uma matriz $W_{[100 X 4]}$ que traz pesos (weights) estimados para cada pixel para cada classe.  
+O resultado dessa multiplicação de matrizes são scores para cada classe K.  
+Vamos considerar que nossa ordem de rótulos é:  
+[pássaro, tartaruga, golfinho, peixe]  
 
 Em R:
 ```r
-#Iniciando pesos com base em distribuição normal
-#Dividi os valores por 100 para reduzir a magnitude dos numeros
-my.weights <- rnorm(400)/100
-#Le pesos como matriz [100x4]
-w <- matrix(my.weights,100,4)
-#Multiplicacao usando o operador %*%
-as.vector(x)%*%w
-#Resultado
-         [,1]      [,2]      [,3]     [,4]
-[1,] -0.4198168 -3.163685 -3.889999 19.54444
+    #Iniciando pesos com base em distribuição normal
+    #Dividi os valores por 100 para reduzir a magnitude dos numeros
+    >my.weights <- rnorm(400)/100
+    #Le pesos como matriz [100x4]
+    >w <- matrix(my.weights,100,4)
+    #Multiplicacao usando o operador %*%
+    >as.vector(x)%*%w
+    #Resultado
+            [,1]     [,2]     [,3]      [,4]
+    [1,] 20.95787 22.10932 19.08313 -30.33214
 ```
 
-O classificador linear traz um valor de score para cada classe. A interpretação desses valores pode variar, mas vamos pensar, por enquanto, que nosso objetivo é que o maior score seja o da classe correta.
-Em nosso exemplo:
-[-0.4198168, -3.163685, -3.889999, 19.54444]
+O classificador retorna um valor de score para cada classe. A interpretação desses valores pode variar, mas vamos pensar, por enquanto, que nosso objetivo é que o maior score seja o da classe correta.  
+Em nosso exemplo, o output: $[20.95787, 22.10932, 19.08313, -30.33214]$.  
+Entre os valores, o maior entre os quatro foi o segundo (22.10932), sugerindo o rótulo de tartaruga.  
+O processo de aprendizado, consiste em expor o classificador a diversos exemplos $x$ até que ele ajuste o pesos em $W$ de maneira a retornar o maior score para a classe K correta.  
+A imagem abaixo traz um diagrama dessa multiplicação.  
 
-e lembrando que nossa ordem de classes é:
-[navio, morcego, golfinho, submarino]
-Entre os valores, o maior entre os quatro foi o quarto (19.54444), sugerindo o rótulo de submarino, que é errado.
-O processo de aprendizado, consiste em expor o classificador a diversos exemplos X até que ele ajuste esses parâmetros W, apontando a classe K correta(navio, 1º elemento da matriz) com o score maior .
-A imagem abaixo traz um diagrama dessa multiplicação.
-
-![Visitem o http://cs231n.github.io/linear-classify/ para mais detalhes. 
+![Retirado de http://cs231n.github.io/linear-classify/ . 
 ](images/chap4-stanf.jpg)
 
 
-Essa imagem traz um diagrama do processamento dos dados que resultam nos scores finais paras classes K: cat,dog,ship. Nesse caso, a classificação seria cachorro (437.9)
+Essa imagem traz um diagrama do processamento dos dados que resultam nos scores finais paras classes K: cat,dog,ship. Nesse caso, a classificação seria cachorro (437.9)  
 $K(x,y)=x^{T}y$
 
-Nese caso, y indica os pesos (antes chamados de W nesse texto) e x^T a matriz com dados do exemplo. O uso de transposição ou não depende da forma escolhida para a matriz y ([nx1] ou [1 x n]).
+$y$ indica os pesos (antes chamados de $W$ nesse texto) e $x^T$ a matriz com dados do exemplo. O uso de transposição ou não depende da forma escolhida para a matriz $[nx1]$ ou $[1xn]$.  
 
-Essa função é chamada kernel function e, no em nosso caso, é linear.
-Para levar em conta uma constante b, usaremos um truque: ao adicionar o valor 1 ao final da imagem, a multiplicação dos pesos associados será constante. Assim podemos incluir estimativas do valor de b como pesos em W, que, quando multiplicados por 1, serão sempre as mesmas constantes.
+Essa função é chamada kernel function e, no em nosso caso, é linear.  
+Para levar em conta uma constante $b$, usaremos um truque: ao adicionar o valor 1 ao final da imagem, a multiplicação dos pesos associados será constante. Assim podemos incluir estimativas do valor de $b$ como pesos em $W$, que, quando multiplicados por 1, serão sempre as mesmas constantes.  
 
 ```r
-#Adiciona valor 1 ao vetor e armazena em x.vec. Agora temos 101 elementos
-x.vec <- c(as.vector(x),1)
-#Inicia pesos incluindo 4 valores extras para (uma constante para cada score)
-my.weights<- rnorm(404)/100
-#Leitura como matriz w de dimensao 101x4
-w <- matrix(my.weights,101,4)
-#Multiplicacao: (pixels da imagem + 1)* (Pesos do classificador)
-x.vec%*%w
-#Resultado
-         [,1]      [,2]     [,3]     [,4]
-[1,] -18.47206 -4.578708 15.71626 28.55935
+    #Adiciona valor 1 ao vetor e armazena em x.vec. Agora temos 101 elementos
+    >x.vec <- c(as.vector(x),1)
+    #Inicia pesos incluindo 4 valores extras para (uma constante para cada score)
+    >my.weights<- rnorm(404)/100
+    #Leitura como matriz w de dimensao 101x4
+    >w <- matrix(my.weights,101,4)
+    #Multiplicacao: (pixels da imagem + 1)* (Pesos do classificador)
+    >x.vec%*%w
+    #Resultado
+             [,1]     [,2]      [,3]      [,4]
+    [1,] 8.620293 10.08648 -4.423656 -7.804998
 ```
 
 Agora, nossos scores aleatórios são:
-[-18.47206, -4.578708, 15.71626, 28.55935]
-Ainda indicando submarino (4a posição) com maior score. Como transformar esses pesos em valores úteis?
+$[8.620293, 10.08648, -4.423656, -7.804998]$
+Agora indicando indicando tartaruga (2a posição) com maior score. Como transformar esses pesos em valores úteis?
 
-Inicialmente, estabelecemos pesos aleatórios a partir de uma distribuição normal. Foi o que fizemos no R com a função rnorm.
-Nosso objetivo agora é observar as respostas corretas em várias imagens e alterar os valores de W para que os scores maiores sejam os das classes corretas.
-Esse aprendizado se dá através de uma função de perda L.
+Inicialmente, estabelecemos pesos aleatórios a partir de uma distribuição normal.  
+Nosso objetivo agora é observar as respostas corretas em várias imagens e alterar os valores de $W$ para que os scores maiores sejam os das classes corretas.  
+Esse aprendizado se dá através de uma função de perda $L$.
 
-Support Vector Machine (SVM)
-A função de perda quantifica o quão distante estamos dos pesos desejados. A SVM loss function que vamos usar é ajustada de forma que o score desejado deve ser maior que os outros por uma margem determinada delta $(\delta)$.
+### Support Vector Machine (SVM)
 
-$L_{i}=\sum_{j diferente de y_{i}}^{} max(0,s_{j}-s_{y_{i}} + \delta$
+A função de perda *(loss function)* quantifica o quão distante estamos dos pesos desejados. O score desejado deve ser maior que os outros. 
+Sendo $s_{j}$ o score atribuído à classe correta e $s_{i}$ o score atribuído à i-ésima classe errada:    
+A função de perda retorna 0 caso a classe correta tenha score maior $s_{i} - s_{j} < 0$ ou o valor da diferença caso contrário, $s_{i} - s_{j} > 0$.  
 
-Função de perda
-A função max retorna 0 ou o valor à direita da vírgula, caso ele seja positivo. A soma L (loss) vai acumular perda se o score correto não estiver distante o suficiente $(\delta)$ dos deltas incorretos.
-Implementando em R:
+$$max(0,s_{i} - s_{j})$$
+
+A perda total é a soma dos erros para cada classe. Adicionamos ainda uma margem determinada delta $(\Delta)$. O score correto deve ser maior que os outros com uma diferença mínima igual a delta. Então, a perda para a observação $x$ é:  
+
+$$L_{x}=\sum_{j \neq i}^{} max(0,s_{i} - s_{j} + \Delta)$$  
+
+A soma L (loss) vai acumular um valor de erro se o score correto não estiver distante o suficiente $(\Delta)$ dos deltas incorretos.  
+Implementando em R:  
 
 ```r
-loss <- function(x,w,cor.class){
- #Determina delta = 2, a distancia minima entre o maior score e os outros
- delta <- 2
- #Calcula scores multiplicando valores da imagem por pesos W
- scores <- x.vec%*%w
- #Score da classe correta fornecida pelo argumento da funcao
- correct.class.sc <- scores[cor.class]
- #Obtem numero de classes
- dimensions.class <- length(scores)
- #Perda inicial = 0 
- cur.loss <- 0
- #Loop para calcular a soma dos valores de max(0,~formula SVM)
- #A funcao max esta nas funcoes basicas (Base Package) do R
- for (i in 1:dimensions.class){
-   if (i == cor.class){
-     next
-   }
-   cur.loss <- cur.loss + max(0,scores[i] - correct.class.sc + delta)
- }
- #Retorna valor da perda
- return(cur.loss)
- }
+    loss <- function(x,w,cor.class){
+     #Determina delta = 2, a distancia minima entre o maior score e os outros
+     delta <- 1
+     #Calcula scores multiplicando valores da imagem por pesos W
+     scores <- x.vec%*%w
+     #Score da classe correta fornecida pelo argumento da funcao
+     correct.class.sc <- scores[cor.class]
+     #Obtem numero de classes
+     dimensions.class <- length(scores)
+     #Perda inicial = 0 
+     cur.loss <- 0
+     #Loop para calcular a soma dos valores de max(0,~formula SVM)
+     #A funcao max esta nas funcoes basicas (Base Package) do R
+     for (i in 1:dimensions.class){
+         if (i == cor.class){next}
+         cur.loss <- cur.loss + max(0,scores[i] - correct.class.sc + delta)
+         }
+     #Retorna valor total da perda
+     return(cur.loss)}
 ```
 E podemos testar os scores para cada classe invocando a função na forma loss(imagem,pesos,classe_correta):
 
 ```r
-> loss(x,w,1)
-[1] 101.1131
-> loss(x,w,2)
-[1] 57.43302
-> loss(x,w,3)
-[1] 14.84309
-> loss(x,w,4)
-[1] 0
+    > loss(x,w,1)
+    [1] 2.466183
+    > loss(x,w,2)
+    [1] 0
+    > loss(x,w,3)
+    [1] 29.55408
+    > loss(x,w,4)
+    [1] 40.69811
 ```
 
-Notem que se informamos que a classe correta é a 4, que tinha o maior score, a função retorna 0. Isto é , não há acréscimo de perda.
-Agora, o objetivo é encontrar valores de W que minimizem L para todos os exemplos. Isso pode ser feito de maneira analítica, calculando o gradiente de L com cálculo diferencial, ou de maneira numérica, através de algoritmos.
-Aos que têm alguma familiaridade com cálculo básico, o gradiente parte do mesmo conceito de derivativa, só que para funções n-dimensionais.
-Para evitar erros de convergência, costuma-se comparar ambos valores. Na prática, estamos mexendo nos parâmetros W de forma a direcionar nossa função de perda L aos menores valores, descendo a montanha.  
+Notem que se informamos que a classe correta é a 2, que tinha o maior score, a função retorna 0. Isto é, o classificador apontou o maior score com a margem adequda e não há perda.  
+
+Se apontamos que a classe correta é uma das outras (1,3 ou 4), a função retorna a perda correspondente.  
+
+Agora, o objetivo é encontrar pesos em $W$ que minimizem $L$ para todos os exemplos. Isso pode ser feito analisando o gradiente de $L$ com cálculo diferencial, ou de maneira numérica, através de algoritmos recursivos (veremos o uso do estimador Markov Chain Monte Carlo).    
+
+Na prática, estamos mexendo nos parâmetros $W$ de forma a direcionar nossa função de perda $L$ aos menores valores, descendo a montanha.  
 ![Visitem: http://blog.dato.com/parallel-ml-with-hogwild](images/chap4-grad.jpg)
 
 
-Com os novos parâmetros W, podemos aplicar o classificador na imagem inédita x’’[10x10], obter os scores para predizer a classe dela, assim como uma nova função de perda.
-Como dá para notar, mesmo num exemplo simplificado, treinar o classificador implica muitas computações de matrizes n-dimensionais . Por isso, precisamos de bastante poder computacional e machine learning só ganhou atenção recentemente, com o avanço do hardware apropriado.
+@ Gradiente  http://cs231n.github.io/optimization-1/
 
-You know nothing, Jon Snow
-E no caso do Game of Thrones?
-Aos invés de matrizes com uma dimensão para cada pixel[10x10], podemos usar matrizes com dimensões para dados do personagem:
+Com os novos parâmetros $W$, podemos aplicar o classificador na imagem inédita $x’_{[10x10]}$, obter os scores para predizer a classe dela, assim como uma nova função de perda.  
+Como dá para notar, mesmo num exemplo simplificado, treinar o classificador implica muitas computações de matrizes n-dimensionais. Por isso, precisamos de bastante poder computacional e *machine learning* só ganhou atenção recentemente, com o avanço do hardware apropriado.
 
-No caso do modelo do A Song of Ice And Data, eles usaram dimensões como: “Idade”,”Casado ou não”;”Número de aparições no livro A Feast for Crows”.
--No caso de variáveis categóricas como o estado civil “Casado ou não”, codificamos 1 para presença e 0 para ausência (dummy coding).Assim, as estimativas de efeito podem ser feitas por categoria-
-Um personagem de 34 anos, casado, que apareceu 3 vezes seria o vetor [34,1,3].
-A função do núcleo (kernel) descrita anteriormente é linear e esses valores seriam multiplicados pela matriz de valores W, somados a b e resultariam em scores. Eles usaram um kernel polinomial:
-$K(x,y)=(x'y+c)^{d}$
+#### Kernels
 
-As funções kernel retornam sempre um produto interno entre dois pontos no espaço adequado. Além do linear do polinomial, temos outros: Gaussian Radial Basis Function (RBF) é um exemplo envolvendo exponenciação.
+A função do núcleo (kernel) descrita anteriormente é linear. Os valores são multiplicados pela matriz de valores $W$, somados a $b$ e resultam em scores. Diferentes kernels podem ser usados, como o polinomial:
+$$K(x,y)=(x'y+c)^{d}$$
 
-$$k(x,x')=exp(-\sigma{||x-x'||}^{2})$$
+As funções kernel retornam sempre um produto interno entre dois pontos no espaço adequado. Além do linear e do polinomial, temos outros: Gaussian Radial Basis Function (RBF) é um tipo que costuma apresentar bom desempenho.  
 
-Agora, sabemos examinar um conjunto de imagens rotuladas, criar um classificador linear e treiná-lo (ajustar pesos W minimizando a função de perda L) para retornar um maior score nas as classificações corretas.
+$$k(x,x')=e^{(-\sigma{||x-x'||}^{2})}$$  
 
-Testando as máquinas
-O próximo passo é testar a utilidade de nosso modelo. De nada adianta treinar uma inteligência artificial com métodos sofisticados se ela não é capaz de classificar as fotos da maneira correta. Um caminho comum de fazer isso é separando os dados de maneira complementar. Podemos pegar um subconjunto com 4/5 dos dados para treinar o modelo e testar suas predições no 1/5 restante.
-Existem outros algoritmos mais complexos para esta tarefa. O modelo do A Song of Ice And Data usou k fold cross-validation (k=10). Isso significa que os dados foram separados em 10 partes iguais. O modelo é treinado em 9 partes e testado na parte restante. Em seguida, é feito um rodízio para que cada subconjunto seja usado como amostra de teste uma vez.
+Agora, sabemos examinar um conjunto de imagens rotuladas, criar um classificador linear e treiná-lo (ajustar pesos $W$ minimizando a função de perda $L$) para retornar um maior score nas as classificações corretas.
 
-Os resultados são:
-
-Precision (Precisão) é a proproção de acertos entre os palpites feitos.
-Recall (Mesmo que Sensibilidade) é definido como proporção de acertos entre os personagens que realmente morreram. F-Measure é uma média ponderada de Precisão e Sensibilidade.
-
-Podemos notar que o modelo não foi tão bom em prever mortes. Dos palpites de morte feitos, cerca de metade (49%) estavam corretos. Por outro lado, 60% dos personagens mortos estavam na lista de palpites.
-Visite o GitHub da equipe para interagir com os desenvolvedores. Eu postei uma issue e fui respondido rapidamente.
 Referências:
 CS231n - Stanford University: Convolutional Neural Networks for Visual Recognition
 Karatzoglou et al. Support Vector Machines in R. Journal of Statistical Software. April 2006, Volume 15, Issue 9.
@@ -186,125 +175,113 @@ Karatzoglou et al. Support Vector Machines in R. Journal of Statistical Software
 
 Parte 2 - Aplicações
 
-Recuperando o exemplo anterior, temos um conjunto de dados (ex: uma imagem) e um classificador com pesos para esses dados. O classificador realiza operações (definidas pela função kernel) entre seus pesos e os dados para retornar scores. O maior dos scores deve apontar a classe correta (mecanismo de voto). Vimos que existem diversas formas de encontrar valores para os pesos que classifiquem corretamente as imagens (minimizem as perdas).
-Vimos como funcionam as operações com um kernel linear.
-Não é de nosso interesse codificar uma SVM do zero a cada aplicação. Primeiro, se todos usarem ferramentas compatíveis, economizaremos tempo e aumentaremos a capacidade de comunicação com outros grupos na hora de reportar trabalhos. Além disso, podemos fazer aprimoramentos no software a longo prazo (otimização de algoritmos e interface de usuário). Por esses motivos, temos alguns pacotes disponíveis.
+Recuperando o exemplo anterior, temos um conjunto de dados (ex: uma imagem) e um classificador com pesos para esses dados. O classificador realiza operações (definidas pela função kernel) entre seus pesos e os dados para retornar scores.  
+O maior dos scores deve apontar a classe correta (mecanismo de voto).  
+Vimos que existem diversas formas de encontrar valores para os pesos que classifiquem corretamente as imagens (minimizem as perdas).  
+Vimos como funcionam as operações com um kernel linear.  
+
 ![Linus Torvalds (Linux) e Richard Stallman (GNU).Dois caras legais.](images/chap4-linus.jpg)
 
 
-Graças ao movimento em torno do software livre e seus ideais, temos acesso a pacotes potentes desenvolvidos pela comunidade. 
+Apresentamos benchmarks para tempos das funções dos pacotes **kernlab, e1071, klaR e svmpath** em diferentes datasets para uma mesma tarefa.
 
-Como prometido, veremos nesse texto a implementação de Support Vector Machines com pacotes populares no R. Recomendo esse paper aqui para uma abordagem mais profunda e definições formais com hiperplanos — Support Vector Machines in R ( Alexandros Karatzoglou, David Meyer, Kurt Hornik).
+![Benchmarks (Tempo em segundos). Support Vector Machines in R ( Alexandros Karatzoglou, David Meyer, Kurt Hornik)](images/chap4-bench.jpg)
 
-Qual pacote?
-O paper acima traz uma comparação de recursos e benchmarks para tempos das funções dos pacotes **kernlab, e1071, klaR e svmpath** em diferentes datasets para uma mesma tarefa.
-
-![](images/chap4-bench.jpg)
-
-Benchmarks (Tempo em segundos). Os dados para os pacotes estão nas colunas.
-Os pacotes kernlab e e1071 parecem ser os mais rápidos (e1071 ligeramente na frente). A e1071 é um interface para o libsvm , library premiada (IJCNN 2001 Challenge) e escrita em C++, o que garante a melhor performance. O problema é que não há flexibilidade para mudar muito o kernel. Já o kernlab traz maior flexibilidade, mas seleção de modelos é limitada. Recomendo brincar com as quatro libs. Já que não vamos mexer no kernel, vamos com a função svm() do pacote e1071 em nome do minimalismo.
+Os pacotes kernlab e e1071 parecem ser os mais rápidos (e1071 ligeramente na frente). A e1071 é um interface para o libsvm, library premiada (IJCNN 2001 Challenge) e escrita em C++, o que garante a melhor performance. O problema é que não há flexibilidade para mudar muito o kernel. Já o kernlab traz maior flexibilidade, mas seleção de modelos é limitada. Recomendo brincar com as quatro libs. Já que não vamos mexer no kernel, vamos com a função svm() do pacote e1071 em nome do minimalismo.
 
 ### Dados
-Vamos usar o famoso banco de dados iris. Usado por Ronald Fisher para demonstrar análise discriminante linear em 1936, já incluso no R.
-
+Vamos usar o nosso conhecido *iris*.
 ```r
-# pacote e1071 com a funcao svm
->library(e1071)
-# O pacote caret tem varias utilidades em machine learning. Carreguei para aproveitar o gerador de dados particionados
->library(caret)
-# Carregando nossos dados
->data(iris)
-
-#Como antes, enviesamos gerador de numeros aleatorios para garantir resultados iguals na replicacao
->set.seed(50)
-# Usa funcao createDataPartition do caret para gerar vetor com vasos sorteados na proporcao 4/5
-# A frequencia relativa de rótulos (Species) fica mantida
->iris.tr.vec <- createDataPartition(y=iris$Species,p = 4/5,list=F)
-# Carregando dataset de treino com casos sorteados (4/5 da amostra)
->iris.tr <- iris[iris.tr.vec,]
-# Corregando dataset de teste com casos complementares (1/4 restantes)
->iris.ts <- iris[-iris.tr.vec,]
+    >library(e1071)
+    # O pacote caret facilita particionamento dos dados particionados
+    >library(caret)
+    >set.seed(2600)
+    # Usa funcao createDataPartition do caret para gerar vetor com vasos sorteados na proporcao 4/5
+    # A frequencia relativa de rótulos (Species) fica mantida
+    >iris.tr.vec <- createDataPartition(y=iris$Species,p = 4/5,list=F)
+    # Dataset de treino (4/5 da amostra)
+    >iris.tr <- iris[iris.tr.vec,]
+    # Dataset de teste (1/4 restantes)
+    >iris.ts <- iris[-iris.tr.vec,]
 ```
-Agora, temos um banco com 80% (4/5) dos dados para treinar a SVM e outro com 20% para testar.s 
+Agora, temos um banco com 80% (4/5) dos dados para treinar a SVM e outro com 20% para testar. 
 
-### SVM com e1071
+#### SVM com e1071
 
 Vamos usar a função svm, especificando uma fórmula (“Species ~ .” significa Species como variável de classificação e as outras como input), o banco de dados e um custo (Constate C; falaremos mais sobre ela depois).
 
 ```r
-# Ajusta support vector machine em banco de treino (isis.tr)
->svm.iris <- svm(Species ~ ., data=iris.tr, cost=100,  kernel="linear")
-#Se eu quisesse menos variaveis: svm(Species ~ Sepal.Length + Petal.Length,data=iris.ts,cost=100, kernel="linear")
+    >svm.iris <- svm(Species ~ ., data=iris.tr, cost=100,  kernel="linear")
+```
 Agora, fazemos as predições:
-# Usa metodo predict para fazer predicoes em dataset de teste (iris.ts) usando nossa svm (svm.iris)
->svm.pred <- predict(svm.iris,iris.ts)
-# Dispoe predicoes e valores no dataset de teste em uma tabela
->agree.tab <- table(pred=svm.pred,true=iris.ts$Species)
->agree.tab
-agree.tab
-           true
-pred         setosa versicolor virginica
- setosa         10          0         0
- versicolor      0          9         1
- virginica       0          1         9
-# Notem que as predicoes foram bastante parecidas, com apenas dois erros
-# Usando classAgreement do proprio pacote e1071
-# Calculamos:
-# Percentual de acertos e Kappa (leva em conta acertos aleatorios)
-# Index de Rand e seu valor corrigido para acertos aleatórios.
->classAgreement(agree.tab)
-$diag
-[1] 0.9333333
-$kappa
-[1] 0.9
-$rand
-[1] 0.9172414
-$crand
-[1] 0.8066667
+```r
+    >svm.pred <- predict(svm.iris,iris.ts)
+    # Dispoe predicoes e valores no dataset de teste em uma tabela
+    >agree.tab <- table(pred=svm.pred,true=iris.ts$Species)
+    >agree.tab
+    agree.tab
+               true
+    pred         setosa versicolor virginica
+     setosa         10          0         0
+     versicolor      0          9         3
+     virginica       0          1         7
+    # Usando classAgreement do proprio pacote e1071
+    # Calculamos:
+    # Percentual de acertos e Kappa (leva em conta acertos aleatorios)
+    # Index de Rand e seu valor corrigido para acertos aleatórios.
+    >classAgreement(agree.tab)
+    $diag
+    [1] 0.8666667    
+    $kappa
+    [1] 0.8    
+    $rand
+    [1] 0.8528736    
+    $crand
+    [1] 0.6590742
 ```
 
-Notem que os valores foram bons. Classificamos corretamente ~93% das espécies com base em medidas das pétalas e sépalas em nossa amostra de teste.
-Fica uma dúvida. Na hora de ajustar o SVM, escolhemos o parâmetro cost. O parâmetro cost é um valor associado a Regularização dos pesos durante o treinamento (Constante C na formulação de Lagrange). Ele reflete o quanto queremos evitar classificar exemplos de forma errada. Um valor pequeno vai priorizar margens maiores, mesmo que isso implique mais classificações erradas. Um C maior vai resultar num ajuste classificação correta para outliers, ainda que com margens menores.
+Os resultados valores foram bons. Classificamos corretamente ~86,7% das espécies com base em medidas das pétalas e sépalas em nossa amostra de teste.
+Fica uma dúvida. Na hora de ajustar o SVM, escolhemos o parâmetro cost. O parâmetro cost é um valor associado a Regularização dos pesos durante o treinamento.  
+Ele reflete o quanto queremos evitar classificar exemplos de forma errada. Um valor pequeno vai priorizar margens maiores, mesmo que isso implique mais classificações erradas. Um C maior vai resultar num ajuste classificação correta para outliers, ainda que com margens menores.
 
 ![C maior (margens menores) vs. C Menor (margens maiores)](images/chap4-svmdiag.jpg)
 
 Os melhores valores para o hiperparâmetro C dependem da estrutura do seus dados.
-Os autores do libsvm sugerem testar valores de C através de cross-validation. Em nosso dataset, mudar os valores de cost de 100 para 1, 10 ou 1000 gera algumas mudanças. Custos 100 e 1000 erraram menos.
+Os autores do libsvm sugerem testar valores de C através de cross-validation. 
+
+Uma maneira de testar valores ótimos é através de uma função embutida no e1071(**tune.svm**), que já faz uso do dataset inteiro com 10-fold cross validation. Essa alternativa (tune.svm) costuma trazer melhores resultados segundo os autores do e1071.
 
 ```r
->svm.iris1 <- svm(Species ~ .,data=iris.tr,cost=1,kernel="linear")
->svm.iris10 <- svm(Species ~ .,data=iris.tr,cost=10,kernel="linear")
->svm.iris1000 <- svm(Species ~ .,data=iris.tr,cost=1000,kernel="linear")
-#Repetir processo de predicao e avaliacao com predict,table e classAgreement como antes para cada modelo. Fica a cargo de voces ;)
-```
-Outra maneira é usar uma função embutida no e1071(tune.svm), que já faz uso do dataset inteiro com 10-fold cross validation. O mesmo usado pela equipe do A Song of Ice and Data. Essa alternativa (tune.svm) costuma trazer melhores resultados segundo os autores do e1071.
+    #Ajustando valores testaveis de entre 1 e 1024
+    >tune.info <- tune.svm(Species~., data = iris, cost = 2^(0:10),kernel="linear")    
 
-```r
-#Ajustando valores testaveis de entre 1 e 1024
->tune.info <- tune.svm(Species~., data = iris, cost = 2^(0:10),kernel="linear")
+    #Sumario do tuning atraves de 10-fold-cross-validation
+    >summary(tune.info)    
 
-#Sumario do tuning atraves de 10-fold-cross-validation
->summary(tune.info)
-Parameter tuning of ‘svm’:
-- sampling method: 10-fold cross validation
-- best parameters:
-cost
- 128
-- best performance: 0.02
-- Detailed performance results:
-  cost      error dispersion
-1     1 0.04666667 0.04499657
-2     2 0.04000000 0.04661373
-3     4 0.04000000 0.04661373
-4     8 0.04000000 0.04661373
-5    16 0.04000000 0.04661373
-6    32 0.04000000 0.04661373
-7    64 0.04000000 0.04661373
-8   128 0.02000000 0.03220306
-9   256 0.03333333 0.05665577
-10  512 0.02666667 0.04661373
-11 1024 0.03333333 0.06478835
->plot(tune.info)
+    Parameter tuning of ‘svm’:    
+
+    - sampling method: 10-fold cross validation     
+
+    - best parameters:
+     cost
+      128    
+
+    - best performance: 0.01333333     
+
+    - Detailed performance results:
+       cost      error dispersion
+    1     1 0.04000000 0.04661373
+    2     2 0.03333333 0.03513642
+    3     4 0.03333333 0.03513642
+    4     8 0.04000000 0.04661373
+    5    16 0.03333333 0.04714045
+    6    32 0.04000000 0.04661373
+    7    64 0.04000000 0.04661373
+    8   128 0.01333333 0.02810913
+    9   256 0.02000000 0.04499657
+    10  512 0.01333333 0.02810913
+    11 1024 0.01333333 0.02810913
+    >plot(tune.info)
 ```
 ![](images/chap4-svmtune.jpg)
 
@@ -317,40 +294,39 @@ O tune.svm retornou, entre os valores, que os melhores parâmetros são cost = 1
 Ou invocar o objeto com $best.model (names(tune.info) para outros valores e objetos):
 
 ```r
-#Invocando melhor modelo.
->tune.info$best.model
-Call:
-best.svm(x = Species ~ ., data = iris, cost = (2^(0:10)), kernel = "linear")
+    #Invocando melhor modelo.
+    >tune.info$best.model
+    Call:
+    best.svm(x = Species ~ ., data = iris, cost = 2^(0:10), kernel = "linear")    
+    
 
+    Parameters:
+       SVM-Type:  C-classification 
+     SVM-Kernel:  linear 
+           cost:  128 
+          gamma:  0.25     
 
-Parameters:
-  SVM-Type:  C-classification
-SVM-Kernel:  linear
-      cost:  128
-     gamma:  0.25
-
-Number of Support Vectors:  15
-#Fazendo predicoes
->tune.pred <- predict(tune.info$best.model,iris)
->tune.pred <- predict(tune.info$best.model,iris)
-#Tabela de classificacoes predicoes vs. observacoes
->agree.tune <- table(pred = tune.pred,true=iris$Species)
->agree.tune
-           true
-pred         setosa versicolor virginica
- setosa         50          0         0
- versicolor      0         48         1
- virginica       0          2        49
-#Observando concordancia das predicoes e observacoes
->classAgreement(agree.tune)
-$diag
-[1] 0.98
-$kappa
-[1] 0.97
-$rand
-[1] 0.9739597
-$crand
-[1] 0.9410123
+    Number of Support Vectors:  15
+    #Fazendo predicoes
+    >tune.pred <- predict(tune.info$best.model,iris)
+    #Tabela de classificacoes predicoes vs. observacoes
+    >agree.tune <- table(pred = tune.pred,true=iris$Species)
+    >agree.tune
+               true
+    pred         setosa versicolor virginica
+     setosa         50          0         0
+     versicolor      0         48         1
+     virginica       0          2        49
+    #Observando concordancia das predicoes e observacoes
+    >classAgreement(agree.tune)
+    $diag
+    [1] 0.98
+    $kappa
+    [1] 0.97
+    $rand
+    [1] 0.9739597
+    $crand
+    [1] 0.9410123
 ```
 
 Está implementado nosso classificador de espécies com base no comprimento e largura de sépalas e pétalas. Agora, um biólogo em dúvida sobre a espécie de uma nova amostra pode usar nosso programa para classificar a planta usando suas medidas.
@@ -552,3 +528,6 @@ Usando essa lógica, calculamos os gradientes para a função de erro e treinamo
 
 Referência
  Para uma história completa: J. Schmidhuber. Deep Learning in Neural Networks: An Overview. Neural Networks, 61, p 85–117, 2015. (Based on 2014 TR with 88 pages and 888 references, with PDF & LATEX source & complete public BIBTEX file).
+
+
+Recomendo esse paper aqui para uma abordagem mais profunda e definições formais com hiperplanos — Support Vector Machines in R ( Alexandros Karatzoglou, David Meyer, Kurt Hornik).
