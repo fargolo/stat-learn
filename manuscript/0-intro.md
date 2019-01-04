@@ -42,77 +42,84 @@ São exemplos de campos que fazem uso extenso das ferramentas descritas: neuroci
 
 Este texto introduz e fornece um guia para aplicações práticas destas ferramentas a fenômenos observáveis. É destinados aos profissionais e pesquisadores trabalhando na fronteira entre matemática aplicada e ciências naturais.   
 
-O primeiro capítulo ilustra como o racional hipotético-dedutivo funciona para estudar teorias científicas. Aborda a relação entre ciências empíricas e três abstrações matemáticas: a distribuição normal, a distribuição t e o teorema do limite central.  O segundo capítulo aborda correlações e modelos preditivos lineares. Um framework frequencista e linguagem R são usados para demonstrações de exemplos e exercícios.  
+O primeiro capítulo ilustra como o racional hipotético-dedutivo funciona para estudar teorias científicas. Aborda a relação entre ciências empíricas e três abstrações matemáticas: a distribuição normal, a distribuição t e o teorema do limite central. O teste t de Student é aplicado para comparação de medidas em amostras.  
+O segundo capítulo amplia a perspectiva de comparações e testes. Entendemos o papel de descrever relações com os conceitos de tamanho de efeito (D de Cohen) e correlações lineares ($\rho$ de Pearson). Também são introduzidas alternativas não-paramétricas aos procedimentos ($\rho$ de Spearman e teste U de Mann-Whitney). Usando o gancho das relações lineares, vemos o conceito de regressão para fazer predições. Um framework 'frequencista' e linguagem R são usados para demonstrações de exemplos e exercícios.  
 
-O terceiro capítulo apresenta um racional diferente para os procedimentos. Usando o conceito de holismo epistemológico (van Quine), reproduzidos as análises anteriores usando inferência bayesiana. Fazemos perguntas diferentes para obter informações de nossos dados. No capítulo quatro, o foco está em modelos classificatórios e na função logística. Usamos R, Stan e um framework bayesiano para modelos simples e hierárquicos. Exploramos o poder das simulações através de Markov Chain Monte Carlo para obter estimativas difíceis de tratar analiticamente.  
-O quarto capítulo ilustra o uso de grafos/redes para a construção de modelos preditivos. Os exemplos são de Support Vector Machine e Redes Neurais. Modelos são construídos do zero (from scratch) para ilustrar dois mecanismos importantes de otimização (gradient descent e back propagation).  
+O terceiro capítulo expande o modelo de regressão linear simples (entre duas variáveis) com regressão múltipla, seguindo com um classificador linear mais geral (Support Vector Machine). Redes Neurais ilustram o uso de grafos/redes para a construção de sistemas preditivos mais complexos. Modelos são construídos do zero *(from scratch)* para ilustrar dois mecanismos importantes de otimização *(gradient descent e back propagation)*.   
+
+O quarto capítulo apresenta um racional diferente para análise. Partindo do conceito de holismo epistemológico (van Quine), reproduzimos as análises anteriores usando inferência bayesiana. Fazemos perguntas diferentes para obter informações mais ricas de nossos dados. Usamos R, Stan e um framework bayesiano para modelos simples e hierárquicos. Exploramos o poder das simulações através de Markov Chain Monte Carlo para obter estimativas difíceis de tratar analiticamente.  
 
 \pagebreak
 
 ## Sumário
 
-Capítulo 0 - Ferramentas: programação com estatística básica   
+Capítulo 0 - Ferramentas : programação com estatística básica   
 
 * Computadores
 * R : Curso rápido
   * Instalação, R e Rstudio
   * Tipos
   * Operadores úteis: <- , %>%
-  * Funções
-  * Vetores, loops e recursões
-  *  Matrizes e dataframes
+  * Matrizes e dataframes
   * Gramática dos gráficos e ggplot
+  * Funções
+  * Vetores, loops e recursões: calculando a variância 
 
 Capítulo 1 - Os pássaros de Darwin e o método hipotético dedutivo  
 
-* Teorema do limite central e Distribuição normal
-* Distribuição t
-* Método hipotético-dedutivo e Testes de hipótese
-* Valor p
-
+  * Teorema do limite central e Distribuição normal
+  * Método hipotético-dedutivo e Testes de hipótese
+  * Valor p
+  * Distribuição t de Student e teste t
 
 Capítulo 2 - Sobre a natureza das relações
 
-* Prelúdio: Quem precisa do valor p?
-* Tamanho de efeito
-* Correlações
-* Coeficiente de correlação $\rho$ de Pearson
-* Regressão linear
+  * Prelúdio: Quem precisa do valor p?
+  * Tamanho de efeito: D de Cohen
+  * Correlações lineares
+  * Coeficiente de correlação $\rho$ de Pearson
+  * Predições com regressão linear
+  * Correlações e testes não paramétricos
+  * $\rho$ de Spearman
+  * Teste U de Mann Whitney
 
-**Em construção:**  
-Capítulo 3 - Contexto e inferência Bayesiana  
+**Em construção:**
+Capítulo 3 - Modelos preditivos complexos
 
-* Intuições sobre distribuições probabilísticas
-* Inferência Bayesiana para teste de diferenças e correlação linear
-* Classificação
+  * Regressão múltipla
+  * Classificador linear e Support Vector Machines
+  * Gradient Descent
+  * Redes e grafos
+  * Redes Neurais
+    * Backpropagation
+    * Deep learning (múltiplas camadas)
+
+**Em construção:**
+Capítulo 4 - Contexto e inferência Bayesiana  
+
+  * Intuições sobre distribuições probabilísticas
+  * Inferência Bayesiana para teste de diferenças e correlação linear
+  * O número de Euler
   * Regressão logística
   * Modelos hierárquicos
-* Flexibilidade Bayesiana
-  * Usando priors
-  * O estimador Markov Chain Monte Carlo
+  * Flexibilidade Bayesiana
+    * Usando priors
+    * O estimador Markov Chain Monte Carlo
 
-Capítulo 4 - Redes neurais  
-
-* Support Vector Machines
-* Gradient Descending
-* Redes Neurais
-  * Backpropagation
-  * Deep learning (múltiplas camadas)
-
+**Em construção:**
 Capítulo 5 - Programação probabilística para contextos gerais  
 
-* Inferência Bayesiana para cosmologia
-* Prevendo halos de matéria escura (Kaggle top solution)
-* Redes neurais probabilísticas com PyMC3
+  * Inferência Bayesiana para cosmologia
+  * Prevendo halos de matéria escura (Kaggle top solution)
+  * Redes neurais probabilísticas com PyMC3
 
 Capítulo 6 - Ambientes desconhecidos  
 
-* Aprendizagem não supervisionada
-* Redução de dimensões 
-* Clustering
-* Aprendizagem semi-supervisionada
-* Reinforcement learning
-
+  * Aprendizagem não supervisionada
+  * Redução de dimensões 
+  * Clustering
+  * Aprendizagem semi-supervisionada
+  * Reinforcement learning
 
 ## Pré-requisitos
 
