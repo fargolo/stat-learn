@@ -10,8 +10,8 @@ Página intencionalmente deixada em branco.
 
 \pagebreak
 
-Versão 0.31: Introdução; Capítulo 0; Capítulo 1; Capítulo 2; Capítulo 3 (em progresso).
-31 de Dezembro de 2018
+Versão 0.35: Introdução; Capítulo 0; Capítulo 1; Capítulo 2; Capítulo 3 (em progresso).
+11 de Janeiro de 2019
 
 A utilização desse livro é vedada em pesquisa e ensino para fins de desenvolvimento de tecnologia militar. A violação é passível de sanções legais vigentes no país onde se der a infração.    
 
@@ -19,22 +19,21 @@ Parte das figuras foi retirada de conteúdo público na internet. O autor declar
 
 \pagebreak
 
-
 ## Prefácio
 
 *Remember that all models are wrong; the practical question is how wrong do they have to be to not be useful*  
 *George Box & Norman R. Draper, Empirical Model-Building and Response Surfaces* 
 
-Uma antiga aplicação da matemática é fazer inferências com base em observações de cenários parecidos. Civilizações antigas, como os babilônios, usavam interpolação linear para estimar informações. Fazendo o censo populacional com intervalo de anos, estimavam o valor dos anos não medidos, supondo que eles eram medidas centrais daquelas ao seu redor. 
+Uma antiga aplicação da matemática é fazer inferências com base em observações de cenários parecidos. Civilizações antigas, como os babilônios, usavam interpolação linear para estimar informações. Fazendo o censo populacional com intervalo de anos, estimavam o valor dos anos não medidos, supondo que eles eram medidas centrais daquelas ao seu redor.  
 Métodos iterativos também foram usados para aproximar a raiz quadrada de números naturais ($\sqrt{2}$) e números irracionais $(\pi)$.  
   
-Essas técnicas deram fruto a abstrações mais gerais, aos campos da estatística e dos métodos numéricos. Em particular, o último século (XX) contou com a invenção do computador universal e dos processadores eletrônicos, impulsionando o poder de cálculos vertiginosamente. 
+Essas técnicas deram fruto a abstrações mais gerais, aos campos da estatística e dos métodos numéricos. Em particular, o último século (XX) contou com a invenção do computador universal e dos processadores eletrônicos, impulsionando o poder de cálculos vertiginosamente.  
 
-O aperfeiçoamento teórico e instrumental trouxe ferramentas mais adequadas para cientistas e também algoritmos mais potentes para aplicações práticas.
+O aperfeiçoamento teórico e instrumental trouxe ferramentas mais adequadas para cientistas e também algoritmos mais potentes para aplicações práticas.  
    
 Nos últimos anos, o campo ganhou forte notoriedade social e acadêmica em virtude dos resultados inéditos em problemas de predição com aplicação prática. Avanços em processamento de linguagem natural, visão computacional e algoritmos preditivos foram rapidamentes aplicados pela indústria e por pesquisadores.  
 
-Uma descrição abrangente pode facilmente alcançar 1,000 páginas de texto sucinto, como o clássico ‘Deep Learning (Adaptive Computation and Machine Learning)’ de Goodfellow, Bengio and Courville. Outra obra de escopo e tamanho semelhante é a “Neural networks and learning machines”, de Simon Haykin.  
+Uma descrição abrangente pode facilmente alcançar 1,000 páginas de texto sucinto, como o clássico ‘Deep Learning (Adaptive Computation and Machine Learning)’ de Goodfellow, Bengio and Courville. Outra obra de escopo e tamanho semelhante é a “Neural networks and learning machines”, de Simon Haykin.   
 
 ## Objetivos
 
@@ -52,12 +51,6 @@ O segundo capítulo amplia a perspectiva de comparações e testes. Entendemos o
 O terceiro capítulo expande o modelo de regressão linear simples (entre duas variáveis) com regressão múltipla, seguindo com um classificador linear mais geral (Support Vector Machine). Redes Neurais ilustram o uso de grafos/redes para a construção de sistemas preditivos mais complexos. Modelos são construídos do zero *(from scratch)* para ilustrar dois mecanismos importantes de otimização *(gradient descent e back propagation)*.   
 
 O quarto capítulo apresenta um racional diferente para análise. Partindo do conceito de holismo epistemológico (van Quine), reproduzimos as análises anteriores usando inferência bayesiana. Fazemos perguntas diferentes para obter informações mais ricas de nossos dados. Usamos R, Stan e um framework bayesiano para modelos simples e hierárquicos. Exploramos o poder das simulações através de Markov Chain Monte Carlo para obter estimativas difíceis de tratar analiticamente.  
-
-## Carta aos leitores
-
-@ Valor da empreitada científica. vs. aplicações industriais
-@ Chamada à reflexão sobre propósitos e responsabilidade.
-*"...with great power there must also come -- great responsibility!"* - Stan Lee & Steve Ditko. Amazing Fantasy Vol 1 #15
 
 \pagebreak
 
@@ -92,12 +85,12 @@ Capítulo 2 - Sobre a natureza das relações
   * Correlações e testes não paramétricos
   * $\rho$ de Spearman
   * Teste U de Mann Whitney
+  * Regressão múltipla
 
 **Em construção:**
-Capítulo 3 - Modelos preditivos complexos
+Capítulo 3 - Neurônios
 
-  * Regressão múltipla
-  * Um neuronio artificial: O perceptron
+  * Um neurônio artificial: O perceptron
   * Gradient Descent
   * Redes e grafos
   * Redes Neurais

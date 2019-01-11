@@ -1,6 +1,6 @@
 ![O criador e a criatura: Frank Rosenblatt e Mark I.](images/chap3-frankmark.jpg)
 
-# Capítulo 3 : Modelos preditivos complexos
+# Capítulo 3 : Neurônios
 
 Em março de 2016, o software AlphaGo tornou-se o primeiro programa de computador a vencer um mestre de Go. O feito é difícil por se tratar de um jogo quase impossível de ser totalmente computado.  
 Inventado há mais de 2,500 anos, motivou bastante em pesquisa em matemática. Existem $2,08*10^{170}$ maneiras válidas de dispor as peças no tabuleiro. O chinês polímata chinês Shen Kuo (1031–1095) chegou a um resultado próximo $10^{172}$ séculos atrás. Vale lembrar que o número de átomos no universo observável é de módicos $10^{80}$.  
@@ -23,7 +23,7 @@ O aparato reproduzia o entendimento da época sobre o funcionamento de um neurô
 
 Em 1949, Donald Hebb descreveu em seu clássico *The Organization of Behavior* um mecanismo plausível para a aprendizagem. Comumente expressa na máxima "Cells that fire together wire together" (células que disparam juntas, conectam-se entre si).  
 
-Com o objetivo de criar uma máquina que pudesse processar inputs diretamente do ambiente físco (e.g. luz e som), Rosenblatt concebeu extensão elegante do modelo em 1957 ("The Perceptron--a perceiving and recognizing automaton. Report 85-460-1, Cornell Aeronautical Laboratory"). Composto de três partes: o sistema S (sensório); o sistema A (associação) e o sistema R (resposta).  
+Com o objetivo de criar uma máquina que pudesse processar inputs diretamente do ambiente físco (e.g. luz e som), Rosenblatt concebeu extensão elegante do modelo em 1957 ("The Perceptron[*do latim, percipio, compreender“*]--a perceiving and recognizing automaton. Report 85-460-1, Cornell Aeronautical Laboratory"). Composto de três partes: o sistema S (sensório); o sistema A (associação) e o sistema R (resposta).  
 O neurônio "lógico" cru de McChulloch & Pitts foi modificado de maneira a processar inputs através de pesos antes da saída. A aprendizagem se dá pela modificação desses pesos. 
 
 ![Organização do Mark I, retirado de seu manual de uso original](images/chap3-perceptronscheme.png)  
@@ -49,8 +49,12 @@ A Natureza, através de evolução por seleção natural, é a verdadeira mãe d
  
 ## Criando neurônios
 
-A seguir, estenderemos nossos modelos preditivos. Em lugar de prever um valor numérico, buscaremos classificar uma observação. Especificamente, dada uma foto, como treinar um modelo preditivo para classificá-la corretamente? Adentramos o campo de visão computacional.  
- 
+Mark I foi criado para reconhecimento visual, podendo ser considerado avô da visão computacional.  
+Possuía um campo de entrada fotossensível de 20x20 (400) células de Sulfeto de Cádmio, as unidades S. Ao reagir com a luz, CdS emite um elétron:
+$$CdS + \gamma \rightarrow e^{-} + CdS^{+}$$
+
+Caso a célula seja ativada, envia o sinal eletrônico a uma unidade intermediária A. A unidade intermediária, por sua vez, transmite um sinal eletrônico à saída. A intensidade do sinal é regulada por sucessos prévios. Esse processo ficará mais claro com a implementação a seguir.
+
 ![](images/chap3-ship.jpg)  
 
 Imaginemos que a imagem acima tenha 10 pixels de altura e 10 de largura.  
@@ -66,159 +70,155 @@ Vamos simular uma imagem deste tamanho gerando uma matriz de dimensão 10x10 com
 
 Eis a nossa imagem [10x10]. O computador lê os valores entre 0 (preto) e 255 (branco), dispondo para nós o sinal visual correspondente.  
 
-Em nosso exemplo hipotético, o classificador precisa distinguir quatro tipos de animais a partir da imagem: pássaro, tartaruga, golfinho ou peixe.  
+Em nosso exemplo hipotético, o classificador precisa saber se uma imagem apresentada corresponde à de um navio ou não.  
 
-O classificador linear atribui scores para cada uma das 4 classes aplicando seus pesos em cada pixel da imagem.  
-Matematicamente, é uma multiplicação da matriz de valores da imagem $x_{i}$, de dimensão $[100 x 1]$ por uma matriz $W_{[100 X 4]}$ que traz pesos (weights) estimados para cada pixel para cada classe.  
-O resultado dessa multiplicação de matrizes são scores para cada classe K.  
-Vamos considerar que nossa ordem de rótulos é:  
-[pássaro, tartaruga, golfinho, peixe]  
+Em regressão linear múltipla, calculamos um peso $\beta$ para cada variável. O racional aqui é parecido: ponderamos cada pixel por seus respectivos pesos. Em analogia, cada imagem é uma observação de 100 variáveis.  
+
+O neurônio deve disparar (output $y=1$) caso seja um navio ou permanecer em repouso caso não seja ($y=-1$).  
+
+Matematicamente, é uma multiplicação da matriz de valores da imagem $x_{i}$, de dimensão $[100 x 1]$ por uma matriz $W_{[100 X 1]}$ que traz pesos (weights) estimados para cada pixel para cada classe. Então, forçamos o resultado para +1 ou -1 com uma função de ativação $(\phi)$.  
+
+$$y = \phi(W^{T}X)$$
+
+Usaremos a função *Heaviside step*:  
+$$\phi(x)= \begin{cases}
+  +1 \quad se \quad x \geq 0\\
+  -1 \quad se \quad x < 0
+  \end{cases}$$
+  
+![Heaviside step function](images/chap3-heaviside.jpg)
 
 Em R:  
 ```r
-    #Iniciando pesos com base em distribuição normal
-    #Dividi os valores por 100 para reduzir a magnitude dos numeros
-    >my_weights <- rnorm(400)/100
-    #Le pesos como matriz [100x4]
-    >w <- matrix(my_weights,100,4)
-    #Multiplicacao usando o operador %*%
+    >phi_heavi <- function(x){ifelse(x >=0,1,-1)}
+    # Iniciando pesos com base em distribuição normal
+    # Dividi os valores por 100 para reduzir a magnitude dos numeros
+    >my_weights <- rnorm(100)/100
+    # Le pesos como matriz [100x1]
+    >w <- matrix(my_weights,100,1)
+    # Multiplicacao usando o operador %*%
     >as.vector(x)%*%w
-    #Resultado
-            [,1]     [,2]     [,3]      [,4]
-    [1,] 20.95787 22.10932 19.08313 -30.33214
+    # Score
+              [,1]
+    [1,] -2.941668
+    # Funcao de ativacao
+    >as.vector(x)%*%w %>% phi_heavi
+         [,1]
+    [1,]   -1
 ```
 
-O classificador retorna um valor de score para cada classe. A interpretação desses valores pode variar, mas vamos pensar, por enquanto, que nosso objetivo é que o maior score seja o da classe correta.  
-Em nosso exemplo, o output: $[20.95787, 22.10932, 19.08313, -30.33214]$.  
-Entre os valores, o maior entre os quatro foi o segundo (22.10932), sugerindo o rótulo de tartaruga.  
-O processo de aprendizado consiste em ajustar o pesos em $W$ de maneira a retornar o maior score para a classe K correta.  
-Fazemos isso expondo o classificador a diversos exemplos $x$ e implementando uma função que corrija os pesos conforme erros.   
-A imagem abaixo traz um intuitivo diagrama dessa multiplicação.  
-
-![Disponível em http://cs231n.github.io/linear-classify/ . 
-](images/chap3-stanf.jpg)
-
-Essa imagem traz um diagrama do processamento dos dados que resultam nos scores finais paras classes K: cat,dog,ship. Nesse caso, o maior score foi para primeira classe, sugerindo a classificação de cachorro (437.9)  
-
-Para levar em conta uma constante $b$, usaremos um truque: ao adicionar o valor 1 ao final da imagem, a multiplicação dos pesos associados será constante. Assim podemos incluir estimativas do valor de $b$ como pesos em $W$, que, quando multiplicados por 1, serão sempre as mesmas constantes.  
-
-```r
-    #Adiciona valor 1 ao vetor e armazena em x.vec. Agora temos 101 elementos
-    >x_vec <- c(as.vector(x),1)
-    #Inicia pesos, incluindo 4 valores extras para (uma constante para cada score)
-    >my_weights<- rnorm(404)/100
-    #Leitura como matriz w de dimensao 101x4
-    >w <- matrix(my_weights,101,4)
-    #Multiplicacao: (pixels da imagem + 1)* (Pesos do classificador)
-    >x_vec%*%w
-    #Resultado
-             [,1]     [,2]      [,3]      [,4]
-    [1,] 8.620293 10.08648 -4.423656 -7.804998
-```
-
-Agora, nossos scores aleatórios são:
-$[8.620293, 10.08648, -4.423656, -7.804998]$
-Agora indicando indicando tartaruga (2a posição) com maior score. Como transformar esses pesos em valores úteis?
 
 Inicialmente, estabelecemos pesos aleatórios a partir de uma distribuição normal.  
 Então, o objetivo é observar as respostas corretas em várias imagens e alterar os valores de $W$ para que os scores maiores sejam os das classes corretas.  
-Esse aprendizado se dá através de uma função de perda $L$.
 
-### Função de perda
+O processo de treino é bastante simples:  
 
-A função de perda *(loss function)* quantifica o quão distante estamos dos pesos desejados. O score desejado deve ser maior que os outros.  
-Sendo $s_{j}$ o score atribuído à classe correta e $s_{i}$ o score atribuído à i-ésima classe errada:  
-A função de perda retorna 0 caso a classe correta tenha score maior $s_{i} - s_{j} < 0$ ou o valor da diferença caso contrário, $s_{i} - s_{j} > 0$.  
+$$w_{i}' = w_{i} + \Delta w_{i}$$
+$$\Delta w_{i} = \eta (resposta_{i} - output_{i}) x_{i}$$
 
-$$max(0,s_{i} - s_{j})$$
+Em que $x_{i}$ é o valor do i-ésimo pixel, $w_{i}$ é o i-ésimo peso e $\eta$ uma constante chamada *taxa de aprendizagem* (learning rate), que determina o tamanho dos incrementos feitos pelo algoritmo. 
+Notem que se a resposta desejada é idêntica ao output, então o peso $w_{i}$ é mantido intacto.  
 
-A perda total é a soma dos erros para cada classe. Adicionamos ainda uma margem determinada delta $(\Delta)$. O score correto deve ser maior que os outros com uma diferença mínima igual a delta. Então, a perda para a observação $x$ é:  
+Se os dados são linearmente separáveis, o algoritmo converge com um número suficiente de exemplos.  
 
-$$L_{x}=\sum_{j \neq i}^{} max(0,s_{i} - s_{j} + \Delta)$$  
-
-A soma L (loss) acumulará um valor de erro se o score correto não estiver distante o suficiente $(\Delta)$ dos deltas incorretos.  
-Implementando em R:  
+Assim, funciona para separar flores *setosa* de outra classe, mas não teriamos bons resultados separando virginica de versicolor.  
 
 ```r
-    loss <- function(x,w,cor_class){
-     delta <- 1
-     #Calcula scores multiplicando valores da imagem por pesos W
-     scores <- x_vec%*%w
-     #Score da classe correta fornecida pelo argumento da funcao
-     correct_class_sc <- scores[cor_class]
-     #Obtem numero de classes
-     dimensions_class <- length(scores)
-     #Perda inicial = 0 
-     cur_loss <- 0
-     #Loop para calcular a soma dos valores de max(0,score_errado - score_correto), isto é, o erro acumulado
-     for (i in 1:dimensions_class){
-         if (i == cor_class){next} # pula iteracao para a classe correta
-         cur_loss <- cur_loss + max(0,scores[i] - correct_class_sc + delta)
-         }
-     #Retorna valor total da perda
-     return(cur_loss)}
+    >ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width,color=Species))+
+    geom_point()+ geom_abline(slope = 0.92,intercept = -1.9)
 ```
-E podemos testar os scores para cada classe invocando a função na forma loss(imagem,pesos,classe_correta):
+![](images/chap3-sepiris.png)
+
+Codificando nosso perceptron conforme as equações acima:  
 
 ```r
-    > loss(x,w,1)
-    [1] 2.466183
-    > loss(x,w,2)
-    [1] 0
-    > loss(x,w,3)
-    [1] 29.55408
-    > loss(x,w,4)
-    [1] 40.69811
+    library(magrittr)
+    >mark_i <- function(x, y, eta) {
+      # inicializa pesos randomicos de distribuicao normal
+      w <- rnorm(dim(x)[2]) # numero de pesos = numero de colunas em x
+      ypreds <- rep(0,dim(x)[1]) # inicializa predicoes em 0
+        # Processa as observacoes em x de forma aleatoria
+        for (i in sample(1:length(y),replace=F)) { 
+          # predicao
+          ypred <- sum(w * as.numeric(x[i, ])) %>% phi_heavi 
+          # update em w
+          delta_w <- eta * (y[i] - ypred) * as.numeric(x[i, ]) 
+          w <- w + delta_w
+          ypreds[i] <- ypred # salva predicao atual
+        }
+      print(w)
+      return(ypreds)
+    }
 ```
 
-Notem que se informamos que a classe correta é a 2, que tinha o maior score, a função retorna 0. Isto é, o classificador apontou o maior score com a margem adequada e não há perda.  
+Vamos testá-lo para o problema proposto, separando flores *setosa* de *versicolor*. Preparação de dados:  
 
-Se apontamos que a classe correta é uma das outras (1,3 ou 4), a função retorna a perda correspondente.  
+```r
+    >train_df <- iris[1:100, c(1, 2, 5)]    
+    >train_df[, 4] <- -1
+    >train_df[train_df[, 3] == "setosa", 4] <- 1    
+    >names(train_df) <- c("s.len", "s.wid", "species","target")
+    >head(train_df)
+          s.len s.wid species target
+    1   5.1   3.5  setosa      1
+    2   4.9   3.0  setosa      1
+    3   4.7   3.2  setosa      1
+    4   4.6   3.1  setosa      1
+    5   5.0   3.6  setosa      1
+    6   5.4   3.9  setosa      1
+    >x_features <- train_df[, c(1, 2)]
+    >y_target <- train_df[, 4]
+```
+E então, podemos avaliar a performance:  
 
-Agora, o objetivo é encontrar pesos em $W$ que minimizem $L$ para todos os exemplos. Isso pode ser feito analisando o gradiente de $L$ com cálculo diferencial, ou de maneira numérica, através de algoritmos recursivos (veremos o uso do estimador Markov Chain Monte Carlo).    
+```r
+    >y_preds <- mark_i(x_features, y_target, 0.002)
+    [1] -0.2376040  0.4316401
+    > table(y_preds,train_df$target)
+    y_preds -1  1
+         -1 19  1
+         1  31 49
+    > y_preds
+      [1]  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
+     [25]  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 -1  1  1  1  1  1  1
+     [49]  1  1 -1  1  1 -1  1 -1 -1  1  1  1 -1  1 -1  1  1  1  1  1  1  1 -1 -1
+     [73]  1 -1 -1  1 -1 -1  1  1 -1  1 -1  1  1  1  1  1  1 -1  1  1 -1  1 -1  1
+     [97] -1  1  1 -1
+```
+Usando $\eta = 0.002$, obtivemos 68% de acurácia classificações corretas. Podemos modificar a taxa de aprendizagem. Com $\eta = 0.05$, aumentamos para 71% $\eta = 1$:  
 
-Na prática, estamos mexendo nos parâmetros $W$ de forma a direcionar nossa função de perda $L$ aos menores valores, descendo a montanha.  
-![Visitem: http://blog.dato.com/parallel-ml-with-hogwild](images/chap3-grad.jpg)
+```r
+    > y_preds <- mark_i(x_features, y_target, 0.05)
+    [1] -0.5927852  1.6776363 # pesos finais
+    > table(y_preds,train_df$target)
+    y_preds -1  1
+         -1 37 16
+         1  13 34
+```
 
+Chamamos $\eta$ de hiperparâmetro. A escolha de valores para hiperparâmetros é um dos desafios em aprendizagem estatística. Uma maneira trivial é testar muitos valores possíveis e observar o desempenho, entretanto isso não exequível para grandes volumes de dados e/ou muitos parâmetros. Existem diversos processos heurísticos e algoritmos para encontrar valores ótimos.  
 
-@ Gradiente  http://cs231n.github.io/optimization-1/
+Uma forma popular para otimizar o treinamento é particionar o dataset em pedaços e apresentar os particionamentos (epochs) repetidas vezes ao classificador ou acumular os erros de epochs ao invés de exemplos individuais.
 
-Com os novos parâmetros $W$, podemos aplicar o classificador na imagem inédita $x’_{[10x10]}$ e obter scores ajustados para predizer a classe dela.  
-Como dá para notar, mesmo num exemplo simplificado, treinar o classificador implica muitas computações de matrizes n-dimensionais. Por isso, precisamos de bastante poder computacional e algoritmos como esse *machine learning* só ganharam atenção com o advento de computadores.  
+\pagebreak
 
-#### Funções de ativação
+# Início de textos em construção.
 
-A função de ativação descrita anteriormente é linear.  
-Cada valor de entrada (e.g. pixel) é ponderado pela matriz de valores $W$. Os valores são somados e resultam em scores. O uso de uma combinação linear é bastante semelhante à regressão múltipla descrita anteriormente. Diferentes funções de ativação podem ser usadas, como a polinomial:
+\pagebreak
 
-$$f(x)=x^{a}w+b$$
+### Gradient Descent
 
-Agora, sabemos examinar um conjunto de imagens rotuladas, criar um classificador linear e treiná-lo (ajustar pesos $W$ minimizando a função de perda $L$) para retornar um maior score nas as classificações corretas.
+O processo de atualização de pesos descrito acima é ineficiente. Podemos minimizar os erros de maneira mais inteligente
 
-Referências:
-CS231n - Stanford University: Convolutional Neural Networks for Visual Recognition
-Karatzoglou et al. Support Vector Machines in R. Journal of Statistical Software. April 2006, Volume 15, Issue 9.
+\pagebreak
 
+## Deep learning
 
-## Parte 2 - Aplicações
-
-@ aplicacao de perceptron
-
-## Parte 3 - Deep learning
-
-Nos textos anteriores (1ª parte — link), mostramos o funcionamento de um classificador simples e usamos (link) um pacote popular para ilustrar a configuração, treinamento e avaliação do modelo (Support Vector Machine).
-Um mal entendido envolvendo deep learning é de que produzimos uma caixa preta, útil porém inacessível. Vamos entender como funcionam redes profundas e de onde surge essa confusão.
-
-### Revisão
 ![Exemplo de “1” em letra cursiva e sua representação numa matriz 2x2. http://colah.github.io/posts/2014-10-Visualizing-MNIST/](images/chap3-digit.jpg)
 
-Podemos representar imagens usando matrizes, como na figura acima. O monitor lê cada número e ativa o ponto brilhante correspondente na tela, criando a ilusão de imagens e filmes.
-Implementamos um classificador simples (Support Vector Machine, SVM), que lê uma imagem, como o 1 acima, na forma de matriz. Usando uma função (kernel function), que aceita esse input e considera pesos internos (w), gerando scores empregados nas predições.
-
-![](images/chap3-svm-diag2.jpg)
-Esse kernel pode ser simples, com apenas combinações lineares, ou mais complexo, com outras funções (e.g. RBF).
 
 Intuições
+
 Com o aprendizado através de exemplos, otimizamos otimizamos nosso classificador (mudando pesos W) para minimizar a perda, erro, usando aproximações(e.g: Adagrad). A função de perda é menor quando temos pontuações (votos) maiores para as classes certas.
 SVMs têm bom desempenho em diversas estruturas de dados, especialmente quando a arquitetura é otimizada por um usuário experiente. Onde entram as redes neurais?
 
@@ -233,9 +233,9 @@ Muitas entidades são diferentes, porém similares o suficiente para pertencer a
 
 Todos são naturalmente reconhecidos como felinos, mas apresentam variações de tamanho, cor e proporção em todo o corpo. 
 
-Esse é um problema interessante e antigo. Alguns filósofos acreditam que abstrações humanas são instâncias de um conceito mais genérico: mapas biológicos contidos em redes neuronais (Paul Churchland, Plato’s Camera).
-Esses mapas estão associados de forma hierarquizada. Numerosos padrões em níveis inferiores e um número menor em camadas superiores.
-No caso da visão, neurônios superficiais captam pontos luminosos. O padrão de ativação sensorial enviado ao córtex visual primário é o primeiro mapa, que é torcido e filtrado caminho cima.
+Esse é um problema interessante e antigo. Alguns filósofos acreditam que abstrações humanas são instâncias de um conceito mais genérico: mapas biológicos contidos em redes neuronais (Paul Churchland, Plato’s Camera).  
+Esses mapas estão associados de forma hierarquizada. Numerosos padrões em níveis inferiores e um número menor em camadas superiores.  
+No caso da visão, neurônios superficiais captam pontos luminosos. O padrão de ativação sensorial enviado ao córtex visual primário é o primeiro mapa, que é torcido e filtrado caminho cima.  
 
 ![Resposta a estímulos visuais em V1 de Macaca fascicularis http://www.jneurosci.org/content/32/40/13971](images/chap3-cortex.jpg)
 
@@ -245,6 +245,7 @@ Neurônios intermediários possuem configurações que identificam característi
 
 
 ### Deduzindo superfícies
+
 Um classificador deve capturar essa estrutura abstrata a partir de modelos matemáticos tratáveis. Para examinarmos esse aspecto, usemos um exemplo. O gráfico abaixo representa milhares de amostras com: (1) a curva diária natural de um hormônio (em vermelho) e a curva sob uso de esteroides anabolizantes (azul).
 
 ![Exemplo inspirado no texto de Chris Olah (http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/)](images/chap3-artifdata.jpg)
@@ -310,7 +311,7 @@ As camadas intermediárias permitem a transformação gradual do sinal, e o sist
 Agora, a primeira camada (hidden) modifica a entrada com duas unidades sigmoides e a segunda camada pode classificar corretamente usando apenas uma reta, algo que era impossível antes.
 Em tese, esse modelo pode capturar melhor as características que geraram os dados (flutuação hormonal ao longo do dia).
 
-Neurônios
+### Neurônios
 Notem que o diagrama acima lembra uma rede neural. Esse tipo de classificador foi inspirado na organização microscópica de neurônios reais e acredita-se que seu funcionamento seja de alguma forma análogo. A arquitetura de redes convolucionais (convolutional neural networks), estado da arte em reconhecimento de imagens, foi inspirada no córtex visual de mamíferos (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1557912/).
 Outros modelos bio inspirados (Spiking neural networks, LTSMs…) apresentam desempenhos inéditos para tarefas complexas e pouco estruturadas, como reconhecimento de voz e tradução de textos.
 A teoria mais aceita é de que o maquinário neural dos animais foi desenhado por processos evolutivos, como a seleção natural. Assim, apresenta coloridas formas de complexidade a depender da tarefa desempenhada.
@@ -393,7 +394,8 @@ Referência
 
 Recomendo esse paper aqui para uma abordagem mais profunda e definições formais com hiperplanos — Support Vector Machines in R ( Alexandros Karatzoglou, David Meyer, Kurt Hornik).
 
-
 http://web.csulb.edu/~cwallis/artificialn/History.htm
+https://sebastianraschka.com/Articles/2015_singlelayer_neurons.html
+https://rpubs.com/FaiHas/197581
 
 \pagebreak
