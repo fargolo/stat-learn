@@ -13,6 +13,10 @@ Página intencionalmente deixada em branco.
 Versão 0.31: Introdução; Capítulo 0; Capítulo 1; Capítulo 2; Capítulo 3 (em progresso).
 31 de Dezembro de 2018
 
+A utilização desse livro é vedada em pesquisa e ensino para fins de desenvolvimento de tecnologia militar. A violação é passível de sanções legais vigentes no país onde se der a infração.    
+
+Parte das figuras foi retirada de conteúdo público na internet. O autor declara não ter conhecimento de direitos autorais protegendo o conteúdo. Caso seja detentor de direitos de alguma das imagens, entre em contato para remoção.  
+
 \pagebreak
 
 
@@ -48,6 +52,12 @@ O segundo capítulo amplia a perspectiva de comparações e testes. Entendemos o
 O terceiro capítulo expande o modelo de regressão linear simples (entre duas variáveis) com regressão múltipla, seguindo com um classificador linear mais geral (Support Vector Machine). Redes Neurais ilustram o uso de grafos/redes para a construção de sistemas preditivos mais complexos. Modelos são construídos do zero *(from scratch)* para ilustrar dois mecanismos importantes de otimização *(gradient descent e back propagation)*.   
 
 O quarto capítulo apresenta um racional diferente para análise. Partindo do conceito de holismo epistemológico (van Quine), reproduzimos as análises anteriores usando inferência bayesiana. Fazemos perguntas diferentes para obter informações mais ricas de nossos dados. Usamos R, Stan e um framework bayesiano para modelos simples e hierárquicos. Exploramos o poder das simulações através de Markov Chain Monte Carlo para obter estimativas difíceis de tratar analiticamente.  
+
+## Carta aos leitores
+
+@ Valor da empreitada científica. vs. aplicações industriais
+@ Chamada à reflexão sobre propósitos e responsabilidade.
+*"...with great power there must also come -- great responsibility!"* - Stan Lee & Steve Ditko. Amazing Fantasy Vol 1 #15
 
 \pagebreak
 
@@ -87,7 +97,7 @@ Capítulo 2 - Sobre a natureza das relações
 Capítulo 3 - Modelos preditivos complexos
 
   * Regressão múltipla
-  * Classificador linear e Support Vector Machines
+  * Um neuronio artificial: O perceptron
   * Gradient Descent
   * Redes e grafos
   * Redes Neurais

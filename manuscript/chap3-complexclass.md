@@ -1,77 +1,53 @@
-![](images/chap3-go.jpg)
+![O criador e a criatura: Frank Rosenblatt e Mark I.](images/chap3-frankmark.jpg)
 
 # Capítulo 3 : Modelos preditivos complexos
 
 Em março de 2016, o software AlphaGo tornou-se o primeiro programa de computador a vencer um mestre de Go. O feito é difícil por se tratar de um jogo quase impossível de ser totalmente computado.  
-Existem $2,08*10^{170}$ maneiras válidas de dispor as peças no tabuleiro. Vale lembrar que o número de átomos no universo observável é de módicos $10^{80}$.  
+Inventado há mais de 2,500 anos, motivou bastante em pesquisa em matemática. Existem $2,08*10^{170}$ maneiras válidas de dispor as peças no tabuleiro. O chinês polímata chinês Shen Kuo (1031–1095) chegou a um resultado próximo $10^{172}$ séculos atrás. Vale lembrar que o número de átomos no universo observável é de módicos $10^{80}$.  
 
-No capítulo anterior, aprendemos uma formulação básica de modelo preditivo, a regressão linear simples. A seguir, estenderemos nosso leque de ferramentas para novas classes de relações, também incluindo mais informações na entrada de nossos modelos.    
+No capítulo anterior, aprendemos uma formulação básica de modelo preditivo, a regressão linear simples. A seguir, estenderemos nosso leque de ferramentas para novas classes de relações, também incluindo mais informações na entrada de nossos modelos.   
 
-## Regressão linear múltipla
+Mais do que isso, conheceremos a primeira máquina inteligente da história.  
 
-Anteriormente, examinamos modelos lineares simples. Calculamos parâmetros para um intercepto $\beta_{0}$, inclinação da reta $\beta_{1}$ e variância dos erros $\sigma^{2}_\epsilon$.
+![](images/chap3-go.jpg)
 
-$$y_{i} = \beta_{0} + \beta_{1}x_{i} + \epsilon$$
+## O perceptron de Rosenblatt 
 
-No exemplo apresentado, relacionamos o número de médicos ($n$) com a expectativa de vida saudável $hale$ em um país. Na regressão linear múltipla, introduzimos mais uma variável preditora. Em nosso exemplo, poderia ser o valor do IDH do país:
+Frank Rosenblatt (1928 - 1971) nasceu e morreu em 11 de julho, mas esse não é o fato mais curioso da biografia deste psicólogo. Foi o responsável pelo desenvolvimento do primeiro neurônio artificial. Em suas palavras, o primeiro objeto não biológico a recriar uma organização do ambiente externo com significado.
 
-$$hale_{i} = \beta_{0} + \beta_{1}n_{i} + \beta_{2}IDH_{i}' + \epsilon$$
+*It can tell the difference between a cat and a dog, although it wouldn't be able to tell whether the dog was to the left or right of the cat. Right now it is of no practical use, Dr. Rosenblatt conceded, but he said that one day it might be useful to send one into outer space to take in impressions for us. - New Yorker, December, 1958*[^19]  
 
-Em geral, temos dois objetivos:  
-**(1)** melhorar a performance do modelo ao adicionar informações pertinentes;   **(2)** examinar o efeito sobre as demais variáveis preditoras.  
+O aparato reproduzia o entendimento da época sobre o funcionamento de um neurônio. O corpo recebe sinais de dendritos e, após processamentos ocultos, produz um output na forma de sinal elétrico pelo axônio. A primeira matematização viria do modelo de McCulloch & Pitts ("A Logical Calculus of the Ideas Immanent in Nervous Activity", 1943).
 
-O primeiro objetivo é intuitivamente óbvio, entretanto precisamos ter cuidado com redundância de informações. Especificamente, há uma troca quase inevitável entre complexidade e robustez do modelo. Acrescentar variáveis ou usar classes de relações mais flexíveis implica dar liberdade para um sobreajuste aos dados. Veremos nas próximas sessões como mitigar esse problema através de validação cruzada.  
-Para o caso da regressão linear múltipla, podemos verificar se há colinearidade (relação linear) entre variáveis preditoras. Se as variáveis preditoras são altamente correlacionadas, é provável que estejamos fornecendo informações redundantes ao modelo, o que é nocivo. Existem alguns indicadores que podem ajudar a tomar essa decisão.  
-Comumente, observamos o VIF *Variance inflation factor*. 
-Ele verifica se a variância do coeficiente $\beta$ calculado está sendo inflada por interferência de outros preditores.   
-Para calcular o VIF referente a um preditor $X'$, ajustamos uma nova regressão, em que a variável resposta é $X'$ e as preditoras são as outras variáveis preditoras. O VIF é dado por: $\frac{1}{1-R^{2}}$, sendo $R^{2}$ o coeficiente de determinação da regressão, como calculamos antes. Não há regra canônica, porém valores altos (e.g. VIF > 10 ou VIF > 5) indicam alta colinearidade.  
+![Diagrama de células lógicas em McCulloch & Pitts](images/chap3-diagram1.png)
 
-A função **vif** do pacote *car* implementa o procedimento. Ajustamos uma regressão linear múltipla para o comprimento das sépalas no dataset *iris* a partir de outras 3 variáveis. Podemos verificar que há colinearidade ($VIF_{pet.leng.}\sim 15.1$, $VIF_{pet.wid.}\sim 14.2$) entre largura e comprimento da pétala. Por outro lado, a colinearidade com o comprimento da sépala é baixa ($VIF_{pet.wid.} \sim 1.3$).   
- 
-```r
-    >car::vif(lm(Sepal.Length ~ Petal.Length + Petal.Width + Sepal.Width,    
-        data=iris))
-    Petal.Length  Petal.Width  Sepal.Width 
-       15.097572    14.234335     1.270815 
-```
+Em 1949, Donald Hebb descreveu em seu clássico *The Organization of Behavior* um mecanismo plausível para a aprendizagem. Comumente expressa na máxima "Cells that fire together wire together" (células que disparam juntas, conectam-se entre si).  
 
-Se há colinearidade, é recomendado remover um dos preditores. Como sempre, a inspeção visual ajuda.  
-```r
-    >pairs(iris[,1:4])
-```
-![](images/chap3-irispairs.png)
+Com o objetivo de criar uma máquina que pudesse processar inputs diretamente do ambiente físco (e.g. luz e som), Rosenblatt concebeu extensão elegante do modelo em 1957 ("The Perceptron--a perceiving and recognizing automaton. Report 85-460-1, Cornell Aeronautical Laboratory"). Composto de três partes: o sistema S (sensório); o sistema A (associação) e o sistema R (resposta).  
+O neurônio "lógico" cru de McChulloch & Pitts foi modificado de maneira a processar inputs através de pesos antes da saída. A aprendizagem se dá pela modificação desses pesos. 
 
-Como podemos ver, usar duas variáveis preditoras (regressão múltipla) não colineares aumenta a performance do modelo em relação à regressão simples $(R^{2} \sim 0.84 vs. R^{2} = 0.76)$.  
+![Organização do Mark I, retirado de seu manual de uso original](images/chap3-perceptronscheme.png)  
 
-```r
-    >lm(Sepal.Length ~ Petal.Length,    
-    +         data=iris) %>% summary    
+Inicialmente, o perceptron foi simulado em um IBM 704 (também berço das linguagens FORTRAN e LISP). Em seguida, implementado como um dispositivo físico, batizado de Mark I Perceptron.[^20] Um estudo mais profundo foi publicado por ele em 1962 (Principles of neurodynamics)
 
-    (...)
-    Multiple R-squared:   0.76,	Adjusted R-squared:  0.7583 
-    F-statistic: 468.6 on 1 and 148 DF,  p-value: < 2.2e-16    
+[^19]: Ele consegue diferenciar um gato de um cachorro, ainda que não seja capaz de dizer se o cachorro estava à esquerda ou à direita do gato. No momento, não tem uso prático, Dr. Rosenblatt admitiu, porém disse que um dia pode ser útil para enviar um [aparato] ao espaço para capturar impressões para nós.  
+[^20]: Mark I é um título comumente utilizado para a primeira versão de uma máquina.
 
-    >lm(Sepal.Length ~ Petal.Length + Sepal.Width,    
-    +         data=iris) %>% summary    
-    (...)
-    Multiple R-squared:  0.8402,	Adjusted R-squared:  0.838 
-    F-statistic: 386.4 on 2 and 147 DF,  p-value: < 2.2e-16
-```
+\pagebreak 
 
-Um outro objetivo para a regressão múltipla é examinar o efeito modificador das variáveis acrescentadas. Em especial, é comum incluir variáveis auxiliares para corrigir estimativas.  
-Exemplo: queremos estimar um parâmetro $\beta_{1}$ para a relação entre altura e peso. Ajustamos um modelo: $Altura = \beta_{0}+\beta_{1}*Peso+\epsilon$. Entretanto, sabemos que a altura média de homens é maior que a de mulheres. Ao examinar a relação entre a altura e peso, podemos incluir a variável *sexo* no modelo,$Altura = \beta_{0}+\beta_{1}*Peso+\beta_{2}*Sexo+\epsilon$.  
-Nossa estimativa de $\beta_{1}$ é modificada de maneira a levar em conta os efeitos do sexo.[^19]  
+Rosenblatt protagonizava calorosos debates sobre inteligência artificial na comunidade científica junto a Marvin Minsky, um amigo da adolescência. Em 1969, Minsky e um matemático (Seymour Papert) publicaram um livro centrado no Perceptron.
+(Perceptrons: An Introduction to Computational Geometry). Nele, provaram que o neurônio artificial era incapaz de resolver problemas não-lineares do tipo XOR. Para um problema eXclusive OR (OU eXclusivo) o neurônio deve disparar diante do estímulo A ou do estímulo B, porém não diante de ambos.  
 
-[^19]: Sexo é uma variável dicotômica (macho/fêmea). Costumamos codificá-las de forma binária (0/1; e.g: macho = 1 / fêmea = 0). Assim, um sujeito macho terá a estimativa de altura acrescida em $\beta_{2}*1$, enquanto fêmeas terão este termo zerado $\beta_{2}*0$  
+O impacto foi devastador sobre o otimismo vigente e se passou um período de 10 anos de baixíssima produção, conhecido como idade das trevas do conexionismo. A retomada dos neurônios artificiais aconteceu somente na década de 80. Infelizmente, Rosenblatt morreu prematuramente em 1972 num acidente de barco, não presenciando o renascimento dos perceptrons.  
+
+Sabendo das origens do modelo, é curioso que a maioria dos cursos introduzam perceptrons do ponto de vista puramente matemático, apontando a semelhança com neurônios como mera curiosidade. Pelo contrário, a inspiração em neurônios biológicos e posterior sucesso nas tarefas designadas fala em favor de um fantástico caso de sucesso para engenharia reversa.  
+A Natureza, através de evolução por seleção natural, é a verdadeira mãe desse algoritmo.  
+
+![Neurônio biológico e seu correspondente artificial usando estrutura e notações atuais](images/chap3-neurons.png)  
 
 \pagebreak
-
-Costumeiramente, traduzimos os procedimentos acima afirmando que a estimativa para "a relação entre X e Y é controlada para confundidores [A, B e C]". A esse ponto, fica óbvio que a simplificação linguística é perigosa. A falta de cautela em traduzir abstrações matemáticas para linguagem natural é responsável pela injusta fama da estatística como ferramenta para enganos.  
-Assim como o valor p é indevidamente interpretado muitas vezes, o "controle para confundidores" nada mais é que o ajuste de estimativas selecionando outras variáveis arbitrariamente para uma combinação linear.  
-O prejuízo é herdado por todas as disciplinas que usam métodos quantitativos. Pior, criamos a possibilidade para testar múltiplas combinações de confundidores. Nas mãos de alguém incauto ou mal intencionado, testes sucessivos têm grandes chances de alcançar resultados "significantes". De uma forma global, vemos uma série de verdades transitórias ventiladas na comunidade científica (e na mídia leiga), resultantes de análises mal conduzidas.  
-Para inferências desse tipo, é recomendado que os confundidores sejam mitigados experimentalmente (e.g. randomização) sempre que possível.  
-
-## Classificadores lineares e visão computacional
+ 
+## Criando neurônios
 
 A seguir, estenderemos nossos modelos preditivos. Em lugar de prever um valor numérico, buscaremos classificar uma observação. Especificamente, dada uma foto, como treinar um modelo preditivo para classificá-la corretamente? Adentramos o campo de visão computacional.  
  
@@ -79,7 +55,7 @@ A seguir, estenderemos nossos modelos preditivos. Em lugar de prever um valor nu
 
 Imaginemos que a imagem acima tenha 10 pixels de altura e 10 de largura.  
 Para simplificação, 10 x 10 pixels em preto e branco (100 pixels com valores entre 0,preto, e 255, branco). Esses pixels podem ser esticados e vistos como uma matriz x de dimensão $[100 x 1]$ com valores entre 0 e 255 em cada elemento.  
-Podemos simular uma imagem deste tamanho gerando uma matriz de dimensão 10x10 com 100 valores naturais aleatórios (entre 0 e 255) no R:  
+Vamos simular uma imagem deste tamanho gerando uma matriz de dimensão 10x10 com 100 valores naturais aleatórios (entre 0 e 255) no R:  
 
 ```r
     >set.seed(2600)
@@ -98,13 +74,13 @@ O resultado dessa multiplicação de matrizes são scores para cada classe K.
 Vamos considerar que nossa ordem de rótulos é:  
 [pássaro, tartaruga, golfinho, peixe]  
 
-Em R:
+Em R:  
 ```r
     #Iniciando pesos com base em distribuição normal
     #Dividi os valores por 100 para reduzir a magnitude dos numeros
-    >my.weights <- rnorm(400)/100
+    >my_weights <- rnorm(400)/100
     #Le pesos como matriz [100x4]
-    >w <- matrix(my.weights,100,4)
+    >w <- matrix(my_weights,100,4)
     #Multiplicacao usando o operador %*%
     >as.vector(x)%*%w
     #Resultado
@@ -115,7 +91,8 @@ Em R:
 O classificador retorna um valor de score para cada classe. A interpretação desses valores pode variar, mas vamos pensar, por enquanto, que nosso objetivo é que o maior score seja o da classe correta.  
 Em nosso exemplo, o output: $[20.95787, 22.10932, 19.08313, -30.33214]$.  
 Entre os valores, o maior entre os quatro foi o segundo (22.10932), sugerindo o rótulo de tartaruga.  
-O processo de aprendizado consiste em expor o classificador a diversos exemplos $x$ até que ele ajuste o pesos em $W$ de maneira a retornar o maior score para a classe K correta.  
+O processo de aprendizado consiste em ajustar o pesos em $W$ de maneira a retornar o maior score para a classe K correta.  
+Fazemos isso expondo o classificador a diversos exemplos $x$ e implementando uma função que corrija os pesos conforme erros.   
 A imagem abaixo traz um intuitivo diagrama dessa multiplicação.  
 
 ![Disponível em http://cs231n.github.io/linear-classify/ . 
@@ -127,13 +104,13 @@ Para levar em conta uma constante $b$, usaremos um truque: ao adicionar o valor 
 
 ```r
     #Adiciona valor 1 ao vetor e armazena em x.vec. Agora temos 101 elementos
-    >x.vec <- c(as.vector(x),1)
-    #Inicia pesos incluindo 4 valores extras para (uma constante para cada score)
-    >my.weights<- rnorm(404)/100
+    >x_vec <- c(as.vector(x),1)
+    #Inicia pesos, incluindo 4 valores extras para (uma constante para cada score)
+    >my_weights<- rnorm(404)/100
     #Leitura como matriz w de dimensao 101x4
-    >w <- matrix(my.weights,101,4)
+    >w <- matrix(my_weights,101,4)
     #Multiplicacao: (pixels da imagem + 1)* (Pesos do classificador)
-    >x.vec%*%w
+    >x_vec%*%w
     #Resultado
              [,1]     [,2]      [,3]      [,4]
     [1,] 8.620293 10.08648 -4.423656 -7.804998
@@ -144,13 +121,13 @@ $[8.620293, 10.08648, -4.423656, -7.804998]$
 Agora indicando indicando tartaruga (2a posição) com maior score. Como transformar esses pesos em valores úteis?
 
 Inicialmente, estabelecemos pesos aleatórios a partir de uma distribuição normal.  
-Nosso objetivo agora é observar as respostas corretas em várias imagens e alterar os valores de $W$ para que os scores maiores sejam os das classes corretas.  
+Então, o objetivo é observar as respostas corretas em várias imagens e alterar os valores de $W$ para que os scores maiores sejam os das classes corretas.  
 Esse aprendizado se dá através de uma função de perda $L$.
 
-### Support Vector Machine (SVM)
+### Função de perda
 
-A função de perda *(loss function)* quantifica o quão distante estamos dos pesos desejados. O score desejado deve ser maior que os outros. 
-Sendo $s_{j}$ o score atribuído à classe correta e $s_{i}$ o score atribuído à i-ésima classe errada:    
+A função de perda *(loss function)* quantifica o quão distante estamos dos pesos desejados. O score desejado deve ser maior que os outros.  
+Sendo $s_{j}$ o score atribuído à classe correta e $s_{i}$ o score atribuído à i-ésima classe errada:  
 A função de perda retorna 0 caso a classe correta tenha score maior $s_{i} - s_{j} < 0$ ou o valor da diferença caso contrário, $s_{i} - s_{j} > 0$.  
 
 $$max(0,s_{i} - s_{j})$$
@@ -159,29 +136,27 @@ A perda total é a soma dos erros para cada classe. Adicionamos ainda uma margem
 
 $$L_{x}=\sum_{j \neq i}^{} max(0,s_{i} - s_{j} + \Delta)$$  
 
-A soma L (loss) vai acumular um valor de erro se o score correto não estiver distante o suficiente $(\Delta)$ dos deltas incorretos.  
+A soma L (loss) acumulará um valor de erro se o score correto não estiver distante o suficiente $(\Delta)$ dos deltas incorretos.  
 Implementando em R:  
 
 ```r
-    loss <- function(x,w,cor.class){
-     #Determina delta = 2, a distancia minima entre o maior score e os outros
+    loss <- function(x,w,cor_class){
      delta <- 1
      #Calcula scores multiplicando valores da imagem por pesos W
-     scores <- x.vec%*%w
+     scores <- x_vec%*%w
      #Score da classe correta fornecida pelo argumento da funcao
-     correct.class.sc <- scores[cor.class]
+     correct_class_sc <- scores[cor_class]
      #Obtem numero de classes
-     dimensions.class <- length(scores)
+     dimensions_class <- length(scores)
      #Perda inicial = 0 
-     cur.loss <- 0
-     #Loop para calcular a soma dos valores de max(0,~formula SVM)
-     #A funcao max esta nas funcoes basicas (Base Package) do R
-     for (i in 1:dimensions.class){
-         if (i == cor.class){next}
-         cur.loss <- cur.loss + max(0,scores[i] - correct.class.sc + delta)
+     cur_loss <- 0
+     #Loop para calcular a soma dos valores de max(0,score_errado - score_correto), isto é, o erro acumulado
+     for (i in 1:dimensions_class){
+         if (i == cor_class){next} # pula iteracao para a classe correta
+         cur_loss <- cur_loss + max(0,scores[i] - correct_class_sc + delta)
          }
      #Retorna valor total da perda
-     return(cur.loss)}
+     return(cur_loss)}
 ```
 E podemos testar os scores para cada classe invocando a função na forma loss(imagem,pesos,classe_correta):
 
@@ -196,7 +171,7 @@ E podemos testar os scores para cada classe invocando a função na forma loss(i
     [1] 40.69811
 ```
 
-Notem que se informamos que a classe correta é a 2, que tinha o maior score, a função retorna 0. Isto é, o classificador apontou o maior score com a margem adequda e não há perda.  
+Notem que se informamos que a classe correta é a 2, que tinha o maior score, a função retorna 0. Isto é, o classificador apontou o maior score com a margem adequada e não há perda.  
 
 Se apontamos que a classe correta é uma das outras (1,3 ou 4), a função retorna a perda correspondente.  
 
@@ -208,17 +183,15 @@ Na prática, estamos mexendo nos parâmetros $W$ de forma a direcionar nossa fun
 
 @ Gradiente  http://cs231n.github.io/optimization-1/
 
-Com os novos parâmetros $W$, podemos aplicar o classificador na imagem inédita $x’_{[10x10]}$, obter os scores para predizer a classe dela, assim como uma nova função de perda.  
-Como dá para notar, mesmo num exemplo simplificado, treinar o classificador implica muitas computações de matrizes n-dimensionais. Por isso, precisamos de bastante poder computacional e *machine learning* só ganhou atenção recentemente, com o avanço do hardware apropriado.
+Com os novos parâmetros $W$, podemos aplicar o classificador na imagem inédita $x’_{[10x10]}$ e obter scores ajustados para predizer a classe dela.  
+Como dá para notar, mesmo num exemplo simplificado, treinar o classificador implica muitas computações de matrizes n-dimensionais. Por isso, precisamos de bastante poder computacional e algoritmos como esse *machine learning* só ganharam atenção com o advento de computadores.  
 
-#### Kernels
+#### Funções de ativação
 
-A função do núcleo (kernel) descrita anteriormente é linear. Os valores são multiplicados pela matriz de valores $W$, somados a $b$ e resultam em scores. Diferentes kernels podem ser usados, como o polinomial:
-$$K(x,y)=(x'y+c)^{d}$$
+A função de ativação descrita anteriormente é linear.  
+Cada valor de entrada (e.g. pixel) é ponderado pela matriz de valores $W$. Os valores são somados e resultam em scores. O uso de uma combinação linear é bastante semelhante à regressão múltipla descrita anteriormente. Diferentes funções de ativação podem ser usadas, como a polinomial:
 
-As funções kernel retornam sempre um produto interno entre dois pontos no espaço adequado. Além do linear e do polinomial, temos outros: Gaussian Radial Basis Function (RBF) é um tipo que costuma apresentar bom desempenho.  
-
-$$k(x,x')=e^{(-\sigma{||x-x'||}^{2})}$$  
+$$f(x)=x^{a}w+b$$
 
 Agora, sabemos examinar um conjunto de imagens rotuladas, criar um classificador linear e treiná-lo (ajustar pesos $W$ minimizando a função de perda $L$) para retornar um maior score nas as classificações corretas.
 
@@ -226,180 +199,13 @@ Referências:
 CS231n - Stanford University: Convolutional Neural Networks for Visual Recognition
 Karatzoglou et al. Support Vector Machines in R. Journal of Statistical Software. April 2006, Volume 15, Issue 9.
 
-## SVM - Aplicações
 
-Parte 2 - Aplicações
+## Parte 2 - Aplicações
 
-Recuperando o exemplo anterior, temos um conjunto de dados (ex: uma imagem) e um classificador com pesos para esses dados. O classificador realiza operações (definidas pela função kernel) entre seus pesos e os dados para retornar scores.  
-O maior dos scores deve apontar a classe correta (mecanismo de voto).  
-Vimos que existem diversas formas de encontrar valores para os pesos que classifiquem corretamente as imagens (minimizem as perdas).  
-Vimos como funcionam as operações com um kernel linear.  
-
-![Linus Torvalds (Linux) e Richard Stallman (GNU).Dois caras legais.](images/chap3-linus.jpg)
-
-
-Apresentamos benchmarks para tempos das funções dos pacotes **kernlab, e1071, klaR e svmpath** em diferentes datasets para uma mesma tarefa.
-
-![Benchmarks (Tempo em segundos). Support Vector Machines in R ( Alexandros Karatzoglou, David Meyer, Kurt Hornik)](images/chap3-bench.jpg)
-
-Os pacotes kernlab e e1071 parecem ser os mais rápidos (e1071 ligeramente na frente). A e1071 é um interface para o libsvm, library premiada (IJCNN 2001 Challenge) e escrita em C++, o que garante a melhor performance. O problema é que não há flexibilidade para mudar muito o kernel. Já o kernlab traz maior flexibilidade, mas seleção de modelos é limitada. Recomendo brincar com as quatro libs. Já que não vamos mexer no kernel, vamos com a função svm() do pacote e1071 em nome do minimalismo.
-
-### Dados
-Vamos usar o nosso conhecido *iris*.
-```r
-    >library(e1071)
-    # O pacote caret facilita particionamento dos dados particionados
-    >library(caret)
-    >set.seed(2600)
-    # Usa funcao createDataPartition do caret para gerar vetor com vasos sorteados na proporcao 4/5
-    # A frequencia relativa de rótulos (Species) fica mantida
-    >iris.tr.vec <- createDataPartition(y=iris$Species,p = 4/5,list=F)
-    # Dataset de treino (4/5 da amostra)
-    >iris.tr <- iris[iris.tr.vec,]
-    # Dataset de teste (1/4 restantes)
-    >iris.ts <- iris[-iris.tr.vec,]
-```
-Agora, temos um banco com 80% (4/5) dos dados para treinar a SVM e outro com 20% para testar. 
-
-#### SVM com e1071
-
-Vamos usar a função svm, especificando uma fórmula (“Species ~ .” significa Species como variável de classificação e as outras como input), o banco de dados e um custo (Constate C; falaremos mais sobre ela depois).
-
-```r
-    >svm.iris <- svm(Species ~ ., data=iris.tr, cost=100,  kernel="linear")
-```
-Agora, fazemos as predições:
-```r
-    >svm.pred <- predict(svm.iris,iris.ts)
-    # Dispoe predicoes e valores no dataset de teste em uma tabela
-    >agree.tab <- table(pred=svm.pred,true=iris.ts$Species)
-    >agree.tab
-    agree.tab
-               true
-    pred         setosa versicolor virginica
-     setosa         10          0         0
-     versicolor      0          9         3
-     virginica       0          1         7
-    # Usando classAgreement do proprio pacote e1071
-    # Calculamos:
-    # Percentual de acertos e Kappa (leva em conta acertos aleatorios)
-    # Index de Rand e seu valor corrigido para acertos aleatórios.
-    >classAgreement(agree.tab)
-    $diag
-    [1] 0.8666667    
-    $kappa
-    [1] 0.8    
-    $rand
-    [1] 0.8528736    
-    $crand
-    [1] 0.6590742
-```
-
-Os resultados valores foram bons. Classificamos corretamente ~86,7% das espécies com base em medidas das pétalas e sépalas em nossa amostra de teste.
-Fica uma dúvida. Na hora de ajustar o SVM, escolhemos o parâmetro cost. O parâmetro cost é um valor associado a Regularização dos pesos durante o treinamento.  
-Ele reflete o quanto queremos evitar classificar exemplos de forma errada. Um valor pequeno vai priorizar margens maiores, mesmo que isso implique mais classificações erradas. Um C maior vai resultar num ajuste classificação correta para outliers, ainda que com margens menores.
-
-![C maior (margens menores) vs. C Menor (margens maiores)](images/chap3-svmdiag.jpg)
-
-Os melhores valores para o hiperparâmetro C dependem da estrutura do seus dados.
-Os autores do libsvm sugerem testar valores de C através de cross-validation. 
-
-Uma maneira de testar valores ótimos é através de uma função embutida no e1071(**tune.svm**), que já faz uso do dataset inteiro com 10-fold cross validation. Essa alternativa (tune.svm) costuma trazer melhores resultados segundo os autores do e1071.
-
-```r
-    #Ajustando valores testaveis de entre 1 e 1024
-    >tune.info <- tune.svm(Species~., data = iris, cost = 2^(0:10),kernel="linear")    
-
-    #Sumario do tuning atraves de 10-fold-cross-validation
-    >summary(tune.info)    
-
-    Parameter tuning of ‘svm’:    
-
-    - sampling method: 10-fold cross validation     
-
-    - best parameters:
-     cost
-      128    
-
-    - best performance: 0.01333333     
-
-    - Detailed performance results:
-       cost      error dispersion
-    1     1 0.04000000 0.04661373
-    2     2 0.03333333 0.03513642
-    3     4 0.03333333 0.03513642
-    4     8 0.04000000 0.04661373
-    5    16 0.03333333 0.04714045
-    6    32 0.04000000 0.04661373
-    7    64 0.04000000 0.04661373
-    8   128 0.01333333 0.02810913
-    9   256 0.02000000 0.04499657
-    10  512 0.01333333 0.02810913
-    11 1024 0.01333333 0.02810913
-    >plot(tune.info)
-```
-![](images/chap3-svmtune.jpg)
-
-O tune.svm retornou, entre os valores, que os melhores parâmetros são cost = 128. Pelo gráfico, ainda é possível detectar zonas mais propícias e testar valores no intervalo. Podemos estabelecer esses parâmetros manualmente.
-
-```r
->svm.opt <- svm(Species ~ .,data=iris.tr,cost=128,kernel="linear")
-```
-
-Ou invocar o objeto com $best.model (names(tune.info) para outros valores e objetos):
-
-```r
-    #Invocando melhor modelo.
-    >tune.info$best.model
-    Call:
-    best.svm(x = Species ~ ., data = iris, cost = 2^(0:10), kernel = "linear")    
-    
-
-    Parameters:
-       SVM-Type:  C-classification 
-     SVM-Kernel:  linear 
-           cost:  128 
-          gamma:  0.25     
-
-    Number of Support Vectors:  15
-    #Fazendo predicoes
-    >tune.pred <- predict(tune.info$best.model,iris)
-    #Tabela de classificacoes predicoes vs. observacoes
-    >agree.tune <- table(pred = tune.pred,true=iris$Species)
-    >agree.tune
-               true
-    pred         setosa versicolor virginica
-     setosa         50          0         0
-     versicolor      0         48         1
-     virginica       0          2        49
-    #Observando concordancia das predicoes e observacoes
-    >classAgreement(agree.tune)
-    $diag
-    [1] 0.98
-    $kappa
-    [1] 0.97
-    $rand
-    [1] 0.9739597
-    $crand
-    [1] 0.9410123
-```
-
-Está implementado nosso classificador de espécies com base no comprimento e largura de sépalas e pétalas. Agora, um biólogo em dúvida sobre a espécie de uma nova amostra pode usar nosso programa para classificar a planta usando suas medidas.
-A mesma lógica serve para uso de SVM em outras áreas, como classificação de imagens e classificação de risco de créditos em instituições finaneiras.
-
-Considerações
-Algumas observações:
-Alguns devem ter notado que o modelo ajustado pelo tune tem um parâmetro gamma além do parâmetro C. Normalmente, o parâmetro gamma pertence a outros kernels (e1071, pag.50). Mudar o parâmetro gamma não altera o desempenho de uma SVM com kernel linear. Imagino que seja um artefato da função tune por lidar com diversos kernels.
-O paper a seguir sugere um caminho para implementação de SVMs para iniciantes (fazer Scaling dos dados sempre e dar preferência ao Kernel RBF). A Practical Guide to Support Vector Classification. Chih-Wei Hsu, Chih-Chung Chang, and Chih-Jen Lin. XXX XXX
-
-Referências
-Chih-Wei Hsu, Chih-Chung Chang, and Chih-Jen Lin. A Practical Guide to Support Vector Classification.
-Karatzoglou et al. Support Vector Machines in R. Journal of Statistical Software. April 2006, Volume 15, Issue 9.
-CS231n—Stanford University: Convolutional Neural Networks for Visual Recognition
-Documentação dos pacotes e1071 e caret do R.
-
+@ aplicacao de perceptron
 
 ## Parte 3 - Deep learning
+
 Nos textos anteriores (1ª parte — link), mostramos o funcionamento de um classificador simples e usamos (link) um pacote popular para ilustrar a configuração, treinamento e avaliação do modelo (Support Vector Machine).
 Um mal entendido envolvendo deep learning é de que produzimos uma caixa preta, útil porém inacessível. Vamos entender como funcionam redes profundas e de onde surge essa confusão.
 
@@ -454,7 +260,7 @@ $\epsilon$ representa o erro e i é uma constante.
 
 Em uma linha de R:
 
-$logist.fit <- glm(type_dic ~ beta + tempo,               family=binomial,data=inv.ds)$
+$$logist.fit <- glm(type_dic ~ beta + tempo, family=binomial,data=inv.ds)$$
 
 A vantagem de usar essa modelagem é que temos uma relação direta entre o inverso dessa função (P^(-1), “logito”) e a combinação linear dos nossos parâmetros:
 $logit (P(x))=i+t*x+\beta*y+\epsilon$
@@ -586,3 +392,8 @@ Referência
 
 
 Recomendo esse paper aqui para uma abordagem mais profunda e definições formais com hiperplanos — Support Vector Machines in R ( Alexandros Karatzoglou, David Meyer, Kurt Hornik).
+
+
+http://web.csulb.edu/~cwallis/artificialn/History.htm
+
+\pagebreak

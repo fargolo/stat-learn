@@ -163,7 +163,7 @@ Entretanto, a distribuição muda de forma! Sem muito esforço, é notável a se
 É possível provar que a soma de muitas distribuições de uma mesma família converge para a distribuição normal em qualquer caso. Desde que estas sejam independentes. A esse resultado damos o nome de Teorema do Limite Central.[^6] 
 Este resultado tem uma sutil importância para o estudo dos fenômenos naturais através de experimentos. 
 
-[^6]:Prova formal em http://www.cs.toronto.edu/~yuvalf/CLT.pdf 
+[^6]:Prova formal em http://www.cs.toronto.edu/~yuvalf/CLT.pdf . Ela se dá provando a convergência de momentos, um conceito que entenderemos à frente. 
 
 ### Ciência experimental e o Teorema do Limite Central
 
@@ -572,6 +572,10 @@ The estimated difference of beak mean  sizes among samples A and B was significa
 
 
 ![](images/chap1-birds-hist2.png)
+
+#### Nota
+
+
 
 \pagebreak
 

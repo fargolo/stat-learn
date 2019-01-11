@@ -624,3 +624,74 @@ A definição para o teste não é unânime na literatura, de forma que alguns a
 Em R, as funções **dwilcox(x,m,n)** e **pwilcox(q,m,n)** retornam a distribuição e a densidade cumulativa para a estatística U correspondente a amostras com tamanhos m e n.  
 
 \pagebreak
+
+## Regressão múltipla
+
+Anteriormente, examinamos modelos lineares simples. Calculamos parâmetros para um intercepto $\beta_{0}$, inclinação da reta $\beta_{1}$ e variância dos erros $\sigma^{2}_\epsilon$.
+
+$$y_{i} = \beta_{0} + \beta_{1}x_{i} + \epsilon$$
+
+No exemplo apresentado, relacionamos o número de médicos ($n$) com a expectativa de vida saudável $hale$ em um país.
+Na regressão linear múltipla, introduzimos mais uma variável preditora. Em nosso exemplo, poderia ser o valor do IDH do país:
+
+$$hale_{i} = \beta_{0} + \beta_{1}n_{i} + \beta_{2}IDH_{i}' + \epsilon$$
+
+Em geral, temos dois objetivos:  
+**(1)** melhorar a performance do modelo ao adicionar informações pertinentes;   **(2)** examinar o efeito sobre as demais variáveis preditoras.  
+
+O primeiro objetivo é intuitivamente óbvio: ao fazer nossa predição, é preferível saber apenas o número de médicos ou também outras variáveis?  
+Entretanto precisamos ter cuidado com redundância de informações. Especificamente, há uma troca quase inevitável entre complexidade e robustez do modelo. Acrescentar variáveis ou usar classes de relações mais flexíveis implica dar liberdade para um sobreajuste aos dados. Isto é, nosso modelo aprenderá idiossincrasias sobre o banco de dados disponível e não sobre a relação entre as abstrações. Veremos nas próximas sessões como mitigar esse problema.  
+Para o caso da regressão linear múltipla, podemos verificar se há colinearidade (relação linear) entre variáveis preditoras. Se as variáveis preditoras são altamente correlacionadas, é provável que estejamos fornecendo informações redundantes ao modelo, o que é nocivo. Existem alguns indicadores que podem ajudar a tomar essa decisão.  
+Comumente, observamos o VIF *Variance inflation factor*. 
+Ele verifica se a variância do coeficiente $\beta$ estimado está sendo inflada por interferência de outros preditores.   
+Para calcular o VIF referente a um preditor $X'$, ajustamos uma nova regressão, em que a variável resposta é $X'$ e as preditoras são as outras variáveis preditoras. O VIF é dado por: $\frac{1}{1-R^{2}}$, sendo $R^{2}$ o coeficiente de determinação da regressão, como calculamos antes.  
+Não há regra canônica, porém valores altos (e.g. VIF > 10 ou VIF > 5) indicam colinearidade inaceitável.  
+
+A função **vif** do pacote *car* implementa o procedimento. Ajustamos uma regressão linear múltipla para o comprimento das sépalas no dataset *iris* a partir de outras 3 variáveis. Podemos verificar que há colinearidade ($VIF_{pet.leng.}\sim 15.1$, $VIF_{pet.wid.}\sim 14.2$) entre largura e comprimento da pétala. Por outro lado, a colinearidade com o comprimento da sépala é baixa ($VIF_{pet.wid.} \sim 1.3$). 
+ 
+```r
+    >car::vif(lm(Sepal.Length ~ Petal.Length + Petal.Width + Sepal.Width,    
+        data=iris))
+    Petal.Length  Petal.Width  Sepal.Width 
+       15.097572    14.234335     1.270815 
+```
+
+Se há colinearidade, é recomendado remover um dos preditores para eliminar a redundância. Como sempre, a inspeção visual ajuda.  
+
+```r
+    >pairs(iris[,1:4])
+```
+![](images/chap2-irispairs.png)
+
+Como podemos ver, usar duas variáveis preditoras (regressão múltipla) não colineares aumenta a performance do modelo em relação à regressão simples $(R^{2} \sim 0.84 vs. R^{2} = 0.76)$.  
+
+```r
+    >lm(Sepal.Length ~ Petal.Length,    
+    +         data=iris) %>% summary    
+
+    (...)
+    Multiple R-squared:   0.76,	Adjusted R-squared:  0.7583 
+    F-statistic: 468.6 on 1 and 148 DF,  p-value: < 2.2e-16    
+
+    >lm(Sepal.Length ~ Petal.Length + Sepal.Width,    
+    +         data=iris) %>% summary    
+    (...)
+    Multiple R-squared:  0.8402,	Adjusted R-squared:  0.838 
+    F-statistic: 386.4 on 2 and 147 DF,  p-value: < 2.2e-16
+```
+
+Um outro objetivo para a regressão múltipla é examinar o efeito modificador das variáveis acrescentadas. Em especial, é comum incluir variáveis auxiliares para corrigir estimativas.  
+
+Exemplo: queremos estimar um parâmetro $\beta_{1}$ para a relação entre altura e peso. Ajustamos um modelo: $Altura = \beta_{0}+\beta_{1}*Peso+\epsilon$. Entretanto, sabemos que a altura média de homens é maior que a de mulheres. Ao examinar a relação entre a altura e peso, podemos incluir a variável *sexo* no modelo,$Altura = \beta_{0}+\beta_{1}*Peso+\beta_{2}*Sexo+\epsilon$.  
+Nossa estimativa de $\beta_{1}$ é modificada de maneira a levar em conta os efeitos do sexo.[^29]  
+
+[^29]: Sexo é uma variável dicotômica (macho/fêmea). Costumamos codificá-las de forma binária (0/1; e.g: macho = 1 / fêmea = 0). Assim, um sujeito macho terá a estimativa de altura acrescida em $\beta_{2}*1$, enquanto fêmeas terão este termo zerado $\beta_{2}*0$. Chamamos esse truque de *dummy coding*.
+
+\pagebreak
+
+Costumeiramente, traduzimos os procedimentos acima afirmando que a estimativa para *"a relação entre X e Y é controlada para confundidores [A, B e C]"*. A esse ponto, fica óbvio que a simplificação linguística é perigosa. A falta de cautela em traduzir abstrações matemáticas para linguagem natural é responsável pela injusta fama da estatística como ferramenta para enganos.  
+Assim como o valor p é indevidamente interpretado muitas vezes, o "controle para confundidores"" nada mais é que o ajuste de estimativas selecionando outras variáveis arbitrariamente para uma combinação linear.  
+O prejuízo é herdado por todas as disciplinas que usam métodos quantitativos. Pior, criamos a possibilidade para testar múltiplas combinações de confundidores. Nas mãos de alguém incauto ou mal intencionado, testes sucessivos têm grandes chances de alcançar resultados "significantes". De uma forma global, vemos uma série de verdades transitórias ventiladas na comunidade científica (e na mídia leiga), resultantes de análises mal conduzidas.  
+Para inferências desse tipo, é recomendado que os confundidores sejam mitigados experimentalmente (e.g. randomização) sempre que possível.  
+
+\pagebreak
