@@ -76,7 +76,7 @@ Em regressão linear múltipla, calculamos um peso $\beta$ para cada variável. 
 
 O neurônio deve disparar (output $y=1$) caso seja um navio ou permanecer em repouso caso não seja ($y=-1$).  
 
-Matematicamente, é uma multiplicação da matriz de valores da imagem $x_{i}$, de dimensão $[100 x 1]$ por uma matriz $W_{[100 X 1]}$ que traz pesos (weights) estimados para cada pixel para cada classe. Então, forçamos o resultado para +1 ou -1 com uma função de ativação $(\phi)$.  
+Matematicamente, é uma multiplicação da matriz de valores da imagem $x_{j}$, de dimensão $[100 x 1]$ por uma matriz $W_{[100 X 1]}$ que traz i pesos (weights) estimados para cada pixel para cada classe. Então, forçamos o resultado para +1 ou -1 com uma função de ativação $(\phi)$.  
 
 $$y = \phi(W^{T}X)$$
 
@@ -113,11 +113,11 @@ Então, o objetivo é observar as respostas corretas em várias imagens e altera
 
 O processo de treino é bastante simples:  
 
-$$w_{i}' = w_{i} + \Delta w_{i}$$
-$$\Delta w_{i} = \eta (score{i} - output_{i}) x_{i}$$
+$$w' = w_{0} + \Delta w$$
+Seja $x_{i_{j}}$ o $i$-ésimo pixel da observação $j$.
+$$\Delta w_{i} = \eta (score{j} - output_{j}) x_{i}$$
 
-Em que $x_{i}$ é o valor do i-ésimo pixel, $w_{i}$ é o i-ésimo peso e $\eta$ uma constante chamada *taxa de aprendizagem* (learning rate), que determina o tamanho dos incrementos feitos pelo algoritmo. 
-Notem que se o score desejado é idêntica ao output, então o peso $w_{i}$ é mantido intacto.  
+Em que $x_{i_{j}}$ é o valor do $i$-ésimo pixel, $w_{i}$ é o $i$-ésimo peso e $\eta$ uma constante chamada *taxa de aprendizagem* (learning rate), que determina o tamanho dos incrementos feitos pelo algoritmo. Mostraremos a derivação dessa fórmula a seguir.  
 
 Se os dados são linearmente separáveis, o algoritmo converge com um número suficiente de exemplos.  
 
@@ -142,7 +142,7 @@ Codificando nosso perceptron conforme as equações acima:
           # predicao
           ypred <- sum(w * as.numeric(x[i, ])) %>% phi_heavi 
           # update em w
-          delta_w <- eta * (y[i] - ypred) * as.numeric(x[i, ]) 
+          delta_w <- eta * (y[i] - ypred) * as.numeric(x[i, ]) #nota: x[i,] sera multiplicado como matriz (dot product)
           w <- w + delta_w
           ypreds[i] <- ypred # salva predicao atual
         }
@@ -208,15 +208,17 @@ Uma forma popular para otimizar o treinamento é particionar o dataset em pedaç
 
 ### Gradient Descent
 
-No exemplo anterior, atualizamos os pesos de maneira $(w')$ que os valores fossem atualizados usando uma fórmula contendo taxa de aprendizagem $(\eta)$ e outros parâmetros: função de erro entre score desejado$(score)$ e output $ e(score_{i},output_{i})(score_{i} - output_{i})$; valor da entrada $(x_{i})$.  
+No exemplo anterior, atualizamos os pesos com uma fórmula contendo taxa de aprendizagem $(\eta)$ e outros parâmetros: a função de erro entre score desejado$(score)$ e output $E= d(score_{j},output_{j})$; valor da entrada $(x_{i})$.  
 
 $$w_{i}' = w_{i} + \Delta w_{i}$$
 
-Esse valor pode ser obtido usando o conceito de Gradient Descent. Queremos os pesos que minimizem a função de erro $(min(e(score_{i},output_{i})))$. Calculamos o valor dos pesos atuais e percorremos o espaço em direção a um valor mínimo local. Se a superfície for convexa, acharemos uma solução ótima.   
+$\Delta w_{i}$ pode ser obtido usando o conceito de Gradient Descent.
+Levando em conta cada $j$-ésima observação, definimos uma função de perda $L$ expressando a soma dos erros nos $n$ exemplos e minimizamos ela.
+$$min(L)=min\sum_{j}^{n}E(score_{j},output_{j}))$$. Calculamos o valor dos pesos atuais e percorremos o espaço em direção a um valor mínimo local. Se a superfície $L$ for convexa, acharemos uma solução ótima.   
 
 Usaremos para nossa função de erro a distância euclidiana entre score desejado e output. O score desejado é a resposta ótima o output é um produto entre pesos e entrada[^22]:
 
-$$e(score_{i},output_{i}) = (score_{i} - output_{i})^{2}$$
+$$E = d_{eucl.}(score_{j},output_{j}) = (score_{j} - output_{j})^{2}$$
 
 Notem que o processo envolve implementar uma função de erro entre resultados da rede e um espaço virtual de scores ótimos. O sucesso do treinamento depende de uma correspondência entre a função de distância escolhida e a distância real no espaço em que os dados foram gerados. Não sabemos se isso reflete a realidade. No exemplo, cada pixel reflete um sinal de 0 a 255.  
 A figura abaixo mostra a correspondência entre valores da medida e escala visual.   
@@ -224,26 +226,55 @@ A figura abaixo mostra a correspondência entre valores da medida e escala visua
 
 A intuição para sensibilidade à luz pode ser percebida num intervalo contínuo entre incidência total de luz (valores extremos de branco, medida: 255) e ausência total (valores extremos de preto, medida: 0). Supondo que podemos atribuir um rótulo a cada tom de cinza e que esse conjunto é ordenável pela *clareza*, dizemos que há isomorfismo de ordem entre os conjuntos.  
 
-Isso implica que a distância euclidiana deve funcionar em nossas medidas como em $$\mathbf{R}$$. Resta saber se a projeção das observações é linearmente separável. É intuitivo para seres humanos saber quais problemas serão separáveis: basta imarginar assistir um filme numa tela em preto e branco  
+Isso implica que a distância eulidiana deve funcionar em nossas medidas como nos números reais $\mathbf{R}$. Resta saber se a projeção das observações é linearmente separável. É intuitivo para seres humanos saber quais problemas serão separáveis: basta imaginar a tarefa de diferenciar tipos de imagens com uma regua numa tela em preto e branco.  
 
-Para descobrir o valor mínimo, vamos usar derivadas. Ou seu equivalente para funções de múltiplas variáveis, gradiente. O gradiente é um vetor/lista com as derivadas parciais daquela função.
-Matematicamente, queremos a derivada parcial do erro com respeito aos pesos.  
+Para descobrir o valor mínimo de $L$, vamos usar derivadas. Ou seu equivalente para funções de múltiplas variáveis (espaços multidimensionais), o gradiente($\nabla$). É o produto escalar das derivadas parciais daquela função. 
+Para cada observação $j$, a derivada parcial da função de perda $\frac{d}{dw_{i}}L(w_{i}) = \frac{d}{dw_{i}} \frac{1}{n}\sum_{j}{n}E(score_{j},output_{j})$ em relação a um peso $w_{i}$ expressa como variações no peso refletem no erro global.  
+Sabemos então se devemos ajustar o peso para cima ou para baixo, assim com a magnitude do passo. A taxa de aprendizagem é um hiperparâmetro que regula artificialmente o tamanho desse passo. Algebricamente, modificaremos $w$ seguindo o inverso do gradiente:
+$$\Delta w_{i} = - \eta \frac{dL}{dw_{i}}$$
+$$= - \eta \frac{d}{dw_{i}}\frac{1}{n}\sum_{j}^{n}E(score_{j},output_{j})$$  
+$$= - \eta \frac{d}{dw_{i}}\frac{1}{n}\sum_{j}^{n}(score_{j} - output_{j})^{2}$$.  
 
-$$frac{d}{dw}(score_{i} - output_{i})^{2}$$.  
+Fazemos $f(x) = (score_{j} - output_{j})$ e $g(x) = x^{2}$, de maneira que
+$$L = \frac{1}{n}\sum_{j}^{n} E(score_{j}, output_{j}) = (g \circ f)$$  
+$$= \frac{1}{n}\sum_{j}^{n} (score_{j} - output_{j})^{2}$$  
 
-Fazemos $g(x) = x^{2} e f(x) = (score_{i} - output_{i})$ e aplicamos regra de cadeia e 'regra do tombo' para derivadas de polinômios$(frac{d}{dx}(x^{n})=nx^{n-1})$.  
+Podemos resolver $\frac{d}{dw_{i}}L$ aplicando a regra de cadeia $(g \circ f)' = (g'\circ f)f'$ e a 'regra do tombo' para derivadas de polinômios $(\frac{d}{dx}(x^{n})=nx^{n-1})$.  
 
-$$e (score_{i}, output_{i}) = g \circ f = (score_{i} - output_{i})^{2}$$  
-$$(g \circ f)' = (g'\circ f)f'$$
-$$(g'\circ f) = 2(score_{i} - output_{i})^{2-1}=2(score_{i} - output_{i})$$
-$$f' = $$
+Então,
+$$f' = \frac{d}{dw_{i}}(score_{j} - output_{j})$$
+O output é dado pelo produto escalar entre pesos $w_{j}$ e entradas $x_{j}$:  
+$$f'=\frac{d}{dw_{i}}(score_{j} - w_{j} \cdot x_{j})$$
+O score desejado não depende dos pesos, portanto a primeira derivativa é 0.  
+$$f' = 0 - \frac{d}{dw_{i}} w_{j} \cdot x_{j}$$
+$$=-\frac{d}{dw_{i}}\sum_{i,j}^{n} w_{i,j}*x_{i,j}$$
+$$= =-\frac{d}{dw_{i}}(w_{0}*x_{0}+...+w_{i}*x_{i}+w_{n}*x_{n})$$  
+Os termos não dependentes de $w_{i}$ também são zerados e:  
+$$f'=- \frac{d}{dw_{i}} w_{i}x_{i}$$  
+A função a ser derivada agora descreve uma relação linear (polinômio de grau 1) em $w_{i}$ e temos:
+$$f'= (-x_{i,j})$$
 
-$$2(score_{i} - output_{i})(score_{i} - output_{i})$$
+Sabendo $f'$, buscamos o outro termo em $(g \circ f)'$:
+$$(g'\circ f) = 2(score_{j} - output_{j})^{2-1}$$
+$$= 2(score_{j} - output_{j})$$
 
-   
+Por fim, a derivada parcial da função de perda para o i-ésimo peso $w_{i}$:
 
-$$\Delta w_{i} = \eta (score_{i} - output_{i}) x_{i}$$  
+$$\frac{dL}{dw_{i}} = \sum_{j}^{n}\frac{d}{dw_{i}}(score_{j} - output_{j})^{2}$$.  
+$$= \sum_{i,j}^{n} 2(score_{j} - w_{j} \cdot x_{j})) (-x_{i,j})$$
 
+Escalamos $L'$ por $-\frac{1}{2}*\eta$:  
+$$-\frac{1}{2}*\eta \frac{dL}{dw_{i}}=\frac{1}{2}*\eta 2(score_{j} - output_{j}) x_{j}$$
+$$\Delta w_{i} = \eta \sum_{j}{n} (score_{j} - w \cdot x)(x_{j})$$
+
+Como implementamos antes.  
+```r
+    (...)
+    ypred <- sum(w * as.numeric(x[i, ])) %>% phi_heavi 
+    delta_w <- eta * (y[i] - ypred) * as.numeric(x[i, ])
+    w <- w + delta_w
+    (...)
+```
 
 ![](images/chap3-walk.jpg)
 
