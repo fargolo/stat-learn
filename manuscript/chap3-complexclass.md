@@ -1,9 +1,9 @@
-![O criador e a criatura: Frank Rosenblatt e Mark I.](images/chap3-frankmark.jpg)
+![Frank Rosenblatt e Mark I.](images/chap3-frankmark.jpg)
 
 # Capítulo 3 : Neurônios
 
-Em março de 2016, o software AlphaGo tornou-se o primeiro programa de computador a vencer um mestre de Go. O feito é difícil por se tratar de um jogo quase impossível de ser totalmente computado.  
-Inventado há mais de 2,500 anos, motivou bastante em pesquisa em matemática. Existem $2,08*10^{170}$ maneiras válidas de dispor as peças no tabuleiro. O chinês polímata chinês Shen Kuo (1031–1095) chegou a um resultado próximo $10^{172}$ séculos atrás. Vale lembrar que o número de átomos no universo observável é de módicos $10^{80}$.  
+Em março de 2016, o software AlphaGo venceu um mestre de Go. O feito é impressionante por se tratar de um jogo difícil de computar.  
+Inventado há mais de 2,500 anos, motivou bastante em pesquisa em matemática. Existem $2,08*10^{170}$ maneiras válidas de dispor as peças no tabuleiro. O polímata chinês Shen Kuo (1031–1095) chegou a um resultado próximo $10^{172}$ séculos atrás. Vale lembrar que o número de átomos no universo observável é de módicos $10^{80}$.  
 
 No capítulo anterior, aprendemos uma formulação básica de modelo preditivo, a regressão linear simples. A seguir, estenderemos nosso leque de ferramentas para novas classes de relações, também incluindo mais informações na entrada de nossos modelos.   
 
@@ -99,7 +99,7 @@ Em R:
     # Multiplicacao usando o operador %*%
     >as.vector(x)%*%w
     # Score
-              [,1]
+              [,1]atuaisatuais
     [1,] -2.941668
     # Funcao de ativacao
     >as.vector(x)%*%w %>% phi_heavi
@@ -114,10 +114,10 @@ Então, o objetivo é observar as respostas corretas em várias imagens e altera
 O processo de treino é bastante simples:  
 
 $$w_{i}' = w_{i} + \Delta w_{i}$$
-$$\Delta w_{i} = \eta (resposta_{i} - output_{i}) x_{i}$$
+$$\Delta w_{i} = \eta (score{i} - output_{i}) x_{i}$$
 
 Em que $x_{i}$ é o valor do i-ésimo pixel, $w_{i}$ é o i-ésimo peso e $\eta$ uma constante chamada *taxa de aprendizagem* (learning rate), que determina o tamanho dos incrementos feitos pelo algoritmo. 
-Notem que se a resposta desejada é idêntica ao output, então o peso $w_{i}$ é mantido intacto.  
+Notem que se o score desejado é idêntica ao output, então o peso $w_{i}$ é mantido intacto.  
 
 Se os dados são linearmente separáveis, o algoritmo converge com um número suficiente de exemplos.  
 
@@ -208,7 +208,48 @@ Uma forma popular para otimizar o treinamento é particionar o dataset em pedaç
 
 ### Gradient Descent
 
-O processo de atualização de pesos descrito acima é ineficiente. Podemos minimizar os erros de maneira mais inteligente
+No exemplo anterior, atualizamos os pesos de maneira $(w')$ que os valores fossem atualizados usando uma fórmula contendo taxa de aprendizagem $(\eta)$ e outros parâmetros: função de erro entre score desejado$(score)$ e output $ e(score_{i},output_{i})(score_{i} - output_{i})$; valor da entrada $(x_{i})$.  
+
+$$w_{i}' = w_{i} + \Delta w_{i}$$
+
+Esse valor pode ser obtido usando o conceito de Gradient Descent. Queremos os pesos que minimizem a função de erro $(min(e(score_{i},output_{i})))$. Calculamos o valor dos pesos atuais e percorremos o espaço em direção a um valor mínimo local. Se a superfície for convexa, acharemos uma solução ótima.   
+
+Usaremos para nossa função de erro a distância euclidiana entre score desejado e output. O score desejado é a resposta ótima o output é um produto entre pesos e entrada[^22]:
+
+$$e(score_{i},output_{i}) = (score_{i} - output_{i})^{2}$$
+
+Notem que o processo envolve implementar uma função de erro entre resultados da rede e um espaço virtual de scores ótimos. O sucesso do treinamento depende de uma correspondência entre a função de distância escolhida e a distância real no espaço em que os dados foram gerados. Não sabemos se isso reflete a realidade. No exemplo, cada pixel reflete um sinal de 0 a 255.  
+A figura abaixo mostra a correspondência entre valores da medida e escala visual.   
+![](images/chap3-pixels.png)
+
+A intuição para sensibilidade à luz pode ser percebida num intervalo contínuo entre incidência total de luz (valores extremos de branco, medida: 255) e ausência total (valores extremos de preto, medida: 0). Supondo que podemos atribuir um rótulo a cada tom de cinza e que esse conjunto é ordenável pela *clareza*, dizemos que há isomorfismo de ordem entre os conjuntos.  
+
+Isso implica que a distância euclidiana deve funcionar em nossas medidas como em $$\mathbf{R}$$. Resta saber se a projeção das observações é linearmente separável. É intuitivo para seres humanos saber quais problemas serão separáveis: basta imarginar assistir um filme numa tela em preto e branco  
+
+Para descobrir o valor mínimo, vamos usar derivadas. Ou seu equivalente para funções de múltiplas variáveis, gradiente. O gradiente é um vetor/lista com as derivadas parciais daquela função.
+Matematicamente, queremos a derivada parcial do erro com respeito aos pesos.  
+
+$$frac{d}{dw}(score_{i} - output_{i})^{2}$$.  
+
+Fazemos $g(x) = x^{2} e f(x) = (score_{i} - output_{i})$ e aplicamos regra de cadeia e 'regra do tombo' para derivadas de polinômios$(frac{d}{dx}(x^{n})=nx^{n-1})$.  
+
+$$e (score_{i}, output_{i}) = g \circ f = (score_{i} - output_{i})^{2}$$  
+$$(g \circ f)' = (g'\circ f)f'$$
+$$(g'\circ f) = 2(score_{i} - output_{i})^{2-1}=2(score_{i} - output_{i})$$
+$$f' = $$
+
+$$2(score_{i} - output_{i})(score_{i} - output_{i})$$
+
+   
+
+$$\Delta w_{i} = \eta (score_{i} - output_{i}) x_{i}$$  
+
+
+![](images/chap3-walk.jpg)
+
+
+A rede deve atualizar seus pesos com base nos valores desejados e nos outputs atuais. Tratamos o problema analiticamente para encontrar a equação que descreve a variação dos pesos $\Delta W$ em função do
+
 
 \pagebreak
 
@@ -350,11 +391,7 @@ Uma vez que o texto é sobre deep leaning, precisamos falar de backpropagation .
 Como vimos nas partes 1 e 2, o treinamento consiste em ajustar os pesos W do classificador (SVM) para minimizar a função que calcula nosso erro E.
 Como alguém de olhos vendados em uma ladeira, podemos dar um passo e saber medir qual o efeito sobre a nossa altura (subimos ou descemos, + ou -), assim como a intensidade (magnitude numérica: 50cm ou 70 cm). A partir daí, definimos uma regra para movimentação.
 
-![](images/chap3-walk.jpg)
-
-Quando treinamos um único nodo (SVM), o nosso trabalho é como o de um cego tateando até descer ao lugar mais baixo. É possível seguir o caminho aos poucos. Com redes profundas, a entrada de um nodo depende da saída dos que se conectam a ele. O sistema é um pouco mais complexo.
-Vamos usar derivadas. Ou seu equivalente para funções de múltiplas variáveis, gradiente. O gradiente é um vetor/lista com as derivadas parciais daquela função.
-Matematicamente, queremos a derivada parcial da função de custo (f) com respeito às entradas. Como vimos, podemos encarar a rede neural como uma sequência de funções plugadas. Se o primeiro nó tem q(x,y), o segundo, f, tem valor f(q(x,y) ou f o q.
+Como vimos, podemos encarar a rede neural como uma sequência de funções plugadas. Se o primeiro nó tem q(x,y), o segundo, f, tem valor f(q(x,y) ou f o q.
 
 $q(x,y) = 3x+2y$ #camada inferior  
 $f(z) = z^{2}$ #camada superior  
