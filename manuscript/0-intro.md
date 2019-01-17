@@ -1,4 +1,4 @@
-![](images/0-intro-cover.png)  
+![](images/cover-rotate.jpg)  
 
 # Ciência de dados: Filosofia e aplicações.
 
@@ -11,9 +11,9 @@ Página intencionalmente deixada em branco.
 \pagebreak
 
 Versão 0.35: Introdução; Capítulo 0; Capítulo 1; Capítulo 2; Capítulo 3 (em progresso).
-11 de Janeiro de 2019
+16 de Janeiro de 2019
 
-A utilização desse livro é vedada em pesquisa e ensino para fins de desenvolvimento de tecnologia militar. A violação é passível de sanções legais vigentes no país onde se der a infração.    
+Para comentários, críticas e sugestões, entre em contato através do e-mail: felipe.c.argolo@protonmail.com.  
 
 Parte das figuras foi retirada de conteúdo público na internet. O autor declara não ter conhecimento de direitos autorais protegendo o conteúdo. Caso seja detentor de direitos de alguma das imagens, entre em contato para remoção.  
 
@@ -43,12 +43,13 @@ Em matemática aplicada, especialistas estudam a relação dessas abstrações c
 
 São exemplos de campos que fazem uso extenso das ferramentas descritas: neurociências (modelos lineares em fmri), psicometria (análise fatorial), ecologia, biologia molecular (testes estatísticos), ciências clínicas (meta-análises e inferência causal), economia, marketing, algotrading.  
 
-Este texto introduz e fornece um guia para aplicações práticas destas ferramentas a fenômenos observáveis. É destinados aos profissionais e pesquisadores trabalhando na fronteira entre matemática aplicada e ciências naturais.   
+Este texto introduz e fornece um guia para aplicações práticas destas ferramentas a fenômenos observáveis. É destinados àqueles trabalhando na fronteira entre matemática aplicada e ciências naturais.   
 
 O primeiro capítulo ilustra como o racional hipotético-dedutivo funciona para estudar teorias científicas. Aborda a relação entre ciências empíricas e três abstrações matemáticas: a distribuição normal, a distribuição t e o teorema do limite central. O teste t de Student é aplicado para comparação de medidas em amostras.  
-O segundo capítulo amplia a perspectiva de comparações e testes. Entendemos o papel de descrever relações com os conceitos de tamanho de efeito (D de Cohen) e correlações lineares ($\rho$ de Pearson). Também são introduzidas alternativas não-paramétricas aos procedimentos ($\rho$ de Spearman e teste U de Mann-Whitney). Usando o gancho das relações lineares, vemos o conceito de regressão para fazer predições. Um framework 'frequencista' e linguagem R são usados para demonstrações de exemplos e exercícios.  
+O segundo capítulo amplia a perspectiva de comparações e testes. Entendemos o papel de descrever relações com os conceitos de tamanho de efeito (D de Cohen) e correlações lineares ($\rho$ de Pearson). Também são introduzidas alternativas não-paramétricas aos procedimentos ($\rho$ de Spearman e teste U de Mann-Whitney). Usando o gancho das relações lineares, vemos o conceito de regressão para fazer predições e também o uso de diversos preditores. Um framework 'frequencista' e linguagem R são usados para demonstrações de exemplos e exercícios.  
 
-O terceiro capítulo expande o modelo de regressão linear simples (entre duas variáveis) com regressão múltipla, seguindo com um classificador linear mais geral (Support Vector Machine). Redes Neurais ilustram o uso de grafos/redes para a construção de sistemas preditivos mais complexos. Modelos são construídos do zero *(from scratch)* para ilustrar dois mecanismos importantes de otimização *(gradient descent e back propagation)*.   
+O terceiro capítulo introduz redes neurais. Começamos da inspiração biológica envolvida nas primeiras abstrações concebidas para um neurônio artificial. Conheceremos a primeiram máquina inteligente da história: Mark I Perceptron. Codificaremos um Mark I virtual do zero e observaremos a aprendizagem. Entenderemos o algoritmo de Gradient Descent, usando derivativas para encontrar mínimos na função de erro.  
+Redes Neurais expandem o poder de um neurônio. O uso de grafos/redes para a construção de sistemas preditivos mais complexos. Redes profundas incluem camadas sucessivas, permitindo transformações em sequência para resolver classes mais gerais de problemas. Entenderemos como os neurônios podem propagar erros aos outros com o mecanismo de *backpropagation*.  
 
 O quarto capítulo apresenta um racional diferente para análise. Partindo do conceito de holismo epistemológico (van Quine), reproduzimos as análises anteriores usando inferência bayesiana. Fazemos perguntas diferentes para obter informações mais ricas de nossos dados. Usamos R, Stan e um framework bayesiano para modelos simples e hierárquicos. Exploramos o poder das simulações através de Markov Chain Monte Carlo para obter estimativas difíceis de tratar analiticamente.  
 
@@ -70,21 +71,23 @@ Capítulo 0 - Ferramentas : programação com estatística básica
 
 Capítulo 1 - Os pássaros de Darwin e o método hipotético dedutivo  
 
-  * Teorema do limite central e Distribuição normal
+  * Pássaros em Galápagos
+    * Distribuição normal
+    * Ciência experimental e o Teorema do limite central
   * Método hipotético-dedutivo e Testes de hipótese
-  * Valor p
-  * Distribuição t de Student e teste t
+    * Valor p
+    * Distribuição t de Student e teste t
 
 Capítulo 2 - Sobre a natureza das relações
 
   * Prelúdio: Quem precisa do valor p?
   * Tamanho de efeito: D de Cohen
   * Correlações lineares
-  * Coeficiente de correlação $\rho$ de Pearson
-  * Predições com regressão linear
+    * Coeficiente de correlação $\rho$ de Pearson
+    * Predições com regressão linear
   * Correlações e testes não paramétricos
-  * $\rho$ de Spearman
-  * Teste U de Mann Whitney
+    * $\rho$ de Spearman
+    * Teste U de Mann Whitney
   * Regressão múltipla
 
 **Em construção:**

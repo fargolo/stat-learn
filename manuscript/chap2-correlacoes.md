@@ -84,7 +84,7 @@ Uma relação linear entre duas variáveis indica que elas estão correlacionada
 
 Isto é, valores maiores de massa correspondem a um aumento proporcional em energia. O valor de $c^{2}$ expressa essa proporção constante.  
 
-**Exemplo:** uma molécula de água pesa aproximadamente $m_{H_{2}O} =2.992×10^{-23} g$. Portanto, a energia associada é $E_{H_{2}O} = 2.992×10^{-23}*8.988*10^{16} \sim 2.689^{-6}J$. Se triplicarmos o número de moléculas de água, o mesmo acontecerá com a energia associada: $E_{3H_{2}O} = 3*E_{H_{2}O}$.  
+**Exemplo:** uma molécula de água pesa aproximadamente $m_{H_{2}O} =2.992×10^{-23} g$. Portanto, a energia associada é $E_{H_{2}O} = 2.992\cdot 10^{-23}\cdot 8.988\cdot 10^{16} \sim 2.689^{-6}J$. Se triplicarmos o número de moléculas de água, o mesmo acontecerá com a energia associada: $E_{3H_{2}O} = 3\cdotE_{H_{2}O}$.  
  
 Se a correlação é positiva, incrementos em $x$ serão proporcionais a incrementos em $y$. Se a correlação é negativa, incrementos em $x$ serão proporcionais a decréscimos em $y$.  
 
@@ -155,7 +155,7 @@ O coeficiente possui *produto-momento* em seu nome, pois usa uma abstração ori
 ### Um breve mergulho na física: Momentos
 [^12]
 
-Para adquirir uma intuição sobre o coeficiente, é interessante resgatar o conceito físico, originalmente descoberto por Arquimedes. Embora não tenha inventado a alavanca, ele descreveu os princípios matemáticos por trás dela. 
+Para adquirir uma intuição sobre o coeficiente, é interessante resgatar o conceito físico de momento, originalmente concebido por Arquimedes. Embora não tenha inventado a alavanca, ele descreveu os princípios matemáticos por trás dela. 
 
 Em *Sobre o equilíbrio dos planos*, Arquimedes declara que *Magnitudes ficam em equilíbrio quando em distância reciprocamente proporcional aos seus pesos.* 
 
@@ -182,24 +182,31 @@ Os momentos descritos acima são expressões do *primeiro momento*, uma vez que 
 
 Podemos calcular outros momentos, exponenciando o componente espacial (distância). Vamos estudar agora momentos de massa de um objeto unidimensional:  
 
-O **momento zero** de massa para um objeto é $M_{0} = \sum_{i=1}^{N} m_{i}d_{i}^{0}$. Como $d^{0}=1$, temos $M_{0} = \sum_{i=1}^{N} m_{i}$, que é simplesmente a soma das massas de todos os pontos. O momento zero é a massa total.  
+O **momento zero** de massa para um objeto é $M_{0} = \sum_{i=1}^{N} m_{i}d_{i}^{0}$. Como $d^{0}=1$, temos $M_{0} = \sum_{i=1}^{N} m_{i}$, que é simplesmente a soma das massas de todos os pontos. O momento zero é a **massa total**.  
 
-O **primeiro momento** de massa para um objeto é $M_{1} = \sum_{i=1}^{N} m_{i}d_{i}^{1}$ e determina o centro de massa em relação à dimensão $d$.  
+$$M_{0} = m$$
 
-O **segundo momento** de massa é $M_{2} = \sum_{i=1}^{N} m_{i}d_{i}^{2}$ e é o momento de inércia. Corresponde à resistência do sistema a rotações[^13].
-O n-ésimo momento $M_{n} = \sum_{i=1}^{N} m_{i}d_{i}^{2}$
+O **primeiro momento** de massa para um objeto é $M_{1} = \sum_{i=1}^{N} m_{i}d_{i}^{1}$ e determina o centro de massa em relação à dimensão $d$. É o ponto em que está o dedo em que se equilibra o pássaro da foto.  
+
+$$M_{1} = C_{m}$$
+
+O **segundo momento** de massa é $M_{2} = \sum_{i=1}^{N} m_{i}d_{i}^{2}$ e é o momento de inércia. Corresponde à resistência do sistema a rotações. Perceba que os termos $d_{i}^{2}$ estariam presentes nas área de um círculo com centro idêntico ao do objeto e raio igual à distância para o centro: $\pi d^{2}$. A resistência total a rotação é análoga à resistência oferecida pelos raios destes círculos imaginários[^13].
+
+![](images/chap2-windmills.jpg)
+
+O n-ésimo momento é dado por $$M_{n} = \sum_{i=1}^{N} m_{i}d_{i}^{n}$$.
 
 [^12]:Pappus de Alexandria, Synagoge, Livro VIII
-[^13]:Perceba que os termos $d_{i}^{2}$ estariam presentes nas área de um círculo com centro idêntico ao do objeto e raio igual à distância entre o centro: $\pi d^{2}$. https://physics.stackexchange.com/a/371165/218274
+[^13]: https://physics.stackexchange.com/a/371165/218274
 
 ### Generalizando momentos 
 
 Podemos generalizar ainda mais a abstração e calcular momentos de entidades abstratas, como variáveis aleatórias. **Melhor: já fizemos isso anteriormente!**  
 
 Seja $f(x)$ a função que descreve uma distribuição de probabilidades para a variável,  
-Assim como o **momento zero** representa a massa total, aqui ele representa a probabilidade total (1).  
-O **primeiro momento**, correspondente ao centro de massa na mecânica estática, é a **média**.    
-O **segundo momento**, correspondente ao momento inercial, é a **variância**.  
+Assim como o **momento zero** representa a soma da contribuição de cada ponto para a massa (massa total), aqui ele representa a soma das probabilidades possíveis, a probabilidade total (1).  
+O **primeiro momento** corresponde ao centro de massa na mecânica estática. Para probabilidades, é o centro, a **média**.    
+O **segundo momento** corresponde ao momento inercial e é a **variância**.  
 Os momentos **terceiro** e **quarto** normalizados informam sobre assimetrias *(skewness)* e peso de valores extremos *(kurtosis)*.  
 
 Formalmente, seja $d(x,x_{0})$ o valor da distância ao centro $x_{0}$ de referência $(x-x_{0})$, o n-ésimo momento $\mu_{n}$ é definido por:  
@@ -208,16 +215,34 @@ $$\mu_{n}= \int_{-\infty}^{\infty} d(x,x_{0})^{n}f(x)dx$$
 
 A integral acima corresponde à versão contínua da soma de partes discretas apresentadas antes para uma grandeza física, como a massa: $M_{n} = \sum_{i=1}^{N}d_{i}^{n}m_{i}$  
 
-**Momento zero**: $$\mu_{0}= \int_{-\infty}^{\infty} d(x,x_{0})^{0}f(x)dx = \int_{-\infty}^{\infty} f(x)dx = 1$$.   
-**Primeiro momento**: $$\mu_{1}= \int_{-\infty}^{\infty} d(x,x_{0})f(x)dx$$ , supondo centro em 0 $(x_{0}=0)$, temos a média, $$ \mu_{1} = \int_{-\infty}^{\infty} xf(x)dx$$, também chamado valor esperado $E[X]$.  
-**Segundo momento**: $$\mu_{2}= \int_{-\infty}^{\infty} d(x,x_{0})^{2}f(x)dx$$. Como vimos anteriormente, a soma dos quadrados dos desvios, nossa variância, $\sigma^{2} = E[(x-\mu)^{2}]$.  
+**Momento zero**: $$\mu_{0}= \int_{-\infty}^{\infty} d(x,x_{0})^{0}f(x)dx$$ 
+A soma de todas probabilidades de uma distribuição deve somar 1.  
+$$= \int_{-\infty}^{\infty} f(x)dx = 1$$.   
+**Primeiro momento**: $\mu_{1}= \int_{-\infty}^{\infty} d(x,x_{0})f(x)dx$ , supondo centro em 0 $(x_{0}=0)$, temos a média, $$ \mu_{1} = \int_{-\infty}^{\infty} xf(x)dx$$, também chamado valor esperado $E[X]$. Estende a intuição de somar as medidas e dividir pelo número de observações ao passo em que usamos uma integral para somar as infinitesimais possibilidades para $f(x)$.    
+**Segundo momento**: $$\mu_{2}= \int_{-\infty}^{\infty} d(x,x_{0})^{2}f(x)dx$$. Como vimos no capítulo introdutório, a soma dos quadrados dos desvios, nossa variância, $$\sigma^{2} = E[(x-\mu)^{2}]$$.  
+
+
+#### Sobre o Teorema do Limite Central
+Podemos entender melhor o teorema do limite central. As informações fornecidas pelos momentos são valiosas: uma função de probabilidade é totalmente definível por seus momentos.  
+O Teorema do Limite Central, de que falamos antes, é provado mostrado equivalência entre momentos da curva normal e da soma de *n* distribuições idênticas através de outras ferramentas.  
+Podemos criar uma função geradora de momentos, $M_{X}(t)=E[e^{tX}]$. Chamamos ela assim, pois sua forma polinomial via expansão de Taylor corresponde à soma $1+tX+\frac{t^{2}X^{2}}{2!}+\frac{t^{3}X^{3}}{3!}+...$.  
+O valor esperado dessa soma:  
+$$E[M_{X}(t)]=1+tE[X]+\frac{t^{2}E[X^{2}]}{2!}+\frac{t^{3}E[X^{3}]}{3!}+...$$
+$$=1+tM_{1}+\frac{t^{2}M_{2}}{2!}+\frac{t^{3}M_{3}}{3!}+...$$
+Em que $M_{n}$ corresponde ao n-ésimo momento.   
+A função característica é a transformada de Fourier da função de probabilidade, que é o mesmo que multiplicar o argumento t da função geradora de momentos pela unidade imaginária, $\phi_{X}(t)= M_{X}(it) =E[e^{itX}]$. Funções com cumulantes idênticos possuem momentos idênticos e podemos demonstrar que a função característica que a soma de $n$ distribuições iguais possui momentos idênticos aos da normal. [14]
+
+[14]: Two Proofs of the Central Limit Theorem, Yuval Filmus, 2010. http://www.cs.toronto.edu/~yuvalf/CLT.pdf
+
 
 Com os conceitos adquiridos em mãos, é fácil entender o $\rho$ de Pearson.  
+
+\pagebreak
 
 ### Calculando correlações lineares
 
 A noção de **distância** ou **desvio** se repetiu muitas vezes.  
-De fato, o coeficiente de correlação linear nasceu quando Francis Galton (1888) estudava numericamente dois problemas aparentemente distintos em antropometria [^14]:
+De fato, o coeficiente de correlação linear nasceu quando Francis Galton (1888) estudava numericamente dois problemas aparentemente distintos em antropometria [^15] :
 
 1.  **Antropologia:** Se recuperássemos de um túmulo antigo apenas um osso da coxa (fêmur) de um indivíduo, o que podereríamos dizer sobre sua altura?
 2.  **Ciência forense:** Com o intuito de identificar criminosos, o que pode ser dito sobre medidas diferentes de uma mesma pessoa?
@@ -240,14 +265,14 @@ Assim, podemos ter variáveis altamente correlacionadas positivamente negativame
 
 Observar apenas a covariância é perigoso, pois os valores dependem da unidade de medida e da dispersão dos dados. 
 
-Calculamos o coeficiente de correlação de Pearson, normalizando[^15] a covariância ao dividí-la pelo produto dos desvios-padrão:
+Calculamos o coeficiente de correlação de Pearson, normalizando[^16] a covariância ao dividí-la pelo produto dos desvios-padrão:
 $$\rho_{XX'}= \frac{cov(X,X')}{\sigma_{X}\sigma_{X'}}$$
 De forma extensa:  
 $$\rho_{XX'}= \frac{\sum_{i=1}^{N}(x_{i}-\mu_{x})(x_{i}'-\mu_{x'})}{\sqrt{\sum_{i}^{N}(x_{i}-\mu_{x})^{2}}\sqrt{\sum_{i}^{N}(x_{i}'-\mu_{x'})^{2}}}$$
 Uma boa notícia: $\rho$ segue uma distribuição conhecida, a distribuição t, com n-2 graus de liberdade. Podemos usar as ferramentas anteriores para testar hipóteses. 
 
-[^14]: Francis Galton's account of the invention of correlation. Stephen M. Stigler. Statistical Science. 1989, Vol. 4, No. 2, 73-86.  
-[^15]: Aqui, normalização tem o sentido de ajustar a escala das medidas. Não confundir com transformações para que os dados passem a ter distribuição gaussiana.  
+[^15]: Francis Galton's account of the invention of correlation. Stephen M. Stigler. Statistical Science. 1989, Vol. 4, No. 2, 73-86.  
+[^16]: Aqui, normalização tem o sentido de ajustar a escala das medidas. Não confundir com transformações para que os dados passem a ter distribuição gaussiana.  
 
 ### Exemplo prático
 
@@ -357,7 +382,7 @@ Como viemos discutindo ao longo do texto, questões filosóficas e metodológica
 
 Entretanto, temos uma boa ilustração de como ciência de dados pode nos ajudar a tomar decisões em contextos reais. O ministro da saúde de um país em desenvolvimento passa a ter métricas acessíveis para seus objetivos.   
 
-[^16]: É praticamente consenso entre especialistas que o Brasil possui problema de distribuição de profissionais, com déficit de médicos em áreas mais pobres e pouco populosas.  
+[^17]: É praticamente consenso entre especialistas que o Brasil possui problema de distribuição de profissionais, com déficit de médicos em áreas mais pobres e pouco populosas.  
 
 
 \pagebreak
@@ -413,7 +438,7 @@ $$=-\frac{n}{2}log{2\pi} - n log{\sigma} - \frac{1}{2\sigma^{2}}\sum_{i=1}^{n}(y
 
 Os parâmetros que maximizam a função de verossimilhança(likelihood) são os mesmos que maximizam a o logaritmo da função de verossimilhança(log-likelihood).  
 
-Com algum esforço[^17], encontramos fórmulas fechadas:  
+Com algum esforço[^18], encontramos fórmulas fechadas:  
 $$\hat{\beta_{1}}=\frac{cov(XY)}{\sigma_{x}^{2}}$$  
 $$\hat{\beta_{0}}=\mu_{y} - \hat{\beta_{1}}\mu_{x}$$  
 $$\hat{\sigma^{2}} = \frac{1}{n} \sum_{i=1}^{n} (y_{i}-(\hat{\beta_{0}}+\hat{\beta_{1}}x_{i}))^{2}$$  
@@ -423,7 +448,7 @@ Devemos então nos preocupar em saber se o modelo linear encontrado é bom na pr
 
 ![O primeiro gráfico de regresão linear. Ilustração de Francis Galton (1875) relação entre altura de pais e filhos.](images/chap2-galtonorig.jpg)
 
-[^17]: Detalhes das deduções dos estimadores OLS and Max. Likelihood:   https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/05/lecture-05.pdf ; https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/06/lecture-06.pdf
+[^18]: Detalhes das deduções dos estimadores OLS and Max. Likelihood:   https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/05/lecture-05.pdf ; https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/06/lecture-06.pdf
 
 \pagebreak
 
@@ -552,7 +577,7 @@ Para a relação (sigmoide), entre x e y abaixo:
 ```
 ![](images/chap2-sigpoints.png)
 
-O coeficiente de Pearson é $\rho \sim 0.936$[^18] :   
+O coeficiente de Pearson é $\rho \sim 0.936$[^19] :   
 ```r
     >cor.test(sig_data$y_vals,
     +          sig_data$x_vals)    
@@ -592,7 +617,8 @@ Como a relação é perfeitamente monotônica, os pares ordenados $(x_{i},y_{i})
 
 O coeficiente $\rho$ de Spearman é preferível quando as medidas diferem bastante de uma distribuição normal. Também oferece robustez quando é necessário lidar com *outliers*.    
 
-[^18]: Como observamos no gráfico, a correlação linear não é tão alta. O coeficiente se aproxima de 1 $\rho \sim 0.936$ pois os desvios superiores compensam simetricamente os inferiores. O exemplo reforça a importância de plotar os dados para um melhor entendimento (ver Quarteto de Anscombe). 
+[^19]: Como observamos no gráfico, a correlação linear não é tão alta. O coeficiente se aproxima de 1 $\rho \sim 0.936$ pois os desvios superiores compensam simetricamente os inferiores. O exemplo reforça a importância de plotar os dados para um melhor entendimento (ver Quarteto de Anscombe). 
+
 
 \pagebreak
 
@@ -683,9 +709,9 @@ Como podemos ver, usar duas variáveis preditoras (regressão múltipla) não co
 Um outro objetivo para a regressão múltipla é examinar o efeito modificador das variáveis acrescentadas. Em especial, é comum incluir variáveis auxiliares para corrigir estimativas.  
 
 Exemplo: queremos estimar um parâmetro $\beta_{1}$ para a relação entre altura e peso. Ajustamos um modelo: $Altura = \beta_{0}+\beta_{1}*Peso+\epsilon$. Entretanto, sabemos que a altura média de homens é maior que a de mulheres. Ao examinar a relação entre a altura e peso, podemos incluir a variável *sexo* no modelo,$Altura = \beta_{0}+\beta_{1}*Peso+\beta_{2}*Sexo+\epsilon$.  
-Nossa estimativa de $\beta_{1}$ é modificada de maneira a levar em conta os efeitos do sexo.[^29]  
+Nossa estimativa de $\beta_{1}$ é modificada de maneira a levar em conta os efeitos do sexo.[^20]  
 
-[^29]: Sexo é uma variável dicotômica (macho/fêmea). Costumamos codificá-las de forma binária (0/1; e.g: macho = 1 / fêmea = 0). Assim, um sujeito macho terá a estimativa de altura acrescida em $\beta_{2}*1$, enquanto fêmeas terão este termo zerado $\beta_{2}*0$. Chamamos esse truque de *dummy coding*.
+[^20]: Sexo é uma variável dicotômica (macho/fêmea). Costumamos codificá-las de forma binária (0/1; e.g: macho = 1 / fêmea = 0). Assim, um sujeito macho terá a estimativa de altura acrescida em $\beta_{2}*1$, enquanto fêmeas terão este termo zerado $\beta_{2}*0$. Chamamos esse truque de *dummy coding*.
 
 \pagebreak
 

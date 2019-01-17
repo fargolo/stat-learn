@@ -29,16 +29,15 @@ Antes da publicação de A origem das Espécies, o caso dos fringilíddeos (nome
 [^4]: *É bastante notável que uma gradação quase perfeita na estrutura desse grupo possa ser traçada na forma do bico, desde um excedendo as dimensões do maior dos pardais bico-gordo, até outro diferindo pouco do papa-amoras.* Tradução livre. The Voyage of the Beagle (1839). 
 [^5]: *(...)[ao] ver esta gradação e diversidade em estrutura em um pequeno, intimamente relacionado grupo de pássaros, é possível imaginar que, a partir de poucos pássaros deste arquipélago, uma espécie foi escolhida e modificadas para certos fins.* Tradução livre. Darwin, Charles (1845), Journal of researches into the natural history and geology of the countries visited during the voyage of H.M.S. Beagle round the world, under the Command of Capt. Fitz Roy, R.N (2nd. ed.), London: John Murray 
 
-\pagebreak
-
-
 Darwin observou que a variedade dos bicos era adaptada à dieta de cada grupo: frutas, nozes, insetos. Os de bico pontudo conseguem comer frutas e arilo da semente do cacto, enquanto os de bico curto estraçalham a base do cacto e comem sua polpa.  
 
 A inspeção visual de um naturalista treinado foi capaz detectar essas nuances. Sob sua percepção, havia um total de 3 espécies em 4 ilhas: 1 na Ilha Charles, 1 na Ilha Albemarle e 1 nas ilhas James e Chatham.  Inicialmente, notou que os pássaros eram semelhantes àqueles vistos no Chile. Darwin coletou 26 pássaros e os levou de volta para que um ornitólogo os estudasse com mais detalhe.  O especialista (John Gould) sugeriu que os 26 pássaros representavam 12 espécies completamente novas, número que posteriormente passou para 25. Hoje, os taxonomistas sugerem um número de 15 espécies para os fringilíddeos de Darwin.   
 
 Pensaremos como biólogos interessados em estudar quantitativamente o tamanho dos bicos. Usaremos estatística e probabilidades para testar hipóteses e fazer conclusões mais acuradas sobre as medidas, explorando diferenças entre os grupos de pássaros de Galápagos.  
 
-### A distribuição normal e um curioso teorema
+\pagebreak
+
+## A distribuição normal e um curioso teorema
 
 Em trabalhos empíricos, é comum a suposição de que medidas de uma variável aleatória vêm de uma população com distribuição normal. A seguir, vamos estudar o comportamento dessa função probabilística.
 
@@ -46,8 +45,11 @@ Abraham de Moivre (26 May 1667 – 27 November 1754) , sem financiamento exclusi
 
 ![Figura 2. Distribuição binomial com p = 0.5 (e.g: lançamento de uma moeda). Para n >1, valores extremos indicam resultados com apenas caras (cauda à esquerda, 0000…) ou coroas (cauda à direita, 1111…)](images/chap1-binomials.png)
 
+A distribuição de Bernoulli descreve o lançamento de moedas. Tomando os valores dicretos de caras (0) e coroas (1), ela assume 1 com probabilidade $p$ e 0 caso contrário $(1-p)$.
+Em uma moeda honesta, temos uma distribuição uniforme sobre o domínio, $X={0,1}$:  $P(1) = P(0) = 0.5$. 
 
-Para $n = 1$, temos uma distribuição uniforme $P(1) = P(0) = 0.5$. Para um número maior de lançamentos, os resultados mais frequentes são números parecidos de caras (0s) e coroas (1s).   
+Se somarmos distribuições de Bernoulli, obtemos a distribuição binomial. Cada observação é um conjunto de lançamentos. Tamando $p=0.5$, resultados mais frequentes são números parecidos de caras (0) e coroas (1).   
+
 Para $n = 10$, é muito mais provável obter um número de caras próximo a 5 (centro das curvas) que um resultado com 9 ou 10 lançamentos iguais. É possível demonstrar que aumentar o valor de n faz que com que a distribuição se aproxime da seguinte curva contínua:  
 
 ![Figura 3: Distribuição normal (gaussiana), cujo formato lembra o de um sino ](images/chap1-norm-one.png)
@@ -58,7 +60,7 @@ Primeiro, de Moivre deduziu a solução para o problema das moedas $(p = \frac{1
 
 $$P(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}}$$
 
-O número misterioso em questão é o número de Euler $(e \sim 2.72…)$, que será melhor explicado no capítulo 3. 
+O número misterioso em questão é o número de Euler $(e \sim 2.72…)$, que será melhor explicado no capítulo 4. 
 A fórmula consiste em um fator, $\frac{1}{\sqrt{2\pi}}$ (aproximadamente 0.4), multiplicando o resultado da exponencial.  
 Em R, podemos definir:  
 
@@ -160,10 +162,10 @@ $E(X) = \sum_{i=1}^{11} E(U_{i} \sim (1,6)) = 11*3.5 = 38.5$
 O valor 38.5 corresponde aproximadamente ao centro da distribuição resultante  (Figura 2, canto inferior direito)
 Entretanto, a distribuição muda de forma! Sem muito esforço, é notável a semelhança com a curva normal, com valores extremos menos frequentes e simetricamente afastados da média (valor esperado), que define o valor máximo.  
 
-É possível provar que a soma de muitas distribuições de uma mesma família converge para a distribuição normal em qualquer caso. Desde que estas sejam independentes. A esse resultado damos o nome de Teorema do Limite Central.[^6] 
+É possível provar que a soma de muitas distribuições de uma mesma família converge para a distribuição normal em qualquer caso. Desde que estas sejam independentes. A esse resultado damos o nome de Teorema do Limite Central. A prova formal pode ser consultada em outro local, [^6] mas voltaremos a ela.   
 Este resultado tem uma sutil importância para o estudo dos fenômenos naturais através de experimentos. 
 
-[^6]:Prova formal em http://www.cs.toronto.edu/~yuvalf/CLT.pdf . Ela se dá provando a convergência de momentos, um conceito que entenderemos à frente. 
+[^6]: Yuval Filmus. 2010. Two Proofs of the Central Limit Theorem http://www.cs.toronto.edu/~yuvalf/CLT.pdf . Ela se dá mostrando a convergência de momentos entre a soma e gaussiana, um conceito que entenderemos no capítulo a seguir.
 
 ### Ciência experimental e o Teorema do Limite Central
 
