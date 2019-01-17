@@ -88,9 +88,9 @@ $\zeta{(s)} = 2^s \pi^{s-1} \sin{\left(\frac{\pi s}{2}\right)} \Gamma{(1-s)} \ze
 
 Although this is only definable for the analytic continuation, the intuition holds for the series. We could also show that multiplying $s$ by negative multiples of 2 is the same as:
 $$s=-(a+bi) \rightarrow 2s=2k*-(a+bi)$$. 
-$$\sum_{1}{\intfty}\frac{1}{n^2a}*\frac{1}{n^2bi}$$
+$$\sum_{1}{\infty}\frac{1}{n^2a}*\frac{1}{n^2bi}$$
 
-For $Re(s)>1$ it is easy to visualize that large dimensions of $Re(s)$ result in orbits with large segments which do not rotate enough to turn. The analytical continuation project those orbits symmetrically, emerging with associated angles in the left quadrants. 
+For $Re(s)>1$ it is easy to visualize that large dimensions of $Re(s)$ result in orbits with large segments which do not rotate enough to turn the opposite way. The analytical continuation project those orbits symmetrically, emerging with associated angles in the left quadrants. 
 
 The operation changes the dot product by squaring both parts at each weigthed product of ortogonal parts. 
 $$\vec{s'}^{2}=\vec{Re(s)}^2+\vec{Im(s)}^2$$
@@ -98,14 +98,35 @@ Hence, the mapping
 $$f : \zeta(s) \rightarrow \zeta(2s), Re(s)<0, Im(s)=0$$.
 preserves the angle $\theta$ with the center $\zeta(-2s)$.  
 
+### Riemann Hypothesis
 
-The next zeros are related to the $\zeta$ function 
+The next (non-trivial) zeros are supposed to be related to the $\zeta$ function when $Re(s)=\frac{1}{2}$ and several seemenly related identities have been shown. 
 
-$\zeta(0) = \frac{-1}{2}$.
-$$\sum_{1}{\infty}\frac{1}{n^s}$$
+Excluding the trivial zeros, $\zeta(s)=0$ only when $0<s<1$. The envelope of spirals centered at the orbit $\zeta(\frac{1}{2}+bi)$ is called critical strip. 
 
+The orbit $\zeta(\frac{1}{2}+bi)$ is the vectorial decomposition of the orbit, or the sum of rod segments.   
+$$\sum_{1}^{\infty}\frac{1}{n^{(\frac{1}{2}+bi)}}$$  
+
+How to find the adequate orbit? 
+In order for extra zeros to happen in the orbit, the net vectorial sum projection on the real axis must be 0.
+
+Consider $s$ along the interval $S = 0 < 1/2+bi < 1$. No rotation, $Im(s)=0$, is associated with the divergent series:
+$$\frac{1}{\sqrt 1}+\frac{1}{\sqrt 2}+\frac{1}{\sqrt 3}+\frac{1}{\sqrt 4}+\frac{1}{\sqrt 5}+\frac{1}{\sqrt 6}+...$$
+And the analytic continuation of $\zeta$:
+$$\zeta(1/2)=-(\sqrt{2}+1)\sqrt{\frac{2}{\pi}}
+\int_0^\infty\frac{\sqrt{x}\ \text{d}x}{\text{cosh}^2\ x}$$
+$$\sim-1.46035450880958$$
+
+components must be co-periodic. The line segments should decrease their size  
+*First moment* The second moment must increase periodically at a spefic rate. 
+
+Consider the 
+
+
+$$\zeta(s)=\sum_{1}{\infty}\frac{1}{n^s}$$
 $$\zeta(2s)=\sum_{1}^{\infty}\frac{1}{n^2s}$$.
 
+$\zeta(0) = \frac{-1}{2}$.
 
 
 For
