@@ -61,29 +61,21 @@ $z_{s_{n}}=z_{s_{n-1}}+z_{s_{n-2}}+...+z_{s_{1}}$
 
 This peculiar fish rod has a spinner. When it is pulled towards the bottom, one may spin it and this will cause the rod to rotate periodically, perpendicular to the real axis.  
 
-Consider the orbit formed by the last point in each segment as the rod is being pulled. 
+Consider the orbit formed by the last point in each segment in a spiral towards the orbit, the attractor. 
 
 The vectorial decomposition of the spiral is $z_{s_{n}}=z_{s_{n-1}}+z_{s_{n-2}}+...+z_{s_{1}}$. 
 
-When $\zeta(s)$ approaches 0, means that the vectorial sums.
-
-
-Tho
-This orbit takes the form of an inspiral which asymptoptically converges to an orbit, the attractor.   
+When $\zeta(s)$ approaches 0, that the vectorial sum approaches the center of the real axis. This is equal to rotate the object enough to cancel its projection on the real axis. 
  
  
- 
-As we rotate the spiner, the spiral keeps approaxing its limit. Some relationships have been observed between the non0trivialZeta 
-made between As each infinitesimal line segment is added, the spinner rotates the rod periodically around the imaginary axis.
-
-in a way that the rod becomes balanced around the point. 
-
 The first moment is $M_{1}$. If the $n_{th}$ line segment length is given by $\frac{1}{n^{s}}$, we evaluate the moment around the real axis by the sum the distances $M_{1} = \sum_{1}^{\infty}\frac{1}{n^{s}}$.  
 
 Each rod is uniquely determined by its momentums. The second momentum is:
 $M_{2} = \sum_{1}^{\infty}(\frac{1}{n^{s}})^{2}$. Each $Re(s)$ determines a family of rods. We hereby show that the scenario in which $Re(s)=\frac{1}{2}$ is the one containing non-trivial zeta zeros.  
 
 ### Non-trivial zeros
+
+Re(s)=1/2 describes orbit in which the critical strip is the envelope.  é o atrator.
 
 Consider that a hypothetical fish rod is bei pull.
 The second moment, inertial  by the generating series $\zeta(1)=\sum{1}^{\infty}1/n^s$
