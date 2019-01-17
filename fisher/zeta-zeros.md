@@ -75,10 +75,13 @@ $M_{2} = \sum_{1}^{\infty}(\frac{1}{n^{s}})^{2}$. Each $Re(s)$ determines a fami
 
 ### Non-trivial zeros
 
-Re(s)=1/2 describes orbit in which the critical strip is the envelope.  é o atrator.
+Assume the line along $Re(s)=\frac{1}{2}$ defines the atractor of an envelope defined by the orbits of $\zeta$ in the critical strip $0<s<1$ as a function of $s$. 
+It follows that this spiral is the one in which rotations from the vectorial decompostion cancel. 
 
-Consider that a hypothetical fish rod is bei pull.
-The second moment, inertial  by the generating series $\zeta(1)=\sum{1}^{\infty}1/n^s$
+The second momend (e.g: moment of inertia)  by the generating series $\zeta(1)=\sum{1}^{\infty}1/n^s$
+
+The non-trivial zeros. The $Im(s)=$ Consider that a hypothetical fish rod is being pull.
+
 
 
 G. H. Hardy, “Sur les zéros de la function ζ(s) de Riemann,” C. R. Acad. Sci. Paris, 158, 1012–1014 (1914).
