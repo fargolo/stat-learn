@@ -112,10 +112,28 @@ In order for extra zeros to happen in the orbit, the net vectorial sum projectio
 
 Consider $s$ along the interval $S = 0 < 1/2+bi < 1$. No rotation, $Im(s)=0$, is associated with the divergent series:
 $$\frac{1}{\sqrt 1}+\frac{1}{\sqrt 2}+\frac{1}{\sqrt 3}+\frac{1}{\sqrt 4}+\frac{1}{\sqrt 5}+\frac{1}{\sqrt 6}+...$$
-And the analytic continuation of $\zeta$:
+This is the sum of line segments with lenghts $\sum_{1}{\infty}\frac{1}{sqrt{n}}$.
+And the analytic continuation of $\zeta$, which would reflect the first moment related to the real axis:
 $$\zeta(1/2)=-(\sqrt{2}+1)\sqrt{\frac{2}{\pi}}
 \int_0^\infty\frac{\sqrt{x}\ \text{d}x}{\text{cosh}^2\ x}$$
 $$\sim-1.46035450880958$$
+
+The second moment of the line segments is: 
+$$M_{2}=\sum_{1}^{\infty}\frac{1}{{n^{\frac{1}{2}}}}^{2}$$
+$$=\sum_{1}{\infty}\frac{1}{n}$$
+Therefore, the $M_{2}$ associated with 0 rotation is that of is the diverging harmonic series. Its truncation (harmonic number) can be expressed analytically as:
+
+$$H = \gamma + \psi(n+1)$$
+where $\gamma$ is the Euler-Mascheroni constant and $\psi(x)$ is the logarithmic derivative of the gamma function. 
+$$\frac{d}{ds}ln{\Gamma(s)}$$
+
+This shows that $$M_{2}$$ can be approximated linearly by a linear combination of a $(\gamma)$ and
+
+Each value of $s$ determine unique moments for the line segments. 
+Considering the dot products,
+
+For the atractor of an orbit to be centered at zero, the second moment totally compensate the rotation by vectorial sums.
+$$M_{2}(s)=\sum_{1}^{\infty} \frac{1}{{n^{\frac{1}{2}}}}^{2}$$
 
 components must be co-periodic. The line segments should decrease their size  
 *First moment* The second moment must increase periodically at a spefic rate. 
