@@ -80,6 +80,34 @@ It follows that this spiral is the one in which rotations from the vectorial dec
 
 The second moment $M_{2}$(e.g: moment of inertia) of the spiral formed by $\zeta(s)$ is then given by the generating series $$\zeta(2s)=\sum_{1}^{\infty}\frac{1}{n^2s}$$.
 
+The trivial orbits intersecting the real axis are the ones in which the second moment increases by an equal factor to its angle of rotation.
+
+These are given by $\zeta(-2ks), k=1,2,4,...$, as a direct consequence of  
+the trivial period for $\sin{(\frac{\pi s}{2})}$ in the analytic continuation.
+$\zeta{(s)} = 2^s \pi^{s-1} \sin{\left(\frac{\pi s}{2}\right)} \Gamma{(1-s)} \zeta{(1-s)}$  
+
+Although this is only definable for the analytic continuation, the intuition holds for the series. We could also show that multiplying $s$ by negative multiples of 2 is the same as:
+$$s=-(a+bi) \rightarrow 2s=2k*-(a+bi)$$. 
+$$\sum_{1}{\intfty}\frac{1}{n^2a}*\frac{1}{n^2bi}$$
+
+For $Re(s)>1$ it is easy to visualize that large dimensions of $Re(s)$ result in orbits with large segments which do not rotate enough to turn. The analytical continuation project those orbits symmetrically, emerging with associated angles in the left quadrants. 
+
+The operation changes the dot product by squaring both parts at each weigthed product of ortogonal parts. 
+$$\vec{s'}^{2}=\vec{Re(s)}^2+\vec{Im(s)}^2$$
+Hence, the mapping
+$$f : \zeta(s) \rightarrow \zeta(2s), Re(s)<0, Im(s)=0$$.
+preserves the angle $\theta$ with the center $\zeta(-2s)$.  
+
+
+The next zeros are related to the $\zeta$ function 
+
+$\zeta(0) = \frac{-1}{2}$.
+$$\sum_{1}{\infty}\frac{1}{n^s}$$
+
+$$\zeta(2s)=\sum_{1}^{\infty}\frac{1}{n^2s}$$.
+
+
+
 For
 @ s > 1 
 @ 0<Re(s)>1
