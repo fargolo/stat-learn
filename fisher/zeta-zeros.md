@@ -156,11 +156,6 @@ For $s \sim \infty$:
 $$M_{2} \sim  (-\frac{1}{s} + \frac{1}{floor(s)}) + 1/s + 1/2s^2 + 1/6x^3 - 1/30s^5 + O((1/x)^6) - 1/s^2$$
 $$ =  (-\frac{1}{s} + \frac{1}{floor(s)}) + 1/s + 1/6x^3 - 1/30s^5 + O((1/x)^6)$$
 
-
- 
-
-
-
 ---  
 ---  
 ---  
@@ -193,17 +188,10 @@ components must be co-periodic. The line segments should decrease their size
 
 Consider the 
 
-
 $$\zeta(s)=\sum_{1}{\infty}\frac{1}{n^s}$$
 $$\zeta(2s)=\sum_{1}^{\infty}\frac{1}{n^2s}$$.
 
 $\zeta(0) = \frac{-1}{2}$.
-
-
-For
-@ s > 1 
-@ 0<Re(s)>1
-@ s < 
 
 The non-trivial zeros. The $Im(s)=$ Consider that a hypothetical fish rod is being pull.
 
