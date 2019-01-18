@@ -127,17 +127,55 @@ $$=\sum_{1}{\infty}\frac{1}{n}$$
 Therefore, the $M_{2}$ associated with 0 rotation is that of is the diverging harmonic series. Its truncation (harmonic number) can be expressed analytically as:
 
 $$H = \gamma + \psi(n+1)$$ 
-where $\gamma$ is the Euler-Mascheroni constant and $\psi(x)$ is the logarithmic derivative of the gamma function. 
+where $\gamma$ is the Euler-Mascheroni constant and $\psi(x)$ is the logarithmic derivative of the gamma function. The digamma,
 $$\frac{d}{ds}ln{\Gamma(s)}$$
+$$=\frac{\Gamma(s)'}{\Gamma(s)}$$
 
-$\gamma$ is the pole of first order, its principal value exists and is equal to the Euler–Mascheroni constant, the limit of $-ln n + \sum_{k=1}^{n}1/k$ as $n$ increases to infinity.
+$\gamma$ is the pole of first order, its principal value exists and is equal to the Euler–Mascheroni constant, the limit of $-ln (n) + \sum_{k=1}^{n}1/k$ as $n$ increases to infinity.
+Also,
+$$\gamma = \int_{0}^{\infty} (-\frac{1}{x} + \frac{1}{floor(x)}) dx$$
+And
+$$\psi(s+1) = \psi(s)+\frac{1}{s}$$
+$$=\frac{\Gamma(s)'}{\Gamma(s)}+\frac{1}{s}$$
 
-Therefore, $M_{2} \sim H = \gamma + \psi(n+1)$
+Notice that the moment of inertia $M_{2}$ for large values of s given by:
+$$M_{2} \sim H = \gamma + \psi(s+1)$$
+Where $\gamma$ is limit of an integral and $\psi(s+1)=\psi(s)+\frac{1}{s}$ :
+$$= \int_{0}^{s} (-\frac{1}{s} + \frac{1}{floor(s)}) ds + \frac{d}{ds}ln{\Gamma(s)} + 1/s$$
+Taking the derivative of the second moment with respect to $s$
+$$\frac{d}{ds} ln(x) = 1/x, \frac{d}{dx} x^{-1} =  \frac{-1}{x^2} \rightarrow$$
+$$=  \frac{d}{ds}\int_{0}^{s}(-\frac{1}{s} + \frac{1}{floor(s)}) + \frac{d^2}{ds}ln{\Gamma(s)} + \frac{d}{ds}\frac{1}{s}$$
+The second derivative of the $\Gamma$ function is the first derivative of $\psi(s)$. Its Laurent series at $s=0$ and $\infty$:
+$$1/s^2+ \pi^2/6 + s\psi(s)''+\frac{\pi^2s^2}{30}+ O(s^3)$$
+$$1/s + 1/2s^2 + 1/6x^3 - 1/30s^5 + O((1/x)^6)$$
+
+For $s \sim 0$:
+$$M_{2} \sim  (-\frac{1}{s} + \frac{1}{floor(s)}) + 1/s^2+ \pi^2/6 + s\psi(s)''+\frac{\pi^2s^2}{30}+ O(s^3) - 1/s^2$$
+$$= (-\frac{1}{s} + \frac{1}{floor(s)}) + \pi^2/6 + s\psi(s)''+\frac{\pi^2s^2}{30}+ O(s^3)$$
+For $s \sim \infty$:
+$$M_{2} \sim  (-\frac{1}{s} + \frac{1}{floor(s)}) + 1/s + 1/2s^2 + 1/6x^3 - 1/30s^5 + O((1/x)^6) - 1/s^2$$
+$$ =  (-\frac{1}{s} + \frac{1}{floor(s)}) + 1/s + 1/6x^3 - 1/30s^5 + O((1/x)^6)$$
+
+
+ 
+
+
+
+---  
+---  
+---  
+
+$$= (-\frac{1}{s} + \frac{1}{floor(s)}) + \frac{d}{ds} \frac{1}{\Gamma(s)} - s^{-2}$$
+
+$$= (-\frac{1}{s} + \frac{1}{floor(s)}) + \frac{d}{ds} \frac{1}{\Gamma(s)}  - s^{-2}$$
+
+
+$$= \int_{0}^{s} (-\frac{1}{s} + \frac{1}{floor(s)}) dx + \psi(s) + \frac{1}{s}$$
+The value is given by the logarithmic derivative of the gamma function until that moment $$psi(s)$$ added with s-1$\frac{1}{s}$
+
+Hence, the moment is given 
 
 The digamma is the derivative logarithmic of the gamma function. Considering products of successive rotations, the gamma function continues the factorials to real and complex numbers. 
-The digamma,
-
-$$\frac{d}{ds}ln{\Gamma(s)}=\frac{\Gamma(s)'}{\Gamma(s)}$$
 
 ![](digamma.png)
 
