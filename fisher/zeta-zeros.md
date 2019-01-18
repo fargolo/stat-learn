@@ -96,7 +96,7 @@ The operation changes the dot product by squaring both parts at each weigthed pr
 $$\vec{s'}^{2}=\vec{Re(s)}^2+\vec{Im(s)}^2$$
 Hence, the mapping
 $$f : \zeta(s) \rightarrow \zeta(2s), Re(s)<0, Im(s)=0$$.
-preserves the angle $\theta$ with the center $\zeta(-2s)$.  
+preserves the angle $\theta$ with the center $\zeta(-2s)$ when the geodesics of the system have no null curvature.  
 
 ### Riemann Hypothesis
 
@@ -109,6 +109,9 @@ $$\sum_{1}^{\infty}\frac{1}{n^{(\frac{1}{2}+bi)}}$$
 
 How to find the adequate orbit? 
 In order for extra zeros to happen in the orbit, the net vectorial sum projection on the real axis must be 0.
+
+![Differences between harmonic series and natural logarithm (blue area) converge to Euler-Mascheroni constant, William Demchick (Kiwi128@Wikipedia)](Gamma-area.svg.png)
+
 
 Consider $s$ along the interval $S = 0 < 1/2+bi < 1$. No rotation, $Im(s)=0$, is associated with the divergent series:
 $$\frac{1}{\sqrt 1}+\frac{1}{\sqrt 2}+\frac{1}{\sqrt 3}+\frac{1}{\sqrt 4}+\frac{1}{\sqrt 5}+\frac{1}{\sqrt 6}+...$$
@@ -123,11 +126,23 @@ $$M_{2}=\sum_{1}^{\infty}\frac{1}{{n^{\frac{1}{2}}}}^{2}$$
 $$=\sum_{1}{\infty}\frac{1}{n}$$
 Therefore, the $M_{2}$ associated with 0 rotation is that of is the diverging harmonic series. Its truncation (harmonic number) can be expressed analytically as:
 
-$$H = \gamma + \psi(n+1)$$
+$$H = \gamma + \psi(n+1)$$ 
 where $\gamma$ is the Euler-Mascheroni constant and $\psi(x)$ is the logarithmic derivative of the gamma function. 
 $$\frac{d}{ds}ln{\Gamma(s)}$$
 
-This shows that $$M_{2}$$ can be approximated linearly by a linear combination of a $(\gamma)$ and
+$\gamma$ is the pole of first order, its principal value exists and is equal to the Euler–Mascheroni constant, the limit of $-ln n + \sum_{k=1}^{n}1/k$ as $n$ increases to infinity.
+
+Therefore, $M_{2} \sim H = \gamma + \psi(n+1)$
+
+The digamma is the derivative logarithmic of the gamma function. Considering products of successive rotations, the gamma function continues the factorials to real and complex numbers. 
+The digamma,
+
+$$\frac{d}{ds}ln{\Gamma(s)}=\frac{\Gamma(s)'}{\Gamma(s)}$$
+
+![](digamma.png)
+
+
+This shows that $$M_{2}$$ can be approximated by a linear combination of a constant $(\gamma)$ and
 
 Each value of $s$ determine unique moments for the line segments. 
 Considering the dot products,
