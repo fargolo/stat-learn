@@ -82,10 +82,22 @@ The first and the second moment determine a unique ratio for each pair $\zeta(2R
 
 We hereby show that the scenario in which $Re(s)=\frac{1}{2}$ is the one containing non-trivial zeta zeros.   
 
-### Zeros of zeta
+### Non-trivial zeros of zeta
 
-When $\zeta(s)$ approaches 0, that the vectorial sum approaches the center of the real axis. This is equal to rotate the object enough to cancel its projection on the real axis. 
- 
+When $\zeta(s)$ approaches 0, the vectorial sum approaches the center of the real axis. This is equal to rotate the object enough to cancel its projection on the real axis. 
+
+In that case, the spiral has its center on 0. The value $(Im(\zeta(s))$ as the projection of a vector $\vec{v_{s}}$ onto the imaginary axis.
+
+The cross product $Re(\zeta(s)) \times Im(\zeta(s))$ defines the converging spiral. The related second moment is related to the scaping velocity by the length of the spiralad arch, which converges to $\zeta(s)$.  
+
+
+#### Conditons for non-trivial zeros
+The non-trivial zeros occur in the orbit in which the attractor associated with $Re(s)$ is at the spiral 
+
+in which the second moment has non-trivial trivial periods.
+
+The if $\vec{v_{s}}$ makes angle $\theta + \frac{\pi}{2}$ with the origin of the real axis, then $Im(\vec{v_{s}})$
+  
 The first moment is $M_{1}$. If the $n_{th}$ line segment length is given by $\frac{1}{n^{s}}$, we evaluate the moment around the real axis by the sum the distances $M_{1} = \sum_{1}^{\infty}\frac{1}{n^{s}}$.  
 
 
