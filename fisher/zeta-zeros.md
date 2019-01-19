@@ -10,7 +10,7 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 
 From Kolmogorov axioms and a measure $M$, this is true if we accept Cantor's theorem on the cardinality of the continuum.  
  
-We define homeomorphic mappings $M$ between sets of orbits in this topological space and probability functions $f$ of complex random variables $s$ : the $M_{n}$ moments, defined after real axis projections of $Re(s)$. We demonstrate a bijective relation between the set $S_{n}$ of $\zeta$ spirals and the lines with fixed $Re(s)$.  
+We define homeomorphic mappings $M$ between sets of orbits in a topological space and probability functions of complex random variables $s$. The $M_{n}$ moments, a function of the real axis projections $Re(s)$, define bijective relation between the set $S_{n}$ of $\zeta$ spirals and the lines with fixed $Re(s)$.  
 
 We show that the set of spirals whose arcs constinouly converge to non-trivial values of $Re(\zeta(s))=0$, the vector magnitudes must be gradually reduced in magnitude. The horizontal distance to the attractor must converge to 0 from both sides at a very specific rate involving the harmonic series.  
 
