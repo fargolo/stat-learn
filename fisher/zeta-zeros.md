@@ -13,19 +13,22 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 ## Abstract
 *Abstract*: The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $R(s)=\frac{1}{2}+\theta i$.
 
-From Kolmogorov axioms and a homeomorphic mapping $M_{n}$ of $\zeta(s^n)$, this is true if we accept Cantor's theorem on the cardinality of the *continuum*.  
- 
-We define homeomorphic mappings $M$ of sets of orbits in a topological space and probability functions of complex random variables $s$. The $M_{n}$ moments, a function of the real axis vectorial projections $Re(s)$, define a injective (one-to-one) relation between the sets $S_{n}$ of $\zeta$ spirals and the lines $Re(s)$ parallel to the imaginary axis.  
+Assuming axioms of complex analysis and probability theory, the hypothesis is true as a consequence of Cantor's theorem on the cardinality of the *continuum*.  
 
-Assume a potentially non empty set of spirals $(S_{0})$ whose arcs, defined by $M_{2}(s)$, constinously rotate, as function of $s$, towards non-trivial values of $Re(\zeta(s))=0$.  
+Using Kolmogorov axioms of probability and a homeomorphic mapping $M_{n}$ of $\zeta(s^n)$, 
+ 
+We define homeomorphic mappings $M$ between sets of orbits in a topological space and probability functions of complex random variables $s$. $M_{n}$ defines a injective (one-to-one) relation between the sets $S_{n}$ of $\zeta$ spirals and the lines $Re(s)$ parallel to the imaginary. 
+
+Assume a potentially non empty set of spirals $(S_{0})$ whose arcs constinously rotate as a function of $s$ towards non-trivial values of $Re(\zeta(s))=0$.  
 Using standard analysis, we demonstrate that the $\epsilon$ distance to the attractor must converge to 0 at a very specific rate periodic rate involving the harmonic series. 
 
-It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$. Making it a (possible) element of this set.
+It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$. Making it a possible element of this set.
 
-The location of the unique attractor can by obtained by calculating the limit of the second moment when $s \rightarrow \infty$, which identifies the spiral as $Re(s)=1/2 + \theta i$ as the only element of $S_{0}$. These is proved in the identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm.  
-The value of $Re(s_{non-trivial})={1}{2}$ is a direct consequence of cardinal inequality between rational numbers in the harmonic series $C(\mathbb{Q}) = C(\mathbb{N})= \aleph$) and uncountably infinite real numbers. 
+The spiral converges towards the unique attractor fixed at $Re(\zeta{s})=0$. The total rotation angle is defined by the second moment when $s \rightarrow \infty$. The identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm identifies the spiral with orbits $s=1/2 + \theta i$ as the only element of $S_{0}$.  
+  
+The value of $Re(s_{non-trivial})={1}{2}$ is a direct consequence of cardinal inequality between rational numbers in the harmonic series $C(\mathbb{Q}) = C(\mathbb{N})= \aleph$) and uncountably infinite real numbers.  
 
-We examine axiomatic systems under which the conclusion holds and give geometrical demonstrations for previously described identities.  
+We examine axiomatic systems under which the conclusion holds and give geometrical demonstrations for other previously described identities.  
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
 
