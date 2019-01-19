@@ -16,8 +16,10 @@ We use moments defined after probability functions to prove uniqueness of orbits
 
 ## Introduction
 
+The zeta function may be formally defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, which exists for $Re(s) > 1$.  
+Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(-2n);n=1,2,3,4,..., n \geq 1)$, all other zeros would be images of $s$, being $Re(s)=1/2$. Several identities have being discovered on the effort of proving this hypothesis. We outline a proof based on probabilistic axiomatization.
 
-G. H. Hardy proved that infinitely many nontrivial zeros exist for $Re(s)=\frac{1}{2}$. The densisty of zeros on the critical line is at least 41% of all nontrivial zeros of $\zeta(s)$. Numerical calculations have verified the fist $10^13$. In this paper, we provide show that all non-trivial zeros of the zeta have $Re(s)=\frac{1}{2}$.  
+G. H. Hardy proved that infinitely many nontrivial zeros exist for $Re(s)=\frac{1}{2}$. The densisty of zeros on the critical line is at least 41% of all nontrivial zeros of $\zeta(s)$. Numerical calculations have verified the fist $10^13$.$^{1,2,3}$   
 
 the second moment of the generating series for $\zeta(s)$. This moment determines rotation angles of an object. We show that $Re(s)=\frac{1}{2}$ provides the unique moment to grantee non-trivial zeros.  
 
@@ -201,10 +203,10 @@ $\zeta(0) = \frac{-1}{2}$.
 
 The non-trivial zeros. The $Im(s)=$ Consider that a hypothetical fish rod is being pull.
 
-G. H. Hardy, “Sur les zéros de la function ζ(s) de Riemann,” C. R. Acad. Sci. Paris, 158, 1012–1014 (1914).
-H. M. Bui, B. Conrey, and M. P. Young, “More than 41% of the zeros of the zeta function are on the critical line,” Acta Arith., 150,
+1. G. H. Hardy, “Sur les zéros de la function ζ(s) de Riemann,” C. R. Acad. Sci. Paris, 158, 1012–1014 (1914).
+2. H. M. Bui, B. Conrey, and M. P. Young, “More than 41% of the zeros of the zeta function are on the critical line,” Acta Arith., 150,
 35–64 (2011).
-X. Gourdon, “The 1013 first zeros of the Riemann zeta function and zeros computation at very large height,” http:// num-
+3. X. Gourdon, “The $10^13$ first zeros of the Riemann zeta function and zeros computation at very large height,” http:// num-
 bers.computation.free.fr (2004).
 A. LaurincikasD. Siauciunas. On Zeros of Periodic Zeta Functions. Ukrainian Mathematical Journal. November 2013, Volume 65, Issue 6, pp 953–958
 Gourdon, Xavier (2004), The 1013 first zeros of the Riemann Zeta function, and zeros computation at very large height.
