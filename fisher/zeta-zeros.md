@@ -6,12 +6,20 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 
 
 ## Abstract
-*Abstract*: The zeta function is defined as the analytic continuation of the  Drichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, defined for $Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(s);s=-2; n=1,2,3,4,...)$, all other zeros would be images of $s$, being $Re(s)=1/2$. Several identities have being discovered on the effort of proving this hypothesis. We define values of $\zeta(s)$ in vector spaces  homeomorphic to the $C^0$ complex space equiped with 0 Cliford Algebra. 
+*Abstract*: The zeta function is defined as the analytic continuation of the  Drichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, defined for $Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(s);s=-2; n=1,2,3,4,...)$, all other zeros would be images of $s$, being $Re(s)=1/2$. Several identities have being discovered on the effort of proving this hypothesis. We study homeomorphims of $\zeta(s)$ in the $C^0$ complex space.    
+ 
+We define homeomorphic mappings $M$, between sets of orbits (spirals) in this topological space and probability functions of complex random variables $f(s)$ of $s$. The $n-th$ moments, defined after $Re(s)$.  
+We show a unique correspondence between orbits and values of $Re(s)$. 
 
-We define homeomorphic mappings $M$ between this topological space and probability functions of complex random variables $f(s)$ of $s$. We use the $n-th$ moments to prove uniqueness of orbits for values of $Re(s)$. 
+We show that the orbits of the spiral $Re(s)=\frac{1}{2}$ are specially related to the real axis by the convolution for its characteristic moments. We that the critical line maps onto the spiral attractor converging 
+show these are, $\frac{\pi}{2}$, defined by a known generating series, the Laurent Series.  
+
+
 The first and the second moments of $f(s), s=\frac{1}{2}+\theta i$ are associated with the orbit containing the non-trivial zeros of $\zeta$ through the angle of the arc drawn towards an attractor at the center of a spiral.
 
-We show that the orbit $Re(s)=1/2$ has angular momentum defined by a know generating series the Laurent Series. We show that this is the orbit for which the derivative of term in the series which is the  of the second moment as the generating series for volumes of the.
+As a consequence of polar coordinate operations defined by the product $i$ as ortoghonal rotatiom, the second moment at $\zeta(s_{n}),M_{2},$ has a derivative with respect to $Im(s)$ which equals to double of the derivative at the previous moment. $2 \frac{d}{dx} \zeta (Re(s_{n-1}) + \frac{\pi}{2} Im(s_{n-1})$. 
+
+The spiral's arc is the convolution of line segments by $\theta$ and should compensate their second moments$M_{2}$ for the rotations to be centered on the imaginary axis.  
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
 
@@ -308,3 +316,7 @@ A. LaurincikasD. Siauciunas. On Zeros of Periodic Zeta Functions. Ukrainian Math
 Gourdon, Xavier (2004), The 1013 first zeros of the Riemann Zeta function, and zeros computation at very large height.
 The Cycle Problem:An Intriguing Periodicity to the Zeros of the Riemann Zeta Function. David D. Baughdbaugh@rice.edu.https://arxiv.org/pdf/0712.0934.pdf
  Dirac, P. A. M. (1942). "Bakerian Lecture. The Physical Interpretation of Quantum Mechanics". Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences. 180 (980): 1–39. 
+A. Bershadskii Hidden Periodicity and Chaos in the Sequence of Prime Numbers
+Advances in Mathematical Physics. Volume 2011, Article ID 519178, 8 pages
+http://dx.doi.org/10.1155/2011/519178
+ 
