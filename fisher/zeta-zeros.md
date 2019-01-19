@@ -8,10 +8,10 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 ## Abstract
 *Abstract*: The zeta function is defined as the analytic continuation of the  Drichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, defined for $Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(s);s=-2; n=1,2,3,4,...)$, all other zeros would be images of $s$, being $Re(s)=1/2$. Several identities have being discovered on the effort of proving this hypothesis. We study homeomorphims of $\zeta(s)$ in the $C^0$ complex space.    
  
-We define homeomorphic mappings $M$, between sets of orbits (spirals) in this topological space and probability functions of complex random variables $f(s)$ of $s$. The $n-th$ moments, defined after $Re(s)$.  
-We show a unique correspondence between orbits and values of $Re(s)$. 
+We define homeomorphic mappings $M$, between sets of orbits in this topological space and probability functions $f$ of complex random variables$s$: the $n_{th}$ moments, defined after $Re(s)$.   
+We show a unique correspondence between the set $S_{n}$ of $\zeta$ spirals and the lines parallel to the imaginary axis, sets of point $Re(s)$.  
 
-We show that the critical line maps onto the spiral whose distance to the attractor converges to 0 at the rate of a difference between the harmonic series (vectorial sum) and the natural lagorithm function. 
+Since there are infinitely non-zero the critical line, $Re(s)=1/2$ maps onto the spiral whose distance to the attractor converges to 0 at the rate of a difference between the harmonic series (vectorial sum) and the natural lagorithm function. 
 If the attractor is unique, the principal component converges to a constant, the Euler Mascheroni, which happens to be the case.
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
@@ -313,7 +313,7 @@ $\zeta(0) = \frac{-1}{2}$.
 
 The non-trivial zeros. The $Im(s)=$ Consider that a hypothetical fish rod is being pull.
 
-1. G. H. Hardy, “Sur les zéros de la function ζ(s) de Riemann,” C. R. Acad. Sci. Paris, 158, 1012–1014 (1914).
+1. G. H. Hardy, “Sur les zéros de la function $\zeta$(s) de Riemann,” C. R. Acad. Sci. Paris, 158, 1012–1014 (1914).
 2. H. M. Bui, B. Conrey, and M. P. Young, “More than 41% of the zeros of the zeta function are on the critical line,” Acta Arith., 150,
 35–64 (2011).
 3. X. Gourdon, “The $10^13$ first zeros of the Riemann zeta function and zeros computation at very large height,” http:// num-
