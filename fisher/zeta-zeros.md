@@ -1,21 +1,41 @@
-# On the unicity and location of the orbits defining non-trivial zeros of the zeta function: outlining a proof for the Riemann Hypothesis. 
-### Probabilistic analysis of orbits in a rigid fisher rod under the effect of attractors
+# On the unicity and location of the orbits homeomorphic to the zeta function: defining conditions for infinite non-trivial zeros from holomorphic spirals. 
+### Unicity and location of the zeta spirals define conditions for non-trivial zeros
 *Felipe Coelho Argolo*$^{1}$  
 Universidade Federal de São Paulo  
 email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com  
 
 
 ## Abstract
-*Abstract*: The zeta function is defined as the analytic continuation of the  Drichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, defined for $Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(s);s=-2; n=1,2,3,4,...)$, all other zeros would be images of $s$, being $Re(s)=1/2$. Several identities have being discovered on the effort of proving this hypothesis. We study homeomorphims of $\zeta(s)$ in the $C^0$ complex space.    
+*Abstract*: The zeta function is defined as the analytic continuation of the  Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, defined for $Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(s);s=-2; n=1,2,3,4,...)$, all other zeros would be images of $s$, being $Re(s)=1/2$.
  
-We define homeomorphic mappings $M$, between sets of orbits in this topological space and probability functions $f$ of complex random variables$s$: the $n_{th}$ moments, defined after $Re(s)$.   
-We show a unique correspondence between the set $S_{n}$ of $\zeta$ spirals and the lines parallel to the imaginary axis, sets of point $Re(s)$.  
+We define homeomorphic mappings $M$, between sets of orbits in this topological space and probability functions $f$ of complex random variables$s$: the $n_{th}$ moments, defined after $Re(s)$. We demonstrate a bijective relation between the set $S_{n}$ of $\zeta$ spirals and the lines parallel to the imaginary axis, sets of point with fixed $Re(s)$.  
 
-Since there are infinitely non-zero the critical line, $Re(s)=1/2$ maps onto the spiral whose distance to the attractor converges to 0 at the rate of a difference between the harmonic series (vectorial sum) and the natural lagorithm function. 
-If the attractor is unique, the principal component converges to a constant, the Euler Mascheroni, which happens to be the case.
+It has previously been show that there are infinitely many non-trivial zeros along the critical line,$Re(s)=1/2$. We show that for the spiral's arc constinouly converge to different non-trivial values of $Re(\zeta(s))=0$, the vector magnitudes must be gradually reduced in magnitude while keeping the rotating angle.
+
+The distance to the attractor converges to 0 at the rate of a difference between the harmonic series (discrete vectorial sum with $1/n$ rate) and the natural lagorithm function.  
+
+This is a lower bound for obtaining new prime numbers on N by infinitesimal subtractions between sets with cardinality $2^N_{0}$ and $N$.  
+If the attractor is unique, the principal component converges to a constant, the Euler Mascheroni, which happens to be the case.  
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
 
+
+
+
+## Abstract
+*Abstract*: The zeta function is defined as the analytic continuation of the  Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, defined for $Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(s);s=-2; n=1,2,3,4,...)$, all other zeros would be images of $s$, being $Re(s)=1/2$. Several identities have being discovered on the effort of proving this hypothesis. We study homeomorphims of $\zeta(s)$ in the $C^0$ complex space.    
+ 
+We define homeomorphic mappings $M$, between sets of orbits in this topological space and probability functions $f$ of complex random variables$s$: the $n_{th}$ moments, defined after $Re(s)$.   
+We show a unique correspondence between the set $S_{n}$ of $\zeta$ spirals and the lines parallel to the imaginary axis, sets of point with fixed $Re(s)$.  
+
+It has previously been show that there are infinitely many non-trivial zeros along the critical line,$Re(s)=1/2$. We show that for the spiral's arc constinouly converge to different non-trivial values of $Re(\zeta(s))=0$, the vector magnitudes must be gradually reduced in magnitude while keeping the rotating angle.
+
+The distance to the attractor converges to 0 at the rate of a difference between the harmonic series (discrete vectorial sum with $1/n$ rate) and the natural lagorithm function.  
+
+This is a lower bound for obtaining new prime numbers on N by infinitesimal subtractions between sets with cardinality $2^N_{0}$ and $N$.  
+If the attractor is unique, the principal component converges to a constant, the Euler Mascheroni, which happens to be the case.  
+
+*Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
 
 
 ## Introduction
