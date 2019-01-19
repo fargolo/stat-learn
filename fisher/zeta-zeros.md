@@ -11,15 +11,8 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 We define homeomorphic mappings $M$, between sets of orbits (spirals) in this topological space and probability functions of complex random variables $f(s)$ of $s$. The $n-th$ moments, defined after $Re(s)$.  
 We show a unique correspondence between orbits and values of $Re(s)$. 
 
-We show that the orbits of the spiral $Re(s)=\frac{1}{2}$ are specially related to the real axis by the convolution for its characteristic moments. We that the critical line maps onto the spiral attractor converging 
-show these are, $\frac{\pi}{2}$, defined by a known generating series, the Laurent Series.  
-
-
-The first and the second moments of $f(s), s=\frac{1}{2}+\theta i$ are associated with the orbit containing the non-trivial zeros of $\zeta$ through the angle of the arc drawn towards an attractor at the center of a spiral.
-
-As a consequence of polar coordinate operations defined by the product $i$ as ortoghonal rotatiom, the second moment at $\zeta(s_{n}),M_{2},$ has a derivative with respect to $Im(s)$ which equals to double of the derivative at the previous moment. $2 \frac{d}{dx} \zeta (Re(s_{n-1}) + \frac{\pi}{2} Im(s_{n-1})$. 
-
-The spiral's arc is the convolution of line segments by $\theta$ and should compensate their second moments$M_{2}$ for the rotations to be centered on the imaginary axis.  
+We show that the critical line maps onto the spiral whose distance to the attractor converges to 0 at the rate of a difference between the harmonic series (vectorial sum) and the natural lagorithm function. 
+If the attractor is unique, the principal component converges to a constant, the Euler Mascheroni, which happens to be the case.
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
 
@@ -32,6 +25,19 @@ The zeta function may be formally defined as the analytic continuation of the Di
 Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(-2n);n=1,2,3,4,..., n \geq 1)$, all other zeros would be images of $s$, being $Re(s)=1/2$. Several identities have being discovered on the effort of proving this hypothesis. We outline a proof based on probabilistic axiomatization.
 
 G. H. Hardy proved that infinitely many nontrivial zeros exist for $Re(s)=\frac{1}{2}$. The densisty of zeros on the critical line is at least 41% of all nontrivial zeros of $\zeta(s)$. Numerical calculations have verified the fist $10^{13}$.$^{1,2,3}$   
+
+
+We show that the orbits of the spiral $Re(s)=\frac{1}{2}$ are specially related to the real axis by the unique result of the convolution for its characteristic moments.  
+
+converging to the attractor  
+show these are, $\frac{\pi}{2}$, defined by a known generating series, the Laurent Series.  
+
+
+The first and the second moments of $f(s), s=\frac{1}{2}+\theta i$ are associated with the orbit containing the non-trivial zeros of $\zeta$ through the angle of the arc drawn towards an attractor at the center of a spiral.
+
+As a consequence of polar coordinate operations defined by the product $i$ as ortoghonal rotatiom, the second moment at $\zeta(s_{n}),M_{2},$ has a derivative with respect to $Im(s)$ which equals to double of the derivative at the previous moment. $2 \frac{d}{dx} \zeta (Re(s_{n-1}) + \frac{\pi}{2} Im(s_{n-1})$. 
+
+The spiral's arc is the convolution of line segments by $\theta$ and should compensate their second moments$M_{2}$ for the rotations to be centered on the imaginary axis.  
 
 
 ## Assumptions
