@@ -47,13 +47,52 @@ Notice that $\zeta(s)$ geometrically describes a related spiral, obtained with t
 
 ### Intuition
 
-The infinitely sectioned fish rod described above is bent by being pulled ortogonally downwards towards a given atractor.   
+Consider the scneraio of the infinitely sectioned fish rod described above being bent, by being pulled ortogonally to a given attractor. Whe the total segment is deformed, each line forms the same angle $\theta$ with the next one according to the cross product described above.
  
 ![Photo by Alan Bishop, December 3, 2015, Unsplash,East Sooke Park, Sooke, Canada](fishing-rod.jpg)
 
+Consider the orbit formed by the last point in each segment in a spiral towards the attractor. 
+
+The vectorial decomposition of the spiral is $z_{s_{n}}=z_{s_{n-1}}+z_{s_{n-2}}+...+z_{s_{1}}$. 
+
+### Events
+
+Consider each orbit as an event. We define the probability of $s$ the value $\zeta(s)$ according to the analytic continuation:
+$$\zeta{(s)} = 2^s \pi^{s-1} \sin{\left(\frac{\pi s}{2}\right)} \Gamma{(1-s)} \zeta{(1-s)}$$  
+The probability associated with an event E is $E(Re(\zeta(s)))$ which is the projection of $\zeta(s)$ over the real axis. This quantity is different, but related to $Re(s)$.  
+
+Ploting the vectors converging to the spiral is the same as  $z_{s_{n}}=z_{s_{n-1}}+z_{s_{n-2}}+...+z_{s_{1}}$.  
+
+This spiral can be seen as the orbit $S$ spiraling outside of the attractor with scape velocity $\vec{v}$ given by the Hamiltonian of the system and its respective conjugate momentum. For circular polar coordinates, the angular momentum.  
+
+If the $n_{th}$ line segment length is given by $\frac{1}{n^{s}}$, we evaluate the first moment $M_{1}$ relative to the real axis by the sum $M_{1} = \sum_{1}^{\infty}\frac{1}{n^{Re(s)}}$.
+
+The real vectors have a total length that equals to the first moment, $M_{1}$, $L = M_{1} = \zeta(Re(s))$.  
+
+Also, consider the second moment (angular momentum), $M_{2}$, given by squaring the length of each line segment $M_{2}=\sum_{i}^{\infty}Re(s_{i})^2$
+
+Each orbit is defined by the cross products of progressively smaller vectors rotated by the same angle with a smaller magnitude.  
+
+#### Uniqueness of orbits
+
+Considering the scape velocity scenario previously described, the angle spiraled out of the attractor is the one associated with the angular momentum:  
+1.  Each real value of $Re(s)$ results in a different value of $M_{1}$, given by $\zeta(Re(s))$.  
+2.  The second moment then converges to:$\lim_{n \rightarrow \infty} M_{2} = \sum_{n=1}^{}(\frac{1}{n^{Re(s)}})^{2} = \zeta(2Re(s))$.  
+The first and the second moment determine a unique ratio for each pair $\zeta(2Re(s))$ and $\zeta(Re(s))$. Every $Re(s)$ determines a unique family of orbits. 
+
+We hereby show that the scenario in which $Re(s)=\frac{1}{2}$ is the one containing non-trivial zeta zeros.   
+
+### Zeros of zeta
+
+When $\zeta(s)$ approaches 0, that the vectorial sum approaches the center of the real axis. This is equal to rotate the object enough to cancel its projection on the real axis. 
+ 
+The first moment is $M_{1}$. If the $n_{th}$ line segment length is given by $\frac{1}{n^{s}}$, we evaluate the moment around the real axis by the sum the distances $M_{1} = \sum_{1}^{\infty}\frac{1}{n^{s}}$.  
 
 
-### Moments
+When $\zeta(s)$ approaches 0, that the vectorial sum approaches the center of the real axis. This is equal to rotate the object enough to cancel its projection on the real axis. 
+ 
+The first moment is $M_{1}$. If the $n_{th}$ line segment length is given by $\frac{1}{n^{s}}$, we evaluate the moment around the real axis by the sum the distances $M_{1} = \sum_{1}^{\infty}\frac{1}{n^{s}}$.  
+
 
 
 Consider the series $\zeta(s), Re(s)=2, Im(s)=0$.
@@ -62,10 +101,11 @@ $$\zeta(2)=\sum_{n= 1}^{\infty}\frac{1}{n^{2}}$$
 $$=\frac{1}{1^{2}}+\frac{1}{2^{2}}+\frac{1}{3^{2}}+...$$
 $$\zeta(2)=\frac{\pi^{2}}{6}$$  
 The identity by Euler which solved the Basel problem.  
+
 We shall now consider our series with imaginary numbers:  
 $$\zeta(s)=\sum_{n= 1}^{\infty}\frac{1}{n^{s}}, Re(s)>1,Im(s)\neq 0$$  
 
-Consider if the imaginary parte of the previous series, $\zeta(2)$, was  $Im(s)=\frac{\pi}{3}i$, then:  
+Consider if the imaginary part of the previous series, $\zeta(2)$, was  $Im(s)=\frac{\pi}{3}i$, then:  
 $$\zeta(2 + \frac{pi}{3})=\sum_{n= 1}^{\infty}\frac{1}{n^{2+\frac{\pi}{3}i}}$$
 $$=\sum_{n= 1}^{\infty}\frac{1}{n^{2}}*\frac{1}{n^{\frac{\pi}{3}i}}$$
 
@@ -85,16 +125,6 @@ $z_{s_{n}}=z_{s_{n-1}}+z_{s_{n-2}}+...+z_{s_{1}}$
 
 ![Photo by Alan Bishop, December 3, 2015, Unsplash,East Sooke Park, Sooke, Canada](fishing-rod.jpg)
 
-This peculiar fish rod has a spinner. When it is pulled towards the bottom, one may spin it and this will cause the rod to rotate periodically, perpendicular to the real axis.  
-
-Consider the orbit formed by the last point in each segment in a spiral towards the orbit, the attractor. 
-
-The vectorial decomposition of the spiral is $z_{s_{n}}=z_{s_{n-1}}+z_{s_{n-2}}+...+z_{s_{1}}$. 
-
-When $\zeta(s)$ approaches 0, that the vectorial sum approaches the center of the real axis. This is equal to rotate the object enough to cancel its projection on the real axis. 
- 
- 
-The first moment is $M_{1}$. If the $n_{th}$ line segment length is given by $\frac{1}{n^{s}}$, we evaluate the moment around the real axis by the sum the distances $M_{1} = \sum_{1}^{\infty}\frac{1}{n^{s}}$.  
 
 Each rod is uniquely determined by its momentums. The second momentum is:
 $M_{2} = \sum_{1}^{\infty}(\frac{1}{n^{s}})^{2}$. Each $Re(s)$ determines a family of rods. We hereby show that the scenario in which $Re(s)=\frac{1}{2}$ is the one containing non-trivial zeta zeros.  
