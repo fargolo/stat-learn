@@ -7,33 +7,54 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 
 
 ## Abstract
-*Abstract*: The zeta function is defined as the analytic continuation of the  Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, defined for $Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(s);s=-2; n=1,2,3,4,...)$, all other zeros would be images of $s$, being $Re(s)=1/2$. Several identities have being discovered on the effort of proving this hypothesis. We outline a proof based on probabilistic axiomatization.  
+*Abstract*: The zeta function is defined as the analytic continuation of the  Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, defined for $Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(s);s=-2; n=1,2,3,4,...)$, all other zeros would be images of $s$, being $Re(s)=1/2$. Several identities have being discovered on the effort of proving this hypothesis. We outline a proof based on quasiprobabilty functions defined after the $C^0$ complex space and 0 Cliford Algebra. 
+
 First, we define the physics of a thought experiment based on previous theorems. Kolmogorov axioms and previous identites are used to prove that $Re(s)$ uniquely determines an orbit with an attractor. Non-trivial zeros are related to the envelope formed by the spiral along the critical strip $(0<Re(s)<1)$.  
-We use moments defined after probability functions to prove uniqueness of orbits according to $Re(s)$. We provide the location location of the attractor governing the orbit along the critical line, $Re(s)$, showing all non-trivial zeros are related to an orbit by its second moment. This orbit is given by $Re(s)=\frac{1}{2} \rightarrow s = 1/2 + Im(s)$.
+We use moments defined after quasiprobability functions to prove uniqueness of orbits according to $Re(s)$. We provide the location location of the attractor governing the orbit along the critical line, $Re(s)$, showing all non-trivial zeros are related to an orbit by its second moment. This orbit is given by $Re(s)=\frac{1}{2} \rightarrow s = 1/2 + Im(s)$.
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
 
 
+
 ## Introduction
+
 
 The zeta function may be formally defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, which exists for $Re(s) > 1$.  
 Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(-2n);n=1,2,3,4,..., n \geq 1)$, all other zeros would be images of $s$, being $Re(s)=1/2$. Several identities have being discovered on the effort of proving this hypothesis. We outline a proof based on probabilistic axiomatization.
 
-G. H. Hardy proved that infinitely many nontrivial zeros exist for $Re(s)=\frac{1}{2}$. The densisty of zeros on the critical line is at least 41% of all nontrivial zeros of $\zeta(s)$. Numerical calculations have verified the fist $10^13$.$^{1,2,3}$   
-
-the second moment of the generating series for $\zeta(s)$. This moment determines rotation angles of an object. We show that $Re(s)=\frac{1}{2}$ provides the unique moment to grantee non-trivial zeros.  
+G. H. Hardy proved that infinitely many nontrivial zeros exist for $Re(s)=\frac{1}{2}$. The densisty of zeros on the critical line is at least 41% of all nontrivial zeros of $\zeta(s)$. Numerical calculations have verified the fist $10^{13}$.$^{1,2,3}$   
 
 
-## The fishing rod analogy
+## Assumptions
 
-Consider the infinite series defined by $\zeta(s)$.  
+We outline a proof based on quasiprobability functions in the $C^0$ complex vector space and its nondegenerate quadradic form (Clifford algebra $Cl_{C}=0$). 
+
+Quasiprobability functions behave as probability functions, although Kolmogorov axioms I and III are relaxed, allowing for negative probabilities. Therefore, $\sigma$-additivity might be also violated for subsets of events $E_{i}$, when $$P(\cup{E_{i}})<0$$.  
+
+Consider the length of a line segment composed by summing infinite line segments, each of them smaller than the previous.
+
+Consider the infinite series defined by $\zeta(s)$ for $Re(s)>1$.  
 $$\zeta(s)=\sum_{n= 1}^{\infty}\frac{1}{n^{s}}, Re(s)>1, Im(s)=0$$
-This is the composite size length of infinite line segments, each of them smaller than the previous by $\frac{n^{s}}{(n+1)^{s}}$.  
-A physical analogy could be drawn to that of an infinitely sectioned staff. As if we started with $l_{1}=\frac{1}{1^{1}}$ and added progressively smaller pieces $(l_{2}=\frac{1}{1^{s}}+\frac{1}{2^{s}}), (l_{3}=\frac{1}{1^{s}}+\frac{1}{2^{s}}+\frac{1}{3^{s}},l_{4}=...)$ to its end.  
+This is the composite size length of infinite line segments (or vectors), each of them smaller than the previous by a ratio of $\frac{\frac{1}{(n+1)^{s}}}{\frac{1}{n^{s}}}= \frac{n^{s}}{(n+1)^{s}}$.  
 
-The staff's length (tip) asymptotically approaches $\zeta(s)$  
+A physical analogy could be drawn to that of an infinitely sectioned fish rod. As if we started with $l_{1}=\frac{1}{1^{s}}$ and added progressively smaller pieces $(l_{2}=\frac{1}{1^{s}}+\frac{1}{2^{s}}), (l_{3}=\frac{1}{1^{s}}+\frac{1}{2^{s}}+\frac{1}{3^{s}},l_{4}=...)$ to its end.  
 
-Considering $Im(s)\neq 0$, one may introduce complex rotations on each of the segments. 
+The total length asymptotically approaches $\zeta(s)$. 
+
+Notice that $\zeta(s)$ geometrically describes a related spiral, obtained with the $n$ sucessive cross products $Re(s) \times Im(s)$ for $\lim_{n\rightarrow\infty}$. $Re(s)$ is a real number and $Re(s)$ lies in the complex space.  
+
+## Quasiprobability function
+
+### Intuition
+
+The infinitely sectioned fish rod described above is bent by being pulled ortogonally downwards towards a given atractor.   
+ 
+![Photo by Alan Bishop, December 3, 2015, Unsplash,East Sooke Park, Sooke, Canada](fishing-rod.jpg)
+
+
+
+### Moments
+
 
 Consider the series $\zeta(s), Re(s)=2, Im(s)=0$.
 The corresponding segmented object's length converges to:  
@@ -61,9 +82,6 @@ Through vector addition, the next segment form and angle $\theta$ with the conti
 
 $$z = e^{\theta i} \rightarrow = cos(\theta) + sin(\theta)i$$
 $z_{s_{n}}=z_{s_{n-1}}+z_{s_{n-2}}+...+z_{s_{1}}$ 
-
-
-*The fisher rod analogy*: A fish rod has several mathematical similarities with our problem. Consider the idea of an endeless fish rod, whose infinitesimal moving parts eventually become small and thin as a line. Its final size is the number asymptotically approaching by adding smaller pieces according to the series previously presented.  
 
 ![Photo by Alan Bishop, December 3, 2015, Unsplash,East Sooke Park, Sooke, Canada](fishing-rod.jpg)
 
@@ -165,8 +183,6 @@ $$M_{2} \sim  (-\frac{1}{s} + \frac{1}{floor(s)}) + 1/s + 1/2s^2 + 1/6x^3 - 1/30
 $$ =  (-\frac{1}{s} + \frac{1}{floor(s)}) + 1/s + 1/6x^3 - 1/30s^5 + O((1/x)^6)$$
 
 ---  
----  
----  
 
 $$= (-\frac{1}{s} + \frac{1}{floor(s)}) + \frac{d}{ds} \frac{1}{\Gamma(s)} - s^{-2}$$
 
@@ -211,3 +227,4 @@ bers.computation.free.fr (2004).
 A. LaurincikasD. Siauciunas. On Zeros of Periodic Zeta Functions. Ukrainian Mathematical Journal. November 2013, Volume 65, Issue 6, pp 953–958
 Gourdon, Xavier (2004), The 1013 first zeros of the Riemann Zeta function, and zeros computation at very large height.
 The Cycle Problem:An Intriguing Periodicity to the Zeros of the Riemann Zeta Function. David D. Baughdbaugh@rice.edu.https://arxiv.org/pdf/0712.0934.pdf
+ Dirac, P. A. M. (1942). "Bakerian Lecture. The Physical Interpretation of Quantum Mechanics". Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences. 180 (980): 1–39. 
