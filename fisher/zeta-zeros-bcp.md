@@ -1,26 +1,20 @@
-# On the unicity and location of orbits related to the non-trivial zeros of the zeta function: outlining a proof for the Riemann Hypothesis based on proba. 
-listic axiomatization 
-### Probabilistic analysis of orbits in a rigid fisher rod under the effect of attractors"
+# On the real part of non-trivial zeros of the zeta function: The fisher argument for the Riemann Hypothesis 
+### The fisher argument for the Riemann Hypothesis"
 *Felipe Coelho Argolo*$^{1}$  
 Universidade Federal de São Paulo  
 email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com  
 
 
 ## Abstract
-*Abstract*: The zeta function is defined as the analytic continuation of the  Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, defined for $Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(s);s=-2; n=1,2,3,4,...)$, all other zeros would be images of $s$, being $Re(s)=1/2$. Several identities have being discovered on the effort of proving this hypothesis. We outline a proof based on probabilistic axiomatization.  
-First, we define the physics of a thought experiment based on previous theorems. Kolmogorov axioms and previous identites are used to prove that $Re(s)$ uniquely determines an orbit with an attractor. Non-trivial zeros are related to the envelope formed by the spiral along the critical strip $(0<Re(s)<1)$.  
-We use moments defined after probability functions to prove uniqueness of orbits according to $Re(s)$. We provide the location location of the attractor governing the orbit along the critical line, $Re(s)$, showing all non-trivial zeros are related to an orbit by its second moment. This orbit is given by $Re(s)=\frac{1}{2} \rightarrow s = 1/2 + Im(s)$.
+*Abstract*: The zeta function is defined as the analytic continuation of the  Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, defined for $Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(s);s=-2; n=1,2,3,4,...)$, all other zeros would be images of $s$, being $Re(s)=1/2$. Several attempts to prove this have been tried. We hereby present another argument susceptible for examination. The theorem is elaborated based on a physical analogy for the series. We show that each value of $Re(s)$ uniquely determines the second moment of the generating series for $\zeta(s)$. This moment determines rotation angles of an object. We show that $Re(s)=\frac{1}{2}$ provides the unique moment to grantee non-trivial zeros.  
 
-*Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
+  
+*Keywords*: Riemann hypothesis, zeta function, non-trivial zeros, fisher argument; 
 
 
 ## Introduction
 
-
 G. H. Hardy proved that infinitely many nontrivial zeros exist for $Re(s)=\frac{1}{2}$. The densisty of zeros on the critical line is at least 41% of all nontrivial zeros of $\zeta(s)$. Numerical calculations have verified the fist $10^13$. In this paper, we provide show that all non-trivial zeros of the zeta have $Re(s)=\frac{1}{2}$.  
-
-the second moment of the generating series for $\zeta(s)$. This moment determines rotation angles of an object. We show that $Re(s)=\frac{1}{2}$ provides the unique moment to grantee non-trivial zeros.  
-
 
 ## The fishing rod analogy
 
