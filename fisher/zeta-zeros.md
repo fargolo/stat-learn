@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # On the unicity and location of the orbits homeomorphic to the zeta function: defining conditions for infinite non-trivial zeros from holomorphic spirals. 
 ### Unicity and location of the zeta spirals define conditions for non-trivial zeros
 *Felipe Coelho Argolo*$^{1}$  
@@ -17,10 +22,10 @@ Using standard analysis, we demonstrate that the $\epsilon$ distance to the attr
 
 It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$. Making it a (possible) element of this set.
 
-The location of the unique attractor can by obtained by calculating the limit of the second moment when $s \rightarrow \infty$, which identifies the spiral as $Re(s)=1/2 + \theta i$ through the identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm.
-This is a direct consequence of cardinal inequality between natural numbers images of the harmonic series $\mathbb{N}$($C(\mathbb{Z})=N$) and the one of the natural logarithm occur according to interpolation of sets with different cardinality.
+The location of the unique attractor can by obtained by calculating the limit of the second moment when $s \rightarrow \infty$, which identifies the spiral as $Re(s)=1/2 + \theta i$ through the identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm.  
+The value of $Re(s)$ is direct consequence of cardinal inequality between rational numbers in the harmonic series $C(\mathbb{Q} = C(\mathbb{N})= \aleph$) and uncountably infinite  real numbers in the natural logarithm definition.  
 
-We discuss consequences of the choice of axiomatic system and geometrical intuitions for previously described idendities.  
+We examine axiomatic systems under which the conclusion holds and give geometrical demonstrations for previously described identities.  
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
 
