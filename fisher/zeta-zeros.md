@@ -10,14 +10,15 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 
 From Kolmogorov axioms and a measure $M$, this is true if we accept Cantor's theorem on the cardinality of the continuum.  
  
-We define homeomorphic mappings $M$ between sets of orbits in a topological space and probability functions of complex random variables $s$. The $M_{n}$ moments, a function of the real axis projections $Re(s)$, define bijective relation between the set $S_{n}$ of $\zeta$ spirals and the lines with fixed $Re(s)$.  
+We define homeomorphic mappings $M$ between sets of orbits in a topological space and probability functions of complex random variables $s$. The $M_{n}$ moments, a function of the real axis projections $Re(s)$, define a bijective relation between the sets $S_{n}$ of $\zeta$ spirals and the lines $Re(s)$ parallel to the imaginary axis.  
 
-We show that the set of spirals whose arcs constinouly converge to non-trivial values of $Re(\zeta(s))=0$, the vector magnitudes must be gradually reduced in magnitude. The horizontal distance to the attractor must converge to 0 from both sides at a very specific rate involving the harmonic series.  
+Assume a potentially non empty set of spirals $(S_{0})$ whose arcs, defined by $M_{2}(s)$, constinously rotate towards non-trivial values of $Re(\zeta(s))=0$.  
+Using standard analysis, we demonstrate that the $\epsilon$ distance to the attractor must converge to 0 at a very specific rate periodic rate involving the harmonic series. 
 
 It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$. Making it a (possible) element of this set.
 
-The location of the unique attractor can by obtained by calculating the limit of the second moment when $s \rightarrow \infty$, which identifies the spiral as $Re(s)=1/2 + \theta i$ through the identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm.  
-We show that the divergences between harmonic series and the natural logarithm occur according to interpolation of sets with different cardinality.
+The location of the unique attractor can by obtained by calculating the limit of the second moment when $s \rightarrow \infty$, which identifies the spiral as $Re(s)=1/2 + \theta i$ through the identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm.
+This is a direct consequence of cardinal inequality between natural numbers images of the harmonic series $\mathbb{N}$($C(\mathbb{Z})=N$) and the one of the natural logarithm occur according to interpolation of sets with different cardinality.
 
 We discuss consequences of the choice of axiomatic system and geometrical intuitions for previously described idendities.  
 
@@ -55,6 +56,7 @@ We show that the orbits of the spiral $Re(s)=\frac{1}{2}$ are specially related 
 converging to the attractor  
 show these are, $\frac{\pi}{2}$, defined by a known generating series, the Laurent Series.  
 
+![](vortex.jpg)
 
 The first and the second moments of $f(s), s=\frac{1}{2}+\theta i$ are associated with the orbit containing the non-trivial zeros of $\zeta$ through the angle of the arc drawn towards an attractor at the center of a spiral.
 
