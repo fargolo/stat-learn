@@ -8,11 +8,12 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 ## Abstract
 *Abstract*: The zeta function is defined as the analytic continuation of the  Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, defined for $Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(s);s=-2; n=1,2,3,4,...)$, all other zeros would be images of $s$, being $Re(s)=1/2$.
  
-We define homeomorphic mappings $M$, between sets of orbits in this topological space and probability functions $f$ of complex random variables$s$: the $n_{th}$ moments, defined after $Re(s)$. We demonstrate a bijective relation between the set $S_{n}$ of $\zeta$ spirals and the lines parallel to the imaginary axis, sets of point with fixed $Re(s)$.  
+We define homeomorphic mappings $M$, between sets of orbits in this topological space and probability functions $f$ of complex random variables$s$: the $n_{th}$ moments, defined after $Re(s)$. We demonstrate a bijective relation between the set $S_{n}$ of $\zeta$ spirals and the lines with fixed $Re(s)$.  
 
-It has previously been show that there are infinitely many non-trivial zeros along the critical line,$Re(s)=1/2$. We show that for the spiral's arc constinouly converge to different non-trivial values of $Re(\zeta(s))=0$, the vector magnitudes must be gradually reduced in magnitude while keeping the rotating angle.
+We show that for a spiral's arc to constinouly converge to non-trivial values of $Re(\zeta(s))=0$, the vector magnitudes must be gradually reduced in magnitude. The distance to the attractor must converge to 0 at the rate of a difference between the harmonic series (discrete vectorial sum with $1/n$ rate) and the natural lagorithm function.  
 
-The distance to the attractor converges to 0 at the rate of a difference between the harmonic series (discrete vectorial sum with $1/n$ rate) and the natural lagorithm function.  
+
+It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$. 
 
 This is a lower bound for obtaining new prime numbers on N by infinitesimal subtractions between sets with cardinality $2^N_{0}$ and $N$.  
 If the attractor is unique, the principal component converges to a constant, the Euler Mascheroni, which happens to be the case.  
