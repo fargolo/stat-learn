@@ -13,7 +13,7 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 ## Abstract
 *Abstract*: The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $R(s)=\frac{1}{2}+\theta i$.
 
-From Kolmogorov axioms and a homeomorphic mapping $M_{n}$ of $M_{n} \sim \zeta(s^n)$ as a function of $M_{n} ~\zeta(s)$, this is true if we accept Cantor's theorem on the cardinality of the *continuum*.  
+From Kolmogorov axioms and a homeomorphic mapping $M_{n}$ of $\zeta(s^n)$, this is true if we accept Cantor's theorem on the cardinality of the *continuum*.  
  
 We define homeomorphic mappings $M$ of sets of orbits in a topological space and probability functions of complex random variables $s$. The $M_{n}$ moments, a function of the real axis vectorial projections $Re(s)$, define a injective (one-to-one) relation between the sets $S_{n}$ of $\zeta$ spirals and the lines $Re(s)$ parallel to the imaginary axis.  
 
@@ -24,8 +24,6 @@ It has previously been show that there are infinitely many non-trivial zeros alo
 
 The location of the unique attractor can by obtained by calculating the limit of the second moment when $s \rightarrow \infty$, which identifies the spiral as $Re(s)=1/2 + \theta i$ as the only element of $S_{0}$. These is proved in the identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm.  
 The value of $Re(s_{non-trivial})={1}{2}$ is a direct consequence of cardinal inequality between rational numbers in the harmonic series $C(\mathbb{Q}) = C(\mathbb{N})= \aleph$) and uncountably infinite real numbers. 
-
-in the natural logarithm definition.  
 
 We examine axiomatic systems under which the conclusion holds and give geometrical demonstrations for previously described identities.  
 
