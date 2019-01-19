@@ -13,17 +13,19 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 ## Abstract
 *Abstract*: The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $R(s)=\frac{1}{2}+\theta i$.
 
-From Kolmogorov axioms and a measure $M$, this is true if we accept Cantor's theorem on the cardinality of the continuum.  
+From Kolmogorov axioms and a homeomorphic mapping $M_{n}$ of $M_{n} \sim \zeta(s^n)$ as a function of $M_{n} ~\zeta(s)$, this is true if we accept Cantor's theorem on the cardinality of the *continuum*.  
  
-We define homeomorphic mappings $M$ between sets of orbits in a topological space and probability functions of complex random variables $s$. The $M_{n}$ moments, a function of the real axis projections $Re(s)$, define a bijective relation between the sets $S_{n}$ of $\zeta$ spirals and the lines $Re(s)$ parallel to the imaginary axis.  
+We define homeomorphic mappings $M$ of sets of orbits in a topological space and probability functions of complex random variables $s$. The $M_{n}$ moments, a function of the real axis vectorial projections $Re(s)$, define a injective (one-to-one) relation between the sets $S_{n}$ of $\zeta$ spirals and the lines $Re(s)$ parallel to the imaginary axis.  
 
-Assume a potentially non empty set of spirals $(S_{0})$ whose arcs, defined by $M_{2}(s)$, constinously rotate towards non-trivial values of $Re(\zeta(s))=0$.  
+Assume a potentially non empty set of spirals $(S_{0})$ whose arcs, defined by $M_{2}(s)$, constinously rotate, as function of $s$, towards non-trivial values of $Re(\zeta(s))=0$.  
 Using standard analysis, we demonstrate that the $\epsilon$ distance to the attractor must converge to 0 at a very specific rate periodic rate involving the harmonic series. 
 
 It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$. Making it a (possible) element of this set.
 
-The location of the unique attractor can by obtained by calculating the limit of the second moment when $s \rightarrow \infty$, which identifies the spiral as $Re(s)=1/2 + \theta i$ through the identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm.  
-The value of $Re(s)$ is direct consequence of cardinal inequality between rational numbers in the harmonic series $C(\mathbb{Q} = C(\mathbb{N})= \aleph$) and uncountably infinite  real numbers in the natural logarithm definition.  
+The location of the unique attractor can by obtained by calculating the limit of the second moment when $s \rightarrow \infty$, which identifies the spiral as $Re(s)=1/2 + \theta i$ as the only element of $S_{0}$. These is proved in the identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm.  
+The value of $Re(s_{non-trivial})={1}{2}$ is a direct consequence of cardinal inequality between rational numbers in the harmonic series $C(\mathbb{Q}) = C(\mathbb{N})= \aleph$) and uncountably infinite real numbers. 
+
+in the natural logarithm definition.  
 
 We examine axiomatic systems under which the conclusion holds and give geometrical demonstrations for previously described identities.  
 
@@ -41,7 +43,7 @@ It has previously been show that there are infinitely many non-trivial zeros alo
 
 The distance to the attractor converges to 0 at the rate of a difference between the harmonic series (discrete vectorial sum with $1/n$ rate) and the natural lagorithm function.  
 
-This is a lower bound for obtaining new prime numbers on N by infinitesimal subtractions between sets with cardinality $2^N_{0}$ and $N$.  
+This is a lower bound for obtaining new prime numbers on N by infinitesimal subtractions between sets with cardinality $2^\mathbb{N_{0}}$ and $\mathbb{N}$.  
 If the attractor is unique, the principal component converges to a constant, the Euler Mascheroni, which happens to be the case.  
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
