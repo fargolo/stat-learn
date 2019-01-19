@@ -8,7 +8,7 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 ## Abstract
 *Abstract*: The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $R(s)=\frac{1}{2}+\theta i$.
 
-Under a set of assumptions This is true if we accept Cantor's theorem on the cardinality of the continuum.  
+From Kolmogorov axioms and a measure $M$, this is true if we accept Cantor's theorem on the cardinality of the continuum.  
  
 We define homeomorphic mappings $M$ between sets of orbits in this topological space and probability functions $f$ of complex random variables $s$ : the $M_{n}$ moments, defined after real axis projections of $Re(s)$. We demonstrate a bijective relation between the set $S_{n}$ of $\zeta$ spirals and the lines with fixed $Re(s)$.  
 
