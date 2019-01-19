@@ -6,24 +6,26 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 
 
 ## Abstract
-*Abstract*: The zeta function is defined as the analytic continuation of the  Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, defined for $Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(s);s=-2; n=1,2,3,4,...)$, all other zeros would be images of $s$, being $Re(s)=1/2$.
+*Abstract*: The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $R(s)=\frac{1}{2}+\theta i$.
+
+Under a set of assumptions This is true if we accept Cantor's theorem on the cardinality of the continuum.  
  
-We define homeomorphic mappings $M$, between sets of orbits in this topological space and probability functions $f$ of complex random variables$s$: the $n_{th}$ moments, defined after $Re(s)$. We demonstrate a bijective relation between the set $S_{n}$ of $\zeta$ spirals and the lines with fixed $Re(s)$.  
+We define homeomorphic mappings $M$ between sets of orbits in this topological space and probability functions $f$ of complex random variables $s$ : the $M_{n}$ moments, defined after real axis projections of $Re(s)$. We demonstrate a bijective relation between the set $S_{n}$ of $\zeta$ spirals and the lines with fixed $Re(s)$.  
 
-We show that for a spiral's arc to constinouly converge to non-trivial values of $Re(\zeta(s))=0$, the vector magnitudes must be gradually reduced in magnitude. The distance to the attractor must converge to 0 at the rate of a difference between the harmonic series (discrete vectorial sum with $1/n$ rate) and the natural lagorithm function.  
+We show that the set of spirals whose arcs constinouly converge to non-trivial values of $Re(\zeta(s))=0$, the vector magnitudes must be gradually reduced in magnitude. The horizontal distance to the attractor must converge to 0 from both sides at a very specific rate involving the harmonic series.  
 
+It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$. Making it a (possible) element of this set.
 
-It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$. 
+The location of the unique attractor can by obtained by calculating the limit of the second moment when $s \rightarrow \infty$, which identifies the spiral as $Re(s)=1/2 + \theta i$ through the identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm.  
+We show that the divergences between harmonic series and the natural logarithm occur according to interpolation of sets with different cardinality.
 
-This is a lower bound for obtaining new prime numbers on N by infinitesimal subtractions between sets with cardinality $2^N_{0}$ and $N$.  
-If the attractor is unique, the principal component converges to a constant, the Euler Mascheroni, which happens to be the case.  
+We discuss consequences of the choice of axiomatic system and geometrical intuitions for previously described idendities.  
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
 
+*Gedankenexperiment*
 
-
-
-## Abstract
+## Abstract 
 *Abstract*: The zeta function is defined as the analytic continuation of the  Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, defined for $Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(s);s=-2; n=1,2,3,4,...)$, all other zeros would be images of $s$, being $Re(s)=1/2$. Several identities have being discovered on the effort of proving this hypothesis. We study homeomorphims of $\zeta(s)$ in the $C^0$ complex space.    
  
 We define homeomorphic mappings $M$, between sets of orbits in this topological space and probability functions $f$ of complex random variables$s$: the $n_{th}$ moments, defined after $Re(s)$.   
