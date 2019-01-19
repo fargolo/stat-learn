@@ -88,15 +88,52 @@ When $\zeta(s)$ approaches 0, the vectorial sum approaches the center of the rea
 
 In that case, the spiral has its center on 0. The value $(Im(\zeta(s))$ as the projection of a vector $\vec{v_{s}}$ onto the imaginary axis.
 
-The cross product $Re(\zeta(s)) \times Im(\zeta(s))$ defines the converging spiral. The related second moment is related to the scaping velocity by the length of the spiralad arch, which converges to $\zeta(s)$.  
+The cross product $Re(\zeta(s)) \times Im(\zeta(s))$ defines the converging spiral. The related second moment is related to the scaping velocity by the length of the spiralad arch $(L)$, which converges to $\zeta(s)$.  
 
 
 #### Conditons for non-trivial zeros
-The non-trivial zeros occur in the orbit in which the attractor associated with $Re(s)$ is at the spiral 
 
-in which the second moment has non-trivial trivial periods.
+The non-trivial zeros occur in the orbit in which the attractor associated with $Re(s)$ is at a spiral with the following characteristics:
 
-The if $\vec{v_{s}}$ makes angle $\theta + \frac{\pi}{2}$ with the origin of the real axis, then $Im(\vec{v_{s}})$
+@ Conditions
+
+https://www.wolframalpha.com/input/?i=zeta+of+(1%2F2+%2B+theta*i)
+https://www.wolframalpha.com/input/?i=zeta+of+(1+%2B+2theta*i)
+https://www.wolframalpha.com/input/?i=laurent+series+of+(zeta+of+(1+%2B+2theta*i))
+
+As said, the second moment is related to the scaping velocity by the length of the spiraled arc, which has converging series or analytical extension: 
+$$L=\frac{1}{n^{2Re(s)}}$$ 
+$$= \zeta(2Re(s))$$.  
+
+If the resulting vector $\vec{v_{s}}$ makes angle $\theta + \frac{\pi}{2}$ with the origin of the real axis, then 
+$$Im(\vec{v_{s}})=\vec{v_{s}}*cos(\theta)i$$
+Since we are considering zeros at the real axis, the projection on the real axis is $cos(\theta+ \frac{\pi}{2})$, the opposite of $sin \theta$. Diagram:
+
+![Trocar por diagrama de vetores!!!](Gamma-area.svg.png)
+
+Identites:
+$$Re(\vec{v_{s}})=\vec{v_{s}}*-sin(\theta)$$.  
+$$Im(\vec{v_{s}})=\vec{v_{s}}*cos(\theta)i$$
+
+$$s = \vec{v_{s}}*-sin(\theta) + \vec{v_{s}}*cos(\theta)$$
+
+The projection $Re(s)$ will be 0 when:
+
+$$s = \vec{v_{s}}*-sin(\theta) + \vec{v_{s}}*cos(\theta)$$
+  
+which is $s(cos(\theta)-sin(\theta))$ or
+$(\frac{1}{2} - \frac{i}{2}) e^{-i\theta} s + (\frac{1}{2} + \frac{i}{2}) e^{i \theta} s$ or
+$$s = \sqrt(2) \vec{s} sin(\pi/4 - \theta)$$
+$$= \sqrt(2) \vec{s} -sin(\theta)$$
+$$= \sqrt(2) Re(s)$$
+$$Re(s) = \frac{s}{\sqrt(2)}$$
+
+Taking the derivatives with respect to Re(s) and Im(s):
+$$\frac{d}{da} \frac{a+bi}{\sqrt(2)} = 1/\sqrt(2)$$
+$$\frac{d}{db} \frac{a+bi}{\sqrt(2)} = 1/\sqrt(2)$$
+
+Notice roots in $$\theta = \pi n - \frac{3\pi}{4}$$ n in $Z$.
+
   
 The first moment is $M_{1}$. If the $n_{th}$ line segment length is given by $\frac{1}{n^{s}}$, we evaluate the moment around the real axis by the sum the distances $M_{1} = \sum_{1}^{\infty}\frac{1}{n^{s}}$.  
 
