@@ -1,17 +1,17 @@
-# On the unicity and location of orbits related to the non-trivial zeros of the zeta function: outlining a proof for the Riemann Hypothesis based on proba. 
-listic axiomatization 
-### Probabilistic analysis of orbits in a rigid fisher rod under the effect of attractors"
+# On the unicity and location of the orbits defining non-trivial zeros of the zeta function: outlining a proof for the Riemann Hypothesis. 
+### Probabilistic analysis of orbits in a rigid fisher rod under the effect of attractors
 *Felipe Coelho Argolo*$^{1}$  
 Universidade Federal de São Paulo  
 email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com  
 
 
 ## Abstract
-*Abstract*: The zeta function is defined as the analytic continuation of the  Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, defined for $Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(s);s=-2; n=1,2,3,4,...)$, all other zeros would be images of $s$, being $Re(s)=1/2$. Several identities have being discovered on the effort of proving this hypothesis. We outline a proof based on quasiprobabilty functions defined after the $C^0$ complex space and 0 Cliford Algebra. 
+*Abstract*: The zeta function is defined as the analytic continuation of the  Drichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}$, defined for $Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\zeta(s);s=-2; n=1,2,3,4,...)$, all other zeros would be images of $s$, being $Re(s)=1/2$. Several identities have being discovered on the effort of proving this hypothesis. We define values of $\zeta(s)$ in vector spaces homeomorphic to the $C^0$ complex space equiped with 0 Cliford Algebra. 
 
-First, we define the physics of a thought experiment based on previous theorems. Kolmogorov axioms and previous identites are used to prove that $Re(s)$ uniquely determines an orbit with an attractor. Non-trivial zeros are related to the envelope formed by the spiral along the critical strip $(0<Re(s)<1)$.  
-We use moments defined after quasiprobability functions to prove uniqueness of orbits according to $Re(s)$. We provide the location location of the attractor governing the orbit along the critical line, $Re(s)$, showing all non-trivial zeros are related to an orbit by its second moment. This orbit is given by $Re(s)=\frac{1}{2} \rightarrow s = 1/2 + Im(s)$.
+We define homeomorphic mappings $f$ between this topological space and probability functions of $s$. We use its moments to prove uniqueness of orbits according to $Re(s)$. We provide the location location of the attractor governing the orbit along the critical line, $Re(s)$, showing all non-trivial zeros are related to an orbit by its second moment. This orbit is given by $Re(s)=\frac{1}{2} \rightarrow s = 1/2 + Im(s)$.
 
+
+We define conserved $Re(s)$ uniquely determines an orbit with an attractor. Non-trivial zeros are related to the envelope formed by the spiral along the critical strip $(0<Re(s)<1)$.  
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
 
 
