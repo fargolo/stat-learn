@@ -69,29 +69,29 @@ Next lemmas describe the conditions for a set of orbits containing infinite imag
 
 **Lemma 2: The elements of the unique set of orbits with images containing the infinite non-trivial zeros are the spiral $R_{0}$ asymptoptically approaching the real line as $n \rightarrow  \infty$ at a specific rate.**  
 
+![Trocar por diagrama de vetores!!!](Gamma-area.svg.png)
+
+
 **Lemma 3: Mertens' theorems provide the asymptoptic limit for the corvegence rate values associated with this set R_{0} of unique orbits.**
 
-## Moments of real parts equal to one half 
+Harmonic series = discrete vectorial (grid ~ cardinality) sum with $1/n$ rate 
 
-**Riemman Theorem: Among the orbits associated with $Re(\zeta(s))=0$, the ones containing zeros not in the trivial period $(Re(s)=-2n, n \in \mathbb{N})$ are the images of $zeta(s), Re(s) = \frac{1}{2}$**
 
-The value of $Re(s_{non_trivial})=\frac{1}{2}$ is a direct consequence of the Hausdorff–Young inequality, reflecting the cardinal inequality between rational numbers in the harmonic series and uncountably infinite real numbers in the natural logarithm $C(\mathbb{Q}) = C(\mathbb{N}) = \aleph \neq C(\mathbb{R}) = 2 \aleph$.
-
-****
-
-Consider the set $S_{0}$
 ### Mertens' theorem
 Let (an)n >= 0 and (bn) n>= 0 be real or complex sequences. It was proved by Franz Mertens that, if the series 
 ${ \sum _{n=0}^{\infty }a_{n}} \sum _{{n=0}}^{\infty }a_{n}$ converges to A and ${\sum _{n=0}^{\infty }b_{n}} \sum _{{n=0}}^{\infty }b_{n}$ converges to B, and at least one of them converges absolutely, then their Cauchy product converges to AB.
 
 
+## Moments of real parts equal to one half 
+
+**Riemman Theorem: Among the orbits associated with $Re(\zeta(s))=0$, the ones containing zeros not in the trivial period $(Re(s)=-2n, n \in \mathbb{N})$ are the images of $zeta(s), Re(s) = \frac{1}{2}$.**
+
+It has previously been show that there are infinitely many non-trivial [REFERENCE] zeros along the critical line, $Re(s)=1/2$. Making it a possible element of this set.  
+
+The value of $Re(s_{non_trivial})=\frac{1}{2}$ is a direct consequence of the Hausdorff–Young inequality, reflecting the cardinal inequality between rational numbers in the harmonic series and uncountably infinite real numbers in the natural logarithm $C(\mathbb{Q}) = C(\mathbb{N}) = \aleph \neq C(\mathbb{R}) = 2 \aleph$.  
+
 @ Hadamard three-lines theorem
-@ Hadamard three-lines theorem
-
-Harmonic series = discrete vectorial (grid ~ cardinality) sum with $1/n$ rate 
-
-
-It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$. Making it a possible element of this set.
+@ Hadamard three-circles theorem
 
 The spiral converges towards the unique attractor fixed at $Re(\zeta{s})=0$. The total rotation angle is defined by the second moment when $s \rightarrow \infty$. The identity between the Euler-Maschero
 https://www.wolframalpha.com/input/?i=zeta+of+(1%2F2+%2B+theta*i)
@@ -106,7 +106,6 @@ If the resulting vector $\vec{v_{s}}$ makes angle $\theta + \frac{\pi}{2}$ with 
 $$Im(\vec{v_{s}})=\vec{v_{s}}*cos(\theta)i$$
 Since we are considering zeros at the real axis, the projection on the real axis is $cos(\theta+ \frac{\pi}{2})$, the opposite of $sin \theta$. Diagram:
 
-![Trocar por diagrama de vetores!!!](Gamma-area.svg.png)
 
 Identites:
 $$Re(\vec{v_{s}})=\vec{v_{s}}*-sin(\theta)$$.  
@@ -470,12 +469,11 @@ The non-trivial zeros. The $Im(s)=$ Consider that a hypothetical fish rod is bei
 35–64 (2011).
 3. X. Gourdon, “The $10^13$ first zeros of the Riemann zeta function and zeros computation at very large height,” http:// num-
 bers.computation.free.fr (2004).
-A. LaurincikasD. Siauciunas. On Zeros of Periodic Zeta Functions. Ukrainian Mathematical Journal. November 2013, Volume 65, Issue 6, pp 953–958
+4. A. LaurincikasD. Siauciunas. On Zeros of Periodic Zeta Functions. Ukrainian Mathematical Journal. November 2013, Volume 65, Issue 6, pp 953–958
 Gourdon, Xavier (2004), The 1013 first zeros of the Riemann Zeta function, and zeros computation at very large height.
-The Cycle Problem:An Intriguing Periodicity to the Zeros of the Riemann Zeta Function. David D. Baughdbaugh@rice.edu.https://arxiv.org/pdf/0712.0934.pdf
- Dirac, P. A. M. (1942). "Bakerian Lecture. The Physical Interpretation of Quantum Mechanics". Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences. 180 (980): 1–39. 
-A. Bershadskii Hidden Periodicity and Chaos in the Sequence of Prime Numbers
+5. The Cycle Problem:An Intriguing Periodicity to the Zeros of the Riemann Zeta Function. David D. Baughdbaugh@rice.edu.https://arxiv.org/pdf/0712.0934.pdf
+6. Dirac, P. A. M. (1942). "Bakerian Lecture. The Physical Interpretation of Quantum Mechanics". Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences. 180 (980): 1–39. 
+7. A. Bershadskii Hidden Periodicity and Chaos in the Sequence of Prime Numbers
 Advances in Mathematical Physics. Volume 2011, Article ID 519178, 8 pages
 http://dx.doi.org/10.1155/2011/519178
- 
-Zagier, D. (1990), "A one-sentence proof that every prime p === 1 (mod 4) is a sum of two squares", American Mathematical Monthly, 97 (2): 144, doi:10.2307/2323918, MR 1041893.
+8. Zagier, D. (1990), "A one-sentence proof that every prime p === 1 (mod 4) is a sum of two squares", American Mathematical Monthly, 97 (2): 144, doi:10.2307/2323918, MR 1041893.
