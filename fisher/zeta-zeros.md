@@ -10,6 +10,7 @@ Universidade Federal de São Paulo
 email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com  
 
 
+
 ## Abstract
 The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $R(s)=\frac{1}{2}+\theta i$.
 
@@ -40,9 +41,21 @@ The zeta function is defined as the analytic continuation of the Dirichlet serie
 
 ## Homeomorphic mappings and defining moments
 
-Assuming axioms of complex analysis and probability theory, the hypothesis is true as a consequence of Cantor's theorem on the cardinality of the *continuum*.  
-
 Using Kolmogorov axioms of probability and a homeomorphic mapping $M_{n}$ of $\zeta(s^n)$, we define homeomorphic mappings $M$ between sets of orbits in a topological space and probability functions of complex random variables $s$. $M_{n}$ defines a injective (one-to-one) relation between the sets $S_{n}$ of $\zeta$ spirals and the lines $Re(s)$ parallel to the imaginary axis. 
+
+https://en.wikipedia.org/wiki/Convolution
+https://en.wikipedia.org/wiki/Borel–Carathéodory_theorem
+https://en.wikipedia.org/wiki/Moment_problem
+
+
+For a distribution of mass or probability on a bounded interval, the collection of all the moments (of all orders, from 0 to $\infty$) uniquely determines the distribution (Hausdorff moment problem).
+
+Laurent Series is applicable in bounded intervals.
+
+There are three named classical moment problems: the Hamburger moment problem in which the support of μ is allowed to be the whole real line; the Stieltjes moment problem, for [0, +∞); and the Hausdorff moment problem for a bounded interval, which without loss of generality may be taken as [0, 1].
+The uniqueness of μ in the Hausdorff moment problem follows from the Weierstrass approximation theorem, which states that polynomials are dense under the uniform norm in the space of continuous functions on [0, 1]. For the problem on an infinite interval, uniqueness is a more delicate question; see Carleman's condition, Krein's condition and Akhiezer (1965).
+
+
 
 
 ## Conditions for non-trivial zeros
