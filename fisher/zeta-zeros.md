@@ -37,24 +37,38 @@ The zeta function is defined as the analytic continuation of the Dirichlet serie
 
 ### $S$ Spirals
 
-Define injective mappings $M$ of the set $Z = \zeta(s)$ in the complex plane to the set $S$ of spirals. 
+Define bijective mappings $M$ of the set $Z = \zeta(s)$ in the complex plane to the set $S$ of spirals. 
 
-Each spiral $R$ is a subset of $S$ whose elements are involutes $(C_{a}(C + Im(s)))$ of circles $(C cos(\theta), C sin(\theta))$ with radius identical to other elements in $R$ according to real part of $s$ $C_(s)=Re(s)$. Constant values of $Re(s)$ define lines parallel to the imaginary axis.
-
-Defining subsets $R_{Re(s)}$ of $S$ for complex numbers $s$ with identical $Re(s_{C})=C$:  
-$$S = R_{C}(s_{C}) = \{x + \theta i|x constant \in Re(s) \}$$  
-
-Involute equations of a circle with $\alpha$ shifts:  
-$X(\theta) = r(cos \theta + (\theta-\alpha) sin(\theta)),$  
-$Y(\theta) = r(sin \theta - (\theta-\alpha) cos(\theta)).$  
+Each spiral $R$ is a subset of $S$ whose elements are involutes $(C_{a}(C + Im(s)))$ of circles $(C cos(\theta), C sin(\theta))$ with radius identical to other elements in $R$ according to the real part of $s$ $C_(s)=Re(s)$. Constant values of $Re(s)$ define lines parallel to the imaginary axis.
 
 The Borel–Carathéodory theorem demonstrates that if this function is analytic on a closed disc of radius $R$ centered at the origin, it is bounded by its real part. This is the case for the critical strip, $0<Re(s)<1$. Therefore, in the critical strip, there is always a real number M bounding the involutions $f(x)$ generating $R$.   
+
+We define subsets of $R_{Re(s)}$ of $S$ for complex numbers $s$ with identical $Re(s)=c$ as a function $f$ of $s$. The orbits with constant real part $c$, $R_{c}$:
+$$S = R_{c}(s_{s}) = \{f: c + \theta i|c \in Re(s) \}$$  
+
+We can parameterize the the equantions as:    
+$$X(\theta) = r(cos \theta + (\theta) sin(\theta)),$$  
+$$Y(\theta) = r(sin \theta - (\theta) cos(\theta))$$  
+
+Given the tangential angle:
+$$\phi(\theta)$$
+The arcs's lengths of the circular involutes equals to:
+$$Arc(\theta)=\frac{1}{2} r \theta^2$$
+The curvature:  
+$$\kappa(\theta)=\frac{1}{r \theta}$$
+Cesaro equation for the radius of curvature is:
+$$\rho^2=2rArc$$
+$$\rho = \frac{1}{\kappa}$$
+The formula for the arc's lenght as function of the radius and the angle $\theta$.
+
+We must find
+
+The elements in $R$ correspond to increasing arc lenghts as a consequence of rotation by $\theta i$. These are analogous to observations of an infinite orbit towards attractor (singularity) at different time steps.  
+
 
 For involutes in the complex plane with vector parameterization $r cos(\theta), r(sin)(\theta)$, take $\vec{c}'(\theta) = (-r(sin(\theta), r cos(\theta)$.
 Therefore, $|\vec{c}'(t)|=r$.  
 
-Sequences of elements in R generate spiral arcs, whose length equals to the one of the arc resulting from involutions $\frac{r}{2}*theta*t_{2}^2$, $\theta \in [t_{1},t_{2}]$.  
-The elements in $R$ correspond to increasing arc lenghts as a consequence of rotation by $\theta i$. These are analogous to observations of an infinite orbit towards attractor (singularity) at different time steps.  
 
 **Lemma 1: For real values in the critical strip, involutions define bijections for sets of $\zeta(s)$ with identical real values**  
 
@@ -63,7 +77,8 @@ Hence, increasing values of $\theta$ in $Im(s)=\theta i$ defines unique images o
 
 ## Conditions for infinite non-trivial zeros
 
-In the set $S$ of spirals $R$, consider a potentially non empty subset $S'$ of curves whose involutions define arcs constinously rotated towards the non-trivial values of $Re(\zeta(s))=0$. That is, those with real part not in the set of negative even intergers $s \in \not{Tr}{\zeta_{0}} \rightarrow Re(s) \notin Tr_{\zeta_{0}}, Re(Tr_{\zeta_{0}}) = -2n, n =1,2,3,4,...$.  
+In the set $S$ of spirals $R$, consider a potentially non empty subset $S'$ of curves whose involutions define arcs constinously rotated towards the non-trivial values of $Re(\zeta(s))=0$. That is, tho
+se with real part not in the set of negative even intergers $s \in \not{Tr}{\zeta_{0}} \rightarrow Re(s) \notin Tr_{\zeta_{0}}, Re(Tr_{\zeta_{0}}) = -2n, n =1,2,3,4,...$.  
 
 Next lemmas describe the conditions for a set of orbits containing infinite images of $\zeta(s)=0, s \in \not{Tr}{\zeta_{0}}$ .
 
