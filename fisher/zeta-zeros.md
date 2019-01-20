@@ -67,9 +67,15 @@ In the set $S$ of spirals $R$, consider a potentially non empty subset $S'$ of c
 
 Next lemmas describe the conditions for a set of orbits containing infinite images of $\zeta(s)=0, s \in \not{Tr}{\zeta_{0}}$ .
 
-**Lemma 2: The elements of the unique set of orbits with images containing the infinite non-trivial zeros are the spiral $R$ asymptoptically approaching the real line as $n \rightarrow  \infty$ at a specific rate**  
+**Lemma 2: The elements of the unique set of orbits with images containing the infinite non-trivial zeros are the spiral $R_{0}$ asymptoptically approaching the real line as $n \rightarrow  \infty$ at a specific rate.**  
 
-**Lemma 3: Mertens' theorems provide the asymptoptic limit for the rate values or the orbits, defining the envelope and the attractor.**  
+**Lemma 3: Mertens' theorems provide the asymptoptic limit for the corvegence rate values associated with this set R_{0} of unique orbits.**
+
+## Moments of real parts equal to one half 
+
+**Riemman Theorem: Among the orbits associated with $Re(\zeta(s))=0$, the ones containing zeros not in the trivial period $(Re(s)=-2n, n \in \mathbb{N})$ are the images of $zeta(s), Re(s) = \frac{1}{2}$**
+
+The value of $Re(s_{non_trivial})=\frac{1}{2}$ is a direct consequence of the Hausdorff–Young inequality, reflecting the cardinal inequality between rational numbers in the harmonic series and uncountably infinite real numbers in the natural logarithm $C(\mathbb{Q}) = C(\mathbb{N}) = \aleph \neq C(\mathbb{R}) = 2 \aleph$.
 
 ****
 
@@ -77,11 +83,6 @@ Consider the set $S_{0}$
 ### Mertens' theorem
 Let (an)n >= 0 and (bn) n>= 0 be real or complex sequences. It was proved by Franz Mertens that, if the series 
 ${ \sum _{n=0}^{\infty }a_{n}} \sum _{{n=0}}^{\infty }a_{n}$ converges to A and ${\sum _{n=0}^{\infty }b_{n}} \sum _{{n=0}}^{\infty }b_{n}$ converges to B, and at least one of them converges absolutely, then their Cauchy product converges to AB.
-
-
-## Moments of real parts equal to one half 
-
-The value of $Re(s_{non_trivial})=\frac{1}{2}$ is a direct consequence of the Hausdorff–Young inequality, reflecting the cardinal inequality between rational numbers in the harmonic series and uncountably infinite real numbers in the natural logarithm $C(\mathbb{Q}) = C(\mathbb{N}) = \aleph \neq C(\mathbb{R}) = 2 \aleph$.
 
 
 @ Hadamard three-lines theorem
