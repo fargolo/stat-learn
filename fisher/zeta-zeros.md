@@ -11,20 +11,18 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 
 
 ## Abstract
-The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $R(s)=\frac{1}{2}+\theta i$.
+The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $Re(s)=\frac{1}{2}+\theta i$.
 
-Using standard complex analysis, we show that the hypothesis is true as a consequence of Cantor's theorem on the cardinality of the *continuum*.  
+We define homeomorphisms $M$ between values of $\zeta(s)$ and the set $S$ of spiraled involuted orbits $S$. $M$ defines a bijections between orbits and lines with fixed $Re(s)$ parallel to the imaginary axis. 
 
-We homeomorphisms $M$ between the topogical spaces of $\zeta(s^n)$ and spiraled orbits $S$. $M$ defines a bijections between orbits and lines with fixed $Re(s)$ parallel to the imaginary axis. 
+For infinite non-trivial zeros, we demonstrate that the $\epsilon$ distance to the spiral's attractor must converge to 0 at unique periodic rate. 
 
-For non-trivial zeros, we demonstrate that the $\epsilon$ distance to the spiral's attractor must converge to 0 at a periodic rate given by the harmonic series. 
-
-It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$. 
+It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$.   
 
 The identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm identifies the spiral $R$ containing the target orbits $s=1/2 + \theta i$ as the only element of $S$ satisfying the conditions.  
   
-The value of $Re(s_{non-trivial})=\frac{1}{2}$ is a direct consequence of cardinal inequality between rational numbers in the harmonic series $C(\mathbb{Q}) = C(\mathbb{N})= \aleph$) and uncountably infinite real numbers in the natural logarithm definition.  
-
+The value of $Re(s_{non_trivial})=\frac{1}{2}$ is a direct consequence of the Hausdorff–Young inequality, reflecting the cardinal inequality between rational numbers in the harmonic series and uncountably infinite real numbers in the natural logarithm $C(\mathbb{Q}) = C(\mathbb{N}) = \aleph \neq C(\mathbb{R}) = 2 \aleph$.
+ 
 We examine axiomatic systems under which the conclusion holds and give geometrical demonstrations for other previously described identities.  
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
@@ -35,16 +33,16 @@ We examine axiomatic systems under which the conclusion holds and give geometric
 
 The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $R(s)=\frac{1}{2}+\theta i$.
 
-## Homeomorphisms of \zeta
+## Homeomorphisms of $\zeta$
 
 ### $S$ Spirals
 
 Define injective mappings $M$ of the set $Z = \zeta(s)$ in the complex plane to the set $S$ of spirals. 
 
-Each spiral $R$ is a subset of $S$ whose elements are involutes $(C_{a}(C + Im(s)))$ of circles $(C cos(\theta), C sin(\theta))$ with radius identical to other elements in $R$ according to real part of $s$ $C_(s)=Re(s)$. The lines parallel to the imaginary axis.
+Each spiral $R$ is a subset of $S$ whose elements are involutes $(C_{a}(C + Im(s)))$ of circles $(C cos(\theta), C sin(\theta))$ with radius identical to other elements in $R$ according to real part of $s$ $C_(s)=Re(s)$. Constant values of $Re(s)$ define lines parallel to the imaginary axis.
 
 Defining subsets $R_{Re(s)}$ of $S$ for complex numbers $s$ with identical $Re(s_{C})=C$:  
-$$S = \{R_{C}}(s_{C}) = \{x + \theta i|x constant \in Re(s)\}$$  
+$$S = R_{C}(s_{C}) = \{x + \theta i|x constant \in Re(s) \}$$  
 
 Involute equations of a circle with $\alpha$ shifts:  
 $X(\theta) = r(cos \theta + (\theta-\alpha) sin(\theta)),$  
@@ -53,19 +51,17 @@ $Y(\theta) = r(sin \theta - (\theta-\alpha) cos(\theta)).$
 The Borel–Carathéodory theorem demonstrates that if this function is analytic on a closed disc of radius $R$ centered at the origin, it is bounded by its real part. This is the case for the critical strip, $0<Re(s)<1$. Therefore, in the critical strip, there is always a real number M bounding the involutions $f(x)$ generating $R$.   
 
 For involutes in the complex plane with vector parameterization $r cos(\theta), r(sin)(\theta)$, take $\vec{c}'(\theta) = (-r(sin(\theta), r cos(\theta)$.
-Therefore, $|\vec{c}'(t)=r|$.  
+Therefore, $|\vec{c}'(t)|=r$.  
 
-Sequences of elements in R generate spiral arcs, whose length equals to $r/2*theta*t_{2}^2$, $\theta \in [t_{1},t_{2}]$.
-The elements in $R$ correspond to increasing arc lenghts as a consequence of rotation by $\theta i$. Those would be analogous to physical observations of the corresponding orbit towards an attractor at different time steps.  
+Sequences of elements in R generate spiral arcs, whose length equals to the one of the arc resulting from involutions $\frac{r}{2}*theta*t_{2}^2$, $\theta \in [t_{1},t_{2}]$.  
+The elements in $R$ correspond to increasing arc lenghts as a consequence of rotation by $\theta i$. These are analogous to observations of an infinite orbit towards attractor (singularity) at different time steps.  
 
-**Lemma 1: For real values in the critical strip, involutions define bijections for sets of \zeta(s) with identical real values**  
+**Lemma 1: For real values in the critical strip, involutions define bijections for sets of $\zeta(s)$ with identical real values**  
 
-This is a consequence of the involutes defined before being parallel curves by definition. 
-
+From the definition of operations in the complex plane, involutions $\vec{C_{\theta}}(s)=\vec{C_{0}}(s)+ \theta \vec{c'(s)}$ use $c'(s)$ as the unit normal for $\vec{C(0)}$.
+Hence, increasing values of $\theta$ in $Im(s)=\theta i$ defines unique images of parallel spirals in $S$.  
 
 ## Conditions for non-trivial zeros
-
-Considering involute properties
 
 **Gedankenexperiment**
 
@@ -80,8 +76,12 @@ ${ \sum _{n=0}^{\infty }a_{n}} \sum _{{n=0}}^{\infty }a_{n}$ converges to A and 
 
 ## Moments of real parts equal to one half 
 
+The value of $Re(s_{non_trivial})=\frac{1}{2}$ is a direct consequence of the Hausdorff–Young inequality, reflecting the cardinal inequality between rational numbers in the harmonic series and uncountably infinite real numbers in the natural logarithm $C(\mathbb{Q}) = C(\mathbb{N}) = \aleph \neq C(\mathbb{R}) = 2 \aleph$.
+
+
 @ Hadamard three-lines theorem
 @ Hadamard three-lines theorem
+
 Harmonic series = discrete vectorial (grid ~ cardinality) sum with $1/n$ rate 
 
 
@@ -153,7 +153,6 @@ By the definition, this is the dot product ani constant, the harmonic series and
   
 The value of $Re(s_{non-trivial})=\frac{1}{2}$ is a direct consequence of cardinal inequality between rational numbers in the harmonic series $C(\mathbb{Q}) = C(\mathbb{N})= \aleph$) and uncountably infinite real numbers.
 
-
 It could also be demonstrated from Kolmogorov axioms by defining the characteristic function of probability functions defined after elements of $S$.   
 
 For a distribution of mass or probability on a bounded interval, the collection of all the moments (of all orders, from 0 to $\infty$) uniquely determines the distribution (Hausdorff moment problem).
@@ -163,13 +162,12 @@ The uniqueness of $\mu$ in the Hausdorff moment problem follows from the Weierst
 
 Laurent Series is applicable in bounded intervals.
 
----
 These are involutions using line segments parallel to the imaginary axis. The arc's length is parameterized as:  
-$$\vec{X} = \vec{C_{\kappa}} = \vec{c}(\theta) - \frac{\vec{c}'(\theta)}{|\vec{c}'(\theta)|} \int_{\kapp}a^{\theta}|\vec{c}'(\omega)|d\omega$$  
+$$\vec{X} = \vec{C_{\kappa}} = \vec{c}(\theta) - \frac{\vec{c}'(\theta)}{|\vec{c}'(\theta)|} \int_{\kappa}a^{\theta}|\vec{c}'(\omega)|d\omega$$  
 The integral over $s$ represents the length of the free part of the string in the interval $[0,t]$ and the vector prior to that is the tangent unitvector.  :   
 $$C_{a}(s) = \int_{R^d}^{} Re(y)Im(x-y)ds$$  
 $$=\int_{R^d}^{} Re(x-y)Im(y)dy$$  
----
+
 
 
 ## Axiomatic basis and geometrical intuitions
