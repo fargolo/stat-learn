@@ -39,10 +39,10 @@ The zeta function is defined as the analytic continuation of the Dirichlet serie
 
 ## Homeomorphic mappings and defining moments
 
-Define mappings $M$ of the set $Z = \zeta(s)$ to sets $S$ of spirals given by the convolutions (Cauchy product) $Re(s) \ast Im(s)$ for each element with distinct $Re(s)$ in $Z$.  
-
-$$(Re(s) \ast Im(s))(s) = \int_{R^d}^{} Re(s)Im(s - )dx$$
-
+Define mappings $M$ of the set $Z = \zeta(s)$ to sets $S$ of spirals given by the convolutions (Cauchy product) $Re(s) \ast Im(s)$ for each set of elements with fixed $Re(s)$ in $Z$. These are convolution along the lines parallel to the imaginary axis.   
+The integral over $s$:  
+$$(Re(s) \ast Im(s))(s) = \int_{R^d}^{} Re(y)Im(s-y)ds$$
+$$=\int_{R^d}^{} Re(s-y)Im(y)dy$$
 $Re(s)$ to a set $M$ of orbits moments.
 $$f: s \rightarrow O$$  
 
@@ -82,6 +82,9 @@ Let (an)n >= 0 and (bn) n>= 0 be real or complex sequences. It was proved by Fra
 ${ \sum _{n=0}^{\infty }a_{n}} \sum _{{n=0}}^{\infty }a_{n} converges to A and {\sum _{n=0}^{\infty }b_{n}} \sum _{{n=0}}^{\infty }b_{n}$ converges to B, and at least one of them converges absolutely, then their Cauchy product converges to AB.
 
 ## Moments of real parts equal to one half 
+
+@Hadamard three-lines theorem
+@Hadamard three-lines theorem
 
 It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$. Making it a possible element of this set.
 
