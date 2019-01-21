@@ -41,27 +41,32 @@ Define bijective mappings $M$ of the set $Z = \zeta(s)$ in the complex plane to 
 
 Each spiral $R$ is a subset of $S$ whose elements are involutes $(C_{a}(C + Im(s)))$ of circles $(C cos(\theta), C sin(\theta))$ with radius identical to other elements in $R$ according to the real part of $s$ $C_(s)=Re(s)$. Constant values of $Re(s)$ define lines parallel to the imaginary axis.
 
+The holomorphism of objects homeomorphic to these have been demonstrated in Davis solution for the analytic continuation of the Theodorus Spiral. Also in evaluation of Archimedean Zeta Integrals.
+
 The Borel–Carathéodory theorem demonstrates that if this function is analytic on a closed disc of radius $R$ centered at the origin, it is bounded by its real part. This is the case for the critical strip, $0<Re(s)<1$. Therefore, in the critical strip, there is always a real number M bounding the involutions $f(x)$ generating $R$.   
 
 We define subsets of $R_{Re(s)}$ of $S$ for complex numbers $s$ with identical $Re(s)=c$ as a function $f$ of $s$. The orbits with constant real part $c$, $R_{c}$:
 $$S = R_{c}(s_{s}) = \{f: c + \theta i|c \in Re(s) \}$$  
 
-We can parameterize the the equations as:    
-$$X(\theta) = r(cos \theta + (\theta) sin(\theta)),$$  
-$$Y(\theta) = r(sin \theta - (\theta) cos(\theta))$$  
+We can parameterize the equations as:    
+$$X(\theta) = c(cos \theta + (\theta) sin(\theta)),$$  
+$$Y(\theta) = c(sin \theta - (\theta) cos(\theta))$$  
 
-Given the tangential angle:
-$$\phi(\theta)$$
-The arcs's lengths of the circular involutes equals to:
-$$r \int_{0}^{\theta} sqrt{1+\theta^2} dtheta$$
+Given the tangential angle, $\phi(\theta)$.
+
+Similar geometrical objects have been examined in complex analysis (e.g. Theodorus Spiral and Archimedean Zeta Integrals).  
+
+The arcs's lengths of the circular converges to a value given by the integral of the involutes of the circle with radius $c$:
+$$c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$
+$$=\frac{1}{2}c(\theta \sqrt{1+\theta^2} + sinh^{-1}\theta)$$  
+$$=\frac{1}{2}c(\theta \sqrt{1+\theta^2} + ln(\theta + \sqrt{1+\theta^2}))$$
+Which is our **first identity**.  
 The curvature:  
-$$\kappa(\theta)=\frac{2+\theta}{r (1+\theta^2)^{3/2}}($$
-Cesaro equation for the radius of curvature is:
-$$\rho^2=2rArc$$
-$$\rho = \frac{1}{\kappa}$$
-The formula for the arc's lenght as function of the radius and the angle $\theta$.
+$$\kappa(\theta)=\frac{2+\theta}{r (1+\theta^2)^{3/2}}$$
 
-We must find the elements in $S$ which correspond to increasing arc lenghts as a consequence of rotation by $\theta i$. These are analogous to observations of an infinite rotating orbit towards attractor (singularity) at subsequent time steps, which become smooth as $t \rightarrow +\infty$ and $\epsilon \rightarrow 0$.  
+Each element of $R$ corresponds to an observations of an infinite rotating orbit towards an attractor (singularity) at subsequent time steps, which become smooth as $t \rightarrow +\infty$ and $\epsilon \rightarrow 0$. 
+
+A point moves with uniform acceleration along the spiral while the spiral corresponds to the locations over time of a point moving away from a fixed point with a constant speed along a line that rotates with constant angular velocity.$^11$
 
 
 **Lemma 1: For real values in the critical strip, involutions define bijections for sets of $\zeta(s)$ with identical real values**  
@@ -71,37 +76,39 @@ Hence, increasing values of $\theta$ in $Im(s)=\theta i$ defines unique images o
 
 ## Conditions for infinite non-trivial zeros
 
-In the set $S$ of spirals $R$, consider a potentially non empty subset $S'$ of curves whose involutions define arcs constinously rotated towards the non-trivial values of $Re(\zeta(s))=0$. That is, tho
-se with real part not in the set of negative even intergers $s \in \not{Tr}{\zeta_{0}} \rightarrow Re(s) \notin Tr_{\zeta_{0}}, Re(Tr_{\zeta_{0}}) = -2n, n =1,2,3,4,...$.  
-
-Next lemma describe the conditions for a set of orbits containing infinite images of $\zeta(s)=0, s \in \not{Tr}{\zeta_{0}}$ .
+Next lemmas describe the conditions for a set of orbits containing infinite images of $\zeta(s)=0, s \in \not{Tr}{\zeta_{0}}$ .
 
 **Lemma 2: The elements of the unique set of orbits with images containing the infinite non-trivial zeros are the spiral $R_{0}$ asymptoptically approaching the real line as $n \rightarrow \infty$ at a specific rate.**  
 
-The curvature is given by:  
-In order for each complete rotation to compensate the curvature,
-Cesaro equation for the radius of curvature is:
-$$\rho^2=2rArc$$
-$$\kappa(\theta)=\frac{1}{r \theta}$$
+**Lemma 3: Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set R_{0} of unique orbits.**
+
+In the set $S$ of spirals $R$, consider a potentially non empty subset $S'$ of curves whose involutions define arcs constinously rotated towards the non-trivial values of $Re(\zeta(s))=0$. That is, tho
+se with real part not in the set of negative even intergers $s \in \not{Tr}{\zeta_{0}} \rightarrow Re(s) \notin Tr_{\zeta_{0}}, Re(Tr_{\zeta_{0}}) = -2n, n =1,2,3,4,...$.  
+plex sequences. 
+
+It was proved by Franz Mertens that, if the series 
+${ \sum _{n=0}^{\infty }a_{n}} \sum _{{n=0}}^{\infty }a_{n}$ converges to A and ${\sum _{n=0}^{\infty }b_{n}} \sum _{{n=0}}^{\infty }b_{n}$ converges to B, and at least one of them converges absolutely, then their Cauchy product converges to AB.
 
 ![Trocar por diagrama de vetores!!!](Gamma-area.svg.png)
 
+## Orbits with real parts equal to one half 
 
-**Lemma 3: Mertens' theorems provide the asymptoptic limit for the corvegence rate values associated with this set R_{0} of unique orbits.**
-
+**Theorem for unicity and location of non-tr
 Harmonic series = discrete vectorial (grid ~ cardinality) sum with $1/n$ rate 
-
 
 ### Mertens' theorem
 Let (an)n >= 0 and (bn) n>= 0 be real or complex sequences. It was proved by Franz Mertens that, if the series 
 ${ \sum _{n=0}^{\infty }a_{n}} \sum _{{n=0}}^{\infty }a_{n}$ converges to A and ${\sum _{n=0}^{\infty }b_{n}} \sum _{{n=0}}^{\infty }b_{n}$ converges to B, and at least one of them converges absolutely, then their Cauchy product converges to AB.
 
 
-## Moments of real parts equal to one half 
+![Trocar por diagrama de vetores!!!](Gamma-area.svg.png)
 
-**Riemman Theorem: Among the orbits associated with $Re(\zeta(s))=0$, the ones containing zeros not in the trivial period $(Re(s)=-2n, n \in \mathbb{N})$ are the images of $zeta(s), Re(s) = \frac{1}{2}$.**
 
-It has previously been show that there are infinitely many non-trivial [REFERENCE] zeros along the critical line, $Re(s)=1/2$. Making it a possible element of this set.  
+## Orbits with real parts equal to one half 
+
+**Theorem for unicity and location of non-trivial zeros: Among the orbits associated with $Re(\zeta(s))=0$, the ones containing zeros not in the trivial period $(Re(s)=-2n, n \in \mathbb{N})$ are the images of $zeta(s), Re(s) = \frac{1}{2}$.**
+  
+The argument is as follows:
 
 The value of $Re(s_{non_trivial})=\frac{1}{2}$ is a direct consequence of the Hausdorff–Young inequality, reflecting the cardinal inequality between rational numbers in the harmonic series and uncountably infinite real numbers in the natural logarithm $C(\mathbb{Q}) = C(\mathbb{N}) = \aleph \neq C(\mathbb{R}) = 2 \aleph$.  
 
@@ -492,3 +499,7 @@ Gourdon, Xavier (2004), The 1013 first zeros of the Riemann Zeta function, and z
 Advances in Mathematical Physics. Volume 2011, Article ID 519178, 8 pages
 http://dx.doi.org/10.1155/2011/519178
 8. Zagier, D. (1990), "A one-sentence proof that every prime p === 1 (mod 4) is a sum of two squares", American Mathematical Monthly, 97 (2): 144, doi:10.2307/2323918, MR 1041893.
+https://people.math.ethz.ch/~waldvoge/Papers/theopaper.pdf
+9. Analytic Continuation of the Thedorus Spiral. Jorg Waldvogem, ETH Zurich. https://people.math.ethz.ch/~waldvoge/Papers/theopaper.pdf
+10. Archimedean Zeta Integrals. Paul Garrett. http://www-users.math.umn.edu/~Garrett/m/v/ky_overheads.pdf
+11. Mikhail Gaichenkov comment on Sloane, N. J. A. (ed.). "Sequence  A091154". The On-Line Encyclopedia of Integer Sequences. OEIS Foundation.
