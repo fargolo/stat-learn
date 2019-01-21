@@ -11,7 +11,7 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 
 
 ## Abstract
-The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $Re(s)=\frac{1}{2}+\theta i$.
+The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $Re(s)=\frac{1}{2}$.
 
 We define homeomorphisms $M$ between values of $\zeta(s)$ and the superset $S$ of orbits $R$. $M$ defines bijections with fixed values of $Re(s)$ in $\zeta(s)$, lines parallel to the imaginary axis.  
 
@@ -31,13 +31,13 @@ We examine axiomatic systems under which the conclusion holds and give geometric
 
 ## Introduction
 
-The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $R(s)=\frac{1}{2}+\theta i$.
+The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $R(s)=\frac{1}{2}$.
 
-$$\zeta(s) = 2^{s}\pi^{s-1}sin(\pi/2 s)\zeta(1-s) \gamma(1-s)$$
+$$\zeta(s) = \frac{\Gamma(1-s)}{2\pi i} \oint_{\gamma} \frac{u^{s-1}}{e^{-u} -1}$$
 
-We outline a proof relating the definition of the Riemann Zeta function to *Riesz-Thorin theorem* on the interporlation of operators and *Cantor's theorem* on the cardinality of the continuum.   
+We outline a proof relating the definition of the Riemann Zeta function to the *Riesz-Thorin theorem* on the interporlation of operators and *Cantor's theorem* on the cardinality of the continuum.   
 
-The argument is presented, along with non-trivial or unexplored identities. Further discussion ilustrate known identities with peculiar geometrical meaning under the proposed homeomorphisms.   
+The argument is presented, along demonstration of non-trivial or unexplored identities. Further discussion ilustrate known identities with peculiar geometrical meaning under the proposed homeomorphisms.   
 
 ## Homeomorphisms of $\zeta$
 
@@ -45,19 +45,18 @@ The argument is presented, along with non-trivial or unexplored identities. Furt
 
 For $Re(s)$ in the critical strip, define bijective mappings $M$ of the set $Z = \zeta(s)$ in the complex plane to the superset $S$ of orbits $a \in A$. 
 
-We define homeomorphisms $M$ between values of $\zeta(s)$ and the set of orbits $S$ under the action of group $G_{0}$. $M$ defines bijections between orbits and lines with fixed values of $Re(s)$ in $\zeta(s)$, parallel to the imaginary axis.  
+We define homeomorphisms $M$ between values of $\zeta(s)$ and the sets of orbits $A$ under the action of group $C$ with multiplication. $M$ defines bijections between orbits and lines with fixed values of $Re(s)$ in $\zeta(s)$, parallel to the imaginary axis.  
 
-Each spiral $a \in A$ is a subset of $S$ whose elements are involutes $(C_{a}(C + Im(s)))$ of circles $(C cos(\theta), C sin(\theta))$ with radius identical to other elements in $R$ according to the real part of $s$ $C_(s)=Re(s)$. Each element $a$ defines the lines parallel to the imaginary axis, which are spiral orbits under the action of binary operation of involution among vectors $C, C \in \mathbb{R}$ and $\theta i$, $i$ is the imaginary unit in the perpendicular axis.
+Each spiral $a \in A$ is a subset of $S$ whose elements are involutes $(C_{a}(C + Im(s)))$ of circles $(C cos(\theta), C sin(\theta))$ with radius identical to other elements in $R$ according to the real part of $s$ $C_(s)=Re(s)$. Each element $a$ defines the lines parallel to the imaginary axis, infinit arcs of involuting sucessive multiplications (rotations) on the complex plane. $C, C \in \mathbb{R}$ and $\theta i$, $i$ is the imaginary unit in the perpendicular axis.
 
-connected Lie groups with dimension one are the real line $\mathbb{R}$  (with the group operation being addition) and the circle group $S^{1}$ of complex numbers with absolute value one (with the group operation being multiplication). The $S^{1}$ group is often denoted as $U(1)$ U(1), the group of $1 \times 1$ 1 unitary matrices.
+The real line and the complex numbers with absolute value one (circle group $S^1$) are **connected** Lie groups with dimension one under the operations of addition and multiplication, respectively. The $S^{1}$ group is often denoted as $U(1)$ the group of $1 \times 1$ 1 unitary matrices.
 
+The holomorphism of subsets of spirals defined by $a$ have been demonstrated in Davis solution for the analytic continuation of the Theodorus Spiral. Also in evaluation of Archimedean Zeta Integrals.  
 
-The holomorphism of objects homeomorphic to these have been demonstrated in Davis solution for the analytic continuation of the Theodorus Spiral. Also in evaluation of Archimedean Zeta Integrals.
+The Borel–Carathéodory theorem demonstrates that if this function is analytic on a closed disc of radius $R$ centered at the origin, it is bounded by its real part. This is the case for the $\zeta$ function differentiable along the critical strip, $0<Re(s)<1$. Therefore, in the critical strip, there is always a real number M bounding the involutions generating elements in $a$.   
 
-The Borel–Carathéodory theorem demonstrates that if this function is analytic on a closed disc of radius $R$ centered at the origin, it is bounded by its real part. This is the case for the critical strip, $0<Re(s)<1$. Therefore, in the critical strip, there is always a real number M bounding the involutions $f(x)$ generating $R$.   
-
-We define subsets of $R_{Re(s)}$ of $S$ for complex numbers $s$ with identical $Re(s)=c$ as a function $f$ of $s$. The orbits with constant real part $c$, $R_{c}$:
-$$S = R_{c}(s_{s}) = \{f: c + \theta i|c \in Re(s) \}$$  
+We define subsets of $A_{Re(s)}$ of $S$ for complex numbers $s$ with identical $Re(s)=c$ as a function $f$ of $s$. The orbits with constant real part $c$, $A_{c}$:
+$$A_{c}(s_{s}) = \{f: c + \theta i|c \in Re(s) \}$$  
 
 We can parameterize the equations as:    
 $$X(\theta) = c(cos \theta + (\theta) sin(\theta)),$$  
@@ -67,11 +66,14 @@ Given the tangential angle, $\phi(\theta)$.
 
 Similar geometrical objects have been examined in complex analysis (e.g. Theodorus Spiral and Archimedean Zeta Integrals).  
 
-The arcs's lengths of the circular converges to a value given by the integral of the involutes of the circle with radius $c$:
-$$c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$
+The curve's lengths of the circular involutes converges to a value given by the integral of the involutes of the circle with radius $c$.
+The total length is given by evaluaton of the integral $\sqrt{1-\theta^2}$ along the interval $[0,\theta]$:
+Which is our **first identity**.  
+$$L = c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$
+
+
 $$=\frac{1}{2}c(\theta \sqrt{1+\theta^2} + sinh^{-1}\theta)$$  
 $$=\frac{1}{2}c(\theta \sqrt{1+\theta^2} + ln(\theta + \sqrt{1+\theta^2}))$$
-Which is our **first identity**.  
 The curvature:  
 $$\kappa(\theta)=\frac{2+\theta}{r (1+\theta^2)^{3/2}}$$
 
@@ -514,3 +516,4 @@ https://people.math.ethz.ch/~waldvoge/Papers/theopaper.pdf
 9. Analytic Continuation of the Thedorus Spiral. Jorg Waldvogem, ETH Zurich. https://people.math.ethz.ch/~waldvoge/Papers/theopaper.pdf
 10. Archimedean Zeta Integrals. Paul Garrett. http://www-users.math.umn.edu/~Garrett/m/v/ky_overheads.pdf
 11. Mikhail Gaichenkov comment on Sloane, N. J. A. (ed.). "Sequence  A091154". The On-Line Encyclopedia of Integer Sequences. OEIS Foundation.
+12. http://mathworld.wolfram.com/RiemannZetaFunction.html
