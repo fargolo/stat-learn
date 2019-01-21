@@ -80,7 +80,7 @@ Next lemmas describe the conditions for a set of orbits containing infinite imag
 
 **Lemma 2: The elements of the unique set of orbits with images containing the infinite non-trivial zeros are the spiral $R_{0}$ asymptoptically approaching the real line as $n \rightarrow \infty$ at a specific rate.**  
 
-**Lemma 3: Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set R_{0} of unique orbits.**
+**Lemma 3: Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set $R_{0}$ of unique orbits.**
 
 In the set $S$ of spirals $R$, consider a potentially non empty subset $S'$ of curves whose involutions define arcs constinously rotated towards the non-trivial values of $Re(\zeta(s))=0$. That is, tho
 se with real part not in the set of negative even intergers $s \in \not{Tr}{\zeta_{0}} \rightarrow Re(s) \notin Tr_{\zeta_{0}}, Re(Tr_{\zeta_{0}}) = -2n, n =1,2,3,4,...$.  
