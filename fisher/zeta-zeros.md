@@ -15,8 +15,6 @@ The zeta function is defined as the analytic continuation of the Dirichlet serie
 
 We define homeomorphisms $M$ between values of $\zeta(s)$ and the superset $S$ of orbits $R$. $M$ defines bijections with fixed values of $Re(s)$ in $\zeta(s)$, lines parallel to the imaginary axis.  
 
-connected Lie groups with dimension one are the real line $\mathbb{R}$  (with the group operation being addition) and the circle group $S^{1}$ of complex numbers with absolute value one (with the group operation being multiplication). The $S^{1}$ group is often denoted as $U(1)$ U(1), the group of $1 \times 1$ 1 unitary matrices.
-
 For infinite non-trivial zeros, we demonstrate that the $\epsilon$ distance to the spiral's attractor must converge to 0 at unique periodic rate. 
 
 It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$.   
@@ -35,20 +33,24 @@ We examine axiomatic systems under which the conclusion holds and give geometric
 
 The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $R(s)=\frac{1}{2}+\theta i$.
 
-We outline a proof by contradiction, relating the definition of the Riemann Zeta function to *Riesz-Thorin theorem* on the interporlation of operators and *Cantor's theorem* on the cardinality of the continuum.   
+$$\zeta(s) = 2^{s}\pi^{s-1}sin(\pi/2 s)\zeta(1-s) \gamma(1-s)$$
 
-The argument is presented, along with non-trivial or unexplored identities. Further discussion ilustrate 
+We outline a proof relating the definition of the Riemann Zeta function to *Riesz-Thorin theorem* on the interporlation of operators and *Cantor's theorem* on the cardinality of the continuum.   
+
+The argument is presented, along with non-trivial or unexplored identities. Further discussion ilustrate known identities with peculiar geometrical meaning under the proposed homeomorphisms.   
 
 ## Homeomorphisms of $\zeta$
 
 ### $S$ Spirals
 
-Define bijective mappings $M$ of the set $Z = \zeta(s)$ in the complex plane to the set $S$ of orbits. 
+For $Re(s)$ in the critical strip, define bijective mappings $M$ of the set $Z = \zeta(s)$ in the complex plane to the superset $S$ of orbits $a \in A$. 
 
-We define homeomorphisms $M$ between values of $\zeta(s)$ and the set of orbits $S$ under the action of group $T$. $M$ defines a bijections between orbits and lines with fixed values of $Re(s)$ in $\zeta(s)$, parallel to the imaginary axis.  
+We define homeomorphisms $M$ between values of $\zeta(s)$ and the set of orbits $S$ under the action of group $G_{0}$. $M$ defines bijections between orbits and lines with fixed values of $Re(s)$ in $\zeta(s)$, parallel to the imaginary axis.  
 
+Each spiral $a \in A$ is a subset of $S$ whose elements are involutes $(C_{a}(C + Im(s)))$ of circles $(C cos(\theta), C sin(\theta))$ with radius identical to other elements in $R$ according to the real part of $s$ $C_(s)=Re(s)$. Each element $a$ defines the lines parallel to the imaginary axis, which are spiral orbits under the action of binary operation of involution among vectors $C, C \in \mathbb{R}$ and $\theta i$, $i$ is the imaginary unit in the perpendicular axis.
 
-Each spiral $R$ is a subset of $S$ whose elements are involutes $(C_{a}(C + Im(s)))$ of circles $(C cos(\theta), C sin(\theta))$ with radius identical to other elements in $R$ according to the real part of $s$ $C_(s)=Re(s)$. Constant values of $Re(s)$ define lines parallel to the imaginary axis.
+connected Lie groups with dimension one are the real line $\mathbb{R}$  (with the group operation being addition) and the circle group $S^{1}$ of complex numbers with absolute value one (with the group operation being multiplication). The $S^{1}$ group is often denoted as $U(1)$ U(1), the group of $1 \times 1$ 1 unitary matrices.
+
 
 The holomorphism of objects homeomorphic to these have been demonstrated in Davis solution for the analytic continuation of the Theodorus Spiral. Also in evaluation of Archimedean Zeta Integrals.
 
