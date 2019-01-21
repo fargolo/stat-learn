@@ -123,15 +123,17 @@ $$= -\frac{3 \theta}{{(\theta^2 + 1)}^{5/2}}$$
 
 ![Global max. and min.](maxmin.jpg)  
 
+
+
 ![Plots of 4th derivative (snap) on polar coordinates. The orbits sugest the location of symetrical attractors](polar_snap.jpg)  
+
+
 
 **Lemma 3: Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set $R_{0}$ of unique orbits.**
 
 Suppose one of the solution set of orbits $a_{0}$ is located at the critical strip $Re(s)=\frac{1}{2}$.
 
-
-
-We may verify that $\alpha$ is an even function with a global minimum and two complex roots: $\alpha_{0} \in \{i,-i\}$, are singularities. Values of $\theta = \alpha_{0}$ indicate the periods of the arc. The global minimum is $\alpha(\theta)=1,\theta=0$ the uncurved orbits along the real line $\zeta(s), s \in \mathbb{real}$.  
+We may verify that $\alpha$ is an even function with a global minimum and two complex roots: $\alpha_{0} \in \{i,-i\}$, are singularities. Values of $\theta = \alpha_{0}$ indicate the periods of the arc. The global minimum is $\alpha(\theta)=1,\theta=0$ the uncurved orbits along the real line $\zeta(s), s \in \mathbb{R}$.  
 
 In order to evaluate
 
