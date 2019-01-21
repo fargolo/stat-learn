@@ -13,15 +13,15 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 ## Abstract
 The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $Re(s)=\frac{1}{2}+\theta i$.
 
-We define homeomorphisms $M$ between values of $\zeta(s)$ and the set $S$ of spiraled involuted orbits $S$. $M$ defines a bijections between orbits and lines with fixed $Re(s)$ parallel to the imaginary axis. 
+We define homeomorphisms $M$ between values of $\zeta(s)$ and the superset $S$ of orbits $R$. $M$ defines bijections with fixed values of $Re(s)$ in $\zeta(s)$, lines parallel to the imaginary axis.  
 
 For infinite non-trivial zeros, we demonstrate that the $\epsilon$ distance to the spiral's attractor must converge to 0 at unique periodic rate. 
 
 It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$.   
 
-The identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm identifies the spiral $R$ containing the target orbits $s=1/2 + \theta i$ as the only element of $S$ satisfying the conditions.  
+The identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm identifies the spiral $R$ containing the target orbits $s=1/2 + \theta i$ as the only element of $S$ satisfying the conditions.  This is based on Perseval's theorem on the unitary characteristic of the Fourier transform or its generalized version, the Plancharel theorem.
   
-The value of $Re(s_{non_trivial})=\frac{1}{2}$ is a direct consequence of the Hausdorff–Young inequality, reflecting the cardinal inequality between rational numbers in the harmonic series and uncountably infinite real numbers in the natural logarithm $C(\mathbb{Q}) = C(\mathbb{N}) = \aleph \neq C(\mathbb{R}) = 2 \aleph$.
+The value of $Re(\not Tr_{})=\frac{1}{2}$ is a direct consequence of the Hausdorff–Young inequality, reflecting the cardinal inequality between rational numbers in the harmonic series and uncountably infinite real numbers in the natural logarithm $C(\mathbb{Q}) = C(\mathbb{N}) = \aleph \neq C(\mathbb{R}) = 2 \aleph$.
  
 We examine axiomatic systems under which the conclusion holds and give geometrical demonstrations for other previously described identities.  
 
@@ -38,6 +38,10 @@ The zeta function is defined as the analytic continuation of the Dirichlet serie
 ### $S$ Spirals
 
 Define bijective mappings $M$ of the set $Z = \zeta(s)$ in the complex plane to the set $S$ of spirals. 
+
+
+We define homeomorphisms $M$ between values of $\zeta(s)$ and the set of orbits $S$ under the action of group $T$. $M$ defines a bijections between orbits and lines with fixed values of $Re(s)$ in $\zeta(s)$, parallel to the imaginary axis.  
+
 
 Each spiral $R$ is a subset of $S$ whose elements are involutes $(C_{a}(C + Im(s)))$ of circles $(C cos(\theta), C sin(\theta))$ with radius identical to other elements in $R$ according to the real part of $s$ $C_(s)=Re(s)$. Constant values of $Re(s)$ define lines parallel to the imaginary axis.
 
