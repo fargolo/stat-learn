@@ -112,11 +112,23 @@ The work of uniquely identifying attractors for these orbits is defined after th
 
 Hence, we calculate higher order derivatives, called jerk ($3_{th}$order) and snap ($4_{th}$order). This is allowed due to surface smoothness (infinite diferentiable attribute). An equivalent formulation may be achieved with Cauchy integrals. In general relativity formulations, quantities changing orbits according to the density and angular momentum of a singularity.   
 
-Specifically, we may calculate values of $\theta$ minimizing the jerk, the $3{th}$ derivative, when $\frac{\delta}{\delta \theta}''''\omega$
+Specifically, we may calculate values of $\theta$ when the $4_{th}$ order snap makes $Re(\zeta)=0$ converge to 0 by through periodically arcs.  
+
+$$\frac{d^4}{d\theta}^4 (\frac{1}{2} (\theta \sqrt{1 + \theta^2} + sinh^{-1}(\theta)))$$
+
+The snap is odd and achieves min. and max. global values at $\theta \in \{\frac{1}{2},-\frac{1}{2}\}$.
+
+These values define the $Re(s)$ of elements in $A$ whose spirals define the singularities of Riemann Zeta zeros. 
+$$= -\frac{3 \theta}{{(\theta^2 + 1)}^{5/2}}$$  
+
+![Global max. and min.](maxmin.jpg)  
+
+![Plots of 4th derivative (snap) on polar coordinates. The orbits sugest the location of symetrical attractors](polar_snap.jpg)  
+
+**Lemma 3: Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set $R_{0}$ of unique orbits.**
 
 Suppose one of the solution set of orbits $a_{0}$ is located at the critical strip $Re(s)=\frac{1}{2}$.
 
-**Lemma 3: Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set $R_{0}$ of unique orbits.**
 
 
 We may verify that $\alpha$ is an even function with a global minimum and two complex roots: $\alpha_{0} \in \{i,-i\}$, are singularities. Values of $\theta = \alpha_{0}$ indicate the periods of the arc. The global minimum is $\alpha(\theta)=1,\theta=0$ the uncurved orbits along the real line $\zeta(s), s \in \mathbb{real}$.  
