@@ -15,6 +15,8 @@ The zeta function is defined as the analytic continuation of the Dirichlet serie
 
 We define homeomorphisms $M$ between values of $\zeta(s)$ and the superset $S$ of orbits $R$. $M$ defines bijections with fixed values of $Re(s)$ in $\zeta(s)$, lines parallel to the imaginary axis.  
 
+connected Lie groups with dimension one are the real line $\mathbb{R}$  (with the group operation being addition) and the circle group $S^{1}$ of complex numbers with absolute value one (with the group operation being multiplication). The $S^{1}$ group is often denoted as $U(1)$ U(1), the group of $1 \times 1$ 1 unitary matrices.
+
 For infinite non-trivial zeros, we demonstrate that the $\epsilon$ distance to the spiral's attractor must converge to 0 at unique periodic rate. 
 
 It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$.   
@@ -33,12 +35,15 @@ We examine axiomatic systems under which the conclusion holds and give geometric
 
 The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $R(s)=\frac{1}{2}+\theta i$.
 
+We outline a proof by contradiction, relating the definition of the Riemann Zeta function to *Riesz-Thorin theorem* on the interporlation of operators and *Cantor's theorem* on the cardinality of the continuum.   
+
+The argument is presented, along with non-trivial or unexplored identities. Further discussion ilustrate 
+
 ## Homeomorphisms of $\zeta$
 
 ### $S$ Spirals
 
-Define bijective mappings $M$ of the set $Z = \zeta(s)$ in the complex plane to the set $S$ of spirals. 
-
+Define bijective mappings $M$ of the set $Z = \zeta(s)$ in the complex plane to the set $S$ of orbits. 
 
 We define homeomorphisms $M$ between values of $\zeta(s)$ and the set of orbits $S$ under the action of group $T$. $M$ defines a bijections between orbits and lines with fixed values of $Re(s)$ in $\zeta(s)$, parallel to the imaginary axis.  
 
