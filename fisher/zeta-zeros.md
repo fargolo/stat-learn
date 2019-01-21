@@ -108,13 +108,21 @@ $$=\frac{\delta}{\delta c} c \sqrt{1 + \theta^2} + sinh^{-1}$$
 $$=\sqrt{1+\theta^2}$$
 This derivative determines changes in the $\omega$ mappings after each real part in zeta.  
 
+The work of uniquely identifying attractors for these orbits is defined after the equivalent problem $^13$ of predicting a cosmological equation of state for the cosmological fluid. Specifically, finding the attractor with periodicity for $\zeta(s)=0$ as $\lim n \rightarrow \infty$ and $Re(s) \neq -2n, n=1,2,3,4,...$.  
+
+Hence, we calculate higher order derivatives, called jerk ($3_{th}$order) and snap ($4_{th}$order). This is allowed due to surface smoothness (infinite diferentiable attribute). An equivalent formulation may be achieved with Cauchy integrals. In general relativity formulations, quantities changing orbits according to the density and angular momentum of a singularity.   
+
+Specifically, we may calculate values of $\theta$ minimizing the jerk, the $3{th}$ derivative, when $\frac{\delta}{\delta \theta}''''\omega$
+
+Suppose one of the solution set of orbits $a_{0}$ is located at the critical strip $Re(s)=\frac{1}{2}$.
+
 **Lemma 3: Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set $R_{0}$ of unique orbits.**
 
-We may verify that $\alpha$ is an even function with a global minimum and two complex roots: $\alpha_{0} \in \{i,-i\}$.  
 
-The global minimum is $\alpha(x)=1,x=0$
+We may verify that $\alpha$ is an even function with a global minimum and two complex roots: $\alpha_{0} \in \{i,-i\}$, are singularities. Values of $\theta = \alpha_{0}$ indicate the periods of the arc. The global minimum is $\alpha(\theta)=1,\theta=0$ the uncurved orbits along the real line $\zeta(s), s \in \mathbb{real}$.  
 
-$$\frac{d\theta}{d\theta}$$
+In order to evaluate
+
 The nex derivative , 
 $$c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$
 
@@ -542,3 +550,4 @@ https://people.math.ethz.ch/~waldvoge/Papers/theopaper.pdf
 10. Archimedean Zeta Integrals. Paul Garrett. http://www-users.math.umn.edu/~Garrett/m/v/ky_overheads.pdf
 11. Mikhail Gaichenkov comment on Sloane, N. J. A. (ed.). "Sequence  A091154". The On-Line Encyclopedia of Integer Sequences. OEIS Foundation.
 12. http://mathworld.wolfram.com/RiemannZetaFunction.html
+13. Matt Visser. Jerk, snap, and the cosmological equation of state. https://arxiv.org/pdf/gr-qc/0309109.pdf
