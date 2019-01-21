@@ -21,7 +21,8 @@ It has previously been show that there are infinitely many non-trivial zeros alo
 
 The identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm identifies the spiral $R$ containing the target orbits $s=1/2 + \theta i$ as the only element of $S$ satisfying the conditions.  This is based on Perseval's theorem on the unitary characteristic of the Fourier transform or its generalized version, the Plancharel theorem.
   
-The value of $Re(\not Tr_{})=\frac{1}{2}$ is a direct consequence of the Hausdorff–Young inequality, reflecting the cardinal inequality between rational numbers in the harmonic series and uncountably infinite real numbers in the natural logarithm $C(\mathbb{Q}) = C(\mathbb{N}) = \aleph \neq C(\mathbb{R}) = 2 \aleph$.
+The value of $Re(\not Tr_{})=\frac{1}{2}$ is a direct consequence of topology preservation
+e Hausdorff–Young inequality, reflecting the cardinal inequality between rational numbers in the harmonic series and uncountably infinite real numbers in the natural logarithm $C(\mathbb{Q}) = C(\mathbb{N}) = \aleph \neq C(\mathbb{R}) = 2 \aleph$. 
  
 We examine axiomatic systems under which the conclusion holds and give geometrical demonstrations for other previously described identities.  
 
@@ -118,7 +119,7 @@ $$\frac{d^4}{d\theta}^4 (\frac{1}{2} (\theta \sqrt{1 + \theta^2} + sinh^{-1}(\th
 
 The snap is odd and achieves min. and max. global values at $\theta \in \{\frac{1}{2},-\frac{1}{2}\}$.
 
-These values define the $Re(s)$ of elements in $A$ whose spirals define the singularities of Riemann Zeta zeros. 
+These values poles define the $Re(s)$ of elements in $A$ whose spirals define the singularities of Riemann Zeta zeros. 
 $$= -\frac{3 \theta}{{(\theta^2 + 1)}^{5/2}}$$  
 
 ![Global max. and min.](maxmin.jpg)  
