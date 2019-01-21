@@ -74,15 +74,17 @@ $$L = c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$
 
 $$=\frac{1}{2}c(\theta \sqrt{1+\theta^2} + sinh^{-1}\theta)$$  
 $$=\frac{1}{2}c(\theta \sqrt{1+\theta^2} + ln(\theta + \sqrt{1+\theta^2}))$$
-The curvature:  
+The curvature is:  
 $$\kappa(\theta)=\frac{2+\theta}{r (1+\theta^2)^{3/2}}$$
 
-Each element of $R$ corresponds to an observations of an infinite rotating orbit towards an attractor (singularity) at subsequent time steps, which become smooth as $t \rightarrow +\infty$ and $\epsilon \rightarrow 0$. 
+Each element in $a$ corresponds to an observation of in an infinite rotating orbit towards an attractor (singularity) at successive time steps.  
 
-A point moves with uniform acceleration along the spiral while the spiral corresponds to the locations over time of a point moving away from a fixed point with a constant speed along a line that rotates with constant angular velocity.$^11$
-
+The spiral corresponds to the locations over time of a point moving away from a fixed point with a constant speed along a line that rotates with constant angular velocity.$^11$
 
 **Lemma 1: For real values in the critical strip, involutions define bijections for sets of $\zeta(s)$ with identical real values**  
+
+$$L = c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$
+
 
 From the definition of operations in the complex plane, involutions $\vec{C_{\theta}}(s)=\vec{C_{0}}(s)+ \theta \vec{c'(s)}$ use $c'(s)$ as the unit normal for $\vec{C(0)}$.
 Hence, increasing values of $\theta$ in $Im(s)=\theta i$ defines unique images of parallel spirals in $S$.  
@@ -91,9 +93,32 @@ Hence, increasing values of $\theta$ in $Im(s)=\theta i$ defines unique images o
 
 Next lemmas describe the conditions for a set of orbits containing infinite images of $\zeta(s)=0, s \in \not{Tr}{\zeta_{0}}$ .
 
-**Lemma 2: The elements of the unique set of orbits with images containing the infinite non-trivial zeros are the spiral $R_{0}$ asymptoptically approaching the real line as $n \rightarrow \infty$ at a specific rate.**  
+**Lemma 2: The elements of the unique set of orbits with images containing the infinite non-trivial zeros are the spiral $a_{0}$ asymptoptically approaching the real line as $\theta \rightarrow \infty$ at a specific rate related to $Re(s)**  
+
+Take the converging length $L$ of the arc in $a$:  
+$$L = c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$
+
+To obtain the abstraction correspondent to angular velocity, evaluate the derivative of the length with respect to the arcs angle. 
+$$\omega = \frac{\delta}{\delta \theta} L $$
+$$= c \sqrt{1+\theta^2} + sinh^{-1}$$  
+
+Now, evaluate the changes in $\omega$ after $c$.
+$$\alpha=\frac{\delta}{\delta c}\omega$$
+$$=\frac{\delta}{\delta c} c \sqrt{1 + \theta^2} + sinh^{-1}$$
+$$=\sqrt{1+\theta^2}$$
+This derivative determines changes in the $\omega$ mappings after each real part in zeta.  
 
 **Lemma 3: Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set $R_{0}$ of unique orbits.**
+
+We may verify that $\alpha$ is an even function with a global minimum and two complex roots: $\alpha_{0} \in \{i,-i\}$.  
+
+The global minimum is $\alpha(x)=1,x=0$
+
+$$\frac{d\theta}{d\theta}$$
+The nex derivative , 
+$$c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$
+
+
 
 In the set $S$ of spirals $R$, consider a potentially non empty subset $S'$ of curves whose involutions define arcs constinously rotated towards the non-trivial values of $Re(\zeta(s))=0$. That is, tho
 se with real part not in the set of negative even intergers $s \in \not{Tr}{\zeta_{0}} \rightarrow Re(s) \notin Tr_{\zeta_{0}}, Re(Tr_{\zeta_{0}}) = -2n, n =1,2,3,4,...$.  
