@@ -11,17 +11,16 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 
 
 ## Abstract
-The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $Re(s)=\frac{1}{2}$.
 
-We define homeomorphisms $M$ between values of $\zeta(s)$ and the superset $S$ of orbits $R$. $M$ defines bijections with fixed values of $Re(s)$ in $\zeta(s)$, lines parallel to the imaginary axis.  
+The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s) = \sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s $(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $Re(s)=\frac{1}{2}$.
 
-For infinite non-trivial zeros, we demonstrate that the $\epsilon$ distance to the spiral's attractor must converge to 0 at unique periodic rate. 
+The value of $Re(\not Tr_{0})=\frac{1}{2}$ is a direct consequence of preserving connectedness in the topological space under the operations defined for the Riemann $\zeta$. We demonstrate the unique value of $Re(\not Tr_{0})$ can be derived from complex analysis using displacement derivatives of the arc $\theta$ of $Im(s)=\theta i$ or through percolation theory on the lattice of the complex plane.   
 
-It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$.   
+We define homeomorphisms $M$ between values of $\zeta(s)$ and the superset $S$ of orbits $R$. $M$ defines bijections with fixed values of $Re(s)$ in $\zeta(s)$, lines parallel to the imaginary axis. For infinite non-trivial zeros, we demonstrate that the $\epsilon$ distance to the spiral's attractor must converge to 0 at unique periodic rate. It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$.   
 
-The identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm identifies the spiral $R$ containing the target orbits $s=1/2 + \theta i$ as the only element of $S$ satisfying the conditions.  This is based on Perseval's theorem on the unitary characteristic of the Fourier transform or its generalized version, the Plancharel theorem.
-  
-The value of $Re(\not Tr_{0})=\frac{1}{2}$ is a direct consequence of topology preservation under operations defined in the $\zeta$. The value of $Re(\not Tr_{0})$ is also a solution achieved through percolation theory on the lattice. Merten's and Brun's theorems prove uniqueness of convergence values necessary for the Riemann $\zeta$ existence.  
+The identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm identifies the spiral $R$ containing the target orbits $s = \frac{1}{2} + \theta i$ as the only element of $S$ satisfying the conditions. Merten's and Brun's theorems prove uniqueness of convergence values necessary for the Riemann $\zeta$ existence. One may relate trivial and trivial zeros to anti-symmetrical inwards and outwards orbits with frequencies whose arc revolves around the origin. 
+
+Ultimately, preserving connectedness while sucessful interpolating elements depends on Cantor's theorem on the cardinality of the continuum.
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
 
@@ -53,7 +52,8 @@ The holomorphism of subsets of spirals defined by $a$ have been demonstrated in 
 
 The Borel–Carathéodory theorem demonstrates that if this function is analytic on a closed disc of radius $R$ centered at the origin, it is bounded by its real part. This is the case for the $\zeta$ function differentiable along the critical strip, $0<Re(s)<1$. Therefore, in the critical strip, there is always a real number M bounding the involutions generating elements in $a$.   
 
-Consider also the lattice 
+Consider also the lattices $\mathbb{C} \times \mathbb{R}$ 
+
 
 We define subsets of $A_{Re(s)}$ of $S$ for complex numbers $s$ with identical $Re(s)=c$ as a function $f$ of $s$. The orbits with constant real part $c$, $A_{c}$:
 $$A_{c}(s_{s}) = \{f: c + \theta i|c \in Re(s) \}$$  
@@ -77,7 +77,7 @@ $$L = c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$
 
 $$=\frac{1}{2}c(\theta \sqrt{1+\theta^2} + sinh^{-1}\theta)$$  
 $$=\frac{1}{2}c(\theta \sqrt{1+\theta^2} + ln(\theta + \sqrt{1+\theta^2}))$$
-One may define poles corresponding to Lorenz attactors after $c$ and $\theta$:  
+One may define space curvature corresponding to Lorenz attactors after $c$ and $\theta$:
 $$\kappa(\theta,c)=\frac{2+\theta}{c (1+\theta^2)^{3/2}}$$
 
 Each element in $a$ corresponds to an observation of in an infinite rotating orbit periodically towards an attractor (singularity) at successive time steps.
@@ -96,7 +96,7 @@ For infinite non-trivial zeros, we demonstrate that the $\epsilon$ distance to t
 
 Next lemmas describe the conditions for a set of orbits containing infinite images of $\zeta(s)=0, s \in \not{Tr}{\zeta_{0}}$ .
 
-**Lemma 2: The elements of the unique set of orbits with images containing the infinite non-trivial zeros are the spiral $a_{0}$ asymptoptically approaching the real line as $\theta \rightarrow \infty$ at a specific rate related to $Re(s)**  
+**Lemma 2: The elements of the unique set of orbits with images containing the infinite non-trivial ze*ros are the spiral $a_{0}$ asymptoptically approaching the real line as $\theta \rightarrow \infty$ at a specific rate related to $Re(s)**  
 
 Take the converging length $L$ of the arc in $a$: 
 $$L = c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$aw
@@ -135,6 +135,9 @@ $$= -\frac{3 \theta}{{(\theta^2 + 1)}^{5/2}}$$
 
 **Lemma 3: Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set $R_{0}$ of unique orbits.**
 
+This is assserted by Merten's second theorem proving the existence of the Meissel-Mertens constant and Brun's theorem on the convergence the sum of reciprocals of two primes.
+
+
 Suppose one of the solution set of orbits $a_{0}$ is located at the critical strip $Re(s)=\frac{1}{2}$.
 
 It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$.   
@@ -166,6 +169,7 @@ ${ \sum _{n=0}^{\infty }a_{n}} \sum _{{n=0}}^{\infty }a_{n}$ converges to A and 
 ![Trocar por diagrama de vetores!!!](Gamma-area.svg.png)
 
 ## Orbits with real parts equal to one half 
+
 
 **Theorem for unicity and location of non-tr
 Harmonic series = discrete vectorial (grid ~ cardinality) sum with $1/n$ rate 
