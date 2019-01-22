@@ -14,7 +14,7 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 
 The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s) = \sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s $(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $Re(s)=\frac{1}{2}$.
 
-The value of $Re(\not Tr_{0})=\frac{1}{2}$ is a direct consequence of preserving connectedness in the topological space under the operations defined for the Riemann $\zeta$. We demonstrate the unique value of $Re(\not Tr_{0})$ can be derived from complex analysis using displacement derivatives of the arc $\theta$ of $Im(s)=\theta i$ (Fasenko poles) or through percolation theory on the lattice of the complex plane.   
+The value of $Re(\not Tr_{0})=\frac{1}{2}$ is a direct consequence of preserving connectedness in the topological space under the operations defined for the Riemann $\zeta$. We demonstrate the unique value of $Re(\not Tr_{0})$ can be derived from complex analysis using displacement derivatives of the arc $\theta$ of $Im(s)=\theta i$ (Fesenko poles) or through percolation theory on the lattice of the complex plane.   
 
 We define homeomorphisms $M$ between values of $\zeta(s)$ and the superset $S$ of orbits $R$. $M$ defines bijections with fixed values of $Re(s)$ in $\zeta(s)$, lines parallel to the imaginary axis. This is similar to Zagier approach of constructing invariant functions on the upper half-plane and looking for eigenvalues, which yields the orbit $R ~ \frac{1}{2} + \theta i$ as a candidate solution.
 
@@ -30,9 +30,13 @@ The zeta function is defined as the analytic continuation of the Dirichlet serie
 
 $$\zeta(s) = \frac{\Gamma(1-s)}{2\pi i} \oint_{\gamma} \frac{u^{s-1}}{e^{-u} -1}$$
 
-We outline a proof relating the definition of the Riemann Zeta function to the *Riesz-Thorin theorem* on the interporlation of operators and *Cantor's theorem* on the cardinality of the continuum.   
+The value of $Re(\not Tr_{0})=\frac{1}{2}$ is a direct consequence of preserving cycles (connectedness) in the topological space under the operations defined for the Riemann $\zeta$. We demonstrate the unique value of $Re(\not Tr_{0})$ can be derived from complex analysis using displacement derivatives of the arc $\theta$ of $Im(s)=\theta i$ (Fesenko poles) or through percolation theory on the lattice of the complex plane.   
 
-The argument is presented, along demonstration of non-trivial or unexplored identities. Further discussion ilustrate known identities with peculiar geometrical meaning under the proposed homeomorphisms.   
+Ultimately, interpolating numbers of the harmonic series and the natural logarithm over infinitesimal intervals reflects Cantor's theorem on the cardinality of the continuum and the diagonal argument. Merten's and Brun's theorems proves a lower bound to measure on the interpolation of operators in Riemann $\zeta$. This identifies the spiral $R$ containing the target orbits $s = \frac{1}{2} + \theta i$ as the only element of $S$ satisfying the solution conditions. 
+
+We outline a proof relating the definition of the Riemann Zeta function to the *Riesz-Thorin theorem* on the interporlation of operators and *Cantor's theorem* on the cardinality of the continuum. The assertion holds accepting Euclidian geometry for unitary vector products, including the $5_{th}$ axiom.
+
+The argument is presented, along with a brief demonstration including non-trivial or unexplored identities. Further discussion ilustrate known identities with peculiar geometrical meaning under the proposed homeomorphisms.   
 
 ## Homeomorphisms of $\zeta$
 
@@ -50,8 +54,7 @@ The holomorphism of subsets of spirals defined by $a$ have been demonstrated in 
 
 The Borel–Carathéodory theorem demonstrates that if this function is analytic on a closed disc of radius $R$ centered at the origin, it is bounded by its real part. This is the case for the $\zeta$ function differentiable along the critical strip, $0<Re(s)<1$. Therefore, in the critical strip, there is always a real number M bounding the involutions generating elements in $a$.   
 
-Consider also the lattices $\mathbb{C} \times \mathbb{R}$ 
-
+Consider also the resulting lattices $lat \mathbb{C}$ 
 
 We define subsets of $A_{Re(s)}$ of $S$ for complex numbers $s$ with identical $Re(s)=c$ as a function $f$ of $s$. The orbits with constant real part $c$, $A_{c}$:
 $$A_{c}(s_{s}) = \{f: c + \theta i|c \in Re(s) \}$$  
@@ -66,9 +69,9 @@ Given the tangential angle, $\phi(\theta)$.
 
 Altough the problem of finding Lorenz Attractors have been long solved for special context in physics, it has not been subject to analysis until recently.$^14$ A superset of these geometrical objects have been examined in complex analysis, including Theodorus Spiral, Archimedean Zeta Integrals and Lipschitz curves. Analysis of localy convergent values in Laurent series have successfully been used to solve equations on Lorenz Attractors. $^15$  
 
-
-The holomorphic manifold defined above describes curve's lengths of the circular involute converging to a value given by the integral of the involutes of the circle with radius $c$ and angle $\theta$ according to $\zeta$ arguments.
+The holomorphic manifold defined above describes the curve's lengths of the circular involute converging to a value given by the integral of the involutes of the circle with radius $c$ and constant rotating angle $\theta$ according to $\zeta$ arguments. $^16$
 For archimedean spirals assuming polar coordinates as described above, the length of the arc $\theta$ is given by the integral $\sqrt{1-\theta^2}$ along the interval $[0,\theta]$:  
+This approach is an application of Fesenko's general framework of studying poles in the Riemann $\zeta$ function after the eigenvalues of the zeta integral.$^16$  
 Our **first identity** is:  
 $$L = c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$
 
@@ -77,6 +80,7 @@ $$=\frac{1}{2}c(\theta \sqrt{1+\theta^2} + sinh^{-1}\theta)$$
 $$=\frac{1}{2}c(\theta \sqrt{1+\theta^2} + ln(\theta + \sqrt{1+\theta^2}))$$
 One may define space curvature corresponding to Lorenz attactors after $c$ and $\theta$:
 $$\kappa(\theta,c)=\frac{2+\theta}{c (1+\theta^2)^{3/2}}$$
+![Curvature 3D surface along with perturbation related to the pole starting at $\theta = -2$](curvature3d.jpg)
 
 Each element in $a$ corresponds to an observation of in an infinite rotating orbit periodically towards an attractor (singularity) at successive time steps.
 The spiral corresponds to the locations over time of a point moving away from a fixed point with a constant speed along a line that rotates with constant angular velocity.$^11$
@@ -90,16 +94,16 @@ Hence, increasing values of $\theta$ in $Im(s)=\theta i$ defines unique images o
 
 ## Conditions for infinite non-trivial zeros
 
-For infinite non-trivial zeros, we demonstrate that the $\epsilon$ distance to the spiral's attractor must converge to 0 at unique periodic rate. 
+For infinite non-trivial zeros, it has been demonstrated that the $\epsilon$ distance to the spiral's attractor must converge at unique periodic rate defined by $\gamma$, the Euler-Mascheroni constant. 
 
 Next lemmas describe the conditions for a set of orbits containing infinite images of $\zeta(s)=0, s \in \not{Tr}{\zeta_{0}}$ .
 
 **Lemma 2: The elements of the unique set of orbits with images containing the infinite non-trivial ze*ros are the spiral $a_{0}$ asymptoptically approaching the real line as $\theta \rightarrow \infty$ at a specific rate related to $Re(s)**  
 
 Take the converging length $L$ of the arc in $a$: 
-$$L = c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$aw
+$$L = c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$
 
-Considering that the Lagrangian is symmetrical for rotations, we may obtain displacement derivatives to locate Lorenz attractors for an orbit. 
+Considering that the Lagrangian is symmetrical for rotations, we may obtain displacement derivatives to locate Lorenz attractors for an orbit. Again, these could be alternatively done with zeta integrals.  
 We evaluate the derivative of the length with respect to $\theta$. 
 $$\omega = \frac{\delta}{\delta \theta} L $$
 $$= c \sqrt{1+\theta^2} + sinh^{-1}$$  
@@ -112,29 +116,32 @@ This derivative determines changes in the $\omega$ mappings after each real part
 
 The problem is then equivalent to that of predicting a cosmological equations of state for the cosmological fluid $^13$ . Specifically, finding the attractor with periodicity for $\zeta(s)=0$ as $\lim Im(s) \rightarrow \infty$ and $Re(s) \neq -2n, n=1,2,3,4,...$.  
 
-We might consider a preserved quantity  calculate higher order derivatives, called jerk ($3_{th}$order) and snap ($4_{th}$). This is allowed due to surface smoothness (infinite diferentiable attribute). An equivalent formulation may be achieved with Cauchy integrals. In general relativity formulations, quantities changing orbits according to the density and angular momentum of a singularity.   
+Considering that the Lagrangian is symmetrical for rotations, calculate a higher order derivatives, called jerk ($3_{th}$order) and snap ($4_{th}$).$^13$ This is allowed due to surface smoothness (infinite diferentiable attribute). In general relativity formulations, quantities changing orbits according to the density and angular momentum of a singularity.   
 
-Specifically, we may calculate values of $\theta$ when the $4_{th}$ order snap makes $Re(\zeta)=0$ converge to 0 by through periodically arcs.  
+Specifically, we may calculate values of $\theta$ when the $4_{th}$ order snap makes $Re(\zeta)=0$ converge to 0 through periodically arcs.  
 
-$$\frac{d^4}{d\theta}^4 (\frac{1}{2} (\theta \sqrt{1 + \theta^2} + sinh^{-1}(\theta)))$$
+$$\frac{d^4}{d\theta}^4 (\frac{1}{2} (\theta \sqrt{1 + \theta^2} + sinh^{-1}(\theta)))=$$
 
 The snap is odd and achieves min. and max. global values at $\theta \in \{\frac{1}{2},-\frac{1}{2}\}$.
 
-These values poles define the $Re(s)$ of elements in $A$ whose spirals define the singularities of Riemann Zeta zeros. 
+These poles define the $Re(s)$ of elements in $A$ whose orbits define the poles associated Riemann Zeta zeros. 
 $$= -\frac{3 \theta}{{(\theta^2 + 1)}^{5/2}}$$  
 
+The odd function shows the unique two poles along with the arcs generated in polar coordinates. 
 ![Global max. and min.](maxmin.jpg)  
-
 
 
 ![Plots of 4th derivative (snap) on polar coordinates. The orbits sugest the location of symetrical attractors](polar_snap.jpg)  
 
 
+**Lemma 3: The Riesz-Thorin theorem on the interporlation of operators bounds the quantities Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set $R_{0}$ of unique orbits.**
 
-**Lemma 3: Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set $R_{0}$ of unique orbits.**
+Ultimately, interpolating numbers of the harmonic series and the natural logarithm over infinitesimal intervals reflects Cantor's theorem on the cardinality of the continuum and the diagonal argument. Merten's and Brun's theorems proves a lower bound to measure on the interpolation of operators in Riemann $\zeta$. This identifies the spiral $R$ containing the target orbits $s = \frac{1}{2} + \theta i$ as the only element of $S$ satisfying the solution conditions. 
+
+We outline a proof relating the definition of the Riemann Zeta function to the *Riesz-Thorin theorem* on the interporlation of operators and *Cantor's theorem* on the cardinality of the continuum. The assertion holds accepting Euclidian geometry for unitary vector products, including the $5_{th}$ axiom.
+
 
 This is assserted by Merten's second theorem proving the existence of the Meissel-Mertens constant and Brun's theorem on the convergence the sum of reciprocals of two primes.
-
 
 Suppose one of the solution set of orbits $a_{0}$ is located at the critical strip $Re(s)=\frac{1}{2}$.
 
@@ -584,3 +591,4 @@ https://people.math.ethz.ch/~waldvoge/Papers/theopaper.pdf
 periodically
 14. Webb, Trefethen. Computing complex singularities of differential equations with Chebfun. https://www.dpmms.cam.ac.uk/~mdw42/webb2013computing.pdf
 15. Divakar Viswanath Somez Shutoglu. Complex Singularities and the Lorenz Attractor. July 30, 2009.
+16. Fesenko, Ivan (2010), "Analysis on arithmetic schemes. II", Journal of K-theory, 5 (3): 437–557, doi:10.1017/is010004028jkt103
