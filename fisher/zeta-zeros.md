@@ -14,13 +14,11 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 
 The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s) = \sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s $(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $Re(s)=\frac{1}{2}$.
 
-The value of $Re(\not Tr_{0})=\frac{1}{2}$ is a direct consequence of preserving connectedness in the topological space under the operations defined for the Riemann $\zeta$. We demonstrate the unique value of $Re(\not Tr_{0})$ can be derived from complex analysis using displacement derivatives of the arc $\theta$ of $Im(s)=\theta i$ or through percolation theory on the lattice of the complex plane.   
+The value of $Re(\not Tr_{0})=\frac{1}{2}$ is a direct consequence of preserving connectedness in the topological space under the operations defined for the Riemann $\zeta$. We demonstrate the unique value of $Re(\not Tr_{0})$ can be derived from complex analysis using displacement derivatives of the arc $\theta$ of $Im(s)=\theta i$ (Fasenko poles) or through percolation theory on the lattice of the complex plane.   
 
-We define homeomorphisms $M$ between values of $\zeta(s)$ and the superset $S$ of orbits $R$. $M$ defines bijections with fixed values of $Re(s)$ in $\zeta(s)$, lines parallel to the imaginary axis. 
+We define homeomorphisms $M$ between values of $\zeta(s)$ and the superset $S$ of orbits $R$. $M$ defines bijections with fixed values of $Re(s)$ in $\zeta(s)$, lines parallel to the imaginary axis. This is similar to Zagier approach of constructing invariant functions on the upper half-plane and looking for eigenvalues, which yields the orbit $R ~ \frac{1}{2} + \theta i$ as a candidate solution.
 
-Ultimately, interpolating elements of the harmonic series and the natural logarithm in infinitesimal intervals reflects Cantor's theorem on the cardinality of the continuum. For infinite non-trivial zeros, we demonstrate that the $\epsilon$ distance to the spiral's attractor must converge to 0 at unique periodic rate. It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)={1}{2}$.   
-
-The identity for the Euler-Mascheroni constant identifies the spiral $R$ containing the target orbits $s = \frac{1}{2} + \theta i$ as the only element of $S$ satisfying the conditions. Merten's and Brun's theorems prove uniqueness of convergence values necessary for the Riemann $\zeta$ existence. One may relate trivial and trivial zeros to anti-symmetrical inwards and outwards orbits with frequencies whose arc revolves around the origin. 
+Ultimately, interpolating numbers of the harmonic series and the natural logarithm in infinitesimal intervals reflects Cantor's theorem on the cardinality of the continuum. Merten's and Brun's theorems proves a lower bound to measure on the interpolation of operators in Riemann $\zeta$. This identifies the spiral $R$ containing the target orbits $s = \frac{1}{2} + \theta i$ as the only element of $S$ satisfying the solution conditions. 
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
 
