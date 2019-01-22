@@ -21,9 +21,7 @@ It has previously been show that there are infinitely many non-trivial zeros alo
 
 The identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm identifies the spiral $R$ containing the target orbits $s=1/2 + \theta i$ as the only element of $S$ satisfying the conditions.  This is based on Perseval's theorem on the unitary characteristic of the Fourier transform or its generalized version, the Plancharel theorem.
   
-The value of $Re(\not Tr_{})=\frac{1}{2}$ is a direct consequence of topology preservation of the sets under operations and sets defined in the $zeta$. Ultimately, the Hausdorff–Young inequality reflects the cardinal inequality between rational numbers in the harmonic series and uncountably infinite real numbers in the natural logarithm $C(\mathbb{Q}) = C(\mathbb{N}) = \aleph \neq C(\mathbb{R}) = 2 \aleph$. 
- 
-We examine axiomatic systems under which the conclusion holds and give geometrical demonstrations for other previously described identities.  
+The value of $Re(\not Tr_{0})=\frac{1}{2}$ is a direct consequence of topology preservation under operations defined in the $\zeta$. The value of $Re(\not Tr_{0})$ is also a solution achieved through percolation theory on the lattice. The Meissel-Mertens's and the Brun's constant define a lower bound for parameterization 
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
 
@@ -31,7 +29,7 @@ We examine axiomatic systems under which the conclusion holds and give geometric
 
 ## Introduction
 
-The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $R(s)=\frac{1}{2}$.
+The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s)=\sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s$(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $Re(s)=\frac{1}{2}$.
 
 $$\zeta(s) = \frac{\Gamma(1-s)}{2\pi i} \oint_{\gamma} \frac{u^{s-1}}{e^{-u} -1}$$
 
@@ -64,41 +62,45 @@ $$Y(\theta) = c(sin \theta - (\theta) cos(\theta))$$
 
 Given the tangential angle, $\phi(\theta)$.
 
-Similar geometrical objects have been examined in complex analysis (e.g. Theodorus Spiral and Archimedean Zeta Integrals).  
+### Derivatives of arc displacement with respect to its length
 
-The curve's lengths of the circular involutes converges to a value given by the integral of the involutes of the circle with radius $c$.
-The total length is given by evaluaton of the integral $\sqrt{1-\theta^2}$ along the interval $[0,\theta]$:
-Which is our **first identity**.  
+Altough the problem of finding Lorenz Attractors have been long solved for special context in physics, it has not been subject to analysis until recently.$^14$ A superset of these geometrical objects have been examined in complex analysis, including Theodorus Spiral, Archimedean Zeta Integrals and Lipschitz curves. Analysis of localy convergent values in Laurent series have successfully been used to solve equations on Lorenz Attractors. $^15$  
+
+
+The holomorphic manifold defined above describes curve's lengths of the circular involute converging to a value given by the integral of the involutes of the circle with radius $c$ and angle $\theta$ according to $\zeta$ arguments.
+For archimedean spirals assuming polar coordinates as described above, the length of the arc $\theta$ is given by the integral $\sqrt{1-\theta^2}$ along the interval $[0,\theta]$:  
+Our **first identity** is:  
 $$L = c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$
 
 
 $$=\frac{1}{2}c(\theta \sqrt{1+\theta^2} + sinh^{-1}\theta)$$  
 $$=\frac{1}{2}c(\theta \sqrt{1+\theta^2} + ln(\theta + \sqrt{1+\theta^2}))$$
-The curvature is:  
-$$\kappa(\theta)=\frac{2+\theta}{r (1+\theta^2)^{3/2}}$$
+One may define poles corresponding to Lorenz attactors after $c$ and $\theta$:  
+$$\kappa(\theta,c)=\frac{2+\theta}{c (1+\theta^2)^{3/2}}$$
 
-Each element in $a$ corresponds to an observation of in an infinite rotating orbit towards an attractor (singularity) at successive time steps.  
-
+Each element in $a$ corresponds to an observation of in an infinite rotating orbit periodically towards an attractor (singularity) at successive time steps.
 The spiral corresponds to the locations over time of a point moving away from a fixed point with a constant speed along a line that rotates with constant angular velocity.$^11$
 
 **Lemma 1: For real values in the critical strip, involutions define bijections for sets of $\zeta(s)$ with identical real values**  
 
 $$L = c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$
 
-
 From the definition of operations in the complex plane, involutions $\vec{C_{\theta}}(s)=\vec{C_{0}}(s)+ \theta \vec{c'(s)}$ use $c'(s)$ as the unit normal for $\vec{C(0)}$.
 Hence, increasing values of $\theta$ in $Im(s)=\theta i$ defines unique images of parallel spirals in $S$.  
 
 ## Conditions for infinite non-trivial zeros
 
+For infinite non-trivial zeros, we demonstrate that the $\epsilon$ distance to the spiral's attractor must converge to 0 at unique periodic rate. 
+
 Next lemmas describe the conditions for a set of orbits containing infinite images of $\zeta(s)=0, s \in \not{Tr}{\zeta_{0}}$ .
 
 **Lemma 2: The elements of the unique set of orbits with images containing the infinite non-trivial zeros are the spiral $a_{0}$ asymptoptically approaching the real line as $\theta \rightarrow \infty$ at a specific rate related to $Re(s)**  
 
-Take the converging length $L$ of the arc in $a$:  
-$$L = c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$
+Take the converging length $L$ of the arc in $a$: 
+$$L = c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$aw
 
-To obtain the abstraction correspondent to angular velocity, evaluate the derivative of the length with respect to the arcs angle. 
+Considering that the Lagrangian is symmetrical for rotations, we may obtain displacement derivatives to locate Lorenz attractors for an orbit. 
+We evaluate the derivative of the length with respect to $\theta$. 
 $$\omega = \frac{\delta}{\delta \theta} L $$
 $$= c \sqrt{1+\theta^2} + sinh^{-1}$$  
 
@@ -108,9 +110,9 @@ $$=\frac{\delta}{\delta c} c \sqrt{1 + \theta^2} + sinh^{-1}$$
 $$=\sqrt{1+\theta^2}$$
 This derivative determines changes in the $\omega$ mappings after each real part in zeta.  
 
-The work of uniquely identifying attractors for these orbits is defined after the equivalent problem $^13$ of predicting a cosmological equation of state for the cosmological fluid. Specifically, finding the attractor with periodicity for $\zeta(s)=0$ as $\lim n \rightarrow \infty$ and $Re(s) \neq -2n, n=1,2,3,4,...$.  
+The problem is then equivalent to that of predicting a cosmological equations of state for the cosmological fluid $^13$ . Specifically, finding the attractor with periodicity for $\zeta(s)=0$ as $\lim Im(s) \rightarrow \infty$ and $Re(s) \neq -2n, n=1,2,3,4,...$.  
 
-Hence, we calculate higher order derivatives, called jerk ($3_{th}$order) and snap ($4_{th}$order). This is allowed due to surface smoothness (infinite diferentiable attribute). An equivalent formulation may be achieved with Cauchy integrals. In general relativity formulations, quantities changing orbits according to the density and angular momentum of a singularity.   
+We might consider a preserved quantity  calculate higher order derivatives, called jerk ($3_{th}$order) and snap ($4_{th}$). This is allowed due to surface smoothness (infinite diferentiable attribute). An equivalent formulation may be achieved with Cauchy integrals. In general relativity formulations, quantities changing orbits according to the density and angular momentum of a singularity.   
 
 Specifically, we may calculate values of $\theta$ when the $4_{th}$ order snap makes $Re(\zeta)=0$ converge to 0 by through periodically arcs.  
 
@@ -132,6 +134,16 @@ $$= -\frac{3 \theta}{{(\theta^2 + 1)}^{5/2}}$$
 **Lemma 3: Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set $R_{0}$ of unique orbits.**
 
 Suppose one of the solution set of orbits $a_{0}$ is located at the critical strip $Re(s)=\frac{1}{2}$.
+
+It has previously been show that there are infinitely many non-trivial zeros along the critical line, $Re(s)=1/2$.   
+
+The identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm identifies the spiral $R$ containing the target orbits $s=1/2 + \theta i$ as the only element of $S$ satisfying the conditions.  This is based on Perseval's theorem on the unitary characteristic of the Fourier transform or its generalized version, the Plancharel theorem.
+
+Ultimately, the Hausdorff–Young inequality reflects the cardinal inequality between rational numbers in the harmonic series and uncountably infinite real numbers in the natural logarithm $C(\mathbb{Q}) = C(\mathbb{N}) = \aleph \neq C(\mathbb{R}) = 2 \aleph$. 
+
+  
+The value of $Re(\not Tr_{})=\frac{1}{2}$ is a direct consequence of topology preservation of the sets under operations and sets defined in the $zeta$. Ultimately, the Hausdorff–Young inequality reflects the cardinal inequality between rational numbers in the harmonic series and uncountably infinite real numbers in the natural logarithm $C(\mathbb{Q}) = C(\mathbb{N}) = \aleph \neq C(\mathbb{R}) = 2 \aleph$. 
+
 
 We may verify that $\alpha$ is an even function with a global minimum and two complex roots: $\alpha_{0} \in \{i,-i\}$, are singularities. Values of $\theta = \alpha_{0}$ indicate the periods of the arc. The global minimum is $\alpha(\theta)=1,\theta=0$ the uncurved orbits along the real line $\zeta(s), s \in \mathbb{R}$.  
 
@@ -565,3 +577,6 @@ https://people.math.ethz.ch/~waldvoge/Papers/theopaper.pdf
 11. Mikhail Gaichenkov comment on Sloane, N. J. A. (ed.). "Sequence  A091154". The On-Line Encyclopedia of Integer Sequences. OEIS Foundation.
 12. http://mathworld.wolfram.com/RiemannZetaFunction.html
 13. Matt Visser. Jerk, snap, and the cosmological equation of state. https://arxiv.org/pdf/gr-qc/0309109.pdf
+periodically
+14. Webb, Trefethen. Computing complex singularities of differential equations with Chebfun. https://www.dpmms.cam.ac.uk/~mdw42/webb2013computing.pdf
+15. Divakar Viswanath Somez Shutoglu. Complex Singularities and the Lorenz Attractor. July 30, 2009.
