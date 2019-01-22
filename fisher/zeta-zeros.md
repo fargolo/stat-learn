@@ -45,13 +45,15 @@ For $Re(s)$ in the critical strip, define bijective mappings $M$ of the set $Z =
 
 We define homeomorphisms $M$ between values of $\zeta(s)$ and the sets of orbits $A$ under the action of group $C$ with multiplication. $M$ defines bijections between orbits and lines with fixed values of $Re(s)$ in $\zeta(s)$, parallel to the imaginary axis.  
 
-Each spiral $a \in A$ is a subset of $S$ whose elements are involutes $(C_{a}(C + Im(s)))$ of circles $(C cos(\theta), C sin(\theta))$ with radius identical to other elements in $R$ according to the real part of $s$ $C_(s)=Re(s)$. Each element $a$ defines the lines parallel to the imaginary axis, infinit arcs of involuting sucessive multiplications (rotations) on the complex plane. $C, C \in \mathbb{R}$ and $\theta i$, $i$ is the imaginary unit in the perpendicular axis.
+Each spiral $a \in A$ is a subset of $S$ whose elements are involutes $(C_{a}(C + Im(s)))$ of circles $(C cos(\theta), C sin(\theta))$ with radius identical to other elements in $R$ according to the real part of $s$ $C_(s)=Re(s)$. Each element $a$ defines the lines parallel to the imaginary axis, through infinit arcs of sucessive involutions. $C, C \in \mathbb{R}$ and $\theta i$, $i$ is the imaginary unit in the perpendicular axis.
 
 The real line and the complex numbers with absolute value one (circle group $S^1$) are **connected** Lie groups with dimension one under the operations of addition and multiplication, respectively. The $S^{1}$ group is often denoted as $U(1)$ the group of $1 \times 1$ 1 unitary matrices.
 
 The holomorphism of subsets of spirals defined by $a$ have been demonstrated in Davis solution for the analytic continuation of the Theodorus Spiral. Also in evaluation of Archimedean Zeta Integrals.  
 
 The Borel–Carathéodory theorem demonstrates that if this function is analytic on a closed disc of radius $R$ centered at the origin, it is bounded by its real part. This is the case for the $\zeta$ function differentiable along the critical strip, $0<Re(s)<1$. Therefore, in the critical strip, there is always a real number M bounding the involutions generating elements in $a$.   
+
+Consider also the lattice 
 
 We define subsets of $A_{Re(s)}$ of $S$ for complex numbers $s$ with identical $Re(s)=c$ as a function $f$ of $s$. The orbits with constant real part $c$, $A_{c}$:
 $$A_{c}(s_{s}) = \{f: c + \theta i|c \in Re(s) \}$$  
