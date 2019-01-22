@@ -21,7 +21,7 @@ It has previously been show that there are infinitely many non-trivial zeros alo
 
 The identity between the Euler-Mascheroni constant, the harmonic series and the natural logarithm identifies the spiral $R$ containing the target orbits $s=1/2 + \theta i$ as the only element of $S$ satisfying the conditions.  This is based on Perseval's theorem on the unitary characteristic of the Fourier transform or its generalized version, the Plancharel theorem.
   
-The value of $Re(\not Tr_{0})=\frac{1}{2}$ is a direct consequence of topology preservation under operations defined in the $\zeta$. The value of $Re(\not Tr_{0})$ is also a solution achieved through percolation theory on the lattice. The Meissel-Mertens's and the Brun's constant define a lower bound for parameterization 
+The value of $Re(\not Tr_{0})=\frac{1}{2}$ is a direct consequence of topology preservation under operations defined in the $\zeta$. The value of $Re(\not Tr_{0})$ is also a solution achieved through percolation theory on the lattice. Merten's and Brun's theorems prove uniqueness of convergence values necessary for the Riemann $\zeta$ existence.  
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros; 
 
