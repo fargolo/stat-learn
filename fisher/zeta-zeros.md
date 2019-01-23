@@ -3,7 +3,7 @@ output:
   pdf_document: default
   html_document: default
 ---
-# On the unicity and location of the orbits homeomorphic to the zeta function: defining conditions for infinite non-trivial zeros from holomorphic spirals. 
+# Defining conditions for infinite non-trivial zeros in the zeta function after stabilizers of the extreme and mean ratio. 
 ### Unicity and location of the zeta spirals define conditions for non-trivial zeros 
 *Felipe Coelho Argolo*$^{1}$  
 Universidade Federal da Bahia, Universidade Federal de São Paulo  
