@@ -6,7 +6,7 @@ output:
 # On the unicity and location of the orbits homeomorphic to the zeta function: defining conditions for infinite non-trivial zeros from holomorphic spirals. 
 ### Unicity and location of the zeta spirals define conditions for non-trivial zeros 
 *Felipe Coelho Argolo*$^{1}$  
-Universidade Federal de São Paulo  
+Universidade Federal da Bahia, Universidade Federal de São Paulo  
 email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com  
 
 
@@ -14,7 +14,11 @@ email: felipe.c.argolo @protonmail.com; @hotmail.com; @gmail.com
 
 The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s) = \sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s $(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $Re(s)=\frac{1}{2}$.
 
-The value of $Re(\not Tr_{0})=\frac{1}{2}$ is a direct consequence of preserving connectedness in the topological space under the operations defined for the Riemann $\zeta$. We demonstrate the unique value of $Re(\not Tr_{0})$ can be derived from complex analysis using displacement derivatives of the arc $\theta$ of $Im(s)=\theta i$ (Fesenko poles) or through percolation theory on the lattice of the complex plane.   
+Several advances have been made using complex analysis on homeomorphisms of $\zeta$. Solutions for the rotation quantities after cosmological equations yield poles identifiable with $Re(\not {Tr_{0}}$. We review methods to identify unique poles related to $\zeta$ zeros using displacement derivatives of the arc $\theta$ in $Im(s)=\theta i$ (Fesenko poles). However, a formal proof seems elusively connected with number theory and properties of primes.  
+
+We show that the critical line's location is a direct consequence of preserving connectedness in an infinite lattice. Ultimately, a problem solved through percolation theory and the symmetries of projective linear groups. Specifically, subgroups of stabilizers of the set $\{0,1,\infty\}$.
+
+The value of $Re(\not Tr_{0})=\frac{1}{2}$ is a  in the topological space under the operations defined for the Riemann $\zeta$ function.    
 
 We define homeomorphisms $M$ between values of $\zeta(s)$ and the superset $S$ of orbits $R$. $M$ defines bijections with fixed values of $Re(s)$ in $\zeta(s)$, lines parallel to the imaginary axis. This is similar to Zagier approach of constructing invariant functions on the upper half-plane and looking for eigenvalues, which yields the orbit $R ~ \frac{1}{2} + \theta i$ as a candidate solution.
 
@@ -37,6 +41,8 @@ Ultimately, interpolating numbers of the harmonic series and the natural logarit
 We outline a proof relating the definition of the Riemann Zeta function to the *Riesz-Thorin theorem* on the interporlation of operators and *Cantor's theorem* on the cardinality of the continuum. The assertion holds accepting Euclidian geometry for unitary vector products, including the $5_{th}$ axiom.
 
 The argument is presented, along with a brief demonstration including non-trivial or unexplored identities. Further discussion ilustrate known identities with peculiar geometrical meaning under the proposed homeomorphisms.   
+
+In projective coordinates, the points {0, 1, ∞} are given by [0:1], [1:1], and [1:0], which explains why their stabilizer is represented by integral matrices.
 
 ## Homeomorphisms of $\zeta$
 
@@ -98,7 +104,8 @@ For infinite non-trivial zeros, it has been demonstrated that the $\epsilon$ dis
 
 Next lemmas describe the conditions for a set of orbits containing infinite images of $\zeta(s)=0, s \in \not{Tr}{\zeta_{0}}$ .
 
-**Lemma 2: The elements of the unique set of orbits with images containing the infinite non-trivial ze*ros are the spiral $a_{0}$ asymptoptically approaching the real line as $\theta \rightarrow \infty$ at a specific rate related to $Re(s)**  
+
+**Lemma 2: The elements of the unique set of orbits with images containing the infinite non-trivial zeros are the spiral $a_{0}$ asymptoptically approaching the real line as $\theta \rightarrow \infty$ at a specific rate related to $Re(s)$**  
 
 Take the converging length $L$ of the arc in $a$: 
 $$L = c \int_{0}^{\theta} \sqrt{1+\theta^2} d\theta$$
@@ -132,6 +139,9 @@ The odd function shows the unique two poles along with the arcs generated in pol
 
 
 ![Plots of 4th derivative (snap) on polar coordinates. The orbits sugest the location of symetrical attractors](polar_snap.jpg)  
+
+By evaluating the orbits after the global extrema of $\theta$ maximizing the snap, we find several geometrically intuitive identities.  They are associated with intrinsic angular momentum (spin) or certain solutions for field equations general relativity. The Lorenz solutions are equivalent to the ones desbriding conserved angular momentum in white and black holes.  
+
 
 
 **Lemma 3: The Riesz-Thorin theorem on the interporlation of operators bounds the quantities Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set $R_{0}$ of unique orbits.**
@@ -273,6 +283,7 @@ The uniqueness of $\mu$ in the Hausdorff moment problem follows from the Weierst
 Laurent Series is applicable in bounded intervals.
 
 These are involutions using line segments parallel to the imaginary axis. The arc's length is parameterized as:  
+
 $$\vec{X} = \vec{C_{\kappa}} = \vec{c}(\theta) - \frac{\vec{c}'(\theta)}{|\vec{c}'(\theta)|} \int_{\kappa}a^{\theta}|\vec{c}'(\omega)|d\omega$$  
 The integral over $s$ represents the length of the free part of the string in the interval $[0,t]$ and the vector prior to that is the tangent unitvector.  :   
 $$C_{a}(s) = \int_{R^d}^{} Re(y)Im(x-y)ds$$  
@@ -592,3 +603,4 @@ periodically
 14. Webb, Trefethen. Computing complex singularities of differential equations with Chebfun. https://www.dpmms.cam.ac.uk/~mdw42/webb2013computing.pdf
 15. Divakar Viswanath Somez Shutoglu. Complex Singularities and the Lorenz Attractor. July 30, 2009.
 16. Fesenko, Ivan (2010), "Analysis on arithmetic schemes. II", Journal of K-theory, 5 (3): 437–557, doi:10.1017/is010004028jkt103
+17. Exact bond percolation thresholds in two dimensions. https://arxiv.org/pdf/cond-mat/0610813.pdf. https://arxiv.org/pdf/cond-mat/0610813.pdf
