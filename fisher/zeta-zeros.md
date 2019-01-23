@@ -139,7 +139,9 @@ We show that the critical line's location is actually a direct consequence of pr
 
 **Gedankenexperiment**: Consider the complex representation of $\zeta(s) : Re(\zeta(s)) + Im(\zeta(s)), Re(s) \in \mathbb{R}, Im(s) = \theta i$. 
 
-![Source: Three Blue One Brown](critical-image-real.jpg)
+![Grid on](analytic-cont.jpg)
+
+![Image of $\zeta(1/2 + \theta i)$ for $\theta = 0$ Source: Three Blue One Brown](critical-image-real.jpg)
 
 **Lemma 3: ???The Riesz-Thorin theorem on the interporlation of operators bounds the quantities Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set $R_{0}$ of unique orbits.???**
 
