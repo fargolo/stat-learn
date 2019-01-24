@@ -151,38 +151,32 @@ Consider the following geometrical construction illustrated in the diagram.
 2. Bisect AS with M.  
 2. Draw a circular arc around M with radius MC intersecting AS extension. 
 
-Then, $\frac{AS}{SB} = \phi$, the golden ratio. This is a trivial construction with a rule and a compass providing the golden mean.
-Take M as the origin. The the line parallel to SC intersecting M as the imaginary axis and AS extension as the real axis. Notice that triangle MCS would define $\vec{s=MC}$ real projection $Re_{(MC)}$, while B defines the arc of $sine(\hat M)$.
+Then, $\frac{AS}{SB} = \phi$, the golden ratio. Also, $2MS / SB = \phi$.
+This is a trivial construction with a rule and a compass providing the golden mean.
+Take M as the origin. Then take the line parallel to SC intersecting M as the imaginary axis and AS extension as the real axis. Notice that triangle MCS would define $\vec{s=MC}$ real projection $Re_{(MC)}$, while B defines the arc of $sine(\hat M)$.
 
-Hence, for $\hat M$ angle's $sine$ to be equal to $MC$ imaginary part, 2MS/SB = $\phi$.  
-Consider vectors from the origin $\vec{MB}$ and $\vec{MC}$.  
-Rotating MB by angle $\hat M$ makes its real projection equal to that of MC.  
- 
-** Lemma 3: For the real projection of a complex vector $\vec{a}$ rotated by $\theta$ to be equal to the real projection of the resultant vector, the ratio between its parts is $Re(\vec{a})/Re(\vec{a e^{i\theta}}) = \phi$ **
+Consider vectors from the origin: $\vec{a}$, to equivalent to MB, and $\vec{b} = \vec{a} e^{\hat M i}$, equivalent to its rotation to reach C.  
+$$CS = 2MS = sin(\hat M)$$
+$$Im(MC) = Im(MB e^{\hat M i})$$
 
-
-
+**Lemma 3: In the interval 0 < Re(s) < 1, for the real projection of a complex vector $\vec{a}$ rotated by $\theta$ to be equal to the real projection of the resultant vector, the ratio between its parts is $\frac{2 Re(\vec{a}e^{\theta i})}{ Re(\vec{a}) - Re(\vec{a}e^{\theta i})} = \phi, \phi = \frac{1}{2}\pm \frac{\sqrt{5}}{2}$**  
 
 
-Hyperbolic sine of natural logaritm must be equal to $sin(\frac{\pi}{6}) = cos(\frac{\pi}{3})$
+
 
 When the result is the unit, we get roots $\{-\phi,+\phi\}$, the golden ratio and its negative symmetrical.  
 Along the convolutions 
 Current vector has a length determined by a ratio. The relative size between (1) its value added with the unit and (2) itself:
 
-$\frac{\phi+1}{\phi} = \phi$
-
-For infinite operation, the sum of sucessive rotations (after changes in $Im(s)$, obey the law: the sum of a unitary vector and the sebsequent vector is to the unitary vector as the unitary vector is to subsequent vector. If this is associated with the standard 2-d
-
-the natural logarithm of x$\phi$.
+Hyperbolic sine of natural logaritm must be equal to $sin(\frac{\pi}{6}) = cos(\frac{\pi}{3})$
+Phi: $\frac{\phi+1}{\phi} = \phi$
 
 $sinh(\phi)=\frac{1}{2}$
 
 ![Image of $\zeta(1/2 + \theta i)$ for $\theta = 0$ . Source: Three Blue One Brown](critical-image-real.jpg)
 
-**Lemma 3: ???The Riesz-Thorin theorem on the interporlation of operators bounds the quantities Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set $R_{0}$ of unique orbits.???**
+???The Riesz-Thorin theorem on the interporlation of operators bounds the quantities Mertens' third theorem provide the asymptoptic limit for the corvegence rate values associated with this set $R_{0}$ of unique orbits.???
 
-The arc containing infinite non-trivial zeros describes smaller orbits with a lower bound defined after $\gamma$, the Euler-Mascheroni constant. 
 
 
 $min(\epsilon) \rightarrow \gamma$ as $Im(\zeta) \rightarrow \infty$.
