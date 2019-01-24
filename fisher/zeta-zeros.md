@@ -161,8 +161,7 @@ $$Im(MC) = Im(MB e^{\hat M i})$$
 
 **Lemma 3: In the interval 0 < Re(s) < 1, for the real projection of a complex vector $\vec{a}$ rotated by $\theta$ to be equal to the real projection of the resultant vector, the ratio between its parts is $\frac{2 Re(\vec{a}e^{\theta i})}{ Re(\vec{a}) - Re(\vec{a}e^{\theta i})} = \phi, \phi = \frac{1}{2}\pm \frac{\sqrt{5}}{2}$**  
 
-
-
+Ultimately, a problem solved through percolation theory and the subgroup maping symmetries of $\{0,1,\infty\} \subset P^{1}(C)$, where $P^{1}(C)$ is the complex projective line, a Riemann Sphere.   
 
 When the result is the unit, we get roots $\{-\phi,+\phi\}$, the golden ratio and its negative symmetrical.  
 Along the convolutions 
@@ -180,8 +179,7 @@ $sinh(\phi)=\frac{1}{2}$
 
 
 $min(\epsilon) \rightarrow \gamma$ as $Im(\zeta) \rightarrow \infty$.
-
-Ultimately, a problem solved through percolation theory and the subgroup maping symmetries of $\{0,1,\infty\} \subset P^{1}(C)$, where $P^{1}(C)$ is the complex projective line, a Riemann Sphere.    
+ 
 
 Ultimately, interpolating numbers of the harmonic series and the natural logarithm in infinitesimal intervals reflects Cantor's theorem on the cardinality of the continuum. Certain group actions stabilize the sets $\{0,1,\infty\}$ and $\{-\phi,\phi\}$($\phi$, the golden ratio) in quotient map of symmetry groups $S_{3} \rightarrow S_{2}$. The fixed points of the individual 2-cycles difine a unique value for $Re(\not Tr_{0})=\frac{1}{2}$.  
 
