@@ -14,11 +14,12 @@ email: felipe.c.argolo @protonmail.com; @protonmail.com; @gmail.com
 
 The zeta function is defined as the analytic continuation of the Dirichlet series $\zeta(s) = \sum_{1}^{\infty}\frac{1}{n^{s}}, Re(s) > 1$. Riemann hypothesized that besides the trivial zeros, located at the even negative integers of s $(\Re(s)=-2n; n=1,2,3,4,...)$, all other zeros would be images of $s$ where $Re(s)=\frac{1}{2}$.
 
-Complex analysis on homeomorphisms of $\zeta$ yielded several advances. Solutions for rotations obtained with cosmological models yield poles identifiable with $Re(\not Tr_{0})$, the non-trivial zeros. We review methods to identify unique poles by Fesenko and Zagier poles. Nevertheless, a formal proof seems elusively connected with divisibility and primes in number theory.  
+Complex analysis on homeomorphisms of $\zeta$ yielded several advances. Solutions for rotations obtained with cosmological models yield poles related to $Re(\not Tr_{0})$, the non-trivial zeros. We review methods by Fesenko and Zagier. Nevertheless, a formal proof seems elusively connected with divisibility and primes in number theory.  
 
-Using geometrical identities, vector operations defined in the $\zeta$ function are maped to four collinear points. We define conditions for $s$ in the occurence of $\not Tr_{0}$ and obtain the real value $Re(s)$ studying symmetries in torsion elements, invariants in projective geometry. Specifically, we use Möbius transformation, the six cross-ratios possible among four points.  
+Using geometrical identities, points of vector operations defined in the $\zeta$ function are maped to four collinear points. We define conditions for consecutive permutations of locations and study symmetries of its torsion elements, invariants in projective geometry. Specifically, we use a type of Möbius transformation, fractional linear ones, the six cross-ratios possible among four collinear points.  
 
-The exceptional orbits corresponding to fixed points on the Riemann sphere under the action of the symmetric group $S_{3}$. In this manner, we obtain a solution with unique sets of fixed points for the stabilizers: $\{0,1,\infty\}$, $\{\phi_{-},\phi_{+}\}$ and $\{-1,\frac{1}{2},2\}$. The later is the orbit of the harmonic cross-ratio, where $\frac{1}{2}$ is the fixed point of the 2-cycle with linear fractional transform $1-\lambda$. This parameterizes $Re(\zeta(s))$, hence defining the critical line $Re(s)=\frac{1}{2}$ as the location of $Re(\not Tr_{0})$.  
+In this manner, we obtain a solution with unique sets of fixed points for the stabilizers: $\{0,1,\infty\}$, $\{\phi_{-},\phi_{+}\}$ and $\{-1,\frac{1}{2},2\}$. The later is the orbit of the harmonic cross-ratio, where $\frac{1}{2}$ is the fixed point of the 2-cycle with linear fractional transform $1-\lambda$. This parameterizes $Re(\zeta(s))$, hence defining the critical line $Re(s)=\frac{1}{2}$ as the location of $Re(\not Tr_{0})$.  
+
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros, group theory, Möbius transformation, harmonic cross-ratio; 
 
@@ -49,7 +50,7 @@ Consider the complex representation of $\zeta(s) : Re(\zeta(s)) + Im(\zeta(s)), 
 
 ![Grid of $\zeta$ analytical continuation conserving angles. Image by 3Blue1Brown](analytic-cont.jpg)
 
-Consider the following geometrical construction illustrated in the diagram.   
+  Consider the following geometrical construction illustrated in the diagram.   
 
 ![From Wikipedia: Wolfgang Beyer, Konstantin](golden-diagram.png)
 
