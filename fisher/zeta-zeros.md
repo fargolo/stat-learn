@@ -18,8 +18,7 @@ Complex analysis on homeomorphisms of $\zeta$ yielded several advances. Solution
 
 Using geometrical identities, points of vector operations defined in the $\zeta$ function are maped to four collinear points. We define conditions for consecutive permutations of locations and study symmetries of its torsion elements, invariants in projective geometry. Specifically, we use a type of Möbius transformation, fractional linear ones, the six cross-ratios possible among four collinear points.  
 
-In this manner, we obtain a solution with unique sets of fixed points for the stabilizers: $\{0,1,\infty\}$, $\{\phi_{-},\phi_{+}\}$ and $\{-1,\frac{1}{2},2\}$. The later is the orbit of the harmonic cross-ratio, where $\frac{1}{2}$ is the fixed point of the 2-cycle with linear fractional transform $1-\lambda$. This parameterizes $Re(\zeta(s))$, hence defining the critical line $Re(s)=\frac{1}{2}$ as the location of $Re(\not Tr_{0})$.  
-
+In this manner, we obtain a solution with unique sets of fixed points for the stabilizers: $\{0,1,\infty\}$, $\{\phi_{-},\phi_{+}\}$ and $\{-1,\frac{1}{2},2\}$. The later is the orbit of the harmonic cross-ratio, where $\frac{1}{2}$ is the fixed point of the 2-cycle with linear fractional transform $1-\lambda$, which fixes permutations in the point corresponding to the real part of $s$. Hence, defining the critical line $Re(s)=\frac{1}{2}$ as the location of $Re(\not Tr_{0})$.  
 
 *Keywords*: Riemann hypothesis, zeta function, non-trivial zeros, group theory, Möbius transformation, harmonic cross-ratio; 
 
