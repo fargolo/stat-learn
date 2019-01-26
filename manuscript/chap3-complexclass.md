@@ -1,3 +1,9 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
 ![Frank Rosenblatt e Mark I.](images/chap3-frankmark.jpg)
 
 # Capítulo 3 : Neurônios
@@ -135,7 +141,7 @@ Assim, funciona para separar flores *setosa* de outra classe, mas não teriamos 
 #### Auto MaRk I
 
 Usando as abstrações acima, codificamos nosso perceptron em R, o Auto MaRk I.   
-**Argumentos:** Exemplos (x, vetor de números reais) e estados esperados (y, disparar = 1 vs. não disparar = -1) devem ter mesmo tamanho.
+**Argumentos:** Exemplos (x, vetor de números reais) e estados esperados (y, disparar = 1 vs. não disparar = -1) devem ter mesmo tamanho.  
 **Eta:** Número especificando constante de aprendizagem.
 
 Auto MaRK I inicializa um peso aleatório para cada entrada e, numa ordem aleatória, percorre os exeplos atualizando os pesos.  
@@ -151,7 +157,8 @@ Auto MaRK I inicializa um peso aleatório para cada entrada e, numa ordem aleat�
           # predicao
           ypred <- sum(w * as.numeric(x[i, ])) %>% phi_heavi 
           # update em w
-          delta_w <- eta * (y[i] - ypred) * as.numeric(x[i, ]) #nota: x[i,] sera multiplicado como matriz (dot product)
+          delta_w <- eta * (y[i] - ypred) * as.numeric(x[i, ]) 
+          #nota: x[i,] sera multiplicado como matriz (dot product)
           w <- w + delta_w
           ypreds[i] <- ypred # salva predicao atual
         }
@@ -203,7 +210,7 @@ E então, podemos ativá-lo:
      [73]  1 -1 -1  1 -1 -1  1  1 -1  1 -1  1  1  1  1  1  1 -1  1  1 -1  1 -1  1
      [97] -1  1  1 -1
 ```
-Usando $\eta = 0.002$, obtivemos $41%$ de acurácia (classificações corretas). Podemos modificar a taxa de aprendizagem. Com $\eta = 0.05$, aumentamos para $59%$. Com $\eta = 0.1$, temos $62%$. Um bom valor é $0.01$, com $77%$.  
+Usando $\eta = 0.002$, obtivemos $41 \%$ de acurácia (classificações corretas). Podemos modificar a taxa de aprendizagem. Com $\eta = 0.05$, aumentamos para $59\%$. Com $\eta = 0.1$, temos $62\%$. Um bom valor é $0.01$, com $77\%$.  
 
 ```r    
     > y_preds <- mark_i(x_features, y_target, 0.05)
@@ -236,6 +243,8 @@ Uma forma popular para otimizar o treinamento é particionar o dataset em pedaç
 
 \pagebreak
 
+![](images/chap3-walk.jpg)
+
 ### Gradient Descent
 
 No exemplo anterior, atualizamos os pesos com uma fórmula contendo taxa de aprendizagem $(\eta)$ e outros parâmetros: a função de erro entre score desejado$(score)$ e output $E= d(score_{j},output_{j})$; valor da entrada $(x_{i})$.  
@@ -243,10 +252,12 @@ No exemplo anterior, atualizamos os pesos com uma fórmula contendo taxa de apre
 $$w_{i}' = w_{i} + \Delta w_{i}$$
 
 $\Delta w_{i}$ pode ser obtido usando o conceito de Gradient Descent.
-Levando em conta cada $j$-ésima observação, definimos uma função de perda $L$ expressando a soma dos erros nos $n$ exemplos e minimizamos ela.
-$$min(L)=min\sum_{j}^{n}E(score_{j},output_{j}))$$. Calculamos o valor dos pesos atuais e percorremos o espaço em direção a um valor mínimo local. Se a superfície $L$ for convexa, acharemos uma solução ótima.   
+Intuitivamente, calculamos a inclinação local e caminhamos no sentido oposto ao mais íngreme. O valor de $\eta$ governa o tamanho dos passos.    
 
-Usaremos para nossa função de erro a distância euclidiana entre score desejado e output. O score desejado é a resposta ótima o output é um produto entre pesos e entrada[^22]:
+Levando em conta cada $j$-ésima observação, definimos uma função de perda $L$ expressando a soma dos erros nos $n$ exemplos e minimizamos ela.
+$$min(L)=min\sum_{j}^{n}E(score_{j},output_{j}))$$. Calculamos o valor dos pesos atuais e percorremos o espaço em direção a um valor mínimo local. Se a superfície $L$ for convexa, acharemos uma solução ótima com o número suficiente de passos.  
+
+Usaremos para nossa função de erro a distância euclidiana entre score desejado e output. O score desejado é a resposta ótima e o output é um produto entre pesos e entrada[^22]:
 
 $$E = d_{eucl.}(score_{j},output_{j}) = (score_{j} - output_{j})^{2}$$
 
@@ -258,7 +269,7 @@ A intuição para sensibilidade à luz pode ser percebida num intervalo contínu
 
 Isso implica que a distância eulidiana deve funcionar em nossas medidas como nos números reais $\mathbf{R}$. Resta saber se a projeção das observações é linearmente separável. É intuitivo para seres humanos saber quais problemas serão separáveis: basta imaginar a tarefa de diferenciar tipos de imagens com uma regua numa tela em preto e branco.  
 
-Para descobrir o valor mínimo de $L$, vamos encontrar polos através de derivadas. Ou, seu equivalente para funções de múltiplas variáveis (espaços multidimensionais), o gradiente($\nabla$). 
+Para descobrir o valor mínimo de $L$, vamos encontrar polos através de derivadas parciais. Ou, seu equivalente para funções de múltiplas variáveis (espaços multidimensionais), o gradiente($\nabla$). 
 É o produto escalar das derivadas parciais daquela função. 
 
 Para cada observação $x_{j}$, a derivada parcial da função de perda em relação a um peso $w_{i}$ expressa a taxa de variação no erro global em função daquele peso. 
@@ -284,34 +295,35 @@ O score desejado não depende dos pesos, portanto a primeira derivativa é 0.
 $$f' = 0 - \frac{d}{dw_{i}} w_{j} \cdot x_{j}$$
 $$=-\frac{d}{dw_{i}}\sum_{i,j}^{n} w_{i,j}*x_{i,j}$$
 $$= =-\frac{d}{dw_{i}}(w_{0}*x_{0}+...+w_{i}*x_{i}+w_{n}*x_{n})$$  
-Os termos não dependentes de $w_{i}$ também são zerados e:  
+Os termos não dependentes de $w_{i}$ também são zerados e ficamos com o primeiro termo da soma:  
 $$f'=- \frac{d}{dw_{i}} w_{i}x_{i}$$  
 A função a ser derivada agora descreve uma relação linear (polinômio de grau 1) em $w_{i}$ e temos:
 $$f'= (-x_{i,j})$$
 
 Sabendo $f'$, buscamos o outro termo em $(g \circ f)'$:
+$$(g \circ f) = (score_{j} - output_{j})^{2-1}$$
 $$(g'\circ f) = 2(score_{j} - output_{j})^{2-1}$$
+
 $$= 2(score_{j} - output_{j})$$
 
-Por fim, a derivada parcial da função de perda para o i-ésimo peso $w_{i}$:
+Por fim, a derivada parcial da função de perda para o i-ésimo peso $w_{i}$ é:
 
 $$\frac{dL}{dw_{i}} = \sum_{j}^{n}\frac{d}{dw_{i}}(score_{j} - output_{j})^{2}$$.  
-$$= \sum_{i,j}^{n} 2(score_{j} - w_{j} \cdot x_{j})) (-x_{i,j})$$
+$$= \sum_{i,j}^{n} 2(score_{j} - w_{j} \cdot x_{j}) (-x_{i,j})$$
 
-Escalamos $L'$ por $-\frac{1}{2}*\eta$:  
-$$-\frac{1}{2}*\eta \frac{dL}{dw_{i}}=\frac{1}{2}*\eta 2(score_{j} - output_{j}) x_{j}$$
-$$\Delta w_{i} = \eta \sum_{j}{n} (score_{j} - w \cdot x)(x_{j})$$
+Para simplificar a expressão e estabelecer o tamanho dos incrementos sobre o pesos, escalamos a derivada parcial por uma constante, dada por $-\frac{1}{2} \eta_{0}$:  
+$$-\frac{1}{2}*\eta_{0} \frac{dL}{dw_{i}}=-\frac{1}{2}\eta_{0}*2(score_{j} - output_{j}) (-x_{j})$$
+$$\Delta w_{i} = \eta_{0} \sum_{j}^{n} (score_{j} - w \cdot x)(x_{j})$$
+E $\eta_{0}$ é um [hiper]parâmetro que simplifico a equação e define o tamanho dos incrementos usados. 
 
 Como implementamos antes no Auto MaRK I.  
 ```r
     (...)
     ypred <- sum(w * as.numeric(x[i, ])) %>% phi_heavi 
-    delta_w <- eta * (y[i] - ypred) * as.numeric(x[i, ])
+    delta_w <- eta * (y[i] - ypred) * as.numeric(x[i, ]) #<--------------------
     w <- w + delta_w
     (...)
 ```
-
-![](images/chap3-walk.jpg)
 
 \pagebreak
 
@@ -326,7 +338,7 @@ Como implementamos antes no Auto MaRK I.
 
 Intuições
 
-Com o aprendizado através de exemplos, otimizamos otimizamos nosso classificador (mudando pesos W) para minimizar a perda, erro, usando aproximações(e.g: Adagrad). A função de perda é menor quando temos pontuações (votos) maiores para as classes certas.
+Com o aprendizado através de exemplos, otimizamos otimizamos nosso classificador (mudando pesos $W$) para minimizar a perda usando aproximações. A função de perda é menor quando temos pontuações (votos) maiores para as classes certas.
 SVMs têm bom desempenho em diversas estruturas de dados, especialmente quando a arquitetura é otimizada por um usuário experiente. Onde entram as redes neurais?
 
 ![](images/chap3-waves.jpg)
@@ -419,6 +431,7 @@ Agora, a primeira camada (hidden) modifica a entrada com duas unidades sigmoides
 Em tese, esse modelo pode capturar melhor as características que geraram os dados (flutuação hormonal ao longo do dia).
 
 ### Neurônios
+
 Notem que o diagrama acima lembra uma rede neural. Esse tipo de classificador foi inspirado na organização microscópica de neurônios reais e acredita-se que seu funcionamento seja de alguma forma análogo. A arquitetura de redes convolucionais (convolutional neural networks), estado da arte em reconhecimento de imagens, foi inspirada no córtex visual de mamíferos (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1557912/).
 Outros modelos bio inspirados (Spiking neural networks, LTSMs…) apresentam desempenhos inéditos para tarefas complexas e pouco estruturadas, como reconhecimento de voz e tradução de textos.
 A teoria mais aceita é de que o maquinário neural dos animais foi desenhado por processos evolutivos, como a seleção natural. Assim, apresenta coloridas formas de complexidade a depender da tarefa desempenhada.
@@ -468,7 +481,7 @@ Podemos calcular o efeito de mudanças inter nodos com a regra de cadeia funçõ
 
 $$\frac{df}{dx}=\frac{df}{dq}\frac{dq}{dx}$$
 
-É possível calcular de forma recursiva, portanto local e paralela, ao longo das camadas. Fazendo o mesmo acima para df/dy, teremos os valores de [df/dx ; df/dy] que é precisamente nosso gradiente.
+É possível calcular de forma recursiva, portanto local e paralela, ao longo das camadas. Fazendo o mesmo acima para df/dy, teremos os valores de $[df/dx ; df/dy]$ que é precisamente nosso gradiente.
 
 ```r
 # Valor duplo (x,y) para inputs
@@ -493,9 +506,6 @@ Usando essa lógica, calculamos os gradientes para a função de erro e treinamo
 
 Referência
  Para uma história completa: J. Schmidhuber. Deep Learning in Neural Networks: An Overview. Neural Networks, 61, p 85–117, 2015. (Based on 2014 TR with 88 pages and 888 references, with PDF & LATEX source & complete public BIBTEX file).
-
-
-Recomendo esse paper aqui para uma abordagem mais profunda e definições formais com hiperplanos — Support Vector Machines in R ( Alexandros Karatzoglou, David Meyer, Kurt Hornik).
 
 http://web.csulb.edu/~cwallis/artificialn/History.htm
 https://sebastianraschka.com/Articles/2015_singlelayer_neurons.html
