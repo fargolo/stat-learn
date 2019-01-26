@@ -84,7 +84,7 @@ Uma relação linear entre duas variáveis indica que elas estão correlacionada
 
 Isto é, valores maiores de massa correspondem a um aumento proporcional em energia. O valor de $c^{2}$ expressa essa proporção constante.  
 
-**Exemplo:** uma molécula de água pesa aproximadamente $m_{H_{2}O} =2.992×10^{-23} g$. Portanto, a energia associada é $E_{H_{2}O} = 2.992\cdot 10^{-23}\cdot 8.988\cdot 10^{16} \sim 2.689^{-6}J$. Se triplicarmos o número de moléculas de água, o mesmo acontecerá com a energia associada: $E_{3H_{2}O} = 3\cdotE_{H_{2}O}$.  
+**Exemplo:** uma molécula de água pesa aproximadamente $m_{H_{2}O} =2.992×10^{-23} g$. Portanto, a energia associada é $E_{H_{2}O} = 2.992\cdot 10^{-23}\cdot 8.988\cdot 10^{16} \sim 2.689^{-6}J$. Se triplicarmos o número de moléculas de água, o mesmo acontecerá com a energia associada: $E_{3H_{2}O} = 3\cdot E_{H_{2}O}$.  
  
 Se a correlação é positiva, incrementos em $x$ serão proporcionais a incrementos em $y$. Se a correlação é negativa, incrementos em $x$ serão proporcionais a decréscimos em $y$.  
 
@@ -113,7 +113,7 @@ $a=(1,2); b=(2,4) \rightarrow \beta = 2$
 
 ### Erros e aleatoriedade
 
-Controlando fatores experimentais, as relações descritas são bastante precisas. Em um cenário sem atrito com superfícies e com o ar, os erros de medida obtidos com $F=ma$ são muito baixos.  
+Controlando fatores experimentais, as relações descritas são bastante precisas. Em um cenário sem atrito com superfícies e com o ar, os erros de medida obtidos com $\vec{F}=m\vec{a}$ são muito baixos.  
 Entretanto, nem sempre isso é verdadeiro.  
 Primeiro, podemos sofrer interferência de variáveis desconhecidas.
 
@@ -186,11 +186,11 @@ O **momento zero** de massa para um objeto é $M_{0} = \sum_{i=1}^{N} m_{i}d_{i}
 
 $$M_{0} = m$$
 
-O **primeiro momento** de massa para um objeto é $M_{1} = \sum_{i=1}^{N} m_{i}d_{i}^{1}$ e determina o centro de massa em relação à dimensão $d$. É o ponto em que está o dedo em que se equilibra o pássaro da foto.  
+O **primeiro momento** de massa para um objeto é $M_{1} = \sum_{i=1}^{N} m_{i}d_{i}^{1}$ e determina o **centro** *de massa* em relação à dimensão $d$. É o ponto em que está o dedo em que se equilibra o pássaro da foto.  
 
 $$M_{1} = C_{m}$$
 
-O **segundo momento** de massa é $M_{2} = \sum_{i=1}^{N} m_{i}d_{i}^{2}$ e é o momento de inércia. Corresponde à resistência do sistema a rotações. Perceba que os termos $d_{i}^{2}$ estariam presentes nas área de um círculo com centro idêntico ao do objeto e raio igual à distância para o centro: $\pi d^{2}$. A resistência total a rotação é análoga à resistência oferecida pelos raios destes círculos imaginários[^13].
+O **segundo momento** de massa é $M_{2} = \sum_{i=1}^{N} m_{i}d_{i}^{2}$ e é o **momento de inércia**. Corresponde à resistência do sistema a rotações. Perceba que os termos $d_{i}^{2}$ estariam presentes nas área de um círculo com centro idêntico ao do objeto e raio igual à distância para o centro: $\pi d^{2}$. A resistência total a rotação é análoga à resistência oferecida pelos raios destes círculos imaginários[^13].
 
 ![](images/chap2-windmills.jpg)
 
@@ -221,8 +221,10 @@ $$= \int_{-\infty}^{\infty} f(x)dx = 1$$.
 **Primeiro momento**: $\mu_{1}= \int_{-\infty}^{\infty} d(x,x_{0})f(x)dx$ , supondo centro em 0 $(x_{0}=0)$, temos a média, $$ \mu_{1} = \int_{-\infty}^{\infty} xf(x)dx$$, também chamado valor esperado $E[X]$. Estende a intuição de somar as medidas e dividir pelo número de observações ao passo em que usamos uma integral para somar as infinitesimais possibilidades para $f(x)$.    
 **Segundo momento**: $$\mu_{2}= \int_{-\infty}^{\infty} d(x,x_{0})^{2}f(x)dx$$. Como vimos no capítulo introdutório, a soma dos quadrados dos desvios, nossa variância, $$\sigma^{2} = E[(x-\mu)^{2}]$$.  
 
+---
 
-#### Sobre o Teorema do Limite Central
+**Notas finais sobre o Teorema do Limite Central**
+
 Podemos entender melhor o teorema do limite central. As informações fornecidas pelos momentos são valiosas: uma função de probabilidade é totalmente definível por seus momentos.  
 O Teorema do Limite Central, de que falamos antes, é provado mostrado equivalência entre momentos da curva normal e da soma de *n* distribuições idênticas através de outras ferramentas.  
 Podemos criar uma função geradora de momentos, $M_{X}(t)=E[e^{tX}]$. Chamamos ela assim, pois sua forma polinomial via expansão de Taylor corresponde à soma $1+tX+\frac{t^{2}X^{2}}{2!}+\frac{t^{3}X^{3}}{3!}+...$.  
@@ -230,10 +232,11 @@ O valor esperado dessa soma:
 $$E[M_{X}(t)]=1+tE[X]+\frac{t^{2}E[X^{2}]}{2!}+\frac{t^{3}E[X^{3}]}{3!}+...$$
 $$=1+tM_{1}+\frac{t^{2}M_{2}}{2!}+\frac{t^{3}M_{3}}{3!}+...$$
 Em que $M_{n}$ corresponde ao n-ésimo momento.   
-A função característica é a transformada de Fourier da função de probabilidade, que é o mesmo que multiplicar o argumento t da função geradora de momentos pela unidade imaginária, $\phi_{X}(t)= M_{X}(it) =E[e^{itX}]$. Funções com cumulantes idênticos possuem momentos idênticos e podemos demonstrar que a função característica que a soma de $n$ distribuições iguais possui momentos idênticos aos da normal. [14]
+A função característica é a transformada de Fourier da função de probabilidade, associando componentes periódicos no plano imaginário. É o mesmo que multiplicar o argumento t da função geradora de momentos $M_{X}(t)=E[e^{tX}]$ pela unidade imaginária, $\phi_{X}(t)= M_{X}(it) = E[e^{itX}]$. Funções com cumulantes idênticos possuem momentos idênticos e podemos demonstrar que a função característica que a soma de $n$ distribuições iguais possui momentos idênticos aos da normal. [^14]
 
-[14]: Two Proofs of the Central Limit Theorem, Yuval Filmus, 2010. http://www.cs.toronto.edu/~yuvalf/CLT.pdf
+[^14]: Two Proofs of the Central Limit Theorem, Yuval Filmus, 2010. http://www.cs.toronto.edu/~yuvalf/CLT.pdf
 
+---
 
 Com os conceitos adquiridos em mãos, é fácil entender o $\rho$ de Pearson.  
 
@@ -261,7 +264,7 @@ A expressão acima expressa a **covariância** entre $X$ e $X'$ e será útil em
 
 Note que, se ambos os desvios concordam em sentido (sinal), o resultado da multiplicaçao será positivo. Pares consistentemente concordantes aumentam o valor da soma final. Se ambos os desvios discordam em sentido (sinal), o resultado será negativo. Pares consistentemente discordantes diminuem o valor da soma final.  
 
-Assim, podemos ter variáveis altamente correlacionadas positivamente negativamente, desde que o sentido da associação seja constante. Em contrapartida, se as medidas são ora discordantes e ora concordantes, os valores tendem a se anular na soma e o resultado se aproxima de zero.  
+Assim, podemos ter variáveis altamente correlacionadas positiva ou negativamente, desde que o sentido da associação seja constante. Em contrapartida, se as medidas são ora discordantes e ora concordantes, os valores tendem a se anular na soma e o resultado se aproxima de zero.  
 
 Observar apenas a covariância é perigoso, pois os valores dependem da unidade de medida e da dispersão dos dados. 
 
@@ -494,7 +497,7 @@ Uma visualização intuitiva de SSR e TSS:
 ```
 ![O quadrado da distância entre um ponto e a reta corresponde a um resíduo. Obtemos SSR e TSS somando todos os resíduos nas figuras superior e inferior, respectivamente.](images/chap2-residuals.png) 
 
-Valores de $R^{2}$ próximos a 1 indicam soma de resíduos (SSR) similar a 0. Valores de $R^{2}$ próximos a 0 indicam $\frac{SSR}{TSS} \sim 1$ e as predições obtidas pelo modelo são tão boas quanto chutar a média para todos os casos.  
+Valores de $R^{2}$ próximos a 1 indicam soma de resíduos (SSR) similar a 0. Usar a reta como guia acumula erros quase nulos. Valores de $R^{2}$ próximos a 0 indicam $\frac{SSR}{TSS} \sim 1$ e as predições obtidas pelo modelo são tão boas quanto chutar a média para todos os casos.  
 
 ```r
     >lm(hale ~ log_docs, data=uni_df) %>% summary
@@ -570,28 +573,31 @@ O $rho$ de Spearman é que o coeficiente produto-momento de Pearson aplicado aos
 
 Para a relação (sigmoide), entre x e y abaixo:  
 ```r
-    >sig_data <- data.frame(y_vals = -(1 / (1 + exp(seq(-10,10,by =0.3) ) ) ),
+    >set.seed(2600)
+    >sig_data <- data.frame(y_vals = -(1 / (1 + exp(seq(-10,10,by =0.3) )*100 ) ),
                        x_vals = 1:67)
     >ggplot(sig_data,aes(x=x_vals,y=y_vals))+
     geom_point()
 ```
 ![](images/chap2-sigpoints.png)
 
-O coeficiente de Pearson é $\rho \sim 0.936$[^19] :   
+O coeficiente de Pearson é $\rho \sim 0.850$[^19] :   
 ```r
     >cor.test(sig_data$y_vals,
     +          sig_data$x_vals)    
 
-    	Pearson's product-moment correlation    
+    	Pearson's product-moment
+    	correlation    
 
-    data:  sig_data$y_vals and sig_data$x_vals
-    t = 21.462, df = 65, p-value < 2.2e-16
+    data:  sig_data$y_vals and +sig_data$x_vals
+    t = 12.993, df = 65, p-value <
+    2.2e-16
     alternative hypothesis: true correlation is not equal to 0
     95 percent confidence interval:
-     0.8978064 0.9603803
+     0.7658181 0.9051711
     sample estimates:
           cor 
-    0.9361287  
+    0.8497162 
     
     >ggplot(sig_data,aes(x=x_vals,y=y_vals))+
       geom_point()+
@@ -647,18 +653,18 @@ Os ranks são uma sequência regular $(1,2,3,...)$, de forma que a soma de todos
 $$Soma_{ranks}=\frac{N(N+1)}{2}$$  
 Enquanto $R_{i}$ corresponde à soma dos ranks calculados com as duas amostras, o termo acima corresponderia à soma mínima dos ranks para uma amostra, caso os ranks ocupassem a sequência inicial $A=(1,2,3,4,...,n_{a})$ na amostra conjunta.  
 A definição para o teste não é unânime na literatura, de forma que alguns autores e softwares (e.g. R) implementam o cálculo com a subtração acima e outros (e.g. S-PLUS) não o fazem.  
-Em R, as funções **dwilcox(x,m,n)** e **pwilcox(q,m,n)** retornam a distribuição e a densidade cumulativa para a estatística U correspondente a amostras com tamanhos m e n.  
+Em R, as funções **dwilcox(x,m,n)** e **pwilcox(q,m,n)** retornam a distribuição e a densidade cumulativa para a estatística U correspondente a amostras com tamanhos m e n.  **wilcox.test(x,y,...)** é a implementação base do teste de Mann Whitney. O teste de Mann Whitney é o teste de Wilcoxon de duas amostras.  
 
 \pagebreak
 
 ## Regressão múltipla
 
-Anteriormente, examinamos modelos lineares simples. Calculamos parâmetros para um intercepto $\beta_{0}$, inclinação da reta $\beta_{1}$ e variância dos erros $\sigma^{2}_\epsilon$.
+Anteriormente, examinamos modelos lineares simples. Calculamos parâmetros para um intercepto $\beta_{0}$, inclinação da reta $\beta_{1}$ e variância dos erros $\sigma^{2}_\epsilon$. No exemplo apresentado, relacionamos o número de médicos ($n$) com a expectativa de vida saudável $hale$ em um país.
+
 
 $$y_{i} = \beta_{0} + \beta_{1}x_{i} + \epsilon$$
 
-No exemplo apresentado, relacionamos o número de médicos ($n$) com a expectativa de vida saudável $hale$ em um país.
-Na regressão linear múltipla, introduzimos mais uma variável preditora. Em nosso exemplo, poderia ser o valor do IDH do país:
+Na *regressão linear múltipla*, introduzimos mais uma variável preditora. Em nosso exemplo, poderia ser o valor do IDH do país:
 
 $$hale_{i} = \beta_{0} + \beta_{1}n_{i} + \beta_{2}IDH_{i}' + \epsilon$$
 
@@ -666,12 +672,14 @@ Em geral, temos dois objetivos:
 **(1)** melhorar a performance do modelo ao adicionar informações pertinentes;   **(2)** examinar o efeito sobre as demais variáveis preditoras.  
 
 O primeiro objetivo é intuitivamente óbvio: ao fazer nossa predição, é preferível saber apenas o número de médicos ou também outras variáveis?  
+
 Entretanto precisamos ter cuidado com redundância de informações. Especificamente, há uma troca quase inevitável entre complexidade e robustez do modelo. Acrescentar variáveis ou usar classes de relações mais flexíveis implica dar liberdade para um sobreajuste aos dados. Isto é, nosso modelo aprenderá idiossincrasias sobre o banco de dados disponível e não sobre a relação entre as abstrações. Veremos nas próximas sessões como mitigar esse problema.  
 Para o caso da regressão linear múltipla, podemos verificar se há colinearidade (relação linear) entre variáveis preditoras. Se as variáveis preditoras são altamente correlacionadas, é provável que estejamos fornecendo informações redundantes ao modelo, o que é nocivo. Existem alguns indicadores que podem ajudar a tomar essa decisão.  
 Comumente, observamos o VIF *Variance inflation factor*. 
+
 Ele verifica se a variância do coeficiente $\beta$ estimado está sendo inflada por interferência de outros preditores.   
-Para calcular o VIF referente a um preditor $X'$, ajustamos uma nova regressão, em que a variável resposta é $X'$ e as preditoras são as outras variáveis preditoras. O VIF é dado por: $\frac{1}{1-R^{2}}$, sendo $R^{2}$ o coeficiente de determinação da regressão, como calculamos antes.  
-Não há regra canônica, porém valores altos (e.g. VIF > 10 ou VIF > 5) indicam colinearidade inaceitável.  
+Para calcular o VIF referente a um preditor $X'$, ajustamos uma nova regressão, em que a variável resposta é $X'$ e as preditoras são as outras variáveis preditoras. O VIF é dado por: $\frac{1}{1-R^{2}}$, sendo $R^{2}$ o coeficiente de determinação da regressão, como calculamos antes. Valores de VIF altos refletem valores de $R^2$ altos, isto é: a combinação linear de outras variáveis explicariam muito bem (colinearidade) a variável alvo.
+Não há regra canônica, porém VIF > 10 ($R^{2} = 0.9$) e VIF > 5($R^{2} = 0.8$) são citados como fronteiras indicando colinearidade inaceitável.  
 
 A função **vif** do pacote *car* implementa o procedimento. Ajustamos uma regressão linear múltipla para o comprimento das sépalas no dataset *iris* a partir de outras 3 variáveis. Podemos verificar que há colinearidade ($VIF_{pet.leng.}\sim 15.1$, $VIF_{pet.wid.}\sim 14.2$) entre largura e comprimento da pétala. Por outro lado, a colinearidade com o comprimento da sépala é baixa ($VIF_{pet.wid.} \sim 1.3$). 
  
@@ -689,7 +697,7 @@ Se há colinearidade, é recomendado remover um dos preditores para eliminar a r
 ```
 ![](images/chap2-irispairs.png)
 
-Como podemos ver, usar duas variáveis preditoras (regressão múltipla) não colineares aumenta a performance do modelo em relação à regressão simples $(R^{2} \sim 0.84 vs. R^{2} = 0.76)$.  
+Como podemos ver, usar duas variáveis preditoras (regressão múltipla) não colineares aumenta a performance do modelo em relação à regressão simples $(R^{2} \sim 0.84\enskip vs\enskip R^{2} = 0.76)$.  
 
 ```r
     >lm(Sepal.Length ~ Petal.Length,    

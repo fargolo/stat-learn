@@ -1,8 +1,8 @@
 ![](images/cover-rotate.jpg)  
 
-# Ciência de dados: Filosofia e aplicações.
-
-<div style="text-align: right"> Felipe Coelho Argolo </div>
+# Ciência de dados
+**Filosofia e aplicações**
+Felipe Coelho Argolo
 
 \pagebreak
 
@@ -10,7 +10,7 @@ Página intencionalmente deixada em branco.
 
 \pagebreak
 
-Versão 0.35: Introdução; Capítulo 0; Capítulo 1; Capítulo 2; Capítulo 3 (em progresso).
+Versão 0.38: Introdução; Capítulo 0; Capítulo 1; Capítulo 2; Capítulo 3 (em progresso).
 16 de Janeiro de 2019
 
 Para comentários, críticas e sugestões, entre em contato através do e-mail: felipe.c.argolo@protonmail.com.  
@@ -37,19 +37,21 @@ Uma descrição abrangente pode facilmente alcançar 1,000 páginas de texto suc
 
 ## Objetivos
 
-Este texto oferece uma introdução intuitiva ao campo, contextualizando-o epistemologicamente. O campo de aprendizagem estatística tem definição pouco estabelecida. Abrange aspectos de matemática pura e aplicada. Com uma perspectiva mais geral, a matemática pura desenvolve abstrações básicas, descrevendo o comportamento de números, probabilidades, funções e outras entidades. Veremos que progressos fundamentais foram feitos por nomes como De Moivre, Euler e Gauss.   
+Este texto oferece uma introdução intuitiva ao campo, contextualizando-o epistemologicamente. O campo de aprendizagem estatística tem definição pouco estabelecida. Abrange aspectos de matemática pura e aplicada. Com uma perspectiva mais geral, a matemática pura desenvolve abstrações básicas, descrevendo o estrutura e dinâmica de números, probabilidades, funções e outras entidades. Veremos que progressos fundamentais foram feitos por nomes como De Moivre, Euler e Gauss.   
 
 Em matemática aplicada, especialistas estudam a relação dessas abstrações com fenômenos observáveis. Estas pessoas empregam métodos quantitativos a contextos restritos: por exemplo,  James Clerk Maxwell deduziu (1860) a distribuição estatística e velocidade de partículas em um gás ideal, conhecida como distribuição de Maxwell–Boltzmann. Em estatística, veremos a descoberta da distribuição t para as estimativas de uma média por Wlliam Gosset.  
 
-São exemplos de campos que fazem uso extenso das ferramentas descritas: neurociências (modelos lineares em fmri), psicometria (análise fatorial), ecologia, biologia molecular (testes estatísticos), ciências clínicas (meta-análises e inferência causal), economia, marketing, algotrading.  
+São exemplos de campos que fazem uso extenso das ferramentas descritas: neurociências (e.g. modelos lineares para sinal BOLD em *fmri*), psicometria (e.g. análise fatorial), ecologia, biologia molecular (e.g. testes estatísticos), ciências clínicas (e.g. meta-análises e inferência causal), economia, marketing, algotrading.  
 
 Este texto introduz e fornece um guia para aplicações práticas destas ferramentas a fenômenos observáveis. É destinados àqueles trabalhando na fronteira entre matemática aplicada e ciências naturais.   
 
 O primeiro capítulo ilustra como o racional hipotético-dedutivo funciona para estudar teorias científicas. Aborda a relação entre ciências empíricas e três abstrações matemáticas: a distribuição normal, a distribuição t e o teorema do limite central. O teste t de Student é aplicado para comparação de medidas em amostras.  
+
 O segundo capítulo amplia a perspectiva de comparações e testes. Entendemos o papel de descrever relações com os conceitos de tamanho de efeito (D de Cohen) e correlações lineares ($\rho$ de Pearson). Também são introduzidas alternativas não-paramétricas aos procedimentos ($\rho$ de Spearman e teste U de Mann-Whitney). Usando o gancho das relações lineares, vemos o conceito de regressão para fazer predições e também o uso de diversos preditores. Um framework 'frequencista' e linguagem R são usados para demonstrações de exemplos e exercícios.  
 
 O terceiro capítulo introduz redes neurais. Começamos da inspiração biológica envolvida nas primeiras abstrações concebidas para um neurônio artificial. Conheceremos a primeiram máquina inteligente da história: Mark I Perceptron. Codificaremos um Mark I virtual do zero e observaremos a aprendizagem. Entenderemos o algoritmo de Gradient Descent, usando derivativas para encontrar mínimos na função de erro.  
-Redes Neurais expandem o poder de um neurônio. O uso de grafos/redes para a construção de sistemas preditivos mais complexos. Redes profundas incluem camadas sucessivas, permitindo transformações em sequência para resolver classes mais gerais de problemas. Entenderemos como os neurônios podem propagar erros aos outros com o mecanismo de *backpropagation*.  
+
+Redes Neurais expandem o poder de um neurônio. O uso de grafos/redes para a construção de sistemas preditivos mais complexos. Redes profundas incluem camadas sucessivas, permitindo transformações em sequência para resolver classes mais gerais de problemas. Entenderemos como os neurônios podem propagar erros aos outros, otimizando gradientes em conjunto com o mecanismo de *backpropagation*.  
 
 O quarto capítulo apresenta um racional diferente para análise. Partindo do conceito de holismo epistemológico (van Quine), reproduzimos as análises anteriores usando inferência bayesiana. Fazemos perguntas diferentes para obter informações mais ricas de nossos dados. Usamos R, Stan e um framework bayesiano para modelos simples e hierárquicos. Exploramos o poder das simulações através de Markov Chain Monte Carlo para obter estimativas difíceis de tratar analiticamente.  
 

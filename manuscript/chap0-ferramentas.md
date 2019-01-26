@@ -106,7 +106,7 @@ Além dos operadores clássicos (+,-,/,-, ...), usamos constantemente dois opera
     [1] 3
 ```
 
-O operador *“%>%”* da biblioteca magrittr fornece o resultado da expressão à sua esquerda como argumento para a expressão à sua direita. Evita aninhamento de expressões, tornando fluxos de computações mais legíveis.   
+O operador *“%>%”* da biblioteca **magrittr** fornece o resultado da expressão à sua esquerda como argumento para a expressão à sua direita. Evita aninhamento de expressões, tornando fluxos de computações mais legíveis.   
 As expressões a seguir são equivalentes.  
 
 ```r
@@ -118,10 +118,10 @@ As expressões a seguir são equivalentes.
     [1] TRUE
 ```
 Onde $exp(a)= e^{a}, e \sim 2.72…$
-A expressão  *“3 %>% exp %>% exp”* equivale a *“exp(exp(3))”*. Usando parênteses, partimos da última computação. Usando o pipe (%>%), começamos com a primeira operação.  
+A expressão  *“3 %>% exp %>% exp”* equivale a *“exp(exp(3))”*, ou $e^{e^3}$. Usando parênteses, partimos da última computação. Usando o pipe (%>%), começamos com a primeira operação. Para a maioria das abstrações, é uma boa maneira de encadear funções.  
 
-Notem que para usar um recurso da biblioteca magrittr, carregamos ela usando o comando *library(magrittr)*.
-Para instalar uma biblioteca do repositório oficial (CRAN), usamos o comando *install.packages(magrittr)*.
+Notem que para usar um recurso da biblioteca **magrittr**, carregamos usando o comando *library(magrittr)*.
+Para instalar uma biblioteca do repositório oficial (CRAN), usamos o comando *install.packages("magrittr")*.
 
 ### Matrizes e data frames
 
@@ -181,11 +181,11 @@ Por fim, data.frames são extensões das matrizes:
 
 Data frames são os objetos mais comumente tratados em R e seguem o formato tidy.  
 
-$\qquad$ Cada variável corresponde a uma coluna.  
+$\qquad$ *Cada variável corresponde a uma coluna.*  
 
-$\qquad$ Cada observação corresponde a uma linha.  
+$\qquad$ *Cada observação corresponde a uma linha.*  
 
-$\qquad$ Cada tipo de unidade observacional forma uma tabela.  
+$\qquad$ *Cada tipo de unidade observacional forma uma tabela.*  
   
 Um exemplo visual torna as coisas mais fáceis. A seguir, temos uma variável categórica (País) e duas numéricas (Número de médicos por 1.000 habitantes em 2011 e Expectativa de vida ao nascer) em formato tidy:   
 
@@ -469,10 +469,10 @@ Nossa função pode ser escrita:
   * A divisão entre elementos dos vetores do item b.   
   * Aplique as funções sd, mean e var em amostras normais aleatórias de n = 10, 30, 100 e 300. A função rnorm (n,mean,sd) pode ajudar. Compare os valores da distribuição de origem com os obtidos.  
 7. *UnLISP it!* Transforme as seguintes expressões, substituindo parênteses aninhados pelo operador pipe (%>%) quando julgar conveniente:
-  * round ( mean ( c(10 , 2, 3 ) )
-  * round (mean ( rnorm (n = ceiling (runif (1,0,10)))))
-  * paste("a",seq(1:rnorm(n=mean(c(3,2,1,16)))))
-  * round(nrow(iris) + exp(1), digits = ceiling(runif(1,0,10)))
+  * >round ( mean ( c(10 , 2, 3 ) )
+  * >round (mean ( rnorm (n = ceiling (runif (1,0,10)))))
+  * >paste("a",seq(1:rnorm(n=mean(c(3,2,1,16)))))
+  * >round(nrow(iris) + exp(1), digits = ceiling(runif(1,0,10)))
 8. Usando o código das funções var_2 (vetorizado), var_3 (for loop) e var_4 (função de alta ordem map)  
   * Escreva as funções correspondentes (sd_2, sd_3, sd_4) para desvio-padrão e compare com a função padrão do R (sd). Dica: Basta aplicar raiz quadrada ao valor final retornado anteriormente! 
 9. Usando o dataset iris  
@@ -483,6 +483,6 @@ Nossa função pode ser escrita:
     * Adicione cores de acordo com a espécie
     * Adicione o rótulo de texto a um dos pontos
     * Mude títulos (principal, eixos x e y, legenda)
-    * Mude o tema de fundo. Dica: experimente os temas da lib ggthemes
+    * Mude o tema de fundo. Dica: experimente os temas da lib *ggthemes*
     
 \pagebreak

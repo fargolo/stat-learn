@@ -3,7 +3,7 @@
 # Capítulo 3 : Neurônios
 
 Em março de 2016, o software AlphaGo venceu um mestre de Go. O feito é impressionante por se tratar de um jogo difícil de computar.  
-Inventado há mais de 2,500 anos, motivou bastante em pesquisa em matemática. Existem $2,08*10^{170}$ maneiras válidas de dispor as peças no tabuleiro. O polímata chinês Shen Kuo (1031–1095) chegou a um resultado próximo $10^{172}$ séculos atrás. Vale lembrar que o número de átomos no universo observável é de módicos $10^{80}$.  
+Inventado há mais de 2,500 anos, motivou avanços em matemática. Existem $2,08*10^{170}$ maneiras válidas de dispor as peças no tabuleiro. O polímata chinês Shen Kuo (1031–1095) chegou a um resultado próximo $10^{172}$ séculos atrás. Vale lembrar que o número de átomos no universo observável é de módicos $10^{80}$.  
 
 No capítulo anterior, aprendemos uma formulação básica de modelo preditivo, a regressão linear simples. A seguir, estenderemos nosso leque de ferramentas para novas classes de relações, também incluindo mais informações na entrada de nossos modelos.   
 
@@ -74,7 +74,7 @@ Em nosso exemplo hipotético, o classificador precisa saber se uma imagem aprese
 
 Em regressão linear múltipla, calculamos um peso $\beta$ para cada variável. O racional aqui é parecido: ponderamos cada pixel por seus respectivos pesos. Em analogia, cada imagem é uma observação de 100 variáveis.  
 
-O neurônio deve disparar (output $y=1$) caso seja um navio ou permanecer em repouso caso não seja ($y=-1$).  
+O neurônio deve disparar (output $y=1$) caso seja um navio ou permanecer em repouso ($y=-1$) caso não seja.  
 
 Matematicamente, é uma multiplicação da matriz de valores da imagem $x_{j}$, de dimensão $[100 x 1]$ por uma matriz $W_{[100 X 1]}$ que traz i pesos (weights) estimados para cada pixel para cada classe. Então, forçamos o resultado para +1 ou -1 com uma função de ativação $(\phi)$.  
 
@@ -90,34 +90,35 @@ $$\phi(x)= \begin{cases}
 
 Em R:  
 ```r
+    library(magrittr)
+    # Heaviside
     >phi_heavi <- function(x){ifelse(x >=0,1,-1)}
     # Iniciando pesos com base em distribuição normal
-    # Dividi os valores por 100 para reduzir a magnitude dos numeros
     >my_weights <- rnorm(100)/100
-    # Le pesos como matriz [100x1]
     >w <- matrix(my_weights,100,1)
     # Multiplicacao usando o operador %*%
-    >as.vector(x)%*%w
+    >as.vector(x) %*% w
     # Score
-              [,1]atuaisatuais
-    [1,] -2.941668
-    # Funcao de ativacao
-    >as.vector(x)%*%w %>% phi_heavi
+             [,1]
+    [1,] 20.19958
+    # Funcao de ativacao usando %>% para encadeamento
+    >as.vector(x) %*% w %>% phi_heavi
          [,1]
-    [1,]   -1
+    [1,]   1
 ```
 
-
+Para o exemplo acima, nosso neurônio com pesos aleatórios foi ativado para o estímulo aleatório $x$.
 Inicialmente, estabelecemos pesos aleatórios a partir de uma distribuição normal.  
-Então, o objetivo é observar as respostas corretas em várias imagens e alterar os valores de $W$ para que os scores maiores sejam os das classes corretas.  
+Então, o objetivo é observar as respostas corretas em várias imagens $x_{i}$ e alterar os valores de $W$ para que os scores maiores sejam os das classes corretas.  
 
 O processo de treino é bastante simples:  
-
-$$w' = w_{0} + \Delta w$$
-Seja $x_{i_{j}}$ o $i$-ésimo pixel da observação $j$.
+Seja $x_{i_{j}}$ o $i$-ésimo pixel da observação $j$. E $w_{0}$ o peso correspondente inicial, o peso atualizado, $w'$ é:
+$$w' = w_{0} + \Delta w$$  
+Em que $\Delta w$ indica o magnitude e o sentido da modicação no peso.  
+Aceitemos, por enquanto, a fórmula:  
 $$\Delta w_{i} = \eta (score{j} - output_{j}) x_{i}$$
 
-Em que $x_{i_{j}}$ é o valor do $i$-ésimo pixel, $w_{i}$ é o $i$-ésimo peso e $\eta$ uma constante chamada *taxa de aprendizagem* (learning rate), que determina o tamanho dos incrementos feitos pelo algoritmo. Mostraremos a derivação dessa fórmula a seguir.  
+Em que $x_{i_{j}}$ é o valor do $i$-ésimo pixel, $w_{i}$ é o $i$-ésimo peso e $\eta$ uma constante chamada *taxa de aprendizagem* (learning rate), que determina o tamanho dos incrementos feitos pelo algoritmo. Mostraremos a derivação dessa equação a seguir.  
 
 Se os dados são linearmente separáveis, o algoritmo converge com um número suficiente de exemplos.  
 
@@ -129,7 +130,15 @@ Assim, funciona para separar flores *setosa* de outra classe, mas não teriamos 
 ```
 ![](images/chap3-sepiris.png)
 
-Codificando nosso perceptron conforme as equações acima:  
+\pagebreak
+
+#### Auto MaRk I
+
+Usando as abstrações acima, codificamos nosso perceptron em R, o Auto MaRk I.   
+**Argumentos:** Exemplos (x, vetor de números reais) e estados esperados (y, disparar = 1 vs. não disparar = -1) devem ter mesmo tamanho.
+**Eta:** Número especificando constante de aprendizagem.
+
+Auto MaRK I inicializa um peso aleatório para cada entrada e, numa ordem aleatória, percorre os exeplos atualizando os pesos.  
 
 ```r
     library(magrittr)
@@ -146,7 +155,7 @@ Codificando nosso perceptron conforme as equações acima:
           w <- w + delta_w
           ypreds[i] <- ypred # salva predicao atual
         }
-      print(w)
+      print(paste("Weights: ",w))
       return(ypreds)
     }
 ```
@@ -166,14 +175,23 @@ Vamos testá-lo para o problema proposto, separando flores *setosa* de *versicol
     4   4.6   3.1  setosa      1
     5   5.0   3.6  setosa      1
     6   5.4   3.9  setosa      1
+    > train_df[60:65,]
+       s.len s.wid    species target
+    60   5.2   2.7 versicolor     -1
+    61   5.0   2.0 versicolor     -1
+    62   5.9   3.0 versicolor     -1
+    63   6.0   2.2 versicolor     -1
+    64   6.1   2.9 versicolor     -1
+    65   5.6   2.9 versicolor     -1
     >x_features <- train_df[, c(1, 2)]
     >y_target <- train_df[, 4]
 ```
-E então, podemos avaliar a performance:  
+E então, podemos ativá-lo:  
 
 ```r
     >y_preds <- mark_i(x_features, y_target, 0.002)
-    [1] -0.2376040  0.4316401
+    [1] "Weights:  0.309434266643425" 
+    [2] "Weights:  -0.426791898133975"
     > table(y_preds,train_df$target)
     y_preds -1  1
          -1 19  1
@@ -185,24 +203,36 @@ E então, podemos avaliar a performance:
      [73]  1 -1 -1  1 -1 -1  1  1 -1  1 -1  1  1  1  1  1  1 -1  1  1 -1  1 -1  1
      [97] -1  1  1 -1
 ```
-Usando $\eta = 0.002$, obtivemos 68% de acurácia classificações corretas. Podemos modificar a taxa de aprendizagem. Com $\eta = 0.05$, aumentamos para 71% $\eta = 1$:  
+Usando $\eta = 0.002$, obtivemos $41%$ de acurácia (classificações corretas). Podemos modificar a taxa de aprendizagem. Com $\eta = 0.05$, aumentamos para $59%$. Com $\eta = 0.1$, temos $62%$. Um bom valor é $0.01$, com $77%$.  
 
-```r
+```r    
     > y_preds <- mark_i(x_features, y_target, 0.05)
-    [1] -0.5927852  1.6776363 # pesos finais
-    > table(y_preds,train_df$target)
-    y_preds -1  1
-         -1 37 16
-         1  13 34
+    [1] "Weights:  -1.12748454064396"
+    [2] "Weights:  1.35197455996465" 
+    > table(y_preds,train_df$target)  
+    y_preds -1  1    
+    -1 30 21    
+    1  20 29
+    
+    > y_preds <- mark_i(x_features, y_target, 0.1)
+    [1] "Weights:  -2.08944843785222"
+    [2] "Weights:  3.35800090343738" 
+    > table(y_preds,train_df$target)    
+    y_preds -1  1    
+    -1 36 14    
+    1  14 36
+    
+    > y_preds <- mark_i(x_features, y_target, 0.01)
+    [1] "Weights:  -0.250410476080629"
+    [2] "Weights:  0.447470183281492" 
+    > table(y_preds,train_df$target)    
+    y_preds -1  1    
+    -1 43 16    
+    1   7 34
 ```
-
 Chamamos $\eta$ de hiperparâmetro. A escolha de valores para hiperparâmetros é um dos desafios em aprendizagem estatística. Uma maneira trivial é testar muitos valores possíveis e observar o desempenho, entretanto isso não exequível para grandes volumes de dados e/ou muitos parâmetros. Existem diversos processos heurísticos e algoritmos para encontrar valores ótimos.  
 
 Uma forma popular para otimizar o treinamento é particionar o dataset em pedaços e apresentar os particionamentos (epochs) repetidas vezes ao classificador ou acumular os erros de epochs ao invés de exemplos individuais.
-
-\pagebreak
-
-# Início de textos em construção.
 
 \pagebreak
 
@@ -228,11 +258,16 @@ A intuição para sensibilidade à luz pode ser percebida num intervalo contínu
 
 Isso implica que a distância eulidiana deve funcionar em nossas medidas como nos números reais $\mathbf{R}$. Resta saber se a projeção das observações é linearmente separável. É intuitivo para seres humanos saber quais problemas serão separáveis: basta imaginar a tarefa de diferenciar tipos de imagens com uma regua numa tela em preto e branco.  
 
-Para descobrir o valor mínimo de $L$, vamos usar derivadas. Ou seu equivalente para funções de múltiplas variáveis (espaços multidimensionais), o gradiente($\nabla$). É o produto escalar das derivadas parciais daquela função. 
-Para cada observação $j$, a derivada parcial da função de perda $\frac{d}{dw_{i}}L(w_{i}) = \frac{d}{dw_{i}} \frac{1}{n}\sum_{j}{n}E(score_{j},output_{j})$ em relação a um peso $w_{i}$ expressa como variações no peso refletem no erro global.  
-Sabemos então se devemos ajustar o peso para cima ou para baixo, assim com a magnitude do passo. A taxa de aprendizagem é um hiperparâmetro que regula artificialmente o tamanho desse passo. Algebricamente, modificaremos $w$ seguindo o inverso do gradiente:
+Para descobrir o valor mínimo de $L$, vamos encontrar polos através de derivadas. Ou, seu equivalente para funções de múltiplas variáveis (espaços multidimensionais), o gradiente($\nabla$). 
+É o produto escalar das derivadas parciais daquela função. 
+
+Para cada observação $x_{j}$, a derivada parcial da função de perda em relação a um peso $w_{i}$ expressa a taxa de variação no erro global em função daquele peso. 
+$\frac{d}{dw_{i}}L(w_{i}) = \frac{d}{dw_{i}} \frac{1}{n}\sum_{j}{n}E(score_{j},output_{j})$ 
+
+Sabemos então se devemos ajustar o peso para cima ou para baixo, assim com a magnitude do passo. Algebricamente, modificaremos $w$ seguindo o inverso do gradiente. A taxa de aprendizagem é um hiperparâmetro que regula artificialmente o tamanho desse passo:  
 $$\Delta w_{i} = - \eta \frac{dL}{dw_{i}}$$
 $$= - \eta \frac{d}{dw_{i}}\frac{1}{n}\sum_{j}^{n}E(score_{j},output_{j})$$  
+Lembrando que o erro é dado pela distância euclidiana:  
 $$= - \eta \frac{d}{dw_{i}}\frac{1}{n}\sum_{j}^{n}(score_{j} - output_{j})^{2}$$.  
 
 Fazemos $f(x) = (score_{j} - output_{j})$ e $g(x) = x^{2}$, de maneira que
@@ -267,7 +302,7 @@ Escalamos $L'$ por $-\frac{1}{2}*\eta$:
 $$-\frac{1}{2}*\eta \frac{dL}{dw_{i}}=\frac{1}{2}*\eta 2(score_{j} - output_{j}) x_{j}$$
 $$\Delta w_{i} = \eta \sum_{j}{n} (score_{j} - w \cdot x)(x_{j})$$
 
-Como implementamos antes.  
+Como implementamos antes no Auto MaRK I.  
 ```r
     (...)
     ypred <- sum(w * as.numeric(x[i, ])) %>% phi_heavi 
@@ -278,9 +313,9 @@ Como implementamos antes.
 
 ![](images/chap3-walk.jpg)
 
+\pagebreak
 
-A rede deve atualizar seus pesos com base nos valores desejados e nos outputs atuais. Tratamos o problema analiticamente para encontrar a equação que descreve a variação dos pesos $\Delta W$ em função do
-
+# Início de textos em construção.
 
 \pagebreak
 

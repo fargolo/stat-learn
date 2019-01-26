@@ -1,10 +1,9 @@
 ![](images/chap1-darw-ill.png)
 
 # Capítulo 1 : Os pássaros de Darwin e o método hipotético-dedutivo.
+**Testes estatísticos e distribuições probabilísticas**
 
-## Testes estatísticos e distribuições probabilísticas
-
-### Introdução
+## Parte 1 - Introdução
 
 Charles Darwin observou que os pássaros fringilídeos nas ilhas de Galápagos apresentavam variedades de formato e tamanho dos bicos. Sua intuição sobre a origem das variedades a partir de um ancestral comum foi um dos argumentos mais 
 contundentes do “On the Origin of Species” (1859). Essa história é o ponto de partida para este capítulo.  
@@ -19,7 +18,7 @@ Usamos as distribuições citadas para estudar as medidas dos bicos dos tentilh�
 
 ### Pássaros em Galápagos
 
-Em sua viagem pelo mundo a bordo do Beagle, Charles Darwin descreveu um grupo de pássaros que habita as Ilhas Galápagos, arquipélago localizado a aproximadamente 900 km da costa do Equador (América do Sul). A variedade em tamanhos dos bicos chamou atenção: “It is very remarkable that a nearly perfect gradation of structure in this one group can be traced in the form of the beak, from one exceeding in dimensions that of the largest gros-beak, to another differing but little from that of a warbler".[^4]  
+Em sua viagem pelo mundo a bordo do Beagle, Charles Darwin descreveu um grupo de pássaros que habita as Ilhas Galápagos, arquipélago localizado a aproximadamente 900 km da costa do Equador (América do Sul). A variedade em tamanhos dos bicos chamou atenção: *“It is very remarkable that a nearly perfect gradation of structure in this one group can be traced in the form of the beak, from one exceeding in dimensions that of the largest gros-beak, to another differing but little from that of a warbler".*[^4]  
 
 É interessante notar que a linguagem usada para denotar diferenças é eminentemente quantitativa (dimensions, largest, differing). Darwin não conduziu estudos quantitativos por razões práticas. Neste capítulo, simularemos o mesmo cenário empregando métodos estatísticos para comparar os pássaros.  
 Antes da publicação de A origem das Espécies, o caso dos fringilíddeos (nome destas aves) já continha um embrião do processo de seleção natural. Na segunda edição, em 1845, ele especula sobre um grupo ancestral comum moldado por fins específicos:  
@@ -37,24 +36,27 @@ Pensaremos como biólogos interessados em estudar quantitativamente o tamanho do
 
 \pagebreak
 
-## A distribuição normal e um curioso teorema
+### A distribuição normal e um curioso teorema
 
 Em trabalhos empíricos, é comum a suposição de que medidas de uma variável aleatória vêm de uma população com distribuição normal. A seguir, vamos estudar o comportamento dessa função probabilística.
 
-Abraham de Moivre (26 May 1667 – 27 November 1754) , sem financiamento exclusivo para estudos e pesquisa, prestava serviços secundários. Entre eles, cálculos de probabilidades em jogos de azar para clientes. Em 1733, de Moivre percebeu que as probabilidades de uma distribuição binomial, como o lançamento de moedas $(p(cara) = p(coroa) = 0.5)$, aproximam-se de uma curva suave (contínua) à medida em que o n aumenta.
+Abraham de Moivre (26 May 1667 – 27 November 1754) , sem financiamento exclusivo para estudos e pesquisa, prestava serviços secundários. Entre eles, cálculos de probabilidades em jogos de azar para clientes. Em 1733, de Moivre percebeu que as probabilidades de uma distribuição binomial, como o lançamento de moedas $(p(cara) = p(coroa) = 0.5)$, aproximam-se de uma curva suave (contínua) à medida em que a quantidade de eventos aumenta.  
 
-![Figura 2. Distribuição binomial com p = 0.5 (e.g: lançamento de uma moeda). Para n >1, valores extremos indicam resultados com apenas caras (cauda à esquerda, 0000…) ou coroas (cauda à direita, 1111…)](images/chap1-binomials.png)
+![Figura 2. Distribuições binomiais para diferentes números de lançamentos com p = 0.5 (e.g: lançamento de uma moeda). Para n >1, valores extremos indicam resultados com apenas caras (cauda à esquerda, 0000…) ou coroas (cauda à direita, 1111…)](images/chap1-binomials.png)
 
-A distribuição de Bernoulli descreve o lançamento de moedas. Tomando os valores dicretos de caras (0) e coroas (1), ela assume 1 com probabilidade $p$ e 0 caso contrário $(1-p)$.
-Em uma moeda honesta, temos uma distribuição uniforme sobre o domínio, $X={0,1}$:  $P(1) = P(0) = 0.5$. 
+A distribuição de Bernoulli descreve a possibilidade de dois eventos, como o lançamento de moedas. Tomando os valores dicretos de caras (0) e coroas (1), a observação é $1$ com probabilidade $p$ e $0$ caso contrário $(1-p)$.
+Para uma moeda honesta, temos uma distribuição probablística uniforme sobre o domínio, $X={0,1}$:  $P(1) = P(0) = 0.5$. 
 
-Se somarmos distribuições de Bernoulli, obtemos a distribuição binomial. Cada observação é um conjunto de lançamentos. Tamando $p=0.5$, resultados mais frequentes são números parecidos de caras (0) e coroas (1).   
+Se somarmos distribuições de Bernoulli, obtemos a distribuição binomial. Cada observação é um conjunto de lançamentos. Tomando $p=0.5$, resultados mais frequentes são números parecidos de caras (0) e coroas (1).   
 
 Para $n = 10$, é muito mais provável obter um número de caras próximo a 5 (centro das curvas) que um resultado com 9 ou 10 lançamentos iguais. É possível demonstrar que aumentar o valor de n faz que com que a distribuição se aproxime da seguinte curva contínua:  
 
 ![Figura 3: Distribuição normal (gaussiana), cujo formato lembra o de um sino ](images/chap1-norm-one.png)
 
-De Moivre intuiu que a distribuição de binomiais com muitos lançamentos aproximava o de uma função suave. Mas qual curva?  Parecia o de um número elevado aos valores de uma quadrática negativa: $P(x) = ?^{-x^{2}}$. Lembre-se de que a função quadrática $f(x) = x^{2}$ correspondente geometricamente a uma figura convexa, uma parábola com ponto central inferior e extremidades tendendo ao infinito. Sua versão negativa, $f(x) = -x^{2}$ é a figura espelhada, com um ponto central superior e extremidade tendendo a valores negativamente infinitos. Ao exponenciarmos um número a $-x^{2}$, temos $P(x) = ?^{-x^{2}}$, com ponto máximo no centro e extremidades tendendo a zero. Entenderemos o porquê.  
+De Moivre intuiu que a distribuição de binomiais com muitos lançamentos aproximava o de uma função suave. 
+Ele buscava uma aproximação em termos da função exponencial [natural] $e^x$.  
+
+Mas quais os parâmetros da curva?  
 
 Primeiro, de Moivre deduziu a solução para o problema das moedas $(p = \frac{1}{2})$. A seguinte expressão geral descreve a probabilidade $P(x)$ correspondente à curva que procuramos, conhecida como *gaussiana*.  
 
@@ -86,7 +88,7 @@ Em seguida, obter valores no intervalo $[-5,5]$ e plotá-los:
 
 Observamos como a distribuição se dá a partir da equação.  
 
-É evidente que $-x^{2}$  sempre retorna valores negativos. Nossa função gera valores entre 0 e 1 exponenciando $(e \sim 2.718...)$ a um fator negativo quadrático $(y = 0.4*e^{-x^{2}/2})$.  
+Já que $x^{2}$ retorna apenas valores positivos, $-x^{2}$ sempre retorna negativos. Nossa função gera valores entre 0 e 1 exponenciando $(e \sim 2.718...)$ a um fator negativo quadrático $(y = 0.4*e^{-x^{2}/2})$.  
 
 Examinando o comportamento da equação, notamos que valores próximos ao centro $(x \sim \mu = 0)$ fazem com que o expoente de se aproxime de 0, maximizando nossa função: $f(0) = 0.4 * e{-x^{2}/2} = 0.4 * e^{0} = 0.4)$. O valor obtido (0.4) corresponde ao topo da curva no gráfico acima (linha rosa). 
 
@@ -96,7 +98,7 @@ Isso reflete diretamente o fato de que valores próximos à média serão mais p
 
 Para comparação: $f(2) = 0.4 * e^{-2^{2}/2} = 0.4 * e^{-2} =  0.4 * 0.135 \sim 0.05$ (linha azul). A probabilidade de se obter o valor médio $(x = 0, p \sim 0.4)$ é oito vezes maior que a probabilidade de obter o valor 2 $(x = 2; p = 0.05)$.   
 
-O termo quadrático torna a distribuição simétrica para valores opostos em relação à média. $P(x) = P(-x)$. Como calculamos $P(2)$  antes, sabemos que: $P(-2) = P(2) = 0.05$ para $\mu = 0$. É igualmente provável encontrar valores duas unidades maiores ou duas unidades menores que a média.  Esses pontos estão marcados por uma linhas azuis na figura.  
+O termo quadrático torna a distribuição simétrica para valores opostos em relação à média. $P(x) = P(-x)$. Como calculamos $P(2)$ antes, sabemos que: $P(-2) = P(2) = 0.05$ para $\mu = 0$. É igualmente provável encontrar valores duas unidades maiores ou duas unidades menores que a média. Esses pontos estão marcados por uma linhas azuis na figura.  
 
 Podemos trabalhar com curvas  normais com centros (média $\mu$) deslocados para a esquerda ($\mu$ < 0) ou para a direita ($\mu$ > 0), subtraindo o termo de x em nosso expoente. Além disso, diferentes variâncias ($\sigma^{2}$) refletem a frequência de valores longe da média e o quão distante dela eles são. Visualmente, determina o tamanho da base do sino na ilustração (Figura 3).  
 
@@ -113,12 +115,12 @@ Distribuições binomiais grandes e lançamentos de moedas são tão importantes
 
 A razão é o Teorema do Limite Central.  
 
-Se somarmos muitas distribuições de uma mesma família, a distribuição resultante se aproxima de uma normal.   
+Se somarmos muitas distribuições de uma mesma família, a distribuição resultante se aproxima de uma normal. Sem muitas explicações, assumimos que isso era verdade para moedas.  
 Exemplos ajudam a ganhar intuição. Ao lançar um dado justo de 6 faces, temos probabilidade de $\frac{1}{6}$ em cada resultado.  
 
 ![](images/chap1-dices.png)
 
-Uma distribuição discreta uniforme, em que $P(1) = P(2) = P(3) = P(4) = P(5) = P(6)$ e definida para números naturais entre 1 e 6: $X \sim U_{discr}(1, 6).$
+Uma distribuição discreta uniforme, em que $P(1) = P(2) = P(3) = P(4) = P(5) = P(6)$ e definida para números naturais entre 1 e 6: $X \sim U_{discr}(1, 6).$  
 
 A média para muitos lançamentos, ou valor esperado, é dado por:  
 $E(X) = E(U(1,6)) = (1+6) / 2 = 3.5$  
@@ -169,7 +171,7 @@ Este resultado tem uma sutil importância para o estudo dos fenômenos naturais 
 
 ### Ciência experimental e o Teorema do Limite Central
 
-Muitos objetos de interesse para os cientistas são simplificações de fenômenos complexos. Um exemplo trivial está na cor da pele de seres humanos. Uma parte considerável depende do número de genes herdados relacionados à melanina. Eles se comportam de maneira aditiva.  
+Muitos objetos de interesse para os cientistas são manifestações de fenômenos envolvendo múltiplos elementos. Um exemplo trivial está na cor da pele de seres humanos. Uma parte considerável depende do número de genes herdados relacionados à melanina. Eles se comportam de maneira aditiva.  
 Assim, cada variante de gene extra pode contribuir para a cor final com X unidades na escala para medir pigmentação.  
  
 A cor de um indivíduo será influenciada pela soma dessas distribuições, o que é análogo à matemática descrita para os lançamentos de dados.  
@@ -211,9 +213,9 @@ Para valores grandes de n:
 
 
 Novamente, verificamos que a soma começa a ser simétrica em torno da média, com formato de sinos (base alargada). 
-Os fenômenos observáveis em nosso universo são naturalmente complexos. Especialmente em sistemas biológicos, há redundância de componentes e um objeto de interesse para cientistas é resultado da combinação de muitas variáveis subjacentes. O teorema do limite central permite que utilizemos distribuições normais para uma grande variedade de problemas. Ainda que as distribuições subjacentes sejam desconhecidas, o efeito resultante de uma grande combinação terá distribuição gaussiana em muitos casos.  
+Muitos fenômenos observáveis em nosso universo são naturalmente compostos por múltiplos elementos semelhantes. Especialmente em sistemas biológicos, há redundância de componentes e um objeto de interesse para cientistas é resultado da combinação de muitas variáveis subjacentes. O teorema do limite central permite que utilizemos distribuições normais para uma grande variedade de problemas. Ainda que as distribuições subjacentes sejam desconhecidas, o efeito resultante de uma grande combinação terá distribuição gaussiana em muitos casos.  
 
-A descoberta das equações que regem esses mecanismos de convergência foi um grande avanço para as ciências experimentais.   
+A descoberta das equações que regem mecanismos de convergência em cenários probabilísticos foi uma grande evolução para as ciências experimentais.   
 
 \pagebreak
 
@@ -237,7 +239,7 @@ A descoberta das equações que regem esses mecanismos de convergência foi um g
 
 \pagebreak
 
-### Darwins’s Finches
+## Parte 2 - Darwins’s Finches e um teste paramétrico
 
 Mostraremos como a contribuição individual de genes com efeitos aditivo de distribuição uniforme resulta em medidas aproximadamente normais para os bicos das aves.  
 
@@ -376,16 +378,16 @@ A estatística t:
 $$t = \frac{Z}{s}=(\mu'-\mu)/\frac{\sigma}{\sqrt{n}}$$
 
 Assim, a estatística t para nosso exemplo ($\mu$’=38; $\mu$= 40; n=30; $\sigma$’=0.3) é:
-
-$t = \frac{(38-40)}{\frac{0.3}{\sqrt{30}}}$
-
+$$t = \frac{(38-40)}{\frac{0.3}{\sqrt{30}}}$$
 Student (Gosset) mostrou que essa estatística segue uma distribuição probabilística (t de Student) definida por:
 
 $$f(t)={\frac {1}{{\sqrt {\nu }}\,\mathrm {B} ({\frac {1}{2}},{\frac {\nu }{2}})}}\left(1+{\frac {t^{2}}{\nu }}\right)^{\!-{\frac {\nu +1}{2}}}$$
 
-B é a função Beta e v são graus de liberdade. 
+B é a função Beta[^40] e v são graus de liberdade. 
 Possui densidade parecida com a da distribuição normal, porém com probabilidades maiores para valores extremos. O parâmetro $\nu$ (graus de liberdade) expressa essa característica. Empiricamente é estimado pelo tamanho das amostras usadas na estimativa de $\mu'$. 
 Associamos uma amostra (tamanho n) retirada de uma população normal (tamanho arbitrariamente alto, $n \rightarrow \infty$) a uma distribuição t com $n-1$ graus de liberdade. Em nosso exemplo, $n=30$, então  $\nu = n-1 = 29$.
+
+[^40]: A função Beta é aceita dois argumentos$(x,y)$ e seu resultado é a razão é entre (1) produto das funções $\Gamma(x) \Gamma(y)$ e (2) função gama da soma $\Gamma(x+y)$. A função $\Gamma$ generaliza o conceito de fatoriais (produto dos antecessores).
 
 ![](images/chap1-t-curves.png)
 
