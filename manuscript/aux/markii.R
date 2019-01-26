@@ -1,4 +1,5 @@
 library(magrittr)
+library(ggplot2)
 set.seed(2600)
 
 mark_ii <- function(x, y, eta, reps=1) {
@@ -9,8 +10,12 @@ mark_ii <- function(x, y, eta, reps=1) {
   w21 <- rnorm(1)
   w22 <- rnorm(1)
   
-  ypreds1 <- rep(0,dim(x)[1]) # inicializa predicoes em 0
-  for (i in 1:reps){
+  ypreds <- rep(0,dim(x)[1]) # inicializa predicoes em 0
+  yerrors <- rep(0,dim(x)[1]) # inicializa predicoes em 0
+  for (j in 1:reps){
+    print(paste("This is training epoch:",j))
+    print(paste("Current weights:",w1,w21,w21))
+    
     # Processa as observacoes em x de forma aleatoria
     for (i in sample(1:length(y),replace=F)) { 
       # predicao
@@ -30,7 +35,9 @@ mark_ii <- function(x, y, eta, reps=1) {
       w21 <- w21 - delta_w21
       w22 <- w22 - delta_w22
       ypreds[i] <- out # salva predicao21 atual
+      yerrors[i] <- ypreds[i] - y[i]
     }
+    print(paste("Mean squared error:", mean((yerrors)^2)))
   }
   return(ypreds)
 }
@@ -53,25 +60,15 @@ ggplot(acc_data,aes(y=y_preds,x=x_targs,color=errors))+
   geom_point()+xlim(0,20)+ylim(0,20)+
   geom_abline(slope = 1,intercept = 0)
   
-
-# 100 reps Erros menores, mais balanceados
+# eta = 0.005 e 12 iterações costuma convergir para boas solucoes
 mark_ii_preds <- mark_ii(x = x_features,y = y_target,
-                         eta=0.001,reps = 100)
+                         eta=0.005,reps = 12)
 acc_data$errors <- y_target - mark_ii_preds 
 ggplot(acc_data,aes(y=y_preds,x=x_targs,color=errors))+
   geom_point()+xlim(0,20)+ylim(0,20)+
   geom_abline(slope = 1,intercept = 0)
 
-
-# 100 reps Erros menores, mais balanceados
-mark_ii_preds <- mark_ii(x = x_features,y = y_target,
-                         eta=0.001,reps = 10)
-acc_data$errors <- y_target - mark_ii_preds 
-ggplot(acc_data,aes(y=y_preds,x=x_targs,color=errors))+
-  geom_point()+xlim(0,20)+ylim(0,20)+
-  geom_abline(slope = 1,intercept = 0)
-
-## Non linear
+## Nao linear, incluindo terceira especie
 
 train_df <- iris[, c(1, 2, 3)]   
 names(train_df) <- c("s.len", "s.wid", "p.len")
@@ -81,8 +78,25 @@ train_df[60:65,]
 x_features <- train_df[, c(1, 2)]
 y_target <- train_df[, 3]
 
+# Convergencia boa
 mark_ii_preds <- mark_ii(x = x_features,y = y_target,
-                         eta=0.00002,reps = 12)
+                         eta=0.0001,reps = 12)
+
+acc_data <- data.frame(y_preds=mark_ii_preds,
+                       y_targs=y_target)
+
+acc_data$errors <- y_target - mark_ii_preds 
+
+ggplot(acc_data,aes(y=y_preds,x=y_targs,color=errors))+
+  geom_point()+xlim(0,10)+ylim(0,10)+
+  geom_abline(slope = 1,intercept = 0)
+
+
+##
+
+# Convergencia boa
+mark_ii_preds <- mark_ii(x = x_features,y = y_target,
+                         eta=0.000001,reps = 60)
 
 acc_data <- data.frame(y_preds=mark_ii_preds,
                        y_targs=y_target)
