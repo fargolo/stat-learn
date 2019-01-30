@@ -72,7 +72,7 @@ Na empreitada científica, não nos atemos apenas a comparações. Um objetivo m
 Como sabemos, existem muitas classes de funções para expressar relações entre variáveis/conjuntos. Nos capítulos anteriores, usamos algumas funções, como $y=\sqrt{x}$ e $y = e^{x}$.  
 
 Diversas leis naturais tornaram-se particularmente conhecidas, como a relação entre força, massa e aceleração, elucidada por Newton:  
-$$F=ma$$  
+$$\vec{F}=m\vec{a}$$  
 E a relação entre massa e energia para um objeto em repouso, descoberta por Einstein:  
 $$E=mc^{2}; c^{2} \sim 8.988*10^{16} \frac{m^{2}}{s^2}$$  
 
@@ -118,7 +118,7 @@ Entretanto, nem sempre isso é verdadeiro.
 Primeiro, podemos sofrer interferência de variáveis desconhecidas.
 
 Imaginemos um conjunto de medidas antropométricas, com altura e peso e indivíduos.  
-É esperado que a altura de um ser humano esteja relacionada com seu peso. Entretanto, outras características não medidas, como percentual de gordura total, podem interferir nos valores finais. Normalmente, tratamos essas flutuações como erros aleatórios[^10].
+É esperado que a altura de um ser humano esteja relacionada com seu peso. Entretanto, outras características não medidas, como percentual de gordura total, podem interferir nos valores finais. Normalmente, tratamos essas flutuações como erros aleatórios[^11].
 
 Podemos simular este cenário partindo de variáveis idênticas e adicionando ruído aleatório.
 ```r
@@ -137,23 +137,23 @@ O resultado sugere que há uma forte relação linear entre $x$ e $y$. Por outro
 
 Com essas ferramentas, podemos estender nossas inferências. Além de comparações, teremos noções sobre a magnitude de uma relação, assim como poderemos prever o valor esperado para novas observações.   
 
-[^10]:A natureza da aleatoriedade é uma questão filosófica. Em última instância, podemos imaginar que seria possível explicar flutuações randômicas através de variáveis desconhecidas (*hidden variables*). Isso é verdade para a maioria dos fenômenos naturais. Entretanto, descobertas experimentais recentes em física quântica (*Bell's inequality experiment*) sugerem que variáveis ocultas não podem explicar a natureza probabilística das observações.  
+[^11]:A natureza da aleatoriedade é uma questão filosófica. Em última instância, podemos imaginar que seria possível explicar flutuações randômicas através de variáveis desconhecidas (*hidden variables*). Isso é verdade para a maioria dos fenômenos naturais. Entretanto, descobertas experimentais recentes em física quântica (*Bell's inequality experiment*) sugerem que variáveis ocultas não podem explicar a natureza probabilística das observações.  
 
 ### O coeficiente de correlação produto-momento de Pearson, ou, simplesmente, $\rho$ de Pearson.
 
-O coeficiente de correlação $(\rho)$ de Pearson é um número real garantidamente[^11] entre -1 e 1. Expressa a magnitude e o sentido de uma relação linear, sendo -1 uma relação inversa perfeita e 1 uma relação direta perfeita.  
+O coeficiente de correlação $(\rho)$ de Pearson é um número real garantidamente[^12] entre -1 e 1. Expressa a magnitude e o sentido de uma relação linear, sendo -1 uma relação inversa perfeita e 1 uma relação direta perfeita.  
 
 Para os dados que geramos, a correlação é quase perfeita: $\rho = 0.989$.  
 O coeficiente possui *produto-momento* em seu nome, pois usa uma abstração originalmente empregada na física: o momento.  
 
-[^11]: Inequalidade de Cauchy–Schwarz
+[^12]: Inequalidade de Cauchy–Schwarz
 
 \pagebreak
 
 ![Dê-me um ponto de apoio e eu moverei a Terra](images/chap2-arch.png)
 
 ### Um breve mergulho na física: Momentos
-[^12]
+[^13]
 
 Para adquirir uma intuição sobre o coeficiente, é interessante resgatar o conceito físico de momento, originalmente concebido por Arquimedes. Embora não tenha inventado a alavanca, ele descreveu os princípios matemáticos por trás dela. 
 
@@ -190,14 +190,14 @@ O **primeiro momento** de massa para um objeto é $M_{1} = \sum_{i=1}^{N} m_{i}d
 
 $$M_{1} = C_{m}$$
 
-O **segundo momento** de massa é $M_{2} = \sum_{i=1}^{N} m_{i}d_{i}^{2}$ e é o **momento de inércia**. Corresponde à resistência do sistema a rotações. Perceba que os termos $d_{i}^{2}$ estariam presentes nas área de um círculo com centro idêntico ao do objeto e raio igual à distância para o centro: $\pi d^{2}$. A resistência total a rotação é análoga à resistência oferecida pelos raios destes círculos imaginários[^13].
+O **segundo momento** de massa é $M_{2} = \sum_{i=1}^{N} m_{i}d_{i}^{2}$ e é o **momento de inércia**. Corresponde à resistência do sistema a rotações. Perceba que os termos $d_{i}^{2}$ estariam presentes nas área de um círculo com centro idêntico ao do objeto e raio igual à distância para o centro: $\pi d^{2}$. A resistência total a rotação é análoga à resistência oferecida pelos raios destes círculos imaginários[^14].
 
 ![](images/chap2-windmills.jpg)
 
 O n-ésimo momento é dado por $$M_{n} = \sum_{i=1}^{N} m_{i}d_{i}^{n}$$.
 
-[^12]:Pappus de Alexandria, Synagoge, Livro VIII
-[^13]: https://physics.stackexchange.com/a/371165/218274
+[^13]:Pappus de Alexandria, Synagoge, Livro VIII
+[^14]: https://physics.stackexchange.com/a/371165/218274
 
 ### Generalizando momentos 
 
@@ -232,9 +232,9 @@ O valor esperado dessa soma:
 $$E[M_{X}(t)]=1+tE[X]+\frac{t^{2}E[X^{2}]}{2!}+\frac{t^{3}E[X^{3}]}{3!}+...$$
 $$=1+tM_{1}+\frac{t^{2}M_{2}}{2!}+\frac{t^{3}M_{3}}{3!}+...$$
 Em que $M_{n}$ corresponde ao n-ésimo momento.   
-A função característica é a transformada de Fourier da função de probabilidade, associando componentes periódicos no plano imaginário. É o mesmo que multiplicar o argumento t da função geradora de momentos $M_{X}(t)=E[e^{tX}]$ pela unidade imaginária, $\phi_{X}(t)= M_{X}(it) = E[e^{itX}]$. Funções com cumulantes idênticos possuem momentos idênticos e podemos demonstrar que a função característica que a soma de $n$ distribuições iguais possui momentos idênticos aos da normal. [^14]
+A função característica é a transformada de Fourier da função de probabilidade, associando componentes periódicos no plano imaginário. É o mesmo que multiplicar o argumento t da função geradora de momentos $M_{X}(t)=E[e^{tX}]$ pela unidade imaginária, $\phi_{X}(t)= M_{X}(it) = E[e^{itX}]$. Funções com cumulantes idênticos possuem momentos idênticos e podemos demonstrar que a função característica que a soma de $n$ distribuições iguais possui momentos idênticos aos da normal. [^15]
 
-[^14]: Two Proofs of the Central Limit Theorem, Yuval Filmus, 2010. http://www.cs.toronto.edu/~yuvalf/CLT.pdf
+[^15]: Two Proofs of the Central Limit Theorem, Yuval Filmus, 2010. http://www.cs.toronto.edu/~yuvalf/CLT.pdf
 
 ---
 
@@ -245,7 +245,7 @@ Com os conceitos adquiridos em mãos, é fácil entender o $\rho$ de Pearson.
 ### Calculando correlações lineares
 
 A noção de **distância** ou **desvio** se repetiu muitas vezes.  
-De fato, o coeficiente de correlação linear nasceu quando Francis Galton (1888) estudava numericamente dois problemas aparentemente distintos em antropometria [^15] :
+De fato, o coeficiente de correlação linear nasceu quando Francis Galton (1888) estudava numericamente dois problemas aparentemente distintos em antropometria [^16] :
 
 1.  **Antropologia:** Se recuperássemos de um túmulo antigo apenas um osso da coxa (fêmur) de um indivíduo, o que podereríamos dizer sobre sua altura?
 2.  **Ciência forense:** Com o intuito de identificar criminosos, o que pode ser dito sobre medidas diferentes de uma mesma pessoa?
@@ -268,14 +268,14 @@ Assim, podemos ter variáveis altamente correlacionadas positiva ou negativament
 
 Observar apenas a covariância é perigoso, pois os valores dependem da unidade de medida e da dispersão dos dados. 
 
-Calculamos o coeficiente de correlação de Pearson, normalizando[^16] a covariância ao dividí-la pelo produto dos desvios-padrão:
+Calculamos o coeficiente de correlação de Pearson, normalizando[^17] a covariância ao dividí-la pelo produto dos desvios-padrão:
 $$\rho_{XX'}= \frac{cov(X,X')}{\sigma_{X}\sigma_{X'}}$$
 De forma extensa:  
 $$\rho_{XX'}= \frac{\sum_{i=1}^{N}(x_{i}-\mu_{x})(x_{i}'-\mu_{x'})}{\sqrt{\sum_{i}^{N}(x_{i}-\mu_{x})^{2}}\sqrt{\sum_{i}^{N}(x_{i}'-\mu_{x'})^{2}}}$$
 Uma boa notícia: $\rho$ segue uma distribuição conhecida, a distribuição t, com n-2 graus de liberdade. Podemos usar as ferramentas anteriores para testar hipóteses. 
 
-[^15]: Francis Galton's account of the invention of correlation. Stephen M. Stigler. Statistical Science. 1989, Vol. 4, No. 2, 73-86.  
-[^16]: Aqui, normalização tem o sentido de ajustar a escala das medidas. Não confundir com transformações para que os dados passem a ter distribuição gaussiana.  
+[^16]: Francis Galton's account of the invention of correlation. Stephen M. Stigler. Statistical Science. 1989, Vol. 4, No. 2, 73-86.  
+[^17]: Aqui, normalização tem o sentido de ajustar a escala das medidas. Não confundir com transformações para que os dados passem a ter distribuição gaussiana.  
 
 ### Exemplo prático
 
@@ -380,12 +380,12 @@ A equação que descreve essa reta nos informa o valor esperado para expectativa
 ```
 ![](images/chap2-bras-can-line.png) 
 
-Vemos que o Brasil está bastante próximo do esperado para o número de médicos[^16]. O Canadá possui uma expectativa de vida alta para o número de profissionais.  
+Vemos que o Brasil está bastante próximo do esperado para o número de médicos[^18]. O Canadá possui uma expectativa de vida alta para o número de profissionais.  
 Como viemos discutindo ao longo do texto, questões filosóficas e metodológicas devem ser enderaçadas antes de tomar conclusões.  
 
 Entretanto, temos uma boa ilustração de como ciência de dados pode nos ajudar a tomar decisões em contextos reais. O ministro da saúde de um país em desenvolvimento passa a ter métricas acessíveis para seus objetivos.   
 
-[^17]: É praticamente consenso entre especialistas que o Brasil possui problema de distribuição de profissionais, com déficit de médicos em áreas mais pobres e pouco populosas.  
+[^18]: É praticamente consenso entre especialistas que o Brasil possui problema de distribuição de profissionais, com déficit de médicos em áreas mais pobres e pouco populosas.  
 
 
 \pagebreak
@@ -441,7 +441,7 @@ $$=-\frac{n}{2}log{2\pi} - n log{\sigma} - \frac{1}{2\sigma^{2}}\sum_{i=1}^{n}(y
 
 Os parâmetros que maximizam a função de verossimilhança(likelihood) são os mesmos que maximizam a o logaritmo da função de verossimilhança(log-likelihood).  
 
-Com algum esforço[^18], encontramos fórmulas fechadas:  
+Com algum esforço[^19], encontramos fórmulas fechadas:  
 $$\hat{\beta_{1}}=\frac{cov(XY)}{\sigma_{x}^{2}}$$  
 $$\hat{\beta_{0}}=\mu_{y} - \hat{\beta_{1}}\mu_{x}$$  
 $$\hat{\sigma^{2}} = \frac{1}{n} \sum_{i=1}^{n} (y_{i}-(\hat{\beta_{0}}+\hat{\beta_{1}}x_{i}))^{2}$$  
@@ -451,7 +451,7 @@ Devemos então nos preocupar em saber se o modelo linear encontrado é bom na pr
 
 ![O primeiro gráfico de regresão linear. Ilustração de Francis Galton (1875) relação entre altura de pais e filhos.](images/chap2-galtonorig.jpg)
 
-[^18]: Detalhes das deduções dos estimadores OLS and Max. Likelihood:   https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/05/lecture-05.pdf ; https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/06/lecture-06.pdf
+[^19]: Detalhes das deduções dos estimadores OLS and Max. Likelihood:   https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/05/lecture-05.pdf ; https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/06/lecture-06.pdf
 
 \pagebreak
 
@@ -581,7 +581,7 @@ Para a relação (sigmoide), entre x e y abaixo:
 ```
 ![](images/chap2-sigpoints.png)
 
-O coeficiente de Pearson é $\rho \sim 0.850$[^19] :   
+O coeficiente de Pearson é $\rho \sim 0.850$[^20] :   
 ```r
     >cor.test(sig_data$y_vals,
     +          sig_data$x_vals)    
@@ -623,7 +623,7 @@ Como a relação é perfeitamente monotônica, os pares ordenados $(x_{i},y_{i})
 
 O coeficiente $\rho$ de Spearman é preferível quando as medidas diferem bastante de uma distribuição normal. Também oferece robustez quando é necessário lidar com *outliers*.    
 
-[^19]: Como observamos no gráfico, a correlação linear não é tão alta. O coeficiente se aproxima de 1 $\rho \sim 0.936$ pois os desvios superiores compensam simetricamente os inferiores. O exemplo reforça a importância de plotar os dados para um melhor entendimento (ver Quarteto de Anscombe). 
+[^20]: Como observamos no gráfico, a correlação linear não é tão alta. O coeficiente se aproxima de 1 $\rho \sim 0.936$ pois os desvios superiores compensam simetricamente os inferiores. O exemplo reforça a importância de plotar os dados para um melhor entendimento (ver Quarteto de Anscombe). 
 
 
 \pagebreak
@@ -654,78 +654,5 @@ $$Soma_{ranks}=\frac{N(N+1)}{2}$$
 Enquanto $R_{i}$ corresponde à soma dos ranks calculados com as duas amostras, o termo acima corresponderia à soma mínima dos ranks para uma amostra, caso os ranks ocupassem a sequência inicial $A=(1,2,3,4,...,n_{a})$ na amostra conjunta.  
 A definição para o teste não é unânime na literatura, de forma que alguns autores e softwares (e.g. R) implementam o cálculo com a subtração acima e outros (e.g. S-PLUS) não o fazem.  
 Em R, as funções **dwilcox(x,m,n)** e **pwilcox(q,m,n)** retornam a distribuição e a densidade cumulativa para a estatística U correspondente a amostras com tamanhos m e n.  **wilcox.test(x,y,...)** é a implementação base do teste de Mann Whitney. O teste de Mann Whitney é o teste de Wilcoxon de duas amostras.  
-
-\pagebreak
-
-## Regressão múltipla
-
-Anteriormente, examinamos modelos lineares simples. Calculamos parâmetros para um intercepto $\beta_{0}$, inclinação da reta $\beta_{1}$ e variância dos erros $\sigma^{2}_\epsilon$. No exemplo apresentado, relacionamos o número de médicos ($n$) com a expectativa de vida saudável $hale$ em um país.
-
-
-$$y_{i} = \beta_{0} + \beta_{1}x_{i} + \epsilon$$
-
-Na *regressão linear múltipla*, introduzimos mais uma variável preditora. Em nosso exemplo, poderia ser o valor do IDH do país:
-
-$$hale_{i} = \beta_{0} + \beta_{1}n_{i} + \beta_{2}IDH_{i}' + \epsilon$$
-
-Em geral, temos dois objetivos:  
-**(1)** melhorar a performance do modelo ao adicionar informações pertinentes;   **(2)** examinar o efeito sobre as demais variáveis preditoras.  
-
-O primeiro objetivo é intuitivamente óbvio: ao fazer nossa predição, é preferível saber apenas o número de médicos ou também outras variáveis?  
-
-Entretanto precisamos ter cuidado com redundância de informações. Especificamente, há uma troca quase inevitável entre complexidade e robustez do modelo. Acrescentar variáveis ou usar classes de relações mais flexíveis implica dar liberdade para um sobreajuste aos dados. Isto é, nosso modelo aprenderá idiossincrasias sobre o banco de dados disponível e não sobre a relação entre as abstrações. Veremos nas próximas sessões como mitigar esse problema.  
-Para o caso da regressão linear múltipla, podemos verificar se há colinearidade (relação linear) entre variáveis preditoras. Se as variáveis preditoras são altamente correlacionadas, é provável que estejamos fornecendo informações redundantes ao modelo, o que é nocivo. Existem alguns indicadores que podem ajudar a tomar essa decisão.  
-Comumente, observamos o VIF *Variance inflation factor*. 
-
-Ele verifica se a variância do coeficiente $\beta$ estimado está sendo inflada por interferência de outros preditores.   
-Para calcular o VIF referente a um preditor $X'$, ajustamos uma nova regressão, em que a variável resposta é $X'$ e as preditoras são as outras variáveis preditoras. O VIF é dado por: $\frac{1}{1-R^{2}}$, sendo $R^{2}$ o coeficiente de determinação da regressão, como calculamos antes. Valores de VIF altos refletem valores de $R^2$ altos, isto é: a combinação linear de outras variáveis explicariam muito bem (colinearidade) a variável alvo.
-Não há regra canônica, porém VIF > 10 ($R^{2} = 0.9$) e VIF > 5($R^{2} = 0.8$) são citados como fronteiras indicando colinearidade inaceitável.  
-
-A função **vif** do pacote *car* implementa o procedimento. Ajustamos uma regressão linear múltipla para o comprimento das sépalas no dataset *iris* a partir de outras 3 variáveis. Podemos verificar que há colinearidade ($VIF_{pet.leng.}\sim 15.1$, $VIF_{pet.wid.}\sim 14.2$) entre largura e comprimento da pétala. Por outro lado, a colinearidade com o comprimento da sépala é baixa ($VIF_{pet.wid.} \sim 1.3$). 
- 
-```r
-    >car::vif(lm(Sepal.Length ~ Petal.Length + Petal.Width + Sepal.Width,    
-        data=iris))
-    Petal.Length  Petal.Width  Sepal.Width 
-       15.097572    14.234335     1.270815 
-```
-
-Se há colinearidade, é recomendado remover um dos preditores para eliminar a redundância. Como sempre, a inspeção visual ajuda.  
-
-```r
-    >pairs(iris[,1:4])
-```
-![](images/chap2-irispairs.png)
-
-Como podemos ver, usar duas variáveis preditoras (regressão múltipla) não colineares aumenta a performance do modelo em relação à regressão simples $(R^{2} \sim 0.84\enskip vs\enskip R^{2} = 0.76)$.  
-
-```r
-    >lm(Sepal.Length ~ Petal.Length,    
-    +         data=iris) %>% summary    
-
-    (...)
-    Multiple R-squared:   0.76,	Adjusted R-squared:  0.7583 
-    F-statistic: 468.6 on 1 and 148 DF,  p-value: < 2.2e-16    
-
-    >lm(Sepal.Length ~ Petal.Length + Sepal.Width,    
-    +         data=iris) %>% summary    
-    (...)
-    Multiple R-squared:  0.8402,	Adjusted R-squared:  0.838 
-    F-statistic: 386.4 on 2 and 147 DF,  p-value: < 2.2e-16
-```
-
-Um outro objetivo para a regressão múltipla é examinar o efeito modificador das variáveis acrescentadas. Em especial, é comum incluir variáveis auxiliares para corrigir estimativas.  
-
-Exemplo: queremos estimar um parâmetro $\beta_{1}$ para a relação entre altura e peso. Ajustamos um modelo: $Altura = \beta_{0}+\beta_{1}*Peso+\epsilon$. Entretanto, sabemos que a altura média de homens é maior que a de mulheres. Ao examinar a relação entre a altura e peso, podemos incluir a variável *sexo* no modelo,$Altura = \beta_{0}+\beta_{1}*Peso+\beta_{2}*Sexo+\epsilon$.  
-Nossa estimativa de $\beta_{1}$ é modificada de maneira a levar em conta os efeitos do sexo.[^20]  
-
-[^20]: Sexo é uma variável dicotômica (macho/fêmea). Costumamos codificá-las de forma binária (0/1; e.g: macho = 1 / fêmea = 0). Assim, um sujeito macho terá a estimativa de altura acrescida em $\beta_{2}*1$, enquanto fêmeas terão este termo zerado $\beta_{2}*0$. Chamamos esse truque de *dummy coding*.
-
-\pagebreak
-
-Costumeiramente, traduzimos os procedimentos acima afirmando que a estimativa para *"a relação entre X e Y é controlada para confundidores [A, B e C]"*. A esse ponto, fica óbvio que a simplificação linguística é perigosa. A falta de cautela em traduzir abstrações matemáticas para linguagem natural é responsável pela injusta fama da estatística como ferramenta para enganos.  
-Assim como o valor p é indevidamente interpretado muitas vezes, o "controle para confundidores"" nada mais é que o ajuste de estimativas selecionando outras variáveis arbitrariamente para uma combinação linear.  
-O prejuízo é herdado por todas as disciplinas que usam métodos quantitativos. Pior, criamos a possibilidade para testar múltiplas combinações de confundidores. Nas mãos de alguém incauto ou mal intencionado, testes sucessivos têm grandes chances de alcançar resultados "significantes". De uma forma global, vemos uma série de verdades transitórias ventiladas na comunidade científica (e na mídia leiga), resultantes de análises mal conduzidas.  
-Para inferências desse tipo, é recomendado que os confundidores sejam mitigados experimentalmente (e.g. randomização) sempre que possível.  
 
 \pagebreak
