@@ -204,8 +204,11 @@ O n-ésimo momento é dado por $$M_{n} = \sum_{i=1}^{N} m_{i}d_{i}^{n}$$.
 Podemos generalizar ainda mais a abstração e calcular momentos de entidades abstratas, como variáveis aleatórias. **Melhor: já fizemos isso anteriormente!**  
 
 Seja $f(x)$ a função que descreve uma distribuição de probabilidades para a variável,  
+
 Assim como o **momento zero** representa a soma da contribuição de cada ponto para a massa (massa total), aqui ele representa a soma das probabilidades possíveis, a probabilidade total (1).  
+
 O **primeiro momento** corresponde ao centro de massa na mecânica estática. Para probabilidades, é o centro, a **média**.    
+
 O **segundo momento** corresponde ao momento inercial e é a **variância**.  
 Os momentos **terceiro** e **quarto** normalizados informam sobre assimetrias *(skewness)* e peso de valores extremos *(kurtosis)*.  
 
@@ -219,13 +222,14 @@ A integral acima corresponde à versão contínua da soma de partes discretas ap
 A soma de todas probabilidades de uma distribuição deve somar 1.  
 $$= \int_{-\infty}^{\infty} f(x)dx = 1$$.   
 **Primeiro momento**: $\mu_{1}= \int_{-\infty}^{\infty} d(x,x_{0})f(x)dx$ , supondo centro em 0 $(x_{0}=0)$, temos a média, $$ \mu_{1} = \int_{-\infty}^{\infty} xf(x)dx$$, também chamado valor esperado $E[X]$. Estende a intuição de somar as medidas e dividir pelo número de observações ao passo em que usamos uma integral para somar as infinitesimais possibilidades para $f(x)$.    
+
 **Segundo momento**: $$\mu_{2}= \int_{-\infty}^{\infty} d(x,x_{0})^{2}f(x)dx$$. Como vimos no capítulo introdutório, a soma dos quadrados dos desvios, nossa variância, $$\sigma^{2} = E[(x-\mu)^{2}]$$.  
 
 ---
 
 **Notas finais sobre o Teorema do Limite Central**
 
-Podemos entender melhor o teorema do limite central. As informações fornecidas pelos momentos são valiosas: uma função de probabilidade é totalmente definível por seus momentos.  
+Podemos entender melhor o teorema do limite central. As informações fornecidas pelos momentos são valiosas: uma função de probabilidade é totalmente definida por seus momentos.  
 O Teorema do Limite Central, de que falamos antes, é provado mostrado equivalência entre momentos da curva normal e da soma de *n* distribuições idênticas através de outras ferramentas.  
 Podemos criar uma função geradora de momentos, $M_{X}(t)=E[e^{tX}]$. Chamamos ela assim, pois sua forma polinomial via expansão de Taylor corresponde à soma $1+tX+\frac{t^{2}X^{2}}{2!}+\frac{t^{3}X^{3}}{3!}+...$.  
 O valor esperado dessa soma:  
@@ -236,9 +240,8 @@ A função característica é a transformada de Fourier da função de probabili
 
 [^15]: Two Proofs of the Central Limit Theorem, Yuval Filmus, 2010. http://www.cs.toronto.edu/~yuvalf/CLT.pdf
 
----
-
 Com os conceitos adquiridos em mãos, é fácil entender o $\rho$ de Pearson.  
+---
 
 \pagebreak
 
@@ -252,14 +255,14 @@ De fato, o coeficiente de correlação linear nasceu quando Francis Galton (1888
 
 Galton percebeu que, na verdade, estava lidando com o mesmo problema. Dadas medidas pareadas, $(x_{i},x_{i}')$, o que o desvio de $x_{i}$ informa sobre o desvio de $x_{i}'$?
 
-O fêmur recuperado do esqueleto de um faraó é 5 cm maior que a média. Quão distante da média esperamos que seja sua altura? Ingenuamente, podemos pensar que se uma das medidas é 1 desvio-padrão maior que a média, a outra também será 1 desvio-padrão maior. Galton percebeu que havia um armadilha nesse pensamento.   
+O fêmur recuperado do esqueleto de um faraó é 5 cm maior que a média. Quão distante da média esperamos que seja sua altura? Ingenuamente, podemos pensar que se uma das medidas é 1% maior que a média, a outra também será 1% maior. Galton percebeu que havia um armadilha nesse pensamento.   
 
 Apesar de haver uma relação entre as medidas, há também flutuações aleatórias: parte do desvio é resultante disso. Precisamos entender o grau de correlação pra fazer um bom palpite.  
 
 Então, propôs um coeficiente mensurando a relação entre desvios de variáveis. Se tamanho do fêmur e altura estão muito relacionadas, um fêmur grande sugere indivíduo igualmente alto. Caso contrário (baixa correlação), um fêmur grande (desvio alto) não implica grande estatura.  
 
 Para quantificar a relação, multiplicamos os desvios de cada par de medidas:  
-$$\sum_{i=1}^{N}(x_{i}-\mu_{x})(x_{i}'-\mu_{x'})$$
+$$Cov(X,X')=\sum_{i=1}^{N}(x_{i}-\mu_{x})(x_{i}'-\mu_{x'})$$
 A expressão acima expressa a **covariância** entre $X$ e $X'$ e será útil em outros contextos. A expressão lembra o cálculo do primeiro momento, porém cada desvio é multiplicado pelo desvio correspondente da medida pareada. Daí o nome coeficiente de correlação *produto-momento*.  
 
 Note que, se ambos os desvios concordam em sentido (sinal), o resultado da multiplicaçao será positivo. Pares consistentemente concordantes aumentam o valor da soma final. Se ambos os desvios discordam em sentido (sinal), o resultado será negativo. Pares consistentemente discordantes diminuem o valor da soma final.  
@@ -353,12 +356,15 @@ A correlação linear obtida para nossa amostra de países é surpreendentemente
 O valor p é baixo $(p<0.001)$ considerando a hipótese nula $H_{0}$ de $\rho=0$. Concluímos então que há uma relação linear significativa de forte magnitude entre o logaritmo do número de médicos e a expectativa de vida dos países em nossa amostra.  
 
 É realmente curioso que exista uma relação matemática tão evidente entre construtos tenuamente conectados. O tempo médio que um organismo leva entre nascimento e morte e o número de profissionais atuantes. É virtualmente impossível explicitar cada relação causal por trás dessa relação, que se manifesta de forma robusta através da soma de muitos fatores relacionados.   
+---
 
 #### Nota
 
 *É costumaz afirmar que não existe relação entre variáveis caso o coeficiente de relação não se mostre importante. Como vimos, esse indicador informa apenas sobre relações lineares entre variáveis. A visualização dos dados pode ser de grande ajuda na inferência sobre a natureza de relações.*  
 *Dados com distribuições bastante diferentes podem resultar em coeficientes iguais, como mostra o clássico quarteto de Anscombe. As 4 amostras abaixo apresentam o mesmo coeficiente de correlação.*  
 ![](images/chap2-anscombe.png)
+
+---
 
 ## Previsões
 
@@ -380,10 +386,10 @@ A equação que descreve essa reta nos informa o valor esperado para expectativa
 ```
 ![](images/chap2-bras-can-line.png) 
 
-Vemos que o Brasil está bastante próximo do esperado para o número de médicos[^18]. O Canadá possui uma expectativa de vida alta para o número de profissionais.  
+Assumindo que realmente há uma relação linear, vemos que o Brasil está bastante próximo do esperado para o número de médicos[^18]. O Canadá possui uma expectativa de vida alta para o número de profissionais.  
 Como viemos discutindo ao longo do texto, questões filosóficas e metodológicas devem ser enderaçadas antes de tomar conclusões.  
 
-Entretanto, temos uma boa ilustração de como ciência de dados pode nos ajudar a tomar decisões em contextos reais. O ministro da saúde de um país em desenvolvimento passa a ter métricas acessíveis para seus objetivos.   
+Entretanto, temos uma boa ilustração de como ciência de dados pode nos ajudar a tomar decisões em contextos reais. 
 
 [^18]: É praticamente consenso entre especialistas que o Brasil possui problema de distribuição de profissionais, com déficit de médicos em áreas mais pobres e pouco populosas.  
 
@@ -412,10 +418,13 @@ Ajustamos o modelo usando a função lm(linear model) do R:
           64.46         3.73 
 ```
 
+
 Temos $\beta_{0} \sim 64.46$ e $\beta_{1} \sim 3.73$.  
 Nossa estimativa para a expectativa de vida saudável "começa" em 64.46 anos e aumenta com o número de médicos no país. Especificamente, aumenta em 3.73 para cada unidade de nossa variável transformada $(log(x))$.  
 Em nosso dataset, o Brasil possui 1.852 médicos/1,000 hab. Nossa predição então é:  
 $\hat{y}_{Brasil}=log{1.852}*3.73 + 64.46 \sim 66.8$, o que está bastante próximo do número real(66).  
+
+**Estimadores**
 
 Existe mais de uma maneira de estimar esses parâmetros.  
 Uma de particular interesse, que também servirá em outros contextos, é a de Maximum likelihood (máxima verossimilhança).   
@@ -623,7 +632,7 @@ Como a relação é perfeitamente monotônica, os pares ordenados $(x_{i},y_{i})
 
 O coeficiente $\rho$ de Spearman é preferível quando as medidas diferem bastante de uma distribuição normal. Também oferece robustez quando é necessário lidar com *outliers*.    
 
-[^20]: Como observamos no gráfico, a correlação linear não é tão alta. O coeficiente se aproxima de 1 $\rho \sim 0.936$ pois os desvios superiores compensam simetricamente os inferiores. O exemplo reforça a importância de plotar os dados para um melhor entendimento (ver Quarteto de Anscombe). 
+[^20]: Como observamos no gráfico, a correlação linear não é tão alta. O coeficiente se aproxima de 1 $\rho \sim 0.850$ pois os desvios superiores compensam simetricamente os inferiores. O exemplo reforça a importância de plotar os dados para um melhor entendimento (ver Quarteto de Anscombe). 
 
 
 \pagebreak
@@ -634,7 +643,7 @@ O teste U de Mann-Whitney faz uso da estatística U para fazer inferências. O r
 Estabelecemos hipótese nula $H_{0}$ e hipótese alternativa $H_{1}$.  
 Então, calculamos a probabilidade de nossas observações acontecerem caso a hipótese nula seja verdadeira.  
 Desta vez, usaremos a estatística U. Lembremos que a estatística t era calculada com base em parâmetros extraídos da amostra:  
-$$t = \frac{Z}{s}=(\mu'-\mu)/\frac{\sigma}{\sqrt{n}}$$
+$$t = Z/s=(\mu'-\mu)/\frac{\sigma}{\sqrt{n}}$$
 
 A estatística U não depende de parâmetros, sendo calculada com base em cada observação.  
 

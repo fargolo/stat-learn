@@ -62,7 +62,7 @@ Primeiro, de Moivre deduziu a solução para o problema das moedas $(p = \frac{1
 
 $$P(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}}$$
 
-O número misterioso em questão é o número de Euler $(e \sim 2.72…)$, que será melhor explicado no capítulo 4. 
+O número de Euler $(e \sim 2.72…)$, que será melhor explicado no capítulo 5. 
 A fórmula consiste em um fator, $\frac{1}{\sqrt{2\pi}}$ (aproximadamente 0.4), multiplicando o resultado da exponencial.  
 Em R, podemos definir:  
 
@@ -96,7 +96,7 @@ Observamos a curva se aproximar do máximo simetricamente para valores próximos
 
 Isso reflete diretamente o fato de que valores próximos à média serão mais prováveis e valores extremos menos prováveis. 
 
-Para comparação: $f(2) = 0.4 * e^{-2^{2}/2} = 0.4 * e^{-2} =  0.4 * 0.135 \sim 0.05$ (linha azul). A probabilidade de se obter o valor médio $(x = 0, p \sim 0.4)$ é oito vezes maior que a probabilidade de obter o valor 2 $(x = 2; p = 0.05)$.   
+Para comparação: $f(2) = 0.4 * e^{-2^{2}/2} = 0.4 * e^{-2} =  0.4 * 0.135 \sim 0.05$ (linha azul). A probabilidade de se obter o valor médio $(x = 0, p \sim 0.4)$ é oito vezes maior que a probabilidade de se obter o valor 2 $(x = 2; p = 0.05)$.   
 
 O termo quadrático torna a distribuição simétrica para valores opostos em relação à média. $P(x) = P(-x)$. Como calculamos $P(2)$ antes, sabemos que: $P(-2) = P(2) = 0.05$ para $\mu = 0$. É igualmente provável encontrar valores duas unidades maiores ou duas unidades menores que a média. Esses pontos estão marcados por uma linhas azuis na figura.  
 
@@ -149,7 +149,8 @@ O código em R para a seguir gera os dados e as visualizações de que precisamo
     	theme_economist())
     
     >m_plot <- multiplot(plotlist = plot_list,cols=n_plots/3)
-    # Multiplot function available at: http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/
+    # Multiplot function available at:
+    # http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/
 ```
 \pagebreak 
 

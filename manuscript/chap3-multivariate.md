@@ -7,29 +7,34 @@
 # Capítulo 3 : Análise multivariada, grafos e inferência causal 
 
 ## Intrudução
-Até este ponto, aplicamos modelagem matemática para uma ou duas variáveis aleatórias. Procedimentos diferentes foram empregados para correlação, comparação e regressão. Neste capítulo, incorporaremos novas medidas e construtos. Começamos expandindo a regressão linear simples. Em seguida, grafos serão introduzidos como abstração para um programa de pesquisa bastante popular para descrever relações causais.  
+Até este ponto, aplicamos modelagem matemática para uma ou duas variáveis aleatórias. Procedimentos diferentes foram empregados para correlação, comparação e regressão. Neste capítulo, incorporaremos novas medidas e construtos. Começamos expandindo a regressão linear simples. 
 
 ## Regressão múltipla
 
 Nos modelos lineares simples, calculamos parâmetros para um intercepto $\beta_{0}$, inclinação da reta $\beta_{1}$ e variância dos erros $\sigma^{2}_\epsilon$. No exemplo apresentado, relacionamos o número de médicos ($n$) com a expectativa de vida saudável $hale$ em um país.
 
 $$y_{i} = \beta_{0} + \beta_{1}x_{i} + \epsilon$$
+$$hale_{i} = \beta_{0} + \beta_{1}n_{i} + \epsilon$$
 
 Na *regressão linear múltipla*, introduzimos mais uma variável preditora. Em nosso exemplo, poderia ser o valor do IDH do país:
 
 $$hale_{i} = \beta_{0} + \beta_{1}n_{i} + \beta_{2}IDH_{i}' + \epsilon$$
 
 Em geral, temos dois objetivos:  
-**(1)** melhorar a performance do modelo ao adicionar informações pertinentes;   **(2)** examinar o efeito sobre as demais variáveis preditoras.  
+**(1)** melhorar a performance do modelo ao adicionar informações pertinentes; **(2)** examinar o efeito sobre as demais variáveis preditoras.  
 
-O primeiro objetivo é intuitivamente óbvio: ao fazer nossa predição, é preferível saber apenas o número de médicos ou também outras variáveis?  
+O primeiro objetivo é intuitivamente óbvio, entretanto precisamos ter cuidado com redundância de informações. Especificamente, há uma troca quase inevitável entre complexidade e robustez do modelo. Acrescentar variáveis ou usar classes de relações mais flexíveis implica dar liberdade para um sobreajuste aos dados. Isto é, nosso modelo aprenderá idiossincrasias sobre o banco de dados disponível e não sobre a relação entre as abstrações. Veremos nas próximas sessões como mitigar esse problema.  
 
-Entretanto precisamos ter cuidado com redundância de informações. Especificamente, há uma troca quase inevitável entre complexidade e robustez do modelo. Acrescentar variáveis ou usar classes de relações mais flexíveis implica dar liberdade para um sobreajuste aos dados. Isto é, nosso modelo aprenderá idiossincrasias sobre o banco de dados disponível e não sobre a relação entre as abstrações. Veremos nas próximas sessões como mitigar esse problema.  
 Para o caso da regressão linear múltipla, podemos verificar se há colinearidade (relação linear) entre variáveis preditoras. Se as variáveis preditoras são altamente correlacionadas, é provável que estejamos fornecendo informações redundantes ao modelo, o que é nocivo. Existem alguns indicadores que podem ajudar a tomar essa decisão.  
-Comumente, observamos o VIF *Variance inflation factor*. 
 
-Ele verifica se a variância do coeficiente $\beta$ estimado está sendo inflada por interferência de outros preditores.   
-Para calcular o VIF referente a um preditor $X'$, ajustamos uma nova regressão, em que a variável resposta é $X'$ e as preditoras são as outras variáveis preditoras. O VIF é dado por: $\frac{1}{1-R^{2}}$, sendo $R^{2}$ o coeficiente de determinação da regressão, como calculamos antes. Valores de VIF altos refletem valores de $R^2$ altos, isto é: a combinação linear de outras variáveis explicariam muito bem (colinearidade) a variável alvo.
+Comumente, observamos o VIF *Variance inflation factor*.
+
+**VIF**
+
+A intuição aqui é de que se as variáveis são muito relacionadas $X_{1} \sim X_{2}$, os valores de $\beta$ estimados em $Y = \beta_{1}X_{1} + \beta_{2}X_{2} + ...$ não serão únicos. Por exemplo, poderíamos trocar $\beta_{1}$ por $\beta_{2}$ e a solução permaneceria praticamente inalterada. O VIF estima a colinearidade em relação à combinação de outros preditores usados.      
+   
+Para calcular o VIF referente a um preditor $X'$, ajustamos uma nova regressão, em que a variável resposta é $X'$ e as preditoras são as outras variáveis preditoras. O VIF é dado por: $\frac{1}{1-R^{2}}$, sendo $R^{2}$ o coeficiente de determinação da regressão, como calculamos antes.  
+Valores de VIF altos refletem valores de $R^2$ altos, isto é: a combinação linear de outras variáveis explicaria muito bem a variável preditora em questão.
 Não há regra canônica, porém VIF > 10 ($R^{2} = 0.9$) e VIF > 5($R^{2} = 0.8$) são citados como fronteiras indicando colinearidade inaceitável.  
 
 A função **vif** do pacote *car* implementa o procedimento. Ajustamos uma regressão linear múltipla para o comprimento das sépalas no dataset *iris* a partir de outras 3 variáveis. Podemos verificar que há colinearidade ($VIF_{pet.leng.}\sim 15.1$, $VIF_{pet.wid.}\sim 14.2$) entre largura e comprimento da pétala. Por outro lado, a colinearidade com o comprimento da sépala é baixa ($VIF_{pet.wid.} \sim 1.3$). 
@@ -70,6 +75,8 @@ Um outro objetivo para a regressão múltipla é examinar o efeito modificador d
 Exemplo: queremos estimar um parâmetro $\beta_{1}$ para a relação entre altura e peso. Ajustamos um modelo: $Altura = \beta_{0}+\beta_{1}*Peso+\epsilon$. Entretanto, sabemos que a altura média de homens é maior que a de mulheres. Ao examinar a relação entre a altura e peso, podemos incluir a variável *sexo* no modelo,$Altura = \beta_{0}+\beta_{1}*Peso+\beta_{2}*Sexo+\epsilon$.  
 Nossa estimativa de $\beta_{1}$ é modificada de maneira a levar em conta os efeitos do sexo.[^21]  
 
+Veremos uma formalização desse conceito a seguir, com o procedimento para examinar mediação.  
+
 [^21]: Sexo é uma variável dicotômica (macho/fêmea). Costumamos codificá-las de forma binária (0/1; e.g: macho = 1 / fêmea = 0). Assim, um sujeito macho terá a estimativa de altura acrescida em $\beta_{2}*1$, enquanto fêmeas terão este termo zerado $\beta_{2}*0$. Chamamos esse truque de *dummy coding*.
 
 \pagebreak
@@ -85,7 +92,7 @@ Para inferências desse tipo, é recomendado que os confundidores sejam mitigado
 
 \pagebreak 
 
-## Equações estruturais
+## Grafos e trajetórias causais
 
 Podemos usar os diagramas a seguir para ilustrar uma regressão linear simples:  
 ![$y = \beta_{1}*X_{1}$](images/chap3-two-nodes.png)  
@@ -105,13 +112,15 @@ As equações e procedimentos de que lançamos mão anteriormente são soluçõe
 
 *"The ideal method of science is the study of the direct influence of one condition on another in experiments in which all other possible causes of variation are eliminated.", Sewall Wright, Correlation and Causation, 1921*  
 
-A pouco conhecida origem deste campo está no trabalho de um geneticista, Sewall Wright. Ele assumiu que a correlação entre variáveis é resultante da influência de muitas trajetórias causais. Ele propôs uma forma de medir a influência de cada trajetória sobre uma variável-alvo.
+A pouco conhecida origem deste campo está no trabalho de um geneticista, Sewall Wright. Ele assumiu que a correlação entre variáveis é resultante da influência de muitas trajetórias causais. Então, propôs uma forma de medir a influência de cada trajetória sobre uma variável-alvo.
 
 ![Diagrama mostrando relação entre fatores influenciando peso de um porquinho-da-índia. Wright, 1921](images/chap3-guinea.jpg)
 
 Usando grafos direcionados (as conexões têm uma origem e um destino), é atrelar as noções de correlação e regressão de forma a ilustrar caminhos causais entre relações lineares. Sewall começou usando apenas grafos acíclicos (sem conexões levando ao ponto de origem do percurso) em condições restritas.  
+
 Décadas depois, o campo foi extrapolado para outros cenários mais gerais. Em específico, o boom de disponibilidade de poder computacional nas décadas de 1960 e 1970 impulsionou o surgimento de estimadores diversos para parâmetros nesses modelos.  
 É esperado que a quantidade de parâmetros cresça conforme a complexibilidade.  
+
 Um trabalho valoroso foi feito por Judea Pearl para unificar as abordagens. Pearl mostrou que muitos *frameworks* são situações especiais de modelos de equação estrutural (SEM, structural equation models), os quais também englobam versões não paramétricas. Por exemplo, o sistema causal de Rubin é equivalente a SEM: todos os teoremas podem ser deduzidos usando algumas identidades entre as abordagens.  
 
 Ele também escreveu textos compreensivos alinhando a matemática aplicada a uma base epistemológica.  
@@ -135,7 +144,8 @@ Caso exista mediação, espera-se que o coefiente $\beta_{1}'$ seja não signifi
 
 Seguindo o exemplo sugerido, espera-se que exista uma relação entre hábito de fumar e câncer. Ainda, espera-se que a inclusão de um mediador (e.g. concentração de nicotina) explique parte do efeito, reduzindo o coeficiente de $X_{1}$.
 
-O diagrama abaixo ilustra passos *1* (3 regressões, superior) e *2* (regressão múltipla, inferior). Podemos ver nosso modelo preditivo de regressão linear múltipla no nodo central, atribuindo pesos e aplicando o operador de soma às entradas. Foram suprimidos termos de erro.
+O diagrama abaixo ilustra passos *1* (3 regressões, superior) e *2* (regressão múltipla, inferior). 
+O modelo preditivo de regressão linear múltipla está nodo central do diagrama inferior, atribuindo pesos e aplicando o operador de soma às entradas. Foram suprimidos termos de erro.
 
 ![](images/chap3-diagram.jpeg)
 
@@ -144,7 +154,7 @@ O diagrama abaixo ilustra passos *1* (3 regressões, superior) e *2* (regressão
 Não há garantias de que os sistemas reais se comportarão seguindos os parâmetros estimados. Usamos regressão múltipla para estimar o efeito parcial atribuído aos medidadores, porém a retirada desses fatores no fenômeno real pode resultar em alterações no sistema não previstas pelo modelo.  
 A certeza dependeria de uma descrição bastante acurada do fenômeno pelas regressões $(R^2 \sim 1)$, o que raramente é verificado fora de fenômenos físicos mais simples.   
 
-Portanto, é recomendável que ajustes sejam feitos na etapa experimental. Em nosso exemplo, isso implicaria em controlar a concentração de nicotina absorvida *in vivo*. Obviamente, razões éticas e limitação de recursos precluem a manipulação direta do objeto de estudo. Métodos tais como o descrito, ainda que frágeis, permitem estudar interações e relações causais. Entretanto, é necessário atenção aumentada ao lidar com modelos mais complexos.  
+Portanto, é recomendável que ajustes sejam feitos na fase experimental. Em nosso exemplo, isso implicaria em controlar a concentração de nicotina absorvida *in vivo*. Obviamente, razões éticas e limitação de recursos precluem muitas vezes a manipulação direta do objeto de estudo. Métodos tais como o descrito, ainda que frágeis, permitem estudar interações e relações causais. Entretanto, é necessário atenção aumentada ao fazer conclusões e, especialmente, ao traduzí-las para linguagem natural.  
 
 ---  
 
@@ -159,22 +169,145 @@ Em moderação, adicionamos um termo à nossa combinação linear. É um coefici
 
 $$Risk = Nicotina*\beta_{1} + Genes_{(+)}\beta_{2} + Nicotina*Genes_{(+)}\beta_{3}$$
 
-Esse é um dos poucos casos em que é mais fácil observar o aspecto algébrico antes. Estamos multiplicando os valores de preditores $X_{1}$ e $X_{2}$. Se ambos tiverem mesmo sentido ($+$ ou $-$), a interação terá efeito positivo. Caso contrário, negativo. Ainda, vemos que as magnitudes são multiplicadas. O O coeficiente $\beta_{3}$ quantifica essa multiplicação em relação ao efeito em $y$, seja alterando o sentido ($\beta_{3}$ negativo) ou escalando o valor absoluto.  
+Esse é um dos poucos casos em que é mais fácil observar o aspecto algébrico antes. Estamos multiplicando os valores de preditores $X_{1}$ e $X_{2}$. Se ambos tiverem mesmo sentido ($+$ ou $-$), a interação terá efeito positivo. Caso contrário, negativo. Ainda, vemos que as magnitudes são multiplicadas. O coeficiente $\beta_{3}$ quantifica essa multiplicação em relação ao efeito em $y$, seja alterando o sentido ($\beta_{3}$ negativo) ou escalando o valor absoluto.  
 
 $$y = X_{1}*\beta_{1} + X_{2}*\beta{2} + X_{1}X_{2}\beta_{3}$$
 
-A inclinação de y em relação aos preditores deixa de ser linear. Como podemos verificar analisando as derivadas:  
+A relação de $y$ em relação com cada preditor deixa de ser linear. Como podemos verificar analisando as derivadas parcials. Para $\frac{d}{dx_{1}}$:  
 
 $$\frac{d}{dx_{1}}(y) = \frac{d}{dx_{1}}(x_{1}\beta_{1} + x_{2}\beta_{2} + x_{1}x_{2}\beta_{3})$$
 O segundo termo não depende de $X_{1}$, então:  
 $$\frac{d}{dx_{1}}(y) = \frac{d}{dx_{1}}(\beta_{1} + x_{2}\beta_{3})$$
 A inclinação (*slope*), que antes era uma constante (linha reta) $\beta_{1}$ passa a ter um termo somado, que é a multiplicação da constante estimada $\beta_{3}$ pelo valor de $x_{2}$. Então temos inclinação diferente para cada valor de moderador!  
 
-Esses detalhes tornam a interpretabilidade dos coeficientes dificíl. Normalmente, são usadas heurísticas, como centralizar os dados em torno da média, simplificar o contexto.  
+Esses detalhes tornam a interpretabilidade dos coeficientes difícil. Normalmente, são usadas heurísticas, como centralizar os dados em torno da média, simplificar o contexto.  
 
-#### Análise fatorial
-@EFA/CFA
+#### Medidas latentes e análise fatorial
 
+Considere o problema de medir algo inacessível através de canais secundários. Por exemplo, o conceito de *qualidade de vida* é facilmente concebível, apesar de não estar atrelado a uma medida específica, tal qual *altura* ou *tamanho do fêmur*.  
+Uma série de métodos foi desenvolvida para lidar com a tarefa de estimar *variáveis latentes*. Em especial, esses modelos são muito populares entre psicometristas. Podemos aplicar modelos de variáveis latentes para muitos contextos.   
+
+Isso é feito quando usamos respostas corretas em um teste formulado por especialistas para quantificar uma habilidade. A *Teoria de Resposta ao Item* é usada em testes como ENEM (Brasil), SAT e GRE (EUA). Relacionamos a estimativa de habilidade $(\theta)$ com a probabilidade de acertar (1) ou errar (0).  
+
+Traços de personalidade também podem ser estudados dessa maneira. Podemos atribuir um grau de extroversão $F$ de uma pessoa através de sua pontuação em uma bateria de testes $X_{1},X_{2},X_{3},...$ relacionados a esse atributo.  
+
+Sejam os items:  
+
+1. Gosto de estar com outras pessoas (1 a 7)
+2. Costumo conversar com desconhecidos (1 a 7)
+3. Costumo expressar minhas opiniões (1 a 7)
+4. Sou considerado(a) uma pessoa comunicativa (1 a 7)
+
+A pontuação de um indivíduo será uma sequencia de 4 números. 
+
+Análise fatorial parte da premissa de que a **covariância** nas medidas diretas é fruto das **influências latentes compartilhadas** pelos items. Assim, podemos estimar um parâmetro $\lambda$ para a relação entre cada item e o traço latente $F$. Para isso, usaremos a matriz de covariâncias.  
+
+Os valores de $\lambda$ quantificam a relação entre items e fatores latentes e servem, por exemplo, para selecionar items mais relacionados aos traços alvo em um instrumento psicométrico.  
+
+Como na regressão linear, o modelo descreve cada medida como uma combinação entre score individual para fator latente $F$ multiplicado pelo peso para o item $\lambda _{Item 1}$ e erros.  
+A medida do item $1$ para o $i$-ésimo sujeito considerando $n$ fatores latentes $F_{n}$ é:  
+$$x_{1,i} = \sum_{1}{n}F_{i}\lambda _{n} + \epsilon$$.
+
+O valor dos 4 itens para o $n$-ésimo sujeito, considerando dois fatores latentes, com pesos $\lambda_{i}, \lambda _{i}$ é:  
+
+$$x_{1,n} = F_{1,n}\lambda _{1} + F_{2,n}\lambda _{1}' + \epsilon$$
+$$x_{2,n} = F_{1,n}\lambda _{2} + F_{2,n}\lambda _{2}' + \epsilon$$
+$$x_{3,n} = F_{1,n}\lambda _{3} + F_{2,n}\lambda _{3}' + \epsilon$$
+$$x_{4,n} = F_{1,n}\lambda _{4} + F_{2,n}\lambda _{4}' + \epsilon$$
+
+Podemos perceber que a matriz $\Lambda$ terá 8 elementos, com 4 pesos para o fator $F_{1}$ e 4 pesos para o fator $F_{2}$. Sabendo os dois scores latentes de cada sujeito, seria possível reconstruir as observações com algum grau de perda.  
+
+Para estimar os parâmetros acima, usamos uma matriz de covariâncias entre os items. Em nosso exemplo, teríamos uma matriz de dimensão $[4x4]$.  
+
+$$CovMat_{x} = \begin{pmatrix} 
+. & . & . & .  \\ 
+. & . & . & .  \\ 
+. & . & . & .  \\ 
+. & . & . & .  \end{pmatrix}$$
+
+Como vimos no capítulo 2, cada valor é dado por:  
+
+$$Cov(X,X')=\sum_{i=1}^{N}(x_{i}-\mu_{x})(x_{i}'-\mu_{x'})$$  
+
+A diagonal reflete a covariância de uma variável com ela mesma, a variância:
+
+$$Cov(X,X)=\sum_{i=1}^{N}(x_{i}-\mu_{x})(x_{i}-\mu_{x})$$
+$$=\sum_{i=1}^{N}(x_{i}-\mu_{x})^2$$
+$$=Var(X)$$
+
+Por exemplo, a matriz de covariâncias para o *iris*:  
+```r
+    > cov(iris[,1:4])
+                 Sepal.Length Sepal.Width Petal.Length Petal.Width
+    Sepal.Length    0.6856935  -0.0424340    1.2743154   0.5162707
+    Sepal.Width    -0.0424340   0.1899794   -0.3296564  -0.1216394
+    Petal.Length    1.2743154  -0.3296564    3.1162779   1.2956094
+    Petal.Width     0.5162707  -0.1216394    1.2956094   0.5810063
+    > var(iris[,1])
+    [1] 0.6856935
+```
+Usando notação matricial, seja $X$ uma matriz com $m=4$ colunas de $n=150$ observações, a matriz de covariância é $Cov_{4 x 4}$:
+
+$$Cov(X') = X'^{T}X'\frac{1}{150}$$
+Em que $X'$ é a matriz cujos valores foram centralizados pela média $x' = x - \mu$.  
+
+```r    
+    > iris2$Sepal.Length <- iris$Sepal.Length - mean(iris$Sepal.Length)
+    > iris2$Sepal.Width <- iris$Sepal.Width - mean(iris$Sepal.Width)
+    > iris2$Petal.Length <- iris$Petal.Length - mean(iris$Petal.Length)
+    > iris2$Petal.Width <- iris$Petal.Width - mean(iris$Petal.Width)
+    > (t(as.matrix(iris2[,1:4])) %*% as.matrix(iris2[,1:4]))*1/150
+                 Sepal.Length Sepal.Width Petal.Length Petal.Width
+    Sepal.Length   0.68112222 -0.04215111    1.2658200   0.5128289
+    Sepal.Width   -0.04215111  0.18871289   -0.3274587  -0.1208284
+    Petal.Length   1.26582000 -0.32745867    3.0955027   1.2869720
+    Petal.Width    0.51282889 -0.12082844    1.2869720   0.5771329
+
+```
+
+Com base nos princípios delineados, a solução desejada por nós é tal que:
+
+1. A covariância entrem medidas é explicada por combinações de variáveis latentes compartilhadas.  
+
+2. Os dados serão explicados por uma matriz de rank mais baixa. Em nosso caso: $\Lambda_{[n\times m]}, m < 4$.  
+
+3. Para cada observação, teremos um valor de score latente $F_{i}$ para cada fator. O valor final de um item é dado pela contribuição individual de cada fator mais uma variância individual. Como vimos:  
+$$x_{1,i} = \sum_{1}{n}F_{i}\lambda _{n} + \epsilon$$.
+
+Estimamos os parâmetros para maximizar as probabilidades dos valores observados em $X$ dadas as equações.     
+$$L(X^{T}X\frac{1}{n} | \Lambda , \psi)$$ 
+
+Determinamos a função de custo conhecendo $\Lambda$ e $\psi$:
+$$C \sim \Lambda \Lambda^{T} + \psi$$  
+
+Em que $\psi$ é uma matriz diagonal. Como vimos anteriormente, a diagonal contém as variâncias, então os parâmetros em $\psi$ regulam a porção de variância dos items governadas por fatores $\lambda$. Dizemos que a diagonal em $\Lambda \Lambda^{T}$ contém as **communalities**.  
+
+O processo de otimização para minimizar erros é mais complexo que o da regressão linear. Os estimadores possíveis aqui são muitos, nenhum deles com solução analítica simples ou garantia de convergência.
+
+---  
+
+A solução anterior, sem levar em conta uma matriz diagonal separada:  
+
+$$Cov \sim \Lambda \Lambda^{T}$$  
+
+é equivalente à análise de componente principal (Principal Component Analysis, PCA). Apesar de possuírem premissas bastante diferentes, lançam mão de um tratamento matemático quase igual e seus valores convergem quando $n$ é alto. Voltaremos ao assunto quando o foco for modelos de ambiente, compressão de informação, modelos gerativos e redução de dimensões.   
+@ https://stats.stackexchange.com/questions/123063/is-there-any-good-reason-to-use-pca-instead-of-efa-also-can-pca-be-a-substitut
+---  
+
+
+**Número de fatores**
+
+@Testando significância/Eigenvalues.
+
+**Análise fatorial confirmatória**
+
+@CFA
+@@ Processo inverso, com parâmetros pré-determinados com base em diagrama (grafo)
+
+#### Equações estruturais
+@ Abrange quaisquer relações como as anteriores, incluindo topolologias de grafos e relações arbitrários (e.g. não paramétrica/probabilística).
+
+@@ Nota: EFA vs. PPCA vs. PCA vs.   
 Wright, S. (1921). "Correlation and causation". J. Agricultural Research. 20: 557–585.
 
 \pagebreak
