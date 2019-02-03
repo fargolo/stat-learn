@@ -23,7 +23,7 @@ $$hale_{i} = \beta_{0} + \beta_{1}n_{i} + \beta_{2}IDH_{i}' + \epsilon$$
 Em geral, temos dois objetivos:  
 **(1)** melhorar a performance do modelo ao adicionar informações pertinentes; **(2)** examinar o efeito sobre as demais variáveis preditoras.  
 
-O primeiro objetivo é intuitivamente óbvio, entretanto precisamos ter cuidado com redundância de informações. Especificamente, há uma troca quase inevitável entre complexidade e robustez do modelo. Acrescentar variáveis ou usar classes de relações mais flexíveis implica dar liberdade para um sobreajuste aos dados. Isto é, nosso modelo aprenderá idiossincrasias sobre o banco de dados disponível e não sobre a relação entre as abstrações. Veremos nas próximas sessões como mitigar esse problema.  
+O primeiro objetivo é intuitivamente óbvio, entretanto precisamos ter cuidado com redundância de informações. Especificamente, há uma troca quase inevitável entre complexidade e robustez do modelo. Acrescentar variáveis ou usar classes de relações mais flexíveis implica dar liberdade para um sobreajuste aos dados. Isto é, nosso modelo aprenderá idiossincrasias sobre os dados disponíveis (datasets WHO e World Bank) e não sobre a relação entre as abstrações (e.g.expectativa de vida saudável). Veremos nas próximas sessões como mitigar esse problema.  
 
 Para o caso da regressão linear múltipla, podemos verificar se há colinearidade (relação linear) entre variáveis preditoras. Se as variáveis preditoras são altamente correlacionadas, é provável que estejamos fornecendo informações redundantes ao modelo, o que é nocivo. Existem alguns indicadores que podem ajudar a tomar essa decisão.  
 
@@ -95,9 +95,9 @@ Para inferências desse tipo, é recomendado que os confundidores sejam mitigado
 ## Grafos e trajetórias causais
 
 Podemos usar os diagramas a seguir para ilustrar uma regressão linear simples:  
-![$y = \beta_{1}*X_{1}$](images/chap3-two-nodes.png)  
+![$y = \beta_{1}*X_{1}$](images/chap3-two-node-diagram.png)  
 Ou múltipla com dois preditores:  
-![$y = \beta_{1}*X_{1} + \beta_{2}*X_{2}$](images/chap3-three-nodes.png)  
+![$y = \beta_{1}*X_{1} + \beta_{2}*X_{2}$](images/chap3-three-node-diagram.png)  
 
 É fácil relacionar nodos com variáveis e conexões com relações descritas pelas equações estimadas. Formalmente, tratamos essas abstrações de **grafos**. O campo começou a ser tratado por Euler em 1736. Chamamos os pontos de nodos, ou vértices, e as ligações de arestas (*edges*). Cada aresta conecta dois nodos.  
 O conceito foi usado para resolver o problema das pontes de Königsberg. Dada uma série de pontes conectando partes diferentes da cidade, fazer um percurso que cruzae cada uma apenas uma vez?  
