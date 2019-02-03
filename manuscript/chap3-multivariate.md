@@ -182,9 +182,13 @@ A inclinação (*slope*), que antes era uma constante (linha reta) $\beta_{1}$ p
 
 Esses detalhes tornam a interpretabilidade dos coeficientes difícil. Normalmente, são usadas heurísticas, como centralizar os dados em torno da média, simplificar o contexto.  
 
+#### Aplicações
+
+@ Mediação e moderação
+
 #### Medidas latentes e análise fatorial
 
-Considere o problema de medir algo inacessível através de canais secundários. Por exemplo, o conceito de *qualidade de vida* é facilmente concebível, apesar de não estar atrelado a uma medida específica, tal qual *altura* ou *tamanho do fêmur*.  
+Considere o problema de medir algo inacessível através de canais secundários. Por exemplo, o conceito de *qualidade de vida* é facilmente concebível, apesar de não estar atrelado a uma medida tangível, tal qual *altura* ou *tamanho do fêmur*.  
 Uma série de métodos foi desenvolvida para lidar com a tarefa de estimar *variáveis latentes*. Em especial, esses modelos são muito populares entre psicometristas. Podemos aplicar modelos de variáveis latentes para muitos contextos.   
 
 Isso é feito quando usamos respostas corretas em um teste formulado por especialistas para quantificar uma habilidade. A *Teoria de Resposta ao Item* é usada em testes como ENEM (Brasil), SAT e GRE (EUA). Relacionamos a estimativa de habilidade $(\theta)$ com a probabilidade de acertar (1) ou errar (0).  
@@ -215,9 +219,11 @@ $$x_{2,n} = F_{1,n}\lambda _{2} + F_{2,n}\lambda _{2}' + \epsilon$$
 $$x_{3,n} = F_{1,n}\lambda _{3} + F_{2,n}\lambda _{3}' + \epsilon$$
 $$x_{4,n} = F_{1,n}\lambda _{4} + F_{2,n}\lambda _{4}' + \epsilon$$
 
-Podemos perceber que a matriz $\Lambda$ terá 8 elementos, com 4 pesos para o fator $F_{1}$ e 4 pesos para o fator $F_{2}$. Sabendo os dois scores latentes de cada sujeito, seria possível reconstruir as observações com algum grau de perda.  
+Podemos perceber que a matriz $\Lambda$ terá 8 elementos, com 4 pesos para o fator $F_{1}$ e 4 pesos para o fator $F_{2}$. Sabendo os dois scores latentes de cada sujeito, seria possível reconstruir as observações com algum grau de perda. Perceba que expressamos qualquer item com apenas dois parâmetros ($F_{1}$ e $F_{2}$). As informações em nosso dataset poderiam então então ser condensadas de $[nx4]$ dimensões para $[nx2]$.
 
-Para estimar os parâmetros acima, usamos uma matriz de covariâncias entre os items. Em nosso exemplo, teríamos uma matriz de dimensão $[4x4]$.  
+Para estimar os parâmetros acima, supomos que a variância de ** cada item possui uma variância intrínseca e uma variância compartilhada, que é determinada pelos fatores latentes**.
+Usamos uma matriz de covariâncias entre os items para estimar os pesos dos fatores latentes. Além disso, estimamos parâmetros relacionados à diagonal da matriz (variâncias).  
+Em nosso exemplo, teríamos uma matriz de dimensão $[4x4]$.  
 
 $$CovMat_{x} = \begin{pmatrix} 
 . & . & . & .  \\ 
@@ -246,16 +252,16 @@ Por exemplo, a matriz de covariâncias para o *iris*:
     > var(iris[,1])
     [1] 0.6856935
 ```
-Usando notação matricial, seja $X$ uma matriz com $m=4$ colunas de $n=150$ observações, a matriz de covariância é $Cov_{4 x 4}$:
+Usando notação matricial, seja $X$ uma matriz com $m=4$ colunas de $n=150$ observações, a matriz de covariância $Cov_{4 x 4}$ é:
 
 $$Cov(X') = X'^{T}X'\frac{1}{150}$$
-Em que $X'$ é a matriz cujos valores foram centralizados pela média $x' = x - \mu$.  
+$X'$ é a matriz cujos valores foram centralizados pela média $x' = x - \mu$. Assim o produto de $X$ pela transposta retorna em cada elemento $x_{ij}$ o valor $\sum_{i}^{n}(x_{i}-\mu_{i})(x_{j}-\mu_{j})$. Fácil implementar manualmente:  
 
 ```r    
     > iris2$Sepal.Length <- iris$Sepal.Length - mean(iris$Sepal.Length)
     > iris2$Sepal.Width <- iris$Sepal.Width - mean(iris$Sepal.Width)
     > iris2$Petal.Length <- iris$Petal.Length - mean(iris$Petal.Length)
-    > iris2$Petal.Width <- iris$Petal.Width - mean(iris$Petal.Width)
+    > iris2$Petal.Width <- iris$Petal.Width - mean(iris$Petal.Width
     > (t(as.matrix(iris2[,1:4])) %*% as.matrix(iris2[,1:4]))*1/150
                  Sepal.Length Sepal.Width Petal.Length Petal.Width
     Sepal.Length   0.68112222 -0.04215111    1.2658200   0.5128289
@@ -274,40 +280,135 @@ Com base nos princípios delineados, a solução desejada por nós é tal que:
 3. Para cada observação, teremos um valor de score latente $F_{i}$ para cada fator. O valor final de um item é dado pela contribuição individual de cada fator mais uma variância individual. Como vimos:  
 $$x_{1,i} = \sum_{1}{n}F_{i}\lambda _{n} + \epsilon$$.
 
-Estimamos os parâmetros para maximizar as probabilidades dos valores observados em $X$ dadas as equações.     
-$$L(X^{T}X\frac{1}{n} | \Lambda , \psi)$$ 
+4. Cada fator possui uma variância intrínseca, a qual estimaremos somando uma matriz diagonal $\psi$ à nossa matriz de pesos.
 
-Determinamos a função de custo conhecendo $\Lambda$ e $\psi$:
+Estimamos os parâmetros para maximizar as probabilidades (*Max. Likelihood*) dos valores observados em $X$ dadas as equações.     
+$$L(X^{T}X\frac{1}{n} | \Lambda , \psi)$$   
+
+Determinamos a função de custo conhecendo $\Lambda$ e $\psi$:  
 $$C \sim \Lambda \Lambda^{T} + \psi$$  
 
-Em que $\psi$ é uma matriz diagonal. Como vimos anteriormente, a diagonal contém as variâncias, então os parâmetros em $\psi$ regulam a porção de variância dos items governadas por fatores $\lambda$. Dizemos que a diagonal em $\Lambda \Lambda^{T}$ contém as **communalities**.  
+Em que $\psi$ é uma matriz diagonal com mesmo rank que $\Lambda$. Como vimos anteriormente, a diagonal contém as variâncias, então os parâmetros em $\psi$ regulam a porção de variância dos items governadas por fatores $\lambda$. Dizemos que a diagonal em $\Lambda \Lambda^{T}$ contém as **communalities** (variância intrínseca).  
 
 O processo de otimização para minimizar erros é mais complexo que o da regressão linear. Os estimadores possíveis aqui são muitos, nenhum deles com solução analítica simples ou garantia de convergência.
 
----  
+#### Semelhanças entre técnicas de redução de dimensões: EFA, PCA probabilístico, PCA, Autoencoder.
 
-A solução anterior, sem levar em conta uma matriz diagonal separada:  
+Podemos levar em consideração a solução anterior sem uma matriz diagonal separada:  
 
 $$Cov \sim \Lambda \Lambda^{T}$$  
 
-é equivalente à análise de componente principal (Principal Component Analysis, PCA). Apesar de possuírem premissas bastante diferentes, lançam mão de um tratamento matemático quase igual e seus valores convergem quando $n$ é alto. Voltaremos ao assunto quando o foco for modelos de ambiente, compressão de informação, modelos gerativos e redução de dimensões.   
-@ https://stats.stackexchange.com/questions/123063/is-there-any-good-reason-to-use-pca-instead-of-efa-also-can-pca-be-a-substitut
----  
+Essa formulação é equivalente à análise de componente principal (Principal Component Analysis, PCA). Aqui, nossos pesos estimarão também a variância intrínseca. É um método computacionalmente barato para reduzir dimensões preservando informações. Matematicamente, a diferença entre PCA e EFA está no fato de o segundo estimar separadamente parâmetros para covariância compartilhada e variância individual. Uma técnica 'intermediária' pouco conhecida é o PCA probabilístico (PPCA), em que levamos em conta uma matriz diagonal mais simples. 
 
+$$Cov \sim \Lambda \Lambda^{T} + \sigma^{2}I$$  
+
+Isto é: uma matriz identidade com ruído introduzido através de apenas um parâmetro ($\sigma^{2}$).  
+
+Uma curiosidade é que a diagonal acaba influindo menos com o aumento do rank das matrizes. Então, o resultado das técnicas acima converge em situações com alta dimensionalidade ($n \rightarrow \infty$). Uma discussão mais completa pode ser conferida em outro lugar (ver referências).  
+
+Ainda, vale a pena mencionar que redes neurais do tipo *autoencoder* possuem formulação semelhante. Especificamente, um autoencoder de uma camada interna e certas restrições na função de ativação é idêntico ao PCA. Entretanto, podemos usar **mais** dimensões que o input, além de múltiplas camadas e funções não-lineares. Dessa maneira, incrementamos o poder do modelo generativo, assim como ficamos mais vulneráveis a sobreajuste.   
+
+Voltaremos ao assunto quando o foco for modelos de ambiente, compressão de informação, modelos gerativos e redução de dimensões.   
 
 **Número de fatores**
 
-@Testando significância/Eigenvalues.
+Não tocamos em um ponto crucial: qual o número ótimo de fatores? Podemos explicar a covariância usando um número arbitrário de fatores latentes. A tendência é melhorar indicadores de perfomance sob a pena de saturação (e.g.sobreajuste, interpretabilidade difícil). Existem procedimentos estabelecidos para balancear o poder explicativo com simplicidade do modelo.  
+
+Em geral, busca-se um número mínimo de fatores que maximize o poder de explicação. Considerando graus de liberdade($df$) e erros do modelo (estatística $X^2$), dois índices populares são o RMSEA e o CFI. Assim como no cálculo de $R^2$, o racional é dimensionar erros, porém aqui penalizamos a quantidade de parâmetros.  
+
+Outra métrica bastante utilizada é observar a influência de cada fator sobre a matriz de covariância.  
+
+Ao multiplicarmos um vetor por uma matriz, mudamos sua magnitude e sua direção. 
+
+![Efeito de multiplicação entre vetores e uma matriz A](images/chap3-lineartransf.png)
+
+Os vetores alinhados com a matriz (e.g. aqueles na diagonal da transformação acima) apenas mudam de tamanho após a transformação. 
+
+São os autovetores da matriz. 
+
+Uma das formas de extração de fatores é através dos eixos principais. Neste método, decompomos a matriz original em vetores ortogonais multiplicados por escalares (autodecomposição, *eigen/spectral decompositon*): autovalores e autovetores (eixos).  
+
+Os autovalores indicam a covariância dos dados ao longo daquele eixo e podem ser usadas como parâmetro. Em geral, os primeiros eixos têm maior autovalores. Existem diversas heurísticas recomendando métodos para escolher números de fatores pelo tamanho dos autovalores. Uma delas é considerar apenas autovalores maiores que 1. Outra é considerar o ponto da curva em que há um aparente ponto de descontinuação ("joelho").  
 
 **Análise fatorial confirmatória**
 
-@CFA
-@@ Processo inverso, com parâmetros pré-determinados com base em diagrama (grafo)
+Os processos descritos acima são exploratórios por natureza. Buscamos o melhor ajuste para fatores latentes sem antes determinar uma estrutura. É um bom procedimento para redução de dimensões e compressão de informação, porém, se desejamos interpretabilidade e validade científica, há alguns pontos sensíveis.  
+
+Pensando na elaboração de uma escala para medir um traço de personalidade, retomamos o argumento de Popper (capítulo 2) contra o indutivismo. É desejável que tenhamos um modelo prévio e hipóteses testáveis de antemão. Do contrário, é fácil encontrar um modelo oferecendo bom ajuste em quase qualquer caso.
+
+Na análise fatorial confirmatória, fazemos uma restrição direta ao modelo. Os parâmetros são pré-determinados com base em diagrama (grafo) expresso por quem conduz a análise. Assim, podemos especificar uma relações:
+
+![](images/chap3-cfa.png)
+
+No diagrama acima, o primeiro fator latente possui cargas nas relações com items $X_{3},X_{4},X_{5}$ e o segundo fator com $X_{1},X_{2}$.  
+
+Nesse caso, os estimadores serão um pouco mais complexos.
 
 #### Equações estruturais
-@ Abrange quaisquer relações como as anteriores, incluindo topolologias de grafos e relações arbitrários (e.g. não paramétrica/probabilística).
 
-@@ Nota: EFA vs. PPCA vs. PCA vs.   
+Equações estruturais são o *framework* abrangendo quaisquer dos modelos anteriores, incluindo topolologias de grafos e relações arbitrárias (e.g. não paramétrica/probabilísticas).  
+
+Assim, podemos desenhar um diagrama de relações entre entidades, declarar relações entre medidas e testar adequação do modelo. Como vimos, Judea Pearl costurou esses métodos quantitativos com uma base filosófica coerente, fazendo uso dos conceitos de contrafatual e testagem de hipóteses.  
+Esses modelos são úteis em muitos campos para descrever estatisticamente relações de elementos múltiplos num sistemas complexo. Como sempre, devemos ter cuidado com a flexibilidade do modelo. Em especial, alguns procedimentos recomendados são de difícil conciliação com uma base hipotético-dedutiva (e.g. mudança ad-hoc do modelo após observação de índices de modificação).
+
+#### Aplicações
+
+Ajustando análise fatorial através do pacote **psych**:  
+
+```r
+   >library(psych)
+   >psych::fa(cov(iris[,1:4]),nfactors = 3)
+   > psych::fa(cov(iris[,1:4]),nfactors = 3)
+   Factor Analysis using method =  minres
+   Call: psych::fa(r = cov(iris[, 1:4]), nfactors = 3)
+   Standardized loadings (pattern matrix) based upon correlation matrix
+                  MR1   MR2   MR3   h2     u2 com
+   Sepal.Length  1.00  0.14 -0.23 0.99 0.0055 1.1
+   Sepal.Width  -0.04  0.77  0.04 0.59 0.4093 1.0
+   Petal.Length  0.90 -0.22  0.02 1.00 0.0050 1.1
+   Petal.Width   0.93 -0.04  0.27 0.98 0.0150 1.2  
+ 
+                          MR1  MR2  MR3
+   SS loadings           2.72 0.71 0.13
+   Proportion Var        0.68 0.18 0.03
+   Cumulative Var        0.68 0.86 0.89
+   Proportion Explained  0.76 0.20 0.04
+   Cumulative Proportion 0.76 0.96 1.00  
+ 
+    With factor correlations of 
+         MR1   MR2   MR3
+   MR1  1.00 -0.32  0.02
+   MR2 -0.32  1.00 -0.40
+   MR3  0.02 -0.40  1.00   
+ 
+   Mean item complexity =  1.1
+   Test of the hypothesis that 3 factors are sufficient.   
+ 
+   The degrees of freedom for the null model are  6  and the objective function was  4.81
+   The degrees of freedom for the model are -3  and the objective function was  0    
+ 
+   The root mean square of the residuals (RMSR) is  0 
+   The df corrected root mean square of the residuals is  NA   
+ 
+   Fit based upon off diagonal values = 1
+   Measures of factor score adequacy             
+                                                      MR1  MR2  MR3
+   Correlation of (regression) scores with factors   1.00 0.95 0.95
+   Multiple R square of scores with factors          1.00 0.91 0.91
+   Minimum correlation of possible factor scores     0.99 0.82 0.81
+```
+
+Para equações estruturais em geral, temos a lib **lavaan**.
+
+```r
+
+```
+
+#### Referências 
+
 Wright, S. (1921). "Correlation and causation". J. Agricultural Research. 20: 557–585.
+
+https://stats.stackexchange.com/questions/123063/is-there-any-good-reason-to-use-pca-instead-of-efa-also-can-pca-be-a-substitut
+https://steemit.com/steemstem/@dexterdev/linear-transformations-a-20-sbd-coding-contest-announcement
 
 \pagebreak

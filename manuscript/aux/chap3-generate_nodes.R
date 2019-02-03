@@ -15,12 +15,12 @@ sim_regn_plot <- ggnetwork(sim_regn)
 
 ggplot(sim_regn_plot, aes(x = x, y = y, 
                           xend = xend, yend = yend)) +
-  geom_nodes(color="gold",size=22) +
-  geom_edges(arrow = arrow(length = unit(10, "pt"),type = "closed"),
+  geom_nodes(color="gold",size=11) +
+  geom_edges(arrow = arrow(length = unit(5, "pt"),type = "closed"),
              color = "white",
-             curvature = 0.1,size=0.5) +
+             curvature = 0.1,size=0.25) +
   geom_nodetext(aes(label = vertex.names),
-                fontface = "bold",size=2.7) +
+                fontface = "bold",size=1.35) +
   xlim(-0.2,1.2)+ylim(-0.2,1.2)+
   theme_minimal()+
   theme(axis.text = element_blank(),
@@ -41,13 +41,13 @@ mult_regn_plot <- ggnetwork(mult_regn)
 
 ggplot(mult_regn_plot, aes(x = x, y = y, 
                           xend = xend, yend = yend)) +
-  geom_nodes(color="gold",size=22) +
-  geom_edges(arrow = arrow(length = unit(8, "pt"),
+  geom_nodes(color="gold",size=11) +
+  geom_edges(arrow = arrow(length = unit(4, "pt"),
                            type = "closed"),
              color = "white",
-             curvature = 0.2,size=0.3) +
+             curvature = 0.2,size=0.15) +
   geom_nodetext(aes(label = vertex.names),
-                fontface = "bold",size=2.7) +
+                fontface = "bold",size=1.35) +
   xlim(-0.2,1.2)+ylim(-0.2,1.2)+
   theme_minimal()+
   theme(axis.text = element_blank(),
@@ -55,4 +55,33 @@ ggplot(mult_regn_plot, aes(x = x, y = y,
         panel.background = element_rect(fill = "grey25"),
         panel.grid = element_blank())
 
+## CFA
+cfa_reg <- matrix(c(1,0,0,0,0,0,1,
+                    0,1,0,0,0,0,1,
+                    0,0,1,0,0,1,0,
+                    0,0,0,1,0,1,0,
+                    0,0,0,0,1,1,0,
+                    0,0,0,0,0,1,0,
+                    0,0,0,0,0,0,1),ncol=7,nrow = 7)
+cfa_regn <- network(cfa_reg)
 
+set.vertex.attribute(cfa_regn, attrname = "vertex.names", 
+                     value = c("X1","X2","X3","X4","X5","F1","F2"))
+
+cfa_regn_plot <- ggnetwork(cfa_regn)
+
+ggplot(cfa_regn_plot, aes(x = x, y = y, 
+                           xend = xend, yend = yend)) +
+  geom_nodes(color="gold",size=11) +
+  geom_edges(arrow = arrow(length = unit(4, "pt"),
+                           type = "closed"),
+             color = "white",
+             curvature = 0.5,size=0.15) +
+  geom_nodetext(aes(label = vertex.names),
+                fontface = "bold",size=1.35) +
+  xlim(-0.2,1.2)+ylim(-0.2,1.2)+
+  theme_minimal()+
+  theme(axis.text = element_blank(),
+        axis.title = element_blank(),
+        panel.background = element_rect(fill = "grey25"),
+        panel.grid = element_blank())
