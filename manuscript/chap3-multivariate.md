@@ -353,55 +353,103 @@ Esses modelos são úteis em muitos campos para descrever estatisticamente rela�
 
 #### Aplicações
 
-Ajustando análise fatorial através do pacote **psych**:  
+Os grande cinco (Big Five) traços de personalidade são construtos consistentemente encontrados na busca por fatores latentes. Eles são: agradabilidade, neuroticismo, abertura a experiencias, conscienciosidade, extroversão.  
+
+Usaremos dados do https://openpsychometrics.org/ . O dataset BIG5 tem dados demográficos (idade, gênero, país) e 50 medições em items do International Personality Item Pool. O tamanho amostral é de 19,719. Faremos análise fatorial exploratória e confirmatória através dos pacotes **psych**, **sem** e **lavaan**. 
 
 ```r
+   >system("wget http://openpsychometrics.org/_rawdata/BIG5.zip")
+   (...)
+   Resolving openpsychometrics.org (openpsychometrics.org)... 69.164.197.103
+   Connecting to openpsychometrics.org (openpsychometrics.org)|69.164.197.103|:80... connected.
+   (...)
+   Saving to: ‘BIG5.zip’
+   (...)
+   2019-02-04 09:09:39 (624 KB/s) - ‘BIG5.zip’ saved [523351/523351]
+   > system("unzip BIG5.zip")
+   Archive:  BIG5.zip
+   inflating: BIG5/codebook.txt       
+   inflating: BIG5/data.csv      
+   
    >library(psych)
-   >psych::fa(cov(iris[,1:4]),nfactors = 3)
-   > psych::fa(cov(iris[,1:4]),nfactors = 3)
-   Factor Analysis using method =  minres
-   Call: psych::fa(r = cov(iris[, 1:4]), nfactors = 3)
-   Standardized loadings (pattern matrix) based upon correlation matrix
-                  MR1   MR2   MR3   h2     u2 com
-   Sepal.Length  1.00  0.14 -0.23 0.99 0.0055 1.1
-   Sepal.Width  -0.04  0.77  0.04 0.59 0.4093 1.0
-   Petal.Length  0.90 -0.22  0.02 1.00 0.0050 1.1
-   Petal.Width   0.93 -0.04  0.27 0.98 0.0150 1.2  
- 
-                          MR1  MR2  MR3
-   SS loadings           2.72 0.71 0.13
-   Proportion Var        0.68 0.18 0.03
-   Cumulative Var        0.68 0.86 0.89
-   Proportion Explained  0.76 0.20 0.04
-   Cumulative Proportion 0.76 0.96 1.00  
- 
-    With factor correlations of 
-         MR1   MR2   MR3
-   MR1  1.00 -0.32  0.02
-   MR2 -0.32  1.00 -0.40
-   MR3  0.02 -0.40  1.00   
- 
-   Mean item complexity =  1.1
-   Test of the hypothesis that 3 factors are sufficient.   
- 
-   The degrees of freedom for the null model are  6  and the objective function was  4.81
-   The degrees of freedom for the model are -3  and the objective function was  0    
- 
-   The root mean square of the residuals (RMSR) is  0 
-   The df corrected root mean square of the residuals is  NA   
- 
-   Fit based upon off diagonal values = 1
-   Measures of factor score adequacy             
-                                                      MR1  MR2  MR3
-   Correlation of (regression) scores with factors   1.00 0.95 0.95
-   Multiple R square of scores with factors          1.00 0.91 0.91
-   Minimum correlation of possible factor scores     0.99 0.82 0.81
+   >library(lavaan)
+   >library(sem)
+   >bigf_data <- read.csv("BIG5/data.csv",sep = "\t")
+   >names(bigf_data)
+   [1] "race"    "age"     "engnat"  "gender"  "hand"   
+   [6] "source"  "country" "E1"      "E2"      "E3"     
+   [11] "E4"      "E5"      "E6"      "E7"      "E8"     
+   [16] "E9"      "E10"     "N1"      "N2"      "N3"     
+   [21] "N4"      "N5"      "N6"      "N7"      "N8"     
+   [26] "N9"      "N10"     "A1"      "A2"      "A3"     
+   [31] "A4"      "A5"      "A6"      "A7"      "A8"     
+   [36] "A9"      "A10"     "C1"      "C2"      "C3"     
+   [41] "C4"      "C5"      "C6"      "C7"      "C8"     
+   [46] "C9"      "C10"     "O1"      "O2"      "O3"     
+   [51] "O4"      "O5"      "O6"      "O7"      "O8"     
+   [56] "O9"      "O10"    
 ```
-
-Para equações estruturais em geral, temos a lib **lavaan**.
+Vamos verificar o que acontece se ajustarmos um modelo com 5 fatores latentes:  
 
 ```r
+    >library(lavaan)
+    >library(psych)
+    >efa_big <- fa(bigf_data[,8:57],nfactors = 5)
+    >efa_big
+    (..)
+    RMSEA index =  0.055  and the 90 % confidence intervals are  0.054 0.055
+```
+Observamos um valor baixo de RMSEA, o que indica baixa magnitude de erros por grau de liberdade.  É interessante notar que não termos indicamos quais items avaliam quais fatores (e.g. Items O1 e O2 estão atrelados à abertura a experiência). Se as premissas estiverem corretas, para cada item, a solução encontrada deve indicar alta carga em um fator e baixa em outros.  
 
+É o que se verificar. Selecionando as estimativas para três items de três grupos. O fator com maior carga está marcado com um asterisco.    
+
+```r
+    (...)
+    Factor Analysis using method =  minres
+    Call: fa(r = bigf_data[, 8:57], nfactors = 5)
+    Standardized loadings (pattern matrix) based upon correlation matrix
+          MR1   MR2   MR3   MR5   MR4   h2   u2 com
+    E1   0.69*  0.04 -0.03 -0.01  0.00 0.46 0.54 1.0
+    E2  -0.70* -0.08 -0.04  0.04  0.00 0.48 0.52 1.0
+    E3   0.63* -0.17  0.16  0.09 -0.06 0.57 0.43 1.3
+    (...)
+    N1  -0.06  0.69*  0.10  0.05 -0.05 0.49 0.51 1.1
+    N2   0.07 -0.50* -0.01 -0.09  0.05 0.26 0.74 1.1
+    N3  -0.12  0.61*  0.20  0.10  0.01 0.43 0.57 1.3
+    (...)
+    A1   0.05  0.09 -0.44*  0.02 -0.07 0.20 0.80 1.2
+    A2   0.28 -0.04  0.50* -0.05  0.06 0.41 0.59 1.6
+    A3   0.17  0.27 -0.41* -0.15  0.10 0.27 0.73 2.6
+    (...)
+```
+Extraindo a solução:  
+
+```r
+    >efa_bigst <- structure.sem(efa_big) 
+    >efa_bigst
+           Path        Parameter Value
+    [1,] "MR1->E1"   "F1E1"    NA   
+    [2,] "MR1->E2"   "F1E2"    NA   
+    [3,] "MR1->E3"   "F1E3"    NA   
+    [4,] "MR1->E4"   "F1E4"    NA   
+```
+Temos os fatores (MR) e os nodos aos quais eles estão conectados, descartando aqueles de menor magnitude/significância. Podemos ajustar um modelo confirmatório a partir dessas especificações:
+
+```r
+    >big_sem <- sem(efa_bigst,S = cov(bigf_data[,8:57]),N = 19719)
+    >summary(big_sem)
+    (...)
+    >sem.diagram(big_sem,main = "Big Five",e.size=0.05)
+```
+![](images/chap3-bignodes.png)
+
+O pacote lavaan permite especificar uma família maior de modelos e é bastante popular para SEM em R. A sintaxe é:  
+
+```r
+    >model <- c(' 
+    F1 =~ X1 + X2 + X3
+    F2 =~ Y1 + Y2 + Y3')
+    >lavaan (model,data,...)
 ```
 
 #### Referências 
