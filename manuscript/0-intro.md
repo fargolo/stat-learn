@@ -1,8 +1,8 @@
 ![](images/cover-rotate.jpg)  
 
-# Ciência de dados
-**Filosofia e aplicações**
-Felipe Coelho Argolo
+# Ciência de dados  
+**Filosofia e aplicações**  
+Felipe Coelho Argolo  
 
 \pagebreak
 
@@ -10,8 +10,8 @@ Página intencionalmente deixada em branco.
 
 \pagebreak
 
-Versão 0.4: Introdução; Capítulo 0; Capítulo 1; Capítulo 2; Capítulo 3; Capítulo 4; Capítulo 5 (em progresso).
-01 de Fevereiro de 2019
+Versão 0.9: Introdução; Capítulo 0; Capítulo 1; Capítulo 2; Capítulo 3; Capítulo 4; Capítulo 5 (em progresso).
+04 de Fevereiro de 2019
 
 Para comentários, críticas, sugestões, ou simplesmente mandar um *oi*, entre em contato através do e-mail: felipe.c.argolo@protonmail.com.  
 
@@ -22,7 +22,7 @@ Para comentários, críticas, sugestões, ou simplesmente mandar um *oi*, entre 
 *Remember that all models are wrong; the practical question is how wrong do they have to be to not be useful*  
 *George Box & Norman R. Draper, Empirical Model-Building and Response Surfaces* 
 
-Uma antiga aplicação da matemática é quantidades em cenários desconhecidos usando observações anteriores. Civilizações antigas, como os babilônios, usavam interpolação linear para estimar informações: fazendo o censo populacional com intervalo (e.g. 4 em 4 anos), estimavam o valor dos anos não medidos, supondo que eles quantidades centrais em relação aos vizinhos.  
+Uma antiga aplicação da matemática é estimar quantidades em cenários desconhecidos usando observações anteriores. Os babilônios usavam interpolação linear para estimar informações: fazendo o censo populacional com intervalo (e.g. 4 em 4 anos), estimavam o valor dos anos não medidos, supondo que eles eram quantidades centrais em relação aos vizinhos.  
 Métodos iterativos também foram usados para aproximar a raiz quadrada de números naturais ($\sqrt{2}$) e números irracionais $(\pi)$.  
   
 Essas técnicas deram fruto a abstrações mais gerais, aos campos da estatística e dos métodos numéricos. Em particular, o último século (XX) contou com a invenção do computador universal e dos processadores eletrônicos, impulsionando o poder de cálculos vertiginosamente.  

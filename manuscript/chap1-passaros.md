@@ -106,6 +106,9 @@ Usamos a notação $N \sim (\mu, \sigma^{2})$ para descrever uma distribuição 
 
 $$P(x)=\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{ -\frac{(x-\mu)^{2}}{2\sigma^{2}}}$$
 
+O valor $\frac{1}{\sqrt{2\pi}}$ surge como normalizador para avaliarmos a função como densidade de probabilidade. A integral de $-\infty$ a $+\infty$ deve ser 1. O valor $\pi$ surge da integral de Gauss $\int_{-\infty}^{+\infty} e^{-x^{2}}dx = \sqrt{pi}$ e decorre do fato de $2\pi i$ ser período da função $e^{x}$.  
+
+
 Poderíamos encontrar características desejáveis, como a simetria citada acima, em outras distribuições. 
 
 Então, por que usamos uma equação mais complexa?  

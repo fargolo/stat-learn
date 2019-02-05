@@ -1,8 +1,4 @@
-\pagebreak
-
-# Início de textos em construção.
-
-\pagebreak
+![](images/chap3-cover.png)
 
 # Capítulo 3 : Análise multivariada, grafos e inferência causal 
 
@@ -180,11 +176,7 @@ O segundo termo não depende de $X_{1}$, então:
 $$\frac{d}{dx_{1}}(y) = \frac{d}{dx_{1}}(\beta_{1} + x_{2}\beta_{3})$$
 A inclinação (*slope*), que antes era uma constante (linha reta) $\beta_{1}$ passa a ter um termo somado, que é a multiplicação da constante estimada $\beta_{3}$ pelo valor de $x_{2}$. Então temos inclinação diferente para cada valor de moderador!  
 
-Esses detalhes tornam a interpretabilidade dos coeficientes difícil. Normalmente, são usadas heurísticas, como centralizar os dados em torno da média, simplificar o contexto.  
-
-#### Aplicações
-
-@ Mediação e moderação
+Esses detalhes tornam a interpretabilidade dos coeficientes difícil. Normalmente, são usadas heurísticas, como centralizar os dados em torno da média, simplificar o contexto.
 
 #### Medidas latentes e análise fatorial
 
@@ -221,7 +213,7 @@ $$x_{4,n} = F_{1,n}\lambda _{4} + F_{2,n}\lambda _{4}' + \epsilon$$
 
 Podemos perceber que a matriz $\Lambda$ terá 8 elementos, com 4 pesos para o fator $F_{1}$ e 4 pesos para o fator $F_{2}$. Sabendo os dois scores latentes de cada sujeito, seria possível reconstruir as observações com algum grau de perda. Perceba que expressamos qualquer item com apenas dois parâmetros ($F_{1}$ e $F_{2}$). As informações em nosso dataset poderiam então então ser condensadas de $[nx4]$ dimensões para $[nx2]$.
 
-Para estimar os parâmetros acima, supomos que a variância de ** cada item possui uma variância intrínseca e uma variância compartilhada, que é determinada pelos fatores latentes**.
+Para estimar os parâmetros acima, supomos que a variância de **cada item possui uma variância intrínseca e uma variância compartilhada, que é determinada pelos fatores latentes**.
 Usamos uma matriz de covariâncias entre os items para estimar os pesos dos fatores latentes. Além disso, estimamos parâmetros relacionados à diagonal da matriz (variâncias).  
 Em nosso exemplo, teríamos uma matriz de dimensão $[4x4]$.  
 
@@ -254,7 +246,7 @@ Por exemplo, a matriz de covariâncias para o *iris*:
 ```
 Usando notação matricial, seja $X$ uma matriz com $m=4$ colunas de $n=150$ observações, a matriz de covariância $Cov_{4 x 4}$ é:
 
-$$Cov(X') = X'^{T}X'\frac{1}{150}$$
+$$Cov(X') = X'^{T}X'\frac{1}{n} = X'^{T}X'\frac{1}{150}$$
 $X'$ é a matriz cujos valores foram centralizados pela média $x' = x - \mu$. Assim o produto de $X$ pela transposta retorna em cada elemento $x_{ij}$ o valor $\sum_{i}^{n}(x_{i}-\mu_{i})(x_{j}-\mu_{j})$. Fácil implementar manualmente:  
 
 ```r    
@@ -294,7 +286,7 @@ O processo de otimização para minimizar erros é mais complexo que o da regres
 
 #### Semelhanças entre técnicas de redução de dimensões: EFA, PCA probabilístico, PCA, Autoencoder.
 
-Podemos levar em consideração a solução anterior sem uma matriz diagonal separada:  
+Podemos levar em consideração a solução anterior sem uma matriz diagonal $\psi$ atrelada:
 
 $$Cov \sim \Lambda \Lambda^{T}$$  
 
@@ -304,7 +296,13 @@ $$Cov \sim \Lambda \Lambda^{T} + \sigma^{2}I$$
 
 Isto é: uma matriz identidade com ruído introduzido através de apenas um parâmetro ($\sigma^{2}$).  
 
-Uma curiosidade é que a diagonal acaba influindo menos com o aumento do rank das matrizes. Então, o resultado das técnicas acima converge em situações com alta dimensionalidade ($n \rightarrow \infty$). Uma discussão mais completa pode ser conferida em outro lugar (ver referências).  
+Uma curiosidade é que a diagonal acaba influindo menos com o aumento do rank das matrizes. Então, o resultado das técnicas acima converge em situações com alta dimensionalidade ($n \rightarrow \infty$). Uma discussão mais completa pode ser conferida em outro lugar (ver referências). Em sumário.
+
+
+$$PCA: Cov \sim \Lambda \Lambda^{T}$$  
+$$PPCA: Cov \sim \Lambda \Lambda^{T} + \sigma^{2}I$$  
+$$EFA: Cov \sim \Lambda \Lambda^{T} + \psi$$  
+(Aqui, usamos $\sim$ não para denominar semelhança, mas sim que maximizaremos o likelihood de $Cov$ com uma expressão em função dos termos à direita)
 
 Ainda, vale a pena mencionar que redes neurais do tipo *autoencoder* possuem formulação semelhante. Especificamente, um autoencoder de uma camada interna e certas restrições na função de ativação é idêntico ao PCA. Entretanto, podemos usar **mais** dimensões que o input, além de múltiplas camadas e funções não-lineares. Dessa maneira, incrementamos o poder do modelo generativo, assim como ficamos mais vulneráveis a sobreajuste.   
 
@@ -312,7 +310,9 @@ Voltaremos ao assunto quando o foco for modelos de ambiente, compressão de info
 
 **Número de fatores**
 
-Não tocamos em um ponto crucial: qual o número ótimo de fatores? Podemos explicar a covariância usando um número arbitrário de fatores latentes. A tendência é melhorar indicadores de perfomance sob a pena de saturação (e.g.sobreajuste, interpretabilidade difícil). Existem procedimentos estabelecidos para balancear o poder explicativo com simplicidade do modelo.  
+Não tocamos em um ponto crucial: qual o número ótimo de fatores?  
+
+Podemos explicar a covariância usando um número arbitrário de fatores latentes. A tendência é melhorar indicadores de perfomance sob a pena de saturação (e.g.sobreajuste, interpretabilidade difícil). Existem procedimentos estabelecidos para balancear o poder explicativo com simplicidade do modelo.  
 
 Em geral, busca-se um número mínimo de fatores que maximize o poder de explicação. Considerando graus de liberdade($df$) e erros do modelo (estatística $X^2$), dois índices populares são o RMSEA e o CFI. Assim como no cálculo de $R^2$, o racional é dimensionar erros, porém aqui penalizamos a quantidade de parâmetros.  
 
@@ -322,13 +322,15 @@ Ao multiplicarmos um vetor por uma matriz, mudamos sua magnitude e sua direção
 
 ![Efeito de multiplicação entre vetores e uma matriz A](images/chap3-lineartransf.png)
 
-Os vetores alinhados com a matriz (e.g. aqueles na diagonal da transformação acima) apenas mudam de tamanho após a transformação. 
+Os vetores alinhados com a matriz (e.g. aqueles na diagonal da transformação acima) apenas mudam de tamanho após a transformação.  
 
-São os autovetores da matriz. 
+São os autovetores da matriz.  
 
 Uma das formas de extração de fatores é através dos eixos principais. Neste método, decompomos a matriz original em vetores ortogonais multiplicados por escalares (autodecomposição, *eigen/spectral decompositon*): autovalores e autovetores (eixos).  
 
-Os autovalores indicam a covariância dos dados ao longo daquele eixo e podem ser usadas como parâmetro. Em geral, os primeiros eixos têm maior autovalores. Existem diversas heurísticas recomendando métodos para escolher números de fatores pelo tamanho dos autovalores. Uma delas é considerar apenas autovalores maiores que 1. Outra é considerar o ponto da curva em que há um aparente ponto de descontinuação ("joelho").  
+Em geral, os primeiros eixos têm maior autovalores. Existem diversas heurísticas recomendando métodos para escolher números de fatores pelo tamanho dos autovalores. Uma delas é considerar apenas autovalores maiores que 1. Outra é considerar o ponto da curva em que há um aparente ponto de descontinuação ("joelho").  
+
+É razoável pensar que autovetores associados a autovalores altos capturam muita informação sobre variância (individual e compartilhada) dos items.  
 
 **Análise fatorial confirmatória**
 

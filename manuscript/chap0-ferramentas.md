@@ -11,7 +11,8 @@ Programação com estatística básica
 
 ---
 
-*Um aprendiz do caminho Unix veio ao Mestre Foo e disse: “Estou confuso. Não é o caminho Unix que cada programa deve se concentrar em uma coisa e fazê-la bem?  
+*Um aprendiz do caminho Unix veio ao Mestre Foo e disse: “Estou confuso. Não é o caminh
+Unix que cada programa deve se concentrar em uma coisa e fazê-la bem?  
 Mestre Foo assentiu.  
 O aprendiz continuou: “Também não é do caminho Unix que a roda não deve ser reinventada?  
 Mestre Foo assentiu novamente.  
@@ -137,7 +138,10 @@ A mais simples é a lista. Uma lista é um conjunto de objeto de quaisquer tipos
     [1] "a" "b" "c" “d”
     >class(mlist)
     [1] "list"
-    Podemos acessar estruturas internas pelo nome usando o operador $:
+```
+    Podemos acessar estruturas internas da maioria dos objetos em R pelo nome usando o operador $:
+
+```r
     >typeof(mlist$a)
     [1] "double"
     >typeof(mlist$b)
@@ -484,5 +488,8 @@ Nossa função pode ser escrita:
     * Adicione o rótulo de texto a um dos pontos
     * Mude títulos (principal, eixos x e y, legenda)
     * Mude o tema de fundo. Dica: experimente os temas da lib *ggthemes*
-    
+10. Usando loops, escreva uma função que retorna uma aproximação de $e$. 
+  * Lembre-se de que $e = \lim_{n \rightarrow \infty} (1+\frac{1}{n})^n$.  
+
+
 \pagebreak

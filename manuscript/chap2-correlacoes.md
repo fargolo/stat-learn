@@ -241,6 +241,7 @@ A função característica é a transformada de Fourier da função de probabili
 [^15]: Two Proofs of the Central Limit Theorem, Yuval Filmus, 2010. http://www.cs.toronto.edu/~yuvalf/CLT.pdf
 
 Com os conceitos adquiridos em mãos, é fácil entender o $\rho$ de Pearson.  
+
 ---
 
 \pagebreak
@@ -356,6 +357,7 @@ A correlação linear obtida para nossa amostra de países é surpreendentemente
 O valor p é baixo $(p<0.001)$ considerando a hipótese nula $H_{0}$ de $\rho=0$. Concluímos então que há uma relação linear significativa de forte magnitude entre o logaritmo do número de médicos e a expectativa de vida dos países em nossa amostra.  
 
 É realmente curioso que exista uma relação matemática tão evidente entre construtos tenuamente conectados. O tempo médio que um organismo leva entre nascimento e morte e o número de profissionais atuantes. É virtualmente impossível explicitar cada relação causal por trás dessa relação, que se manifesta de forma robusta através da soma de muitos fatores relacionados.   
+
 ---
 
 #### Nota

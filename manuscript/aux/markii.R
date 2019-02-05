@@ -27,12 +27,12 @@ mark_ii <- function(x, y, eta, reps=1) {
       out <- sum(ypred21,ypred22)
       
       # update em w . Eta ja ajustado para 1/2*eta
-      delta_w22 <- eta * (-1) * (y[i] - ypred22) * ypred1 #d/dw22(targ - out)^2
-      delta_w21 <- eta * (-1) * (y[i] - ypred21) * ypred1 #d/dw21(targ - out)^2
+      delta_w22 <- eta * (-1) * (y[i] - (ypred21 + ypred22)) * ypred1 #d/dw22(targ - out)^2
+      delta_w21 <- eta * (-1) * (y[i] - (ypred21 + ypred22)) * ypred1 #d/dw21(targ - out)^2
       #d/dw1(targ - out)^2 = 2(y[i] - (ypred21 + ypred22)) (-1) (sum(w21*w1*x[i,]) + sum(w21*w1*x[i,]))'
       # d/dw1 (sum(w21*w1*x[i,]) + sum(w21*w1*x[i,])) =  (sum(w21*x[i,]) + sum(w21*x[i,]))
       delta_w1 <- eta * (y[i] - (ypred21 + ypred22)) * -1 * 
-        (sum( w21 %*% c(as.numeric(x[i,]),1)) + sum(w21 %*% c(as.numeric(x[i,]),1)))
+        (sum(w21 %*% c(as.numeric(x[i,]),1)) + sum(w22 %*% c(as.numeric(x[i,]),1)))
       #nota: x[i,] sera multiplicado como matriz (dot product)
       w1 <- w1 - delta_w1
       w21 <- w21 - delta_w21
@@ -45,26 +45,6 @@ mark_ii <- function(x, y, eta, reps=1) {
   return(ypreds)
 }
 
-train_df <- iris[1:100, c(1, 2, 3)]   
-names(train_df) <- c("s.len", "s.wid", "p.len")
-head(train_df)
-train_df[60:65,]
-
-x_features <- train_df[, c(1, 2)]
-y_target <- train_df[, 3]
-
-mark_ii_preds <- mark_ii(x = x_features,y = y_target,
-                         eta=0.000002,reps = 40)
-acc_data <- data.frame(y_preds=mark_ii_preds,
-                     x_targs=y_target)
-
-acc_data$errors <- y_target - mark_ii_preds 
-cor.test(acc_data$y_preds,acc_data$x_targs)
-ggplot(acc_data,aes(y=y_preds,x=x_targs,color=errors))+
-  geom_point()+xlim(0,20)+ylim(0,20)+
-  geom_abline(slope = 1,intercept = 0)
-
-## Nao linear, incluindo terceira especie
 train_df <- iris[, c(1, 2, 3)]   
 names(train_df) <- c("s.len", "s.wid", "p.len")
 head(train_df)
@@ -86,3 +66,4 @@ cor.test(acc_data$y_preds,acc_data$y_targs)
 ggplot(acc_data,aes(y=y_preds,x=y_targs,color=errors))+
   geom_point()+xlim(0,10)+ylim(0,10)+
   geom_abline(slope = 1,intercept = 0)
+
