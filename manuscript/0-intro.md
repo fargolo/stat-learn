@@ -91,7 +91,6 @@ Capítulo 2 - Sobre a natureza das relações
     * $\rho$ de Spearman
     * Teste U de Mann Whitney
 
-**Em construção:**
 Capítulo 3 - Análise multivariada, grafos e inferência causal 
 
   * Regressão múltipla
@@ -101,14 +100,13 @@ Capítulo 3 - Análise multivariada, grafos e inferência causal
     * Análise fatorial
     * Equações estruturais
     
-**Em construção:**
 Capítulo 4 - Neurônios
 
   * Um neurônio artificial: O perceptron
+    * História e implementação do zero : Mark I
+  * Redes Neurais e Deep learning (múltiplas camadas)
   * Gradient Descent
-  * Redes Neurais
-    * Backpropagation
-    * Deep learning (múltiplas camadas)
+  * Backpropagation
 
 **Em construção:**
 Capítulo 5 - Contexto e inferência Bayesiana  
@@ -136,6 +134,8 @@ Capítulo 7 - Ambientes desconhecidos
   * Clustering
   * Aprendizagem semi-supervisionada
   * Reinforcement learning
+  
+\pagebreak
 
 ## Pré-requisitos
 
