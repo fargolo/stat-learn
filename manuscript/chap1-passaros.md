@@ -106,7 +106,7 @@ Usamos a notação $N \sim (\mu, \sigma^{2})$ para descrever uma distribuição 
 
 $$P(x)=\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{ -\frac{(x-\mu)^{2}}{2\sigma^{2}}}$$
 
-O valor $\frac{1}{\sqrt{2\pi}}$ surge como normalizador para avaliarmos a função como densidade de probabilidade. A integral de $-\infty$ a $+\infty$ deve ser 1. O valor $\pi$ surge da integral de Gauss $\int_{-\infty}^{+\infty} e^{-x^{2}}dx = \sqrt{pi}$ e decorre do fato de $2\pi i$ ser período da função $e^{x}$.  
+O valor $\frac{1}{\sqrt{2\pi}}$ surge como normalizador para avaliarmos a função como densidade de probabilidade. A integral de $-\infty$ a $+\infty$ deve ser 1. O valor $\pi$ surge da integral de Gauss $\int_{-\infty}^{+\infty} e^{-x^{2}}dx = \sqrt{\pi}$ e decorre do fato de $2\pi i$ ser período da função $e^{x}$.  
 
 
 Poderíamos encontrar características desejáveis, como a simetria citada acima, em outras distribuições. 
@@ -157,7 +157,7 @@ O código em R para a seguir gera os dados e as visualizações de que precisamo
 ```
 \pagebreak 
 
-![Figura 2 . Soma de amostras (n=100) de 11 distribuições uniformes correspondentes ao lançamento de dados honestos de 6 faces. O resultado está na célula inferior à direita.](images/chap1-unifsum.png)
+![Soma de amostras (n=100) de 11 distribuições uniformes correspondentes ao lançamento de dados honestos de 6 faces. O resultado está na célula inferior à direita.](images/chap1-unifsum.png)
 
 Notamos que as barras estão distribuídas com alturas bastante parecidas nas 11 primeiras células. A frequência esperada para cada valor é ~ 1/6 do total de 100 lançamentos. $Freq (X_{i}) \sim \frac{1}{6}*100 \sim 16.66$  
 Algo interessante ocorre com a soma das distribuições (canto inferior direito).   
@@ -213,7 +213,7 @@ Para valores grandes de n:
     >m_plot <- multiplot(plotlist = plot_list,cols=n_plots/3)
 ```
 
-![Figura 3. Soma de amostras (n=100) de 11 distribuições gama. O resultado está na célula inferior à direita. Função de densidade de probabilidade para distribuição gama: $f(x) = 1/\Gamma(\alpha) * \beta\alpha * x \alpha -1 * e - \beta x$, com  $\alpha = \beta = 1$](images/chap1-gammasum.png)
+![ Soma de amostras (n=100) de 11 distribuições gama. O resultado está na célula inferior à direita. Função de densidade de probabilidade para distribuição gama: $f(x) = 1/\Gamma(\alpha) * \beta\alpha * x \alpha -1 * e - \beta x$, com  $\alpha = \beta = 1$](images/chap1-gammasum.png)
 
 
 Novamente, verificamos que a soma começa a ser simétrica em torno da média, com formato de sinos (base alargada). 
@@ -372,7 +372,7 @@ Assumimos amostras retiradas de uma variável aleatória com distribuição norm
 
 Qual a dispersão das estimativas $\mu_{1}', \mu_{2}', ..., \mu_{j}'$? 
 
-Para um conjunto de estimativas $\mu_{1}', \mu_{2}', ..., \mu_{j}'$, chamamos de **erro padrão** (*standard error of the mean*), dado pelo desvio-padrão populacional $\sigma$ dividido pela raiz quadrada do tamanho da família de amostras em questão $(std. err. = \sigma/\sqrt{n})$. 
+Para um conjunto de estimativas $\mu_{1}', \mu_{2}', ..., \mu_{j}'$, chamamos de **erro padrão** (*standard error of the mean*) o desvio-padrão populacional $\sigma$ dividido pela raiz quadrada do tamanho da família de amostras em questão $(std. err. = \sigma/\sqrt{n})$. 
 Como não sabemos o desvio-padrão na população, aproximamos usando o valor do desvio-padrão $\sigma'$ amostral.
 
 Student propôs o uso de uma quantidade para estimar a probabilidade de uma estimativa $\mu'$ dado um centro hipotético $\mu$.  

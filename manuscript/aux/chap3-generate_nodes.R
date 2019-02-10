@@ -55,6 +55,36 @@ ggplot(mult_regn_plot, aes(x = x, y = y,
         panel.background = element_rect(fill = "grey25"),
         panel.grid = element_blank())
 
+## Med
+mult_reg <- matrix(c(1,0,0,
+                     1,1,0,
+                     1,1,1),ncol=3,nrow = 3)
+mult_regn <- network(mult_reg)
+
+set.vertex.attribute(mult_regn, attrname = "vertex.names", 
+                     value = c("X","Mediador","Y"))
+
+mult_regn_plot <- ggnetwork(mult_regn)
+
+ggplot(mult_regn_plot, aes(x = x, y = y, 
+                           xend = xend, yend = yend)) +
+  geom_nodes(color="gold",size=11) +
+  geom_edges(arrow = arrow(length = unit(4, "pt"),
+                           type = "closed"),
+             color = "white",
+             curvature = 0.2,size=0.15) +
+  geom_nodetext(aes(label = vertex.names),
+                fontface = "bold",size=1.35) +
+  xlim(-0.2,1.2)+ylim(-0.2,1.2)+
+  theme_minimal()+
+  theme(axis.text = element_blank(),
+        axis.title = element_blank(),
+        panel.background = element_rect(fill = "grey25"),
+        panel.grid = element_blank())
+
+
+
+
 ## CFA
 cfa_reg <- matrix(c(1,0,0,0,0,0,1,
                     0,1,0,0,0,0,1,

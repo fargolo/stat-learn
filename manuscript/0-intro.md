@@ -1,8 +1,4 @@
-![](images/cover-rotate.jpg)  
-
-# Ciência de dados  
-**Filosofia e aplicações**  
-Felipe Coelho Argolo  
+![](images/cover.png)  
 
 \pagebreak
 
@@ -10,8 +6,34 @@ Página intencionalmente deixada em branco.
 
 \pagebreak
 
-Versão 0.9: Introdução; Capítulo 0; Capítulo 1; Capítulo 2; Capítulo 3; Capítulo 4; Capítulo 5 (em progresso).
-04 de Fevereiro de 2019
+
+\begin{center}
+
+\textbf{Ciência de dados}  
+
+\vspace{5cm}
+
+Filosofia e aplicações com software  
+
+\vspace{5cm}
+
+Felipe Coelho Argolo  
+felipe.c.argolo@protonmail.com  
+
+\vspace{2cm}
+
+São Paulo, 10 de Fevereiro de 2019  
+
+\href{http://www.leanpub.com/fargolo}{Página oficial: https://http://www.leanpub.com/fargolo}  
+
+\vspace{2cm}
+
+Versão 1.0: Introdução; Capítulo 0; Capítulo 1; Capítulo 2; Capítulo 3; Capítulo 4; Capítulo 5 (em construção).  
+
+\end{center}
+
+\pagebreak
+
 
 Para comentários, críticas, sugestões, ou simplesmente mandar um *oi*, entre em contato através do e-mail: felipe.c.argolo@protonmail.com.  
 

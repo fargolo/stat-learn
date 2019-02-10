@@ -186,7 +186,7 @@ O **momento zero** de massa para um objeto é $M_{0} = \sum_{i=1}^{N} m_{i}d_{i}
 
 $$M_{0} = m$$
 
-O **primeiro momento** de massa para um objeto é $M_{1} = \sum_{i=1}^{N} m_{i}d_{i}^{1}$ e determina o **centro** *de massa* em relação à dimensão $d$. É o ponto em que está o dedo em que se equilibra o pássaro da foto.  
+O **primeiro momento** de massa para um objeto é $M_{1} = \sum_{i=1}^{N} m_{i}d_{i}^{1}$ e determina o **centro de massa** em relação à dimensão $d$. É o ponto em que está o dedo em que se equilibra o pássaro da foto.  
 
 $$M_{1} = C_{m}$$
 
@@ -433,12 +433,16 @@ Uma de particular interesse, que também servirá em outros contextos, é a de M
 
 Primeiro, determinamos uma função que descreve a probabilidade da observação na variável alvo $(y_{i})$ ocorrer dadas medidas das variáveis preditoras $(x_{i})$ e um conjunto de parâmetros $(\beta_{k})$.  
 
-Supondo que as observações são independentes, a probabilidade do conjunto de observações é dada pelo produto delas.  
+Podemos adotar como função de verossimilhança *(likelihood function)* para os valores $y_{i}$ uma distribuição de probabilidades gaussiana cuja média é dada pela reta $\mu_{yi} = \beta_{0} + \beta_{1}*x_{i}$. Assim, a probabilidade de cada valor $y_{i}$ é dada por uma gaussiana, de acordo com o desvio para o valor previsto pela reta.  
 
-Podemos adotar como função de verossimilhança *(likelihood function)* para os valores $y_{i}$ uma distribuição de probabilidades normal cuja média é dada pela reta $\mu_{yi} = \beta_{0} + \beta_{1}*x_{i}$.  
-Assim, a probabilidade de cada valor $y_{i}$ é dada de acordo com o desvio para o valor previsto pela reta.  
+$$L \sim N(\mu_{yi},\sigma^{2})$$.  
+
+Assumindo que as observações são independentes, a probabilidade do conjunto de observações é dada pelo produto delas.  
 
 $$L=\prod_{i=1}^{n} P(y_{i}|x_{i}; \beta_{0},\beta_{1},\sigma^{2})$$
+
+Subsitituindo os valores de $\mu$ para a gaussiana pelas previsões da reta:  
+$$f(y_{i}) = \frac{1}{\sqrt{2\pi\sigma^{2}}}e^{-\frac{(y_{i}-\mu)^{2}}{2\sigma^{2}}}$$
 
 $$L(\beta_{0},\beta_{1},\sigma^{2})=\prod_{i=1}^{n}\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{-\frac{y_{i} - (\beta_{0}+\beta_{1}x_{i})^{2}}{2\sigma^{2}}}$$
 
@@ -450,11 +454,17 @@ $$log \quad likelihood(\beta_{0},\beta_{1},\sigma^{2})=log\prod_{i=1}^{n} P(y_{i
 $$=\sum_{i=1}^{n} log P(y_{i}|x_{i}; \beta_{0},\beta_{1},\sigma^{2})$$
 $$=-\frac{n}{2}log{2\pi} - n log{\sigma} - \frac{1}{2\sigma^{2}}\sum_{i=1}^{n}(y_{i}-(\beta_{0} + \beta_{1}x_{i}))^{2}$$
 
-Os parâmetros que maximizam a função de verossimilhança(likelihood) são os mesmos que maximizam a o logaritmo da função de verossimilhança(log-likelihood).  
+Os parâmetros que maximizam a função de verossimilhança (max. likelihood, ML) são os mesmos que maximizam a o logaritmo da função de verossimilhança (log-likelihood).  
 
-Com algum esforço[^19], encontramos fórmulas fechadas:  
+Introduzimos o racional do estimador ML pois ele será útil futuramente. Em verdade, é fácil entender as fórmulas fechadas para nossos parâmetros, pois apenas expressam as relações lineares exploradas [^19]:  
+
+$\hat{\beta_{1}}$ expressa a magnitude da correlação entre $X$ e $Y$. É natural que sue valor seja a covariãncia normalizada pela variância do preditor.  
 $$\hat{\beta_{1}}=\frac{cov(XY)}{\sigma_{x}^{2}}$$  
+
+$\hat{\beta_{0}}$ é nosso intercepto, então é a diferença entre médias preditas e predições considerando o valor médio em X.  
 $$\hat{\beta_{0}}=\mu_{y} - \hat{\beta_{1}}\mu_{x}$$  
+
+Por fim, a variância dos erros $\hat{\sigma^{2}}$ é dada pelo quadrado dos desvios das predições em relação às medidas.  
 $$\hat{\sigma^{2}} = \frac{1}{n} \sum_{i=1}^{n} (y_{i}-(\hat{\beta_{0}}+\hat{\beta_{1}}x_{i}))^{2}$$  
 
 As soluções acima fornecem as melhores estimativas que podemos obter minimizando a distância da reta aos pontos.    
@@ -572,15 +582,15 @@ Uma lista completa de premissas, junto aos códigos em R para testá-las, está 
 ## Correlações e testes não paramétricos
 
 Verificamos minuciosamente análises envolvendo a distribuição normal, a distribuição t e relações lineares. Entretanto, muitas vezes as medidas não seguem uma distribuição definida. Assim, realizar inferências usando os **parâmetros** descritos $(\mu,\sigma, t...)$ nos levaria a conclusões erradas.  
-Para lidar com distribuições arbitrárias, vamos abrir mão deles e conhecer ferramentas *não-paramétricas*: o coeficiente de correlação de ranks $\rho$ Spearman e o teste U de Mann Whitney.  
+Para lidar com distribuições arbitrárias, vamos abrir mão deles e conhecer ferramentas *não-paramétricas*: o coeficiente de correlação de ranks $\rho$ de Spearman e o teste U de Mann Whitney.  
 
-### Ranks e o $\rho$ Spearman
+### Ranks e o $\rho$ de Spearman
 
 Relações lineares mantêm proporções constantes e aprendemos como quantificá-las. Por outro lado, duas variáveis podem ter relações de outros tipos, não lineares. Em especial, se as medidas apresentam valores muito extremos *(outliers)* um cálculo como o anterior sofre bastante com vieses.  
 Uma simples solução para esse problema é ranquear os valores. Assim, os itens do conjunto são tratados pela sua posição em relação a outros itens, de forma independente dos valores associados. Exemplo:  
 $$S = (1,3,89,89,39,209) \rightarrow S_{ranked} = (1,2,4,4,3,5)$$
 
-O $rho$ de Spearman é que o coeficiente produto-momento de Pearson aplicado aos ranks. Assim, medimos o grau em que duas variáveis aumentam (ou diminuem) em magnitude observando apenas a ordem das observações. Isto é: **maior que**, **igual** ou **menor que**. Especificamente, investigamos se há uma relação de *monotonicidade* entre elas.    
+O $\rho$ de Spearman é que o coeficiente produto-momento de Pearson aplicado aos ranks. Assim, medimos o grau em que duas variáveis aumentam (ou diminuem) em magnitude observando apenas a ordem das observações. Isto é: **maior que**, **igual** ou **menor que**. Especificamente, investigamos se há uma relação de *monotonicidade* entre elas.    
 
 Para a relação (sigmoide), entre x e y abaixo:  
 ```r
@@ -661,7 +671,7 @@ Usamos o menor valor de U para consultar a probabilidade (valor p) correspondent
 
 O termo $\frac{n(n+1)}{2}$ corresponde à soma mínima dos ranks para a amostra.  
 Os ranks são uma sequência regular $(1,2,3,...)$, de forma que a soma de todos os valores é idêntica à soma de uma progressão aritmética de N termos.  
-$$Soma_{ranks}=\frac{N(N+1)}{2}$$  
+$$\Sigma_{ranks}=\frac{N(N+1)}{2}$$  
 Enquanto $R_{i}$ corresponde à soma dos ranks calculados com as duas amostras, o termo acima corresponderia à soma mínima dos ranks para uma amostra, caso os ranks ocupassem a sequência inicial $A=(1,2,3,4,...,n_{a})$ na amostra conjunta.  
 A definição para o teste não é unânime na literatura, de forma que alguns autores e softwares (e.g. R) implementam o cálculo com a subtração acima e outros (e.g. S-PLUS) não o fazem.  
 Em R, as funções **dwilcox(x,m,n)** e **pwilcox(q,m,n)** retornam a distribuição e a densidade cumulativa para a estatística U correspondente a amostras com tamanhos m e n.  **wilcox.test(x,y,...)** é a implementação base do teste de Mann Whitney. O teste de Mann Whitney é o teste de Wilcoxon de duas amostras.  

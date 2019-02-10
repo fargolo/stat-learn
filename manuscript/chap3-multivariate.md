@@ -130,20 +130,26 @@ Uma ideia curiosa é de que uma variável pode estar intermediando a ação de o
 Em modelos de mediação, tentamos quantificar a porção que é explicada por uma variável intermediária. Para tanto, empregamos o seguinte procedimento:
 
 **1.** Verificar plausibilidade de relações individualmente através modelos de regressão entre variáveis de interesse.
-Ajustamos 3 modelos: *(1)* variável independente e variável alvo $(Y \sim X_{1}\beta_{1})$, *(2)* variável mediadora e variável alvo $(Y \sim X_{2}\beta_{2})$, *(3)* variável independente e variável mediadora $(X_{2} \sim X_{1}\beta_{3})$. 
+Ajustamos 3 modelos:  
+*(1)* variável independente e variável alvo $(Y \sim X_{1}\beta_{1})$,  
+*(2)* variável mediadora e variável alvo $(Y \sim X_{2}\beta_{2})$,  
+*(3)* variável independente e variável mediadora $(X_{2} \sim X_{1}\beta_{3})$. 
+
 O efeito direto da variável independente sobre a variável alvo é quantificado $\beta_{1}$.
 
 **2.** Verificar mudanças obtidas pela introdução da variável mediadora.  
-Ajustamos um quarto modelo, com a combinação linear de variável independente e variável mediadora. Abservamos então a diferença entre o novo$(\beta_{1}')$ coeficiente de $X_{1}$ e o antigo $(\beta_{1})$ $Y = X_{1}\beta_{1}' + X_{2}\beta_{4}$.  
+Ajustamos um quarto modelo *(4)*, com a combinação linear de variável independente e variável mediadora. Abservamos então a diferença entre o novo $(\beta_{1}')$ coeficiente de $X_{1}$ e o antigo $(\beta_{1})$ $Y = X_{1}\beta_{1}' + X_{2}\beta_{4}$.  
 
 Caso exista mediação, espera-se que o coefiente $\beta_{1}'$ seja não significativo ou que possua magnitude bastante reduzida em relação ao coeficiente do efeito direto $\beta_{1}$.  
 
-Seguindo o exemplo sugerido, espera-se que exista uma relação entre hábito de fumar e câncer. Ainda, espera-se que a inclusão de um mediador (e.g. concentração de nicotina) explique parte do efeito, reduzindo o coeficiente de $X_{1}$.
+Seguindo o exemplo sugerido, espera-se que exista uma relação entre hábito de fumar e câncer. Ainda, espera-se que a inclusão de um mediador (e.g. concentração de nicotina) explique parte do efeito, reduzindo o coeficiente de $X_{1}$. O diagrama a seguir expressa a ideia contida no processo desejado.  
 
-O diagrama abaixo ilustra passos *1* (3 regressões, superior) e *2* (regressão múltipla, inferior). 
-O modelo preditivo de regressão linear múltipla está nodo central do diagrama inferior, atribuindo pesos e aplicando o operador de soma às entradas. Foram suprimidos termos de erro.
+![](images/chap3-med.png)  
 
-![](images/chap3-diagram.jpeg)
+O diagrama abaixo ilustra passos rigorosamente.
+As 3 regressões para checar premissas estão na sessãi superior e a regressão múltipla no setor inferior). Foram suprimidos termos de erro. Estimativas para a relação entre $X_{1}$ e $Y$ são $\hat{\beta_{1}}$ e $\hat{\beta_{1}}'$ grifados nas equações. O comportamento desses parâmetros define as conclusões sobre o modelo de mediação.  
+
+![](images/chap3-diagram.jpeg)  
 
 ---
 
@@ -154,7 +160,9 @@ Portanto, é recomendável que ajustes sejam feitos na fase experimental. Em nos
 
 ---  
 
-**Moderação**
+\pagebreak 
+
+**Moderação e Interações**
 
 Modelos incluindo termos de moderação são aqueles que incluem **interação** entre variáveis. Como discutimos antes, a relação entre hábito de fumar e câncer pode ser explicada por fatores intermediários, como a concentração de nicotina e presença de variantes genéticas de risco.  
 Podemos supor que a concetração de nicotina inalada diariamente tenha um efeito independente. Igualmente, uma configuração genética tem efeito causal por si.  
@@ -164,6 +172,7 @@ $$Risk = Nicotina*\beta_{1} + Genes_{(+)}\beta_{2}$$
 Em moderação, adicionamos um termo à nossa combinação linear. É um coeficiente para a multiplicação entre variáveis independentes.
 
 $$Risk = Nicotina*\beta_{1} + Genes_{(+)}\beta_{2} + Nicotina*Genes_{(+)}\beta_{3}$$
+Será que *fumar* **e** ter *genes de risco* é diferente da combinação do efeito de ambos em separado?  
 
 Esse é um dos poucos casos em que é mais fácil observar o aspecto algébrico antes. Estamos multiplicando os valores de preditores $X_{1}$ e $X_{2}$. Se ambos tiverem mesmo sentido ($+$ ou $-$), a interação terá efeito positivo. Caso contrário, negativo. Ainda, vemos que as magnitudes são multiplicadas. O coeficiente $\beta_{3}$ quantifica essa multiplicação em relação ao efeito em $y$, seja alterando o sentido ($\beta_{3}$ negativo) ou escalando o valor absoluto.  
 
@@ -176,11 +185,14 @@ O segundo termo não depende de $X_{1}$, então:
 $$\frac{d}{dx_{1}}(y) = \frac{d}{dx_{1}}(\beta_{1} + x_{2}\beta_{3})$$
 A inclinação (*slope*), que antes era uma constante (linha reta) $\beta_{1}$ passa a ter um termo somado, que é a multiplicação da constante estimada $\beta_{3}$ pelo valor de $x_{2}$. Então temos inclinação diferente para cada valor de moderador!  
 
-Esses detalhes tornam a interpretabilidade dos coeficientes difícil. Normalmente, são usadas heurísticas, como centralizar os dados em torno da média, simplificar o contexto.
+Esses detalhes tornam a interpretabilidade dos coeficientes difícil. Normalmente, são usadas heurísticas, como centralizar os dados em torno da média, para simplificar o contexto.  
+
+\pagebreak
 
 #### Medidas latentes e análise fatorial
 
-Considere o problema de medir algo inacessível através de canais secundários. Por exemplo, o conceito de *qualidade de vida* é facilmente concebível, apesar de não estar atrelado a uma medida tangível, tal qual *altura* ou *tamanho do fêmur*.  
+Considere o problema de medir algo inacessível através de meios secundários.  
+Por exemplo, o conceito de *qualidade de vida* é facilmente concebível, apesar de não estar atrelado a uma medida tangível, tal qual *altura* ou *tamanho do fêmur*.  
 Uma série de métodos foi desenvolvida para lidar com a tarefa de estimar *variáveis latentes*. Em especial, esses modelos são muito populares entre psicometristas. Podemos aplicar modelos de variáveis latentes para muitos contextos.   
 
 Isso é feito quando usamos respostas corretas em um teste formulado por especialistas para quantificar uma habilidade. A *Teoria de Resposta ao Item* é usada em testes como ENEM (Brasil), SAT e GRE (EUA). Relacionamos a estimativa de habilidade $(\theta)$ com a probabilidade de acertar (1) ou errar (0).  
@@ -194,7 +206,7 @@ Sejam os items:
 3. Costumo expressar minhas opiniões (1 a 7)
 4. Sou considerado(a) uma pessoa comunicativa (1 a 7)
 
-A pontuação de um indivíduo será uma sequencia de 4 números. 
+A pontuação de um indivíduo será uma sequencia de 4 números. Um indivíduo muito extrovertido pode pontuar (7,7,6,7) e um introvertido (2,3,2,1). Podemos pensar que a série de medidas é influenciada por um construto (extroversão).  
 
 Análise fatorial parte da premissa de que a **covariância** nas medidas diretas é fruto das **influências latentes compartilhadas** pelos items. Assim, podemos estimar um parâmetro $\lambda$ para a relação entre cada item e o traço latente $F$. Para isso, usaremos a matriz de covariâncias.  
 
@@ -202,7 +214,9 @@ Os valores de $\lambda$ quantificam a relação entre items e fatores latentes e
 
 Como na regressão linear, o modelo descreve cada medida como uma combinação entre score individual para fator latente $F$ multiplicado pelo peso para o item $\lambda _{Item 1}$ e erros.  
 A medida do item $1$ para o $i$-ésimo sujeito considerando $n$ fatores latentes $F_{n}$ é:  
-$$x_{1,i} = \sum_{1}{n}F_{i}\lambda _{n} + \epsilon$$.
+$$x_{1,i} = \sum_{1}{n}F_{i}\lambda _{n} + \epsilon$$. 
+
+Assim, falamos em mais de um construto latente. Ao invés de trabalhar com um grande fator latente (extroversão), podemos ligar os quatro items anteriores a dois conceitos menos específicos: "sociabilidade" e "expressividade".  
 
 O valor dos 4 itens para o $n$-ésimo sujeito, considerando dois fatores latentes, com pesos $\lambda_{i}, \lambda _{i}$ é:  
 
@@ -296,23 +310,23 @@ $$Cov \sim \Lambda \Lambda^{T} + \sigma^{2}I$$
 
 Isto é: uma matriz identidade com ruído introduzido através de apenas um parâmetro ($\sigma^{2}$).  
 
-Uma curiosidade é que a diagonal acaba influindo menos com o aumento do rank das matrizes. Então, o resultado das técnicas acima converge em situações com alta dimensionalidade ($n \rightarrow \infty$). Uma discussão mais completa pode ser conferida em outro lugar (ver referências). Em sumário.
+Uma curiosidade é que a diagonal acaba influindo menos com o aumento do rank das matrizes. Então, o resultado das técnicas acima converge em situações com alta dimensionalidade ($n \rightarrow \infty$). Uma discussão mais completa pode ser conferida em outro lugar (ver referências).  
 
-
+Em sumário:  
 $$PCA: Cov \sim \Lambda \Lambda^{T}$$  
 $$PPCA: Cov \sim \Lambda \Lambda^{T} + \sigma^{2}I$$  
 $$EFA: Cov \sim \Lambda \Lambda^{T} + \psi$$  
 (Aqui, usamos $\sim$ não para denominar semelhança, mas sim que maximizaremos o likelihood de $Cov$ com uma expressão em função dos termos à direita)
 
-Ainda, vale a pena mencionar que redes neurais do tipo *autoencoder* possuem formulação semelhante. Especificamente, um autoencoder de uma camada interna e certas restrições na função de ativação é idêntico ao PCA. Entretanto, podemos usar **mais** dimensões que o input, além de múltiplas camadas e funções não-lineares. Dessa maneira, incrementamos o poder do modelo generativo, assim como ficamos mais vulneráveis a sobreajuste.   
+Ainda, redes neurais do tipo *autoencoder* possuem formulação semelhante. Especificamente, um autoencoder com uma camada interna e certas restrições na função de ativação é idêntico ao PCA. Entretanto, podemos usar **mais** dimensões que o input, além de múltiplas camadas e funções não-lineares. Dessa maneira, incrementamos o poder do modelo generativo, assim como ficamos mais vulneráveis a sobreajuste.   
 
 Voltaremos ao assunto quando o foco for modelos de ambiente, compressão de informação, modelos gerativos e redução de dimensões.   
 
 **Número de fatores**
 
-Não tocamos em um ponto crucial: qual o número ótimo de fatores?  
+Não tocamos em um ponto crucial: qual o número ótimo de fatores? É melhor um modelo que leve em conta *extroversão* ou um que use *sociabilidade* e *expressividade*?  
 
-Podemos explicar a covariância usando um número arbitrário de fatores latentes. A tendência é melhorar indicadores de perfomance sob a pena de saturação (e.g.sobreajuste, interpretabilidade difícil). Existem procedimentos estabelecidos para balancear o poder explicativo com simplicidade do modelo.  
+Podemos explicar a covariância usando um número arbitrário de fatores latentes. A tendência é observarmos melhora nos indicadores de perfomance sob a pena de saturação (e.g.sobreajuste, interpretabilidade difícil). Existem procedimentos estabelecidos para balancear o poder explicativo com simplicidade do modelo.  
 
 Em geral, busca-se um número mínimo de fatores que maximize o poder de explicação. Considerando graus de liberdade($df$) e erros do modelo (estatística $X^2$), dois índices populares são o RMSEA e o CFI. Assim como no cálculo de $R^2$, o racional é dimensionar erros, porém aqui penalizamos a quantidade de parâmetros.  
 
@@ -336,7 +350,7 @@ Em geral, os primeiros eixos têm maior autovalores. Existem diversas heurístic
 
 Os processos descritos acima são exploratórios por natureza. Buscamos o melhor ajuste para fatores latentes sem antes determinar uma estrutura. É um bom procedimento para redução de dimensões e compressão de informação, porém, se desejamos interpretabilidade e validade científica, há alguns pontos sensíveis.  
 
-Pensando na elaboração de uma escala para medir um traço de personalidade, retomamos o argumento de Popper (capítulo 2) contra o indutivismo. É desejável que tenhamos um modelo prévio e hipóteses testáveis de antemão. Do contrário, é fácil encontrar um modelo oferecendo bom ajuste em quase qualquer caso.
+Pensando na elaboração de uma escala para medir um traço de personalidade, retomamos o argumento de Popper (capítulo 2) contra o indutivismo. É desejável que tenhamos um modelo prévio e hipóteses testáveis de antemão. Do contrário, é fácil encontrar um modelo oferecendo bom ajuste em quase qualquer caso.  
 
 Na análise fatorial confirmatória, fazemos uma restrição direta ao modelo. Os parâmetros são pré-determinados com base em diagrama (grafo) expresso por quem conduz a análise. Assim, podemos especificar uma relações:
 
