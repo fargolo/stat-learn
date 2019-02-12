@@ -95,7 +95,7 @@ Podemos usar os diagramas a seguir para ilustrar uma regressão linear simples:
 Ou múltipla com dois preditores:  
 ![$y = \beta_{1}*X_{1} + \beta_{2}*X_{2}$](images/chap3-three-node-diagram.png)  
 
-É fácil relacionar nodos com variáveis e conexões com relações descritas pelas equações estimadas. Formalmente, tratamos essas abstrações de **grafos**. O campo começou a ser tratado por Euler em 1736. Chamamos os pontos de nodos, ou vértices, e as ligações de arestas (*edges*). Cada aresta conecta dois nodos.  
+É fácil relacionar *nodos com variáveis* e *conexões com relações* descritas pelas equações estimadas. Formalmente, tratamos essas abstrações com o nome de **grafos**. O campo começou a ser tratado por Euler em 1736. Chamamos os pontos de nodos, ou vértices, e as ligações de arestas (*edges*). Cada aresta conecta dois nodos.  
 O conceito foi usado para resolver o problema das pontes de Königsberg. Dada uma série de pontes conectando partes diferentes da cidade, fazer um percurso que cruzae cada uma apenas uma vez?  
 
 ![](images/chap3-konigsberg.jpg)  
@@ -160,7 +160,79 @@ Portanto, é recomendável que ajustes sejam feitos na fase experimental. Em nos
 
 ---  
 
+Em R:  
+
+```r
+    >fit_yx1 <- lm(y ~ x1, data)    
+    >fit_yx2 <- lm(y ~ x2, data)  
+    # Mediation
+    >fit_yx1x2 <- lm(y ~ y1 + y2)    
+    >summary(fit_yx1)
+    (...)
+    >summary(fit_yx2)
+    (...)
+    >summary(fit_yx1x2)
+    (...)
+```
+A diferença numérica entre valores de $\beta_{x_{1}}$ é a magnitude do efeito indireto (*Ind. Effect*). Podemos usar uma estimativa do erro padrão para derivar uma estatística t e um valor p associados (teste de Sobel). Usando libs do CRAN:  
+
+```r
+    >library(bda)
+    >library(multilevel) # dataset bh1996
+    >data(bh1996)
+    
+    # LEAD : Clima de liderança
+    # WBEING : Bem-estar
+    # HRS : Horas de trabalho
+    
+    # Clima de liderança media relação entre horas de trabalho e bem-estar? 
+    
+    >sobel(pred=bh1996$HRS,med=bh1996$LEAD,out=bh1996$WBEING)
+    $`Mod1: Y~X`
+                   Estimate  Std. Error   t value     Pr(>|t|)
+    (Intercept)  3.51693620 0.052902697  66.47934 0.000000e+00
+    pred        -0.06523285 0.004590274 -14.21110 3.078129e-45    
+    $`Mod2: Y~X+M`
+                   Estimate Std. Error   t value      Pr(>|t|)
+    (Intercept)  1.86832973 0.06413083  29.13310 1.024201e-176
+    pred        -0.04311316 0.00421918 -10.21837  2.382257e-24
+    med          0.48386196 0.01242129  38.95426 4.967825e-302    
+    $`Mod3: M~X`
+                   Estimate  Std. Error   t value     Pr(>|t|)
+    (Intercept)  3.40718349 0.045154735  75.45573 0.000000e+00
+    pred        -0.04571488 0.003917997 -11.66792 3.488366e-31    
+
+    $Indirect.Effect
+    [1] -0.02211969    
+    $SE
+    [1] 0.001978985    
+    (...)
+
+    >mediation.test(iv = bh1996$HRS,mv = bh1996$LEAD,dv = bh1996$WBEING)
+                    Sobel        Aroian       Goodman
+    z.value -1.117729e+01 -1.117391e+01 -1.118067e+01
+    p.value  5.267356e-29  5.471647e-29  5.070460e-29
+    # Aroian e Goodman são outros testes para o parâmetro de efeito indireto
+```
+
 \pagebreak 
+
+#### Exercícios
+
+1. Examine o VIF da regressão múltipla usada no processo de mediação que com banco de dados *bh1996*.  
+  * Há colinearidade entre mediador e preditor principal?  
+  
+2. Examine a mudança de performance (e.g. $R^{2}$) após inclusão do mediador no modelo.  
+  * Se a variável mediadora $M$ explicar as mesmas vias causais que a variável preditora $X_{1}$, é esperado que essa mudança seja grande? Discuta.  
+
+3. Usando dados à sua escolha:  
+  * Ajuste uma regressão linear simples  
+  * Adicione outro preditor (regressão linear múltipla)  
+  * Verifique se há colinearidade  
+  * Cheque outras premissas observando o material auxiliar **/aux** (e.g. independência dos erros com Durbin-Watson)  
+  * Teste uma relação de mediação usando 3 variáveis  
+
+\pagebreak
 
 **Moderação e Interações**
 
