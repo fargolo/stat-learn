@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ![](images/chap0-cover.png)
 
 # Capítulo 0 : Ferramentas
@@ -473,9 +478,9 @@ Nossa função pode ser escrita:
   * A divisão entre elementos dos vetores do item b.   
   * Aplique as funções sd, mean e var em amostras normais aleatórias de n = 10, 30, 100 e 300. A função rnorm (n,mean,sd) pode ajudar. Compare os valores da distribuição de origem com os obtidos.  
 7. *UnLISP it!* Transforme as seguintes expressões, substituindo parênteses aninhados pelo operador pipe (%>%) quando julgar conveniente:
-  * >round ( mean ( c(10 , 2, 3 ) )
+  * >round ( mean ( c(10 , 2, 3 ) ) )
   * >round (mean ( rnorm (n = ceiling (runif (1,0,10)))))
-  * >paste("a",seq(1:rnorm(n=mean(c(3,2,1,16)))))
+  * >paste("a",seq(1:max(sample(1:10))))
   * >round(nrow(iris) + exp(1), digits = ceiling(runif(1,0,10)))
 8. Usando o código das funções var_2 (vetorizado), var_3 (for loop) e var_4 (função de alta ordem map)  
   * Escreva as funções correspondentes (sd_2, sd_3, sd_4) para desvio-padrão e compare com a função padrão do R (sd). Dica: Basta aplicar raiz quadrada ao valor final retornado anteriormente! 

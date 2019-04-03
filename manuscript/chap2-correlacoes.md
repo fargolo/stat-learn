@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ![](images/chap2-vitruv.jpg)
 
 # Capítulo 2 : Sobre a natureza das relações 

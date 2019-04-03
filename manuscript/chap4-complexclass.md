@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ![](images/chap4-cover.jpg)  
 
 # Capítulo 4 : Neurônios
@@ -231,7 +236,7 @@ Usando $\eta = 0.002$, obtivemos $41 \%$ de acurácia (classificações corretas
     -1 43 16    
     1   7 34
 ```
-Chamamos $\eta$ de hiperparâmetro. A escolha de valores para hiperparâmetros é um dos desafios em aprendizagem estatística. Uma maneira trivial é testar muitos valores possíveis e observar o desempenho, entretanto isso não exequível para grandes volumes de dados e/ou muitos parâmetros. Existem diversos processos heurísticos e algoritmos para encontrar valores ótimos.  
+Chamamos $\eta$ de hiperparâmetro. A escolha de valores para hiperparâmetros é um dos desafios em aprendizagem estatística. Uma maneira trivial é testar muitos valores possíveis e observar o desempenho, entretanto isso não é exequível para grandes volumes de dados e/ou muitos parâmetros. Existem diversos processos heurísticos e algoritmos para encontrar valores ótimos.  
 
 Uma forma popular para otimizar o treinamento é particionar o dataset em pedaços e apresentar os particionamentos (epochs) repetidas vezes ao classificador ou acumular os erros de epochs ao invés de exemplos individuais. Assim, calculamos erros agregados e evitamos mínimos locais.  
 Para evitar andar em círculos, avançamos por mais tempo em uma direção antes de recalcular a rota.  
@@ -248,7 +253,7 @@ Para evitar andar em círculos, avançamos por mais tempo em uma direção antes
 
 Com o aprendizado através de exemplos, otimizamos otimizamos nosso classificador (mudando pesos $W$) para minimizar a perda usando aproximações. Assim como estendemos modelos simples do capítulo 2 usando grafos no capítulo 3, aqui vamos aplicar o mesmo conceito e imaginar relações entre neurônios.  
 Os dados são apresentados aos perceptrons na linha de frente. O output, porém, não é o resultado dessa primeira operação: esse valor é usado como input para neurônios da próxima camada.  
-Assim, conseguimos implementar transformações adequadas (rotações, torções, escalonamentos, dobras) em sequência, de maneira que abstrações complexas podem ser capturadas.  
+Assim, conseguimos implementar transformações adequadas (rotações, torções, escalonamentos, dobras) em sequência, de maneira que abstrações complexas possam ser capturadas.  
 
 ### Going Deep
 
@@ -256,12 +261,13 @@ As versões reais da maioria dos conceitos criados por seres humanos não são i
 Muitas entidades são diferentes, porém similares o suficiente para pertencer a uma mesma categoria.
 
 ![](images/chap4-species.jpg)  
-![Resposta a estímulos visuais em V1 de Macaca fascicularis http://www.jneurosci.org/content/32/40/13971](images/chap4-cortex.jpg)  
 
 Todos são naturalmente reconhecidos como felinos, mas apresentam variações de tamanho, cor e proporção em todo o corpo. Esse é um problema interessante e antigo, mais conhecido na ideia de entes platônicos, os quais capturam a essência de um conceito.  
 Alguns filósofos contomporâneos acreditam que abstrações humanas são instâncias de um conceito mais genérico: mapas biológicos contidos em redes neuronais (Paul Churchland, Plato’s Camera).  
 Esses mapas estão associados de forma hierarquizada. Numerosos padrões em níveis inferiores e um número menor em camadas superiores.  
 No caso da visão, neurônios superficiais captam pontos luminosos. O padrão de ativação sensorial enviado ao córtex visual primário é o primeiro mapa, que é torcido e filtrado caminho cima.  
+
+![Resposta a estímulos visuais em V1 de Macaca fascicularis http://www.jneurosci.org/content/32/40/13971](images/chap4-cortex.jpg)  
 
 Neurônios intermediários possuem configurações que identificam características simples: olhos e subcomponentes da face. Por fim, temos camadas mais profundas, ligadas a abstrações.  
 
@@ -276,10 +282,10 @@ Um classificador deve capturar essa estrutura abstrata a partir de modelos matem
 Como hipotéticos membros de uma comitê atlético, nosso objetivo aqui é, dada uma amostra, saber se o atleta está sob efeito de esteroides.
 Quando experimentamos, normalmente haverá ruídos (erros) na medida e receberemos medições imprecisas da curva. Variações na dieta daquele dia, micções, sudorese, stress e outros fatores.
 
-Usamos o tempo (t, eixo horizontal) e nível hormonal ($\beta$, eixo vertical). 
+Usamos o tempo ($t$, eixo horizontal) e nível hormonal ($\beta$, eixo vertical). 
 
-Numa regressão logística simples, fazemos essa classificação com base nas probabilidades de uma função sigmoide. Temos uma probabilidade (valor entre 0 e 1).
-$P(h,\beta) = 1/(1+exp-(i+t*h+\beta*y+\epsilon)).$
+Um modelo bastante popular para classificações é o de regressão logística. Nele, estimamos probabilidade para um evento com base nas probabilidades de uma função sigmoide. Temos uma probabilidade (valor entre 0 e 1) definida por:
+$$P(h,\beta) = \frac{1}{1+e^{-(i + t * h + \beta * y + \epsilon )}}$$
 $\epsilon$ representa o erro e i é uma constante. 
 
 Em uma linha de R:

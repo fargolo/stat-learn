@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ![](images/chap3-cover.png)
 
 # Capítulo 3 : Análise multivariada, grafos e inferência causal 

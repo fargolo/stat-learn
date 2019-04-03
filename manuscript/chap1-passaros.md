@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ![](images/chap1-darw-ill.png)
 
 # Capítulo 1 : Os pássaros de Darwin e o método hipotético-dedutivo.
@@ -608,9 +613,9 @@ The estimated difference of beak mean  sizes among samples A and B was significa
         * ii. Execute um teste t supondo média populacional zero ($\mu = 0$).
         * iii. Execute um teste t entre amostras, supondo a mesma média ($H_{0}:\mu_{1} = \mu_{2}$).
 4. Gerando a distribuição t:
-    * a. Simule um conjunto de muitas medidas (sugestão: 100,000) a partir de uma distribuição normal $(\mu = 0, \sigma=1)$.
+    * a. Simule um conjunto de muitas medidas (sugestão: 100,000) a partir de uma distribuição normal $(\mu = 0, \sigma = 1)$.
     * b. Retire 200 amostras de n=30 e salve as 200 médias (função sample).
-    * c. Divida os valores por pelo erro padrão, $\sigma/\sqrt{n}$.
+    * c. Divida os valores por pelo erro padrão, $\frac{\sigma}{\sqrt{n}}$.
     * d. Retire 200 amostras de uma distribuição t com 29 graus de liberdade (função rt)
     * e. Plote o histograma superposto da distribuição obtida e da distribuição teórica
     
