@@ -3,6 +3,11 @@ output:
   pdf_document: default
   html_document: default
 ---
+!---
+output:
+  pdf_document: default
+  html_document: default
+---
 \pagebreak
 
 # Início dos textos em construção
@@ -12,23 +17,31 @@ output:
 # Capítulo 5 : Contexto e Inferência Bayesiana
 
 ## Probabilidades 
+i
+Uma abordagem da matemática aplicada que tem se popularizado é o de *Inferência Bayesiana*.  Os procedimentos anteriores são usualmente agrupados entre *frequencistas*.  
 
-Uma abordagem da matemática aplicada que tem se popularizado é o de Inferência Bayesiana. Os procedimentos anteriores são usualmente descritos como frequencistas.  
+Ainda que a informação final de ambas (frequencista e bayesiana) possa convergir, a perspectiva muda de forma consideravel.     
 
-Ainda que a informação final de ambas (frequencista e bayesiana) possa convergir, a perspectiva muda radicalmente.   
-
-Por princípio, partimos de um ponto diferente.  
+Por princípio, usamos caminhos diferentes.  
 Ao invés de usar probabilidades para testar hipóteses sobre *parâmetros*, modelamos os valores deles diretamente.  
 
-Um parâmetro é um símbolo, uma aproximação para uma ideia (*para*, "perto", *metron*, "medida"). Em geral, usamos parâmetros para representar fenômenos que se comportam como números (e.g: existem elementos que podem ser ordenados por alguma noção de tamanho e estes podem ser somados e/ou multiplicados). Exemplos de parâmetros que podem ser estimados experimentalmente: capacidade ventilatória, altura média, IMC.  
+Um parâmetro é um símbolo, uma aproximação para uma ideia (*para*, "perto", *metron*, "medida"). Em geral, usamos parâmetros para representar fenômenos que se comportam como números (e.g: existem elementos que podem ser ordenados por alguma noção de tamanho e estes podem ser somados e/ou multiplicados). 
 
-O médico liga para confirmar uma consulta marcada: "(...) confirma às 20:00 ou vai se atrasar?".  
-O horário de '20:00' é uma estimativa pontual, porém sabemos que existe a chance de chegarmos 19:55 ou 20:05.
-Um frequencista responderia: "Confirmo. Diante do trânsito, posso atrasar. Porém, um atraso maior que 10 minutos é muito improvável (p < 0,05)".  
-Um bayesiano responderia: "Confirmo. Diante do trâsito, é mais provável que eu chege entre 20:00 e 20:05."
-Trabalhamos com incertezas o tempo inteiro. Inferência Bayesiana desvia da modelagem probabilística de hipóteses; o objetivo é modelagem direta das distribibuições dos parâmetros.  
+No capitulo 1, estimamos um parametro para *(1)* a diferenca media entre tamanho dos bicos das especies A e B. No capitulo 2, para a correlacao entre expectativa de vida saudavel e numero de medicos em um pais. Mais do que isso, usamos estatisticas para testar hipoteses envolvendo estes parametros.  
 
-Em abordagem frequencistas, visamos a probabilidade de uma hipótese que versa sobre os valores de algum parâmetro. No teste t para duas amostras, definimos a hipótese nula em função das médias ($\mu$) e outros parâmetros ($\sigma$,$df$).  $H_{0} : \mu_{amostra_{1}} > \mu_{amostra_{2}}$. Em abordagem bayesiana, estimamos diretamente as distribuições de $\mu_{amostra_{1}}$ e $\mu_{amostra_{2}}$ e podemos fazer inferências a partir delas.  
+**Frequencistas e Bayesianos**
+Ainda que nao exista uma definicao canonica para essas escolas ou um porta-voz universal, algumas caracteristicas ajudam a entender estes conceitos.  
+
+Abordagens frequencistas situam probabilidades como aproximacoes para frequencias de eventos em numero muito grande. E comum a ideia de populacoes ou procedimentos hipoteticos infinitos. Geralmente e usada em conjunto com o metodo hipotetico-dedutivo, **associando uma probabilidade aos eventos observados**.
+
+Calculamos uma probabilidade associada a ocorrencia de uma observacao. No teste t para duas amostras, definimos a hipótese nula em função das médias dos bicos($\mu$) e outros parâmetros ($\sigma$,$df$).  $H_{0} : \mu_{amostra_{1}} > \mu_{amostra_{2}}$.  
+O procedimento de imaginar o evento observado como uma instancia de infinitos eventos parecidos e' muito eficiente, mas pouco intuitivo.  
+
+Prismas bayesianos instrumentalizam probabilidades como nocoes mais basicas: a *plausibilidade* de uma determinada situacao. Esta e' uma terminologia pouco precisa e possivelmente compativel com o conceito frenquencista. De qualquer forma, o ponto chave e' de que deixamos de guiar procedimentos objetivando uma probabilidade para as observacoes.  
+As probabilidades passam a ser entidades centrais.  
+Estimariamos diretamente a distribuicao probabilistica para a diferenca entre  $\mu_{amostra_{1}}$ e $\mu_{amostra_{2}}$.  
+
+Em verdade, a linha divisoria e' bastante tenue. Veremos a seguir que uma plataforma bayesiana oferece dois recursos poderosos: sensibilidade a informacoes previas sobre um fenomeno (*priors*) e estimadores estoca'sticos, que nao dependem de solucoes analiticas (*Markov Chain Monte Carlo*). 
 
 ## Muitos métodos científicos: Feyerabend, Carnap e Quine
 
