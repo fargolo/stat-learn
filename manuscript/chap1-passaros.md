@@ -511,8 +511,7 @@ Considerando $(n_{1}-1) + (n_{2}-1)$ graus de liberdade, calculamos a estatísti
 ```
 
 Aqui, ao invés de comparar as estimativas das médias de distribuição t para amostras A e B.  
-
-Calculamos a (1) Diferença esperada na vigência da hipótese nula ($diff_{H_{0}} = 0)$, (2) estimativa da diferença $(diff = \mu_{A}-\mu_{B})$, graus de liberdade (df) e erro padrão balanceado $(se_{pooled})$ para a distribuição das diferenças de médias.
+Calculamos a (1) Diferença esperada na vigência da hipótese nula ($\mathit{diff}_{H_{0}} = 0)$, (2) estimativa da diferença $(\mathit{diff} = \mu_{A}-\mu_{B})$, graus de liberdade (df) e erro padrão balanceado $(se_{pooled})$ para a distribuição das diferenças de médias.
 
 ```r 
     >expected_diff <- 0

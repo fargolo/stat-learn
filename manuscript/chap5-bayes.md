@@ -3,11 +3,6 @@ output:
   pdf_document: default
   html_document: default
 ---
-!---
-output:
-  pdf_document: default
-  html_document: default
----
 \pagebreak
 
 # Início dos textos em construção
@@ -16,32 +11,66 @@ output:
 
 # Capítulo 5 : Contexto e Inferência Bayesiana
 
-## Probabilidades 
-i
+## Probabilidades
+*"O provável é aquilo que acontece na maioria das vezes"*, Aristóteles, Retórica.
+
 Uma abordagem da matemática aplicada que tem se popularizado é o de *Inferência Bayesiana*.  Os procedimentos anteriores são usualmente agrupados entre *frequencistas*.  
 
-Ainda que a informação final de ambas (frequencista e bayesiana) possa convergir, a perspectiva muda de forma consideravel.     
+Muitas vezes, a informação obtida é quase idêntica, mas a perspectiva muda de forma consideravel.     
 
 Por princípio, usamos caminhos diferentes.  
-Ao invés de usar probabilidades para testar hipóteses sobre *parâmetros*, modelamos os valores deles diretamente.  
+Antes, associamos cenários a hipóteses e estimamos parâmetros (probabilidades) para testá-las. Agora, os *parâmetros* têm um papel conceitual mais central.  
 
-Um parâmetro é um símbolo, uma aproximação para uma ideia (*para*, "perto", *metron*, "medida"). Em geral, usamos parâmetros para representar fenômenos que se comportam como números (e.g: existem elementos que podem ser ordenados por alguma noção de tamanho e estes podem ser somados e/ou multiplicados). 
+Um parâmetro é um símbolo, uma aproximação para uma ideia (*para*, "perto", *metron*, "medida"). Aqui, usamos parâmetros para  fenômenos que se comportam como números (e.g: existem elementos que podem ser ordenados por alguma noção de tamanho e operações, como soma e multiplicação).  
 
-No capitulo 1, estimamos um parametro para *(1)* a diferenca media entre tamanho dos bicos das especies A e B. No capitulo 2, para a correlacao entre expectativa de vida saudavel e numero de medicos em um pais. Mais do que isso, usamos estatisticas para testar hipoteses envolvendo estes parametros.  
+No capitulo 1, estimamos um parâmetro para a diferença média entre tamanho dos bicos das especies A e B. No capitulo 2, um parâmetro para a correlação entre expectativa de vida saudavel e número de médicos em um país. Mais do que isso, também usamos estatísticas para testar hipoteses envolvendo estes parametros.  
 
 **Frequencistas e Bayesianos**
-Ainda que nao exista uma definicao canonica para essas escolas ou um porta-voz universal, algumas caracteristicas ajudam a entender estes conceitos.  
 
-Abordagens frequencistas situam probabilidades como aproximacoes para frequencias de eventos em numero muito grande. E comum a ideia de populacoes ou procedimentos hipoteticos infinitos. Geralmente e usada em conjunto com o metodo hipotetico-dedutivo, **associando uma probabilidade aos eventos observados**.
+Abordagens frequencistas situam probabilidades como aproximações para cenários com um número infinito de eventos. Exemplo: se jogarmos uma moeda honesta infinitas vezes, a proporção de *caras* tende a que valor?  
+Notamos que para um grande número de sorteios, a proporção tende a 0,5.  
+Simulação:  
+```r
+    > set.seed(2600)
+    > coin_t <- function(x) {
+    sample(size=x,x=c(0,1), prob = c(0.5,0.5), replace = T) %>%
+    (function(y) sum(y)/length(y))}
+    > coin_t(3)
+    [1] 0.6666667
+    > coin_t(10)
+    [1] 0.4
+    > coin_t(30)
+    [1] 0.5666667
+    > coin_t(100)
+    [1] 0.51
+    > coin_t(1000)
+    [1] 0.498
+    > coin_t(100000)
+    [1] 0.50098
+    > coin_t(10000000)
+    [1] 0.4999367
+```
 
-Calculamos uma probabilidade associada a ocorrencia de uma observacao. No teste t para duas amostras, definimos a hipótese nula em função das médias dos bicos($\mu$) e outros parâmetros ($\sigma$,$df$).  $H_{0} : \mu_{amostra_{1}} > \mu_{amostra_{2}}$.  
-O procedimento de imaginar o evento observado como uma instancia de infinitos eventos parecidos e' muito eficiente, mas pouco intuitivo.  
+É comum a ideia de populacoes ou procedimentos hipoteticos infinitos. Geralmente é usada em conjunto com o método hipotetico-dedutivo, **associando uma probabilidade aos eventos observados** como método de falseamento.  
 
-Prismas bayesianos instrumentalizam probabilidades como nocoes mais basicas: a *plausibilidade* de uma determinada situacao. Esta e' uma terminologia pouco precisa e possivelmente compativel com o conceito frenquencista. De qualquer forma, o ponto chave e' de que deixamos de guiar procedimentos objetivando uma probabilidade para as observacoes.  
-As probabilidades passam a ser entidades centrais.  
-Estimariamos diretamente a distribuicao probabilistica para a diferenca entre  $\mu_{amostra_{1}}$ e $\mu_{amostra_{2}}$.  
+Calculamos uma probabilidade associada à ocorrencia de uma observação. No teste t para duas amostras, definimos a hipótese nula em função das médias dos bicos($\mu$) e outros parâmetros ($\sigma$,$df$). $H_{0} : \mu_{amostra_{1}} = \mu_{amostra_{2}}$.  
+O procedimento de imaginar os eventos observados como instâncias de infinitos eventos parecidos é muito eficiente, mas pouco intuitivo.  
 
-Em verdade, a linha divisoria e' bastante tenue. Veremos a seguir que uma plataforma bayesiana oferece dois recursos poderosos: sensibilidade a informacoes previas sobre um fenomeno (*priors*) e estimadores estoca'sticos, que nao dependem de solucoes analiticas (*Markov Chain Monte Carlo*). 
+Prismas bayesianos instrumentalizam probabilidades como noções mais basicas: a *plausibilidade*, *grau de crença*, *expectativa* para uma determinada situacao. É uma terminologia pouco precisa e possivelmente compatível com o conceito frenquencista. Afinal, a expectativa poderia ser calculada como o valor de convergência para infinitos eventos.  
+
+O ponto chave é de que deixamos de guiar os procedimentos objetivando uma probabilidade para os eventos.  
+As probabilidades em si passam a ser entidades centrais.  
+
+No caso dos pássaros:  
+
+*Inferência Frequencista*: Supondo que a diferença média entre tamanho dos bicos seja 0, qual a probabilidade para minhas observações?   
+Sendo $H_0$ definida por $H_0 : \mu_{amostra_{1}} = \mu_{amostra_{2}}$, queremos saber:  
+$P(H_0) < 0,05$?  
+
+*Inferência Bayesiana*: Como posso estimar os valores mais prováveis para a diferença entre  $\mu_{amostra_{1}}$ e $\mu_{amostra_{2}}$? Considerando um modelo e os dados, qual a distribuição probabilística de $\mu_\mathit{diff_{1-2}}$   
+$P(\mu_\mathit{diff_{1-2}}) = ?$  
+
+Além de um resultado mais intuitivo, veremos que uma plataforma bayesiana oferece dois recursos poderosos: sensibilidade a informações prévias sobre um fenomeno (*priors*) e estimadores estocásticos, que reduzem a dependência de soluções analíticas (fechadas) para as equações (e.g.*Markov Chain Monte Carlo*).  
 
 ## Muitos métodos científicos: Feyerabend, Carnap e Quine
 
@@ -83,15 +112,21 @@ Os exercícios ilustrados no volume anterior testa a adequação dos dados à fa
 
 A princípio, essas declarações parecem triviais. Entretanto, considerando os fatores humanos da ciência, a mudança de lentes é significativa. Abandonando o esquema de testagem de hipóteses como eixo, o *valor p* deixa de ter papel central na narrativa. Integra um conjunto de informações maior sobre os parâmetros examinados.  
 
-Discutivelmente, abordar um problema dessa maneira é historicamente mais frutífero. As contribuições mais contundentes são advindas de cientistas dedicados a estudar um contexto ou problema como um todo. É raro, talvez inédito, que um grupo operando de forma sistemática com o método hipotético-dedutivo tenha obtido avanços consistentes.  
+Discutivelmente, abordar um problema dessa maneira é historicamente mais frutífero. As contribuições mais contundentes são advindas de cientistas dedicados a estudar um contexto ou problema como um todo. É raro, talvez inédito, que um grupo testando hipóteses sistematicamente tenha obtido avanços consistentes.  
 
-Estimar livremente os parâmetros de que falamos é muito mais intuitivo que adequar uma ideia aos procedimentos de testagem de hipóteses.
+Estimar livremente os parâmetros de que falamos é muito mais intuitivo que adequar uma ideia aos procedimentos de testagem de hipóteses.  
 
 ### Bayesian estimation
 
-Para a abordagem anterior, ao fazer um test t, calculamos a estatística t correspondente às diferenças encontradas e então a probabilidade de obter valores iguais ou mais extremos.  
-Agora, faremos algo mais simples e intuitivo. Vamos estimar um parâmetro: a diferença entre os grupos. Na verdade, valores prováveis dela. Todas as inferências subsequentes serão derivadas da distribuição produzida por nosso procedimento.  
-Novamente, usaremos 30 observações retiradas de amostras de distribuição normal $(\mu_{a}=0; \mu_{b}=0.6; \sigma_{a} = \sigma_{b} = 1)$ normais. Usando a library BEST, é possível usar inferência bayesiana para responder nossa pergunta (“Como é a distribuição da diferença entre A e B (…)?”). Aplicamos o estimado sobre as amostras A e B e, em seguida, plotamos as distribuições.  
+No capítulo 1, ao fazer um teste t, calculamos a estatística t correspondente às diferenças encontradas e então a probabilidade de obter valores iguais ou mais extremos.    
+
+É possível usar inferência bayesiana para analisar uma situação idêntica. Como aludido antes, não estamos muito interessados no valor p.  
+A pergunta é *“Quais são os valores prováveis para a diferença entre A e B?”*.
+
+É possível obter uma distribuição probabilística, representando a plausibilidade real de cada valor.
+
+
+Usando a library BEST e 30 observações retiradas de amostras de distribuição normal $(\mu_{a}=0; \mu_{b}=0.6; \sigma_{a} = \sigma_{b} = 1)$ normais.  
 
 ```r
     >library(ggthemes)
@@ -113,13 +148,14 @@ Novamente, usaremos 30 observações retiradas de amostras de distribuição nor
 ```
 ![](images/chap5-best.jpg)
 
-A distribuição no canto superior esquerdo corresponde à nossa estimativa da diferença entre A e B. Com ela, podemos fazer estimativas pontuais $(diff_{\mu_{a}\mu_{b}}=-0.669)$. O intervalo apontado como 95% HDI (High density interval) contém 95% da distribuição.  
+A distribuição no canto superior esquerdo corresponde às nossas estimativas para possíveis valores da diferença entre A e B. Podemos usar a média como estimativa pontual: $(\mathit{diff}_{\mu_{a}\mu_{b}}=-0.669)$. O intervalo apontado como 95% HDI (High density interval) contém 95% da distribuição.
+Seu significado é mais próximo da intuição de uma região provável para os valores que o clássico intervalo de confiança.  
 
 ### Por trás das cortinas
 
-Obviamente, vamos entender a arte permitindo estimar essas distribuições. A flexibilidade e o poder dos modelos bayesianos permite lidar com uma série de problemas dificilmente tratáveis de outra forma. Entretanto, é fácil cair em armadilhas ou esbarrar em dificuldades durante o processo.  
+Obviamente, vamos entender a arte para obter essas distribuições. A flexibilidade e o poder dos modelos bayesianos permite lidar com uma série de problemas dificilmente tratáveis de outra forma. Entretanto, é fácil cair em armadilhas ou esbarrar em dificuldades durante o processo.  
 
-Nesse framework, lidamos com distribuições. É extremamente importante entender os componentes envolvidos para não cometer erros importantes.  
+É extremamente importante entender os componentes envolvidos para não cometer erros importantes.  
 
 ![https://xkcd.com/2059/](images/chap5-xkcd.jpg)
 
