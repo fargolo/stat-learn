@@ -12,23 +12,19 @@ output:
 # Capítulo 5 : Contexto e Inferência Bayesiana
 
 ## Probabilidades
-*"O provável é aquilo que acontece na maioria das vezes"*, Aristóteles, Retórica.
+*"O provável é aquilo que acontece na maioria das vezes"*, Aristóteles, Retórica.  
 
-Uma abordagem da matemática aplicada que tem se popularizado é o de *Inferência Bayesiana*.  Os procedimentos anteriores são usualmente agrupados entre *frequencistas*.  
+Uma abordagem probabilística da matemática aplicada que tem se popularizado é a de *Inferência Bayesiana*.  Os procedimentos apresentados antes são usualmente chamados de *frequencistas*.  
 
 Muitas vezes, a informação obtida é quase idêntica, mas a perspectiva muda de forma consideravel.     
 
 Por princípio, usamos caminhos diferentes.  
-Antes, associamos cenários a hipóteses e estimamos parâmetros (probabilidades) para testá-las. Agora, os *parâmetros* têm um papel conceitual mais central.  
-
-Um parâmetro é um símbolo, uma aproximação para uma ideia (*para*, "perto", *metron*, "medida"). Aqui, usamos parâmetros para  fenômenos que se comportam como números (e.g: existem elementos que podem ser ordenados por alguma noção de tamanho e operações, como soma e multiplicação).  
-
-No capitulo 1, estimamos um parâmetro para a diferença média entre tamanho dos bicos das especies A e B. No capitulo 2, um parâmetro para a correlação entre expectativa de vida saudavel e número de médicos em um país. Mais do que isso, também usamos estatísticas para testar hipoteses envolvendo estes parametros.  
 
 **Frequencistas e Bayesianos**
 
-Abordagens frequencistas situam probabilidades como aproximações para cenários com um número infinito de eventos. Exemplo: se jogarmos uma moeda honesta infinitas vezes, a proporção de *caras* tende a que valor?  
-Notamos que para um grande número de sorteios, a proporção tende a 0,5.  
+Abordagens frequencistas situam probabilidades como aproximações para cenários com um número infinito de eventos. Os exemplos visitados nos primeiros capítulos muitas vezes faziam essa analogia. 
+
+Retomando um exemplo trivial: se jogarmos uma moeda honesta infinitas vezes, a proporção de *caras* tende a que valor? Para muitos sorteios, a proporção tende a 0,5.  
 Simulação:  
 ```r
     > set.seed(2600)
@@ -49,14 +45,16 @@ Simulação:
     [1] 0.50098
     > coin_t(10000000)
     [1] 0.4999367
-```
+```  
 
-É comum a ideia de populacoes ou procedimentos hipoteticos infinitos. Geralmente é usada em conjunto com o método hipotetico-dedutivo, **associando uma probabilidade aos eventos observados** como método de falseamento.  
+É comum a ideia de populações ou procedimentos hipotéticos infinitos. 
+O método hipotético-dedutivo relaciona teorias a observações através de hipóteses falseáveis. A concepção mais recente, por K. Popper trata diretamente probabilidades como entes importantes para as ciências naturais.  
+Mais que isso, ilustra o conceito de calcular a plausibilidade de resultados experimentais na vigência de uma hipótese em estudo.  
 
-Calculamos uma probabilidade associada à ocorrencia de uma observação. No teste t para duas amostras, definimos a hipótese nula em função das médias dos bicos($\mu$) e outros parâmetros ($\sigma$,$df$). $H_{0} : \mu_{amostra_{1}} = \mu_{amostra_{2}}$.  
-O procedimento de imaginar os eventos observados como instâncias de infinitos eventos parecidos é muito eficiente, mas pouco intuitivo.  
+Calculamos uma probabilidade associada à ocorrência de uma observação. No teste t para duas amostras (capítulo 1), definimos a hipótese nula em função das médias dos bicos($\mu$) e outros parâmetros ($\sigma$,$df$). $H_{0} : \mu_{amostra_{1}} = \mu_{amostra_{2}}$.  
+O procedimento de imaginar os eventos observados como instâncias de uma família de eventos parecidos se adequada perfeitamente a preceitos Popperianos. Continua sendo o feijão com arroz da ciência normal para testar previsões de um determinado paradigma. O refinamento gradual de uma teoria envolve o acúmulo de conhecimento e testagem de *hipóteses auxiliares* sob preceitos basilares (*hard core* na terminologia de Imre Lakatos).  
 
-Prismas bayesianos instrumentalizam probabilidades como noções mais basicas: a *plausibilidade*, *grau de crença*, *expectativa* para uma determinada situacao. É uma terminologia pouco precisa e possivelmente compatível com o conceito frenquencista. Afinal, a expectativa poderia ser calculada como o valor de convergência para infinitos eventos.  
+Prismas bayesianos instrumentalizam probabilidades como noções mais basicas: a *plausibilidade*, *grau de crença*, *expectativa* para uma determinada situação. É uma terminologia pouco precisa e possivelmente compatível com o conceito frenquencista. Afinal, a expectativa poderia ser calculada como o valor de convergência para infinitos eventos.  
 
 O ponto chave é de que deixamos de guiar os procedimentos objetivando uma probabilidade para os eventos.  
 As probabilidades em si passam a ser entidades centrais.  
@@ -71,6 +69,19 @@ $P(H_0) < 0,05$?
 $P(\mu_\mathit{diff_{1-2}}) = ?$  
 
 Além de um resultado mais intuitivo, veremos que uma plataforma bayesiana oferece dois recursos poderosos: sensibilidade a informações prévias sobre um fenomeno (*priors*) e estimadores estocásticos, que reduzem a dependência de soluções analíticas (fechadas) para as equações (e.g.*Markov Chain Monte Carlo*).  
+
+
+
+@@@@
+
+---  
+
+Antes, associamos cenários a hipóteses e estimamos parâmetros (probabilidades) para testá-las. Agora, os *parâmetros* têm um papel conceitual mais central.  
+
+Um parâmetro é um símbolo, uma aproximação para uma ideia (*para*, "perto", *metron*, "medida"). Aqui, usamos parâmetros para  fenômenos que se comportam como números (e.g: existem elementos que podem ser ordenados por alguma noção de tamanho e operações, como soma e multiplicação).  
+
+No capitulo 1, estimamos um parâmetro para a diferença média entre tamanho dos bicos das especies A e B. No capitulo 2, um parâmetro para a correlação entre expectativa de vida saudavel e número de médicos em um país. Mais do que isso, também usamos estatísticas para testar hipoteses envolvendo estes parametros.  
+
 
 ## Muitos métodos científicos: Feyerabend, Carnap e Quine
 
@@ -161,6 +172,7 @@ Obviamente, vamos entender a arte para obter essas distribuições. A flexibilid
 
 Então, seguindo o exercício anterior, precisamos especificar que consideramos as duas amostras vindo de distribuições t com médias $\mu_{1} e \mu_{2}$ e desvios-padrão idênticos, $\sigma_{a}= \sigma_{b}$.  
 @ Teorema de Bayes:  posterior = Likelihood function x prior / evidence
+@ Stan : koan master foo
 @ Posterior para correlação
 @ Posterior para diferença entre médias
 @ Posterior para correlação
