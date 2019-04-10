@@ -33,7 +33,8 @@ São Paulo, 10 de Fevereiro de 2019
 
 \vspace{2cm}
 
-Versão 1.0: Introdução; Capítulo 0; Capítulo 1; Capítulo 2; Capítulo 3; Capítulo 4; Capítulo 5 (em construção).  
+**Volume 1** - Capítulos 0-5
+Volume 2 (não publicado) - Capítulos 6-8 
 
 \end{center}
 
@@ -129,29 +130,26 @@ Capítulo 3 - Análise multivariada, grafos e inferência causal
     
 Capítulo 4 - Neurônios
 
+  * Regressão logística
   * Um neurônio artificial: O perceptron
     * História e implementação do zero : Mark I
   * Redes Neurais e Deep learning (múltiplas camadas)
   * Gradient Descent
   * Backpropagation
 
-**Em construção:**
 Capítulo 5 - Contexto e inferência Bayesiana  
 
   * Intuições sobre distribuições probabilísticas
   * Inferência Bayesiana para teste de diferenças e correlação linear
-  * O número de Euler
-  * Regressão logística
-  * Modelos hierárquicos
   * Flexibilidade Bayesiana
     * Usando priors
     * O estimador Markov Chain Monte Carlo
 
-**Em construção:**
+**Volume 2**
 Capítulo 6 - Programação probabilística para contextos gerais  
 
+  * Processos Gaussianos
   * Inferência Bayesiana para cosmologia
-  * Prevendo halos de matéria escura (Kaggle top solution)
   * Redes neurais probabilísticas com PyMC3
 
 Capítulo 7 - Ambientes desconhecidos  
@@ -161,6 +159,11 @@ Capítulo 7 - Ambientes desconhecidos
   * Clustering
   * Aprendizagem semi-supervisionada
   * Reinforcement learning
+  
+Capítulo 8 - Tópicos especiais
+  * Sistemas dinâmicos
+  * Topologia (Topological Data Analysis)
+  * Processamento de linguagem natural
   
 \pagebreak
 

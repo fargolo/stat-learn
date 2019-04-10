@@ -514,18 +514,18 @@ Aqui, ao invés de comparar as estimativas das médias de distribuição t para 
 Calculamos a (1) Diferença esperada na vigência da hipótese nula ($\mathit{diff}_{H_{0}} = 0)$, (2) estimativa da diferença $(\mathit{diff} = \mu_{A}-\mu_{B})$, graus de liberdade (df) e erro padrão balanceado $(se_{pooled})$ para a distribuição das diferenças de médias.
 
 ```r 
-    >expected_diff <- 0
-    >mean_diff <- mean(a) - mean(b) #diferença de medias
-    
-    >df_pool <- length(a) + length(b) - 2 # graus de liberdade balanceados
-    >sd_pool  <- sqrt(((length(a) - 1) * sd_a^2 + (length(b) - 1) * sd_b^2)/
+    > expected_diff <- 0
+    > mean_diff <- mean(a) - mean(b) #diferença de medias
+     
+    > df_pool <- length(a) + length(b) - 2 # graus de liberdade balanceados
+    > sd_pool  <- sqrt(((length(a) - 1) * sd_a^2 + (length(b) - 1) * sd_b^2)/
                    	df_pool) # desvio padrao balanceado 
 ```
 A estatística t correspondente à diferença observada, considerando uma distribuição t com os parâmetros calculados acima.
 
 ```r
     # Diferenca dividida por erro padrao
-    >t   <- (mean_diff - expected_diff)/ (sd_pool * sqrt(1/length(a) + 1/length(b))) # t-statistic
+    > t   <- (mean_diff - expected_diff)/ (sd_pool * sqrt(1/length(a) + 1/length(b))) # t-statistic
 
 ```
 Valor p para hipótese bicaudal (resultados extremos considerando a possibilidade de a diferença ser maior ou menor que 0): 
