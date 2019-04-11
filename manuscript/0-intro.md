@@ -27,14 +27,14 @@ felipe.c.argolo@protonmail.com
 
 \vspace{2cm}
 
-São Paulo, 10 de Fevereiro de 2019  
+São Paulo, 11 de Abril de 2019  
 
 \href{http://www.leanpub.com/fargolo}{Página oficial: https://http://www.leanpub.com/fargolo}  
 
 \vspace{2cm}
 
-**Volume 1** - Capítulos 0-5
-Volume 2 (não publicado) - Capítulos 6-8 
+**Volume 1** - Capítulos 0-5  
+Volume 2 (não publicado) - Capítulos 6-8   
 
 \end{center}
 
@@ -162,8 +162,8 @@ Capítulo 7 - Ambientes desconhecidos
   
 Capítulo 8 - Tópicos especiais  
 
-  * Sistemas dinâmicos
-  * Topologia (Topological Data Analysis)
+  * Séries temporais
+  * Sistemas dinâmicos 
   * Processamento de linguagem natural
   
 \pagebreak
