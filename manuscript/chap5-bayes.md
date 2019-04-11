@@ -70,8 +70,11 @@ Antes, associamos cenários a hipóteses e estimamos parâmetros (probabilidades
 
 Um parâmetro é um símbolo, uma aproximação para uma ideia (*para*, "perto", *metron*, "medida"). Nos capítulos iniciais, usamos parâmetros para construtos que se comportam como números (e.g: existem elementos que podem ser ordenados por alguma noção de tamanho e operações, como soma e multiplicação).  
 
-Estimamos um parâmetro que aproxima o valor concebido como o verdadeiro para a diferença média entre tamanho dos bicos nas espécies A e B. No capitulo 2, um parâmetro para a correlação entre expectativa de vida saudavel e número de médicos em um país. Mais do que isso, usamos estatísticas para testar hipóteses e calcular intervalos de confiança.  
-Podemos usar probabilidades obtidas via inferência bayesiana para continuar testando hipóteses. Entretanto, usaremos paradigmas propostos por outros filósofos como pano de fundo para os procedimentos.[^27]
+Estimamos parâmetros($\mu_{\text{diff}}$ e valor p) para testar uma hipótese sobre a diferença média entre tamanho dos bicos nas espécies A e B. No capítulo 2, um parâmetro ($\beta$ e um valor p) para testar uma hipótese sobre a correlação entre expectativa de vida saudavel e número de médicos em um país. Mais do que isso, usamos estatísticas para testar hipóteses e calcular intervalos de confiança.  
+
+É muito difícil entender a utilidade dos procedimentos anteriores desconhecendo o norte hipotético-dedutivo guiando-os. O seguinte trecho está em *Data Analysis, A Bayesian Tutorial* (Sivia & Skilling, 2006), de professores da Oxford: *"The masters, such as Fisher, Neyman and Pearson, provided a variety of different principles, which has merely resulted in a plethora of tests and procedures **without any clear underlying rationale**. This **lack of unifying principles** is, perhaps, at the heart of the shortcomings of the cook-book approach to statistics that students are often taught even today."*  
+
+Podemos, inclusive, usar probabilidades obtidas via inferência bayesiana para continuar testando hipóteses. Entretanto, é conveniente introduzir ferramentas bayesianas junto ao pensamento de filósofos que ofereceram outras alternativas[^27].  
 
 [^27]:Existe um programa de pesquisa mais abrangente em filosofia sobre epistemologia Bayesiana, mas este não é nosso foco.
 
@@ -120,7 +123,6 @@ Estimar livremente os parâmetros de que falamos naturalmente é muito mais intu
 ### Bayesian estimation
 
 No capítulo 1, ao fazer um teste t, calculamos a estatística t correspondente às diferenças encontradas e então a probabilidade de obter valores iguais ou mais extremos.    
-
 É possível usar inferência bayesiana para analisar uma situação idêntica. Como aludido antes, não estamos muito interessados no valor p.  
 A pergunta é *“Quais são os valores prováveis para a diferença entre A e B?”*.
 
@@ -176,7 +178,7 @@ Podemos começar supondo uma moeda honesta $0.5$. Com uma frequência alta de *c
 O texto de **An essay towards solving a Problem in the Doctrine of Chances (1973)** apresenta uma série de demonstrações até chegar ao enunciado:  
 **Proposition 4** : *If there be two subesequent events be determined every day, and each day the probability of the 2nd [event] is $\frac{b}{N}$ and the probability of both $\frac{P}{N}$, and I am to receive N if both of the events happen the 1st day on which the 2nd does; I say, according to these conditions, the probability of my obtaining N is $\frac{P}{b}$. (...)*  
 
-Os estilo é um pouco complicado. Com notação algébrica atual:   
+O estilo é um pouco complicado. Com notação atual:   
 Considerando dois eventos subsequentes, *(1)* a probabilidade do segundo acontecer é $\frac{b}{N}$ ($P(A)$), *(2)* a probabilidade de ambos acontecerem é $\frac{P}{N}$ ($P(A \cap B$). *(3)* Sabendo que o segundo aconteceu, a probabilidade de o primeiro também ter acontecido é $\frac{P}{b}$.  $N$ é cancelado e *(3)* é a razão entre *(2)* e *(1)*: 
  
 $$P(B\mid A)= \frac{P(A \cap B)}{P(A)}, P(A)\neq 0$$  
@@ -192,23 +194,43 @@ Assim, podemos estimar probabilidades de eventos. Em inferência Bayesiana, empr
 $$P(\theta \mid X) = \frac{ P(X \mid \theta) \space P(\theta) }{P(X)}, P(X) \neq 0$$
 
 #### Posterior
-Chamamos o primeiro termo, a estimativa do parâmetro após a calibração pelas observações $P(\theta \mid X)$, de **posterior**. Todos os procedimentos são desenhados para calculá-la e representa a distribuição usada nas inferências finais.  
+Chamamos o primeiro termo, a estimativa do parâmetro após a calibração pelas observações $P(\theta \mid X)$, de **distribuição posterior**(*posterior distribution* traduz bem para o português). Todos os procedimentos são desenhados para calculá-la e representa a distribuição usada nas inferências finais.  
+Por exemplo, queremos a distribuição posterior dos valores para a diferença entre A e B.   
 
 #### Probabilidade marginal
 O denominador do termo à direita é a probabilidade independente para a ocorrência dos dados ($P(X)$). É usada para normalizar as quantidades e chamada de probabilidade/verossimilhança marginal, **marginal likelihood**, ou ainda evidência do modelo, **model evidence**.  
 
-#### Likelihood function
-O primeiro termo à direita, $P(X \mid \theta)$, é a verossimilhança (**likelihood**) e determina a probabilidade de ocorrência das observações $P(X)$ dado um parâmetro $\theta$.  
-Provavelmente, é o ponto mais sensível na modelagem, pois determina como se dá a relação entre modelo teórico e observações. Como discutido antes, equações descrevem leis envolvendo mais de um construto. O mapeamento entre observações $P(X)$ e um parâmetro  é dado pela *função de verossimilhança* (**likelihood function**) escolhida, $f(\theta)$.    
-Exemplo: se os desfechos estudados são binários ($y_{i} \in  \{ 0,1 \}$, e.g. diagnóstico positivo ou negativo), podemos usar uma relação logística (ver Cap. 4) para estimar probabilidades em função de variáveis observadas ($X$) e parâmetro(s) $\theta$.  
+
+#### Likelihood
+O primeiro termo à direita, $P(X \mid \theta)$, chamamos de verossimilhança (**likelihood**) e determina a probabilidade de ocorrência das observações $P(X)$ dado um parâmetro $\theta$.  
+Provavelmente, é o ponto mais sensível na modelagem, pois descreve como se dá a relação entre modelo teórico e observações. Como discutido antes, equações correspondem a leis precisas envolvendo mais de um construto. O mapeamento entre observações $P(X)$ e um parâmetro  é dado pela *função de verossimilhança* (**likelihood function**) escolhida, $f(\theta)$.  
+Exemplo: o número de células de combate do sistema imune circulante no sangue está associado a uma resposta inflamatória. Quanto mais alto, mais provável é uma infecção para o médico. Mas qual a lei que associa o número de células (entre $0$ e $10^5$)
+com a probabilidade de infecção?  
+Se os desfechos estudados são binários ($y_{i} \in  \{ 0,1 \}$, e.g. diagnóstico positivo ou negativo), podemos usar uma relação logística (ver Cap. 4) para estimar probabilidades em função de variáveis observadas ($X$) e parâmetro(s) $\theta$.  
 $$P(X \mid \theta) \sim f(X, \theta) : y_{i} = \frac{1}{1+e^{-(\theta * x_{i} + c)}}$$  
+Outras funções poderia ser escolhidas (e.g. Heaviside step do capítulo anterior). Isto depende do do fenômeno, da teoria e das medidas analizadas. 
 
 #### Priors
-Antes do experimento, temos alguma noção de como o parâmetro se comporta. Ela pode ser bem precisa ou trazer muita incerteza. Chamamos a estimativa basal $P(\theta)$ de **prior**.  
-Na linguagem das probabilidades, ela é uma distribuição. Nossas crenças prévias podem ser pouco informativas (e.g. distribuição uniforme sobre os valores possíveis) ou bastante definidas (e.g. distribuição com pico acentuado em um valor provável).  
+Como estimamos as probabilidades infecção antes de ver os resultados do teste? Antes exame, temos alguma noção de como o parâmetro se comporta. 
+Ela pode ser bem precisa ou trazer muita incerteza. Chamamos a estimativa basal $P(\theta)$ de **prior** e aparece na expressão multiplicando o valor da verossimilhança.  
+Em linguagem das probabilidades, ela é uma distribuição. Nossas crenças prévias podem ser pouco informativas (e.g. não examinamos o paciente; distribuição uniforme sobre os valores possíveis) ou bastante definidas (e.g. o paciente está assintomático; distribuição concentrada nas proximidades de 0).  
+
+```r
+    > library(ggplot2)
+    > a <- runif(10000)
+    > b <- runif(10000, min = 0, max=0.2)
+    > priors <- data.frame(uniform=a, low=b)
+    > ggplot(priors)+
+    geom_density(aes(x=uniform),color="#F0E442")+
+    geom_density(aes(x=low),color="#009E73")+
+    ylab("Densidade")+xlab("Priors: informativo(verde) ou incerto (amarelo)")+
+    theme_hc(style="darkunica")+theme(axis.text.y=element_blank())
+```
+![O prior verde supõe maiores probabilidades para valores baixos. O prior amarelo é pouco, informativo atribuindo probabilidades semelhantes em todo o intervalo](images/chap5-priors.png)
+
 
 Conhecendo nossos construtos, podemos então reescrever os procedimentos:  
-$\text{Posterior} = \frac{\text{Prob. de observações dada por} f(X,\theta) * \text{Prior}}{\text{Prob. marginal para observações}}$ 
+$$\text{Posterior} = \frac{\text{Prob. de observações dada por} f(X,\theta) * \text{Prior}}{\text{Prob. marginal para observações}}$$ 
 
 Para obtermos o *posterior*, multiplicamos a probabilidade dada pela *função de verossimilhança* pelas nossas estimativas prévias (*prior*) e normalizamos pela *probabilidade marginal* das observações.  
 
@@ -218,7 +240,7 @@ As narrativas posteriores são construídas de acordo com a distribuição do *p
 
 **Mestre Foo e o Recrutador**[^29]
 
-Um recrutador técnico, ao descobrir que os caminhos dos hackers Unix lhe eran estrahos, procurou uma reunião com Mestre Foo para aprender sobre o Caminho. Mestre Foo encontrou o recruta nos escritórios de recursos humanos de uma grande corporação.  
+Um recrutador técnico, ao descobrir que os caminhos dos hackers Unix lhe eram estrahos, buscou conversar com Mestre Foo para aprender sobre o Caminho. Mestre Foo encontrou o recruta nos escritórios de recursos humanos de uma grande corporação.  
 
 O recruta disse, “Eu tenho observado que os hackers Unix desdenham ou ficam nervosos quando pergunto a eles quantos anos de experiência têm em uma linguagem de programação nova. Por que isso acontece?"  
 
@@ -238,15 +260,30 @@ Ao ouvir isso, o recrutador foi iluminado.
 
 ### Dear Stan
 
-As implementações dos modelos Bayesianos são feitas em Stan, um pacote em C++  especializado em inferência bayesiana. Os modelos são escritos num dialeto próprio (Stan), mas a sintaxe é bastante semelhante à da notação matemática, então a tradução das análises do capítulo é direta.  
+As implementações dos modelos Bayesianos são feitas em Stan, um pacote em C++  especializado em inferência bayesiana. Os modelos são escritos num dialeto próprio, mas a sintaxe é bastante semelhante à da notação matemática, então a tradução das análises do capítulo é direta.  
 Especificamos o modelo num arquivo auxiliar de extensão *.stan*, que é manipulado por pacotes em R para visualização e outras utilidades.  
 
-**Lá e de volta outra vez**
-Reproduziremos à maneira bayesiana dois exemplos conhecidos: diferença entre médias (análogo ao test t) e correlação.  
-Seguindo o exercício anterior, precisamos especificar que consideramos as duas amostras vindo de distribuições t com médias $\mu_{1} e \mu_{2}$ e desvios-padrão idênticos, $\sigma_{a}= \sigma_{b}$.  
-@ Posterior para diferença entre médias
-@ Posterior para correlação
+**Lá e de volta outra vez**  
 
+Reproduziremos à maneira bayesiana dois exemplos conhecidos: diferença entre médias (análogo ao test t) e correlação.  
+
+Aqui, fica claro que o racional é mais direto que o anterior.  
+
+Lembremos (cap. 1) que, para comparar amostras usando o teste t: (1) assumimos normalidade na origem dos dados; (2) imaginamos a distribuição das médias normalizadas pelo erro padrão em amostras hipotéticas semelhantes, retiradas da mesma população; (3) calculamos o valor p conhendo a distribuição (Student's t).  
+
+Agora, podemos obter uma distribuição posterior para a diferença entre amostras.  
+(1) Assumimos a normalidade na origem dos dados (likelihood function); (2) fornecemos nossas estimativas prévias (prior); (3) atualizamos os valores diante dos dados e para obter o posterior.  
+
+Adotamos a seguinte parametrização:
+
+Valores observados nas amostras 1 e 2, vetores $N$ dimensões: $y_{1}, y_{2}$  
+Parâmetros alvo desconhecidos, as médias em cada amostra e um desvio-padrão em comum: $\mu_{1}, \mu_{2}, \sigma$  
+Priors supondo média 0 em ambos os grupos e desvio-padrão de 1: $mu_{1} \sim N(0,1), mu_{2} \sim N(0,1), \sigma \sim N(1,1)$
+Função de verossimilhança, indicando que cada observação é de uma população com distribuição normal: $y \sim N(\mu,\sigma)$ 
+
+Também especificamos para o Stan que gere (1) valores para diferença entre as distribuições posteriores de $\mu_{1}$ e $\mu_{2}$, $\mu_{\text{diff}}$ e (2) tamanho de efeito com D de Cohen, dividindo o valor pelo desvio-padrão.  
+
+O código deve ser salvo num arquivo ".stan".  
 ```
 data {
   int<lower=0> N;
@@ -262,9 +299,9 @@ model {
   //priors
   mu_1 ~ normal(0, 1);
   mu_2 ~ normal(0, 1);
-  sigma ~ normal(0, 1);
+  sigma ~ normal(1, 1);
  
-  //likelihood
+  //likelihood - Verossimilhanca
   for (n in 1:N){
     y_1[n] ~ normal(mu_1, sigma);
     y_2[n] ~ normal(mu_2, sigma);
@@ -278,32 +315,52 @@ generated quantities{
   cohenD = mudiff/sigma;
 }
 ```
-
+ 
+Então, vamos iniciar as análises através da interface em R. Criamos uma lista com componentes homônimos às variáveis do arquivo Stan (y_1: amostral 1, y_2: amostra 2, N: tamanho amostral).
 
 ```r
-    # a e b declaradas antes
+    > a <- rnorm(n = 100, sd = 1, mean = 0)
+    > b <- rnorm(n = 100, sd = 1, mean = 0.6)
     > sample_data <- list(y_1=a,y_2=b,N=length(a))
     > fit <- rstan::stan(file="aux/bayes-t.stan",
            	data=sample_data,
            	iter=3000, warmup=100, chains = 6)
+     SAMPLING FOR MODEL 'bayes-t' NOW (CHAIN 1).
+     (...)
 ```
+O comando acima iniciará os cálculos. Vamos plotar as distribuições posteriores de $\mu_{1}$, $\mu_{2}$ e a diferença entre essas ($\mu_{\text{diff}}$)
 
 ```r
-    > muDiff <- extract(fit, par='mudiff')$mudiff
-    > mean(muDiff)
-    > [1] -0.3910029
-    > means <- lapply(list(a,b), mean)
-    > sample_diff <- diff(as.numeric(means))  # observed in data
-    > ggplot(as.data.frame(muDiff),aes(x=muDiff))+
-       geom_histogram(alpha=0.6,color="pink")+
-       geom_vline(xintercept=-sample_diff,
-              	color="light blue",size=2)+ # line for observed difference
-       xlab("Difference of Means")+ylab("Frequency")+
-       geom_text(label="Distribution mean:\n -0.391",
-             	color="white",x=mean(muDiff),y=500)+
-       theme_economist_white(gray_bg = F)
+    > obs_diff <- mean(a) - mean(b)
+    > obs_diff
+    [1] -0.5579295
+    > posteriors <- extract(fit,par = c("mu_1","mu_2","mudiff"))
+    > lapply(posteriors,mean)
+    $mu_1
+    [1] 0.07303457    
+
+    $mu_2
+    [1] 0.6261336    
+
+    $mudiff
+    [1] -0.553099
+    > ggplot(data.frame(muDiff=posteriors$mudiff), aes(x=muDiff))+
+       geom_histogram(alpha=0.6,color="green")+
+       geom_vline(xintercept=obs_diff,
+              	color="light blue",size=1)+ # line for observed difference
+       xlab("Distribution for difference of means")+ylab("")+ ylim(0,2500)+
+       geom_text(label="Observed difference of means:\n -0.557",
+             	color="white",x=mean(muDiff)+0.05,y=2000)+
+       theme_hc(style="darkunica")+
+       theme(axis.text.y=element_blank())       	
 ```
 ![](images/chap5-diff-bayes.png)
+
+A distribuição acima contém outras informações. Perdemos a elegante estimativa analítica de Student para testar a hipótese sobre um parâmetro(e.g. $H_{0}: \mu_{\text{diff}} = 0$). Por outro lado, temos uma visão global sobre toda a distribuição estimada para $\mu_{\text{diff}}$!  
+
+--- 
+
+### Correlação
 
 ![](images/chap5-docs-posterior.jpg)
 
@@ -325,9 +382,6 @@ Ellipse:
 ```
 ![](images/chap5-ellipses.jpg)
 
-* Classificação
-  * Regressão logística @ Numero de euler
-  * Modelos hierárquicos
 * Flexibilidade Bayesiana
   * Usando priors
   * O estimador Markov Chain Monte Carlo

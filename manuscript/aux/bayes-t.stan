@@ -12,7 +12,7 @@ model {
   //priors
   mu_1 ~ normal(0, 1);
   mu_2 ~ normal(0, 1);
-  sigma ~ normal(0, 1);
+  sigma ~ normal(1, 1);
  
   //likelihood
   for (n in 1:N){

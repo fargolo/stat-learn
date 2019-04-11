@@ -145,7 +145,7 @@ Capítulo 5 - Contexto e inferência Bayesiana
     * Usando priors
     * O estimador Markov Chain Monte Carlo
 
-**Volume 2**
+**Volume 2**  
 Capítulo 6 - Programação probabilística para contextos gerais  
 
   * Processos Gaussianos
@@ -160,7 +160,8 @@ Capítulo 7 - Ambientes desconhecidos
   * Aprendizagem semi-supervisionada
   * Reinforcement learning
   
-Capítulo 8 - Tópicos especiais
+Capítulo 8 - Tópicos especiais  
+
   * Sistemas dinâmicos
   * Topologia (Topological Data Analysis)
   * Processamento de linguagem natural

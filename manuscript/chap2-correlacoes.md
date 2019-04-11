@@ -241,13 +241,13 @@ O valor esperado dessa soma:
 $$E[M_{X}(t)]=1+tE[X]+\frac{t^{2}E[X^{2}]}{2!}+\frac{t^{3}E[X^{3}]}{3!}+...$$
 $$=1+tM_{1}+\frac{t^{2}M_{2}}{2!}+\frac{t^{3}M_{3}}{3!}+...$$
 Em que $M_{n}$ corresponde ao n-ésimo momento.   
-A função característica é a transformada de Fourier da função de probabilidade, associando componentes periódicos no plano imaginário. É o mesmo que multiplicar o argumento t da função geradora de momentos $M_{X}(t)=E[e^{tX}]$ pela unidade imaginária, $\phi_{X}(t)= M_{X}(it) = E[e^{itX}]$. Funções com cumulantes idênticos possuem momentos idênticos e podemos demonstrar que a função característica que a soma de $n$ distribuições iguais possui momentos idênticos aos da normal. [^15]
+A função característica é a transformada de Fourier da função de probabilidade, associando componentes periódicos no plano imaginário. É o mesmo que multiplicar o argumento t da função geradora de momentos pela unidade imaginária $M_{X}(t)=E[e^{tX}] , \rightarrow \phi_{X}(t)= M_{X}(it) = E[e^{itX}]$. Funções com cumulantes idênticos possuem momentos idênticos e podemos demonstrar que a função característica que a soma de $n$ distribuições iguais possui momentos idênticos aos da normal. [^15]
 
 [^15]: Two Proofs of the Central Limit Theorem, Yuval Filmus, 2010. http://www.cs.toronto.edu/~yuvalf/CLT.pdf
 
-Com os conceitos adquiridos em mãos, é fácil entender o $\rho$ de Pearson.  
-
 ---
+
+Com os conceitos adquiridos em mãos, é fácil entender o $\rho$ de Pearson.  
 
 \pagebreak
 
