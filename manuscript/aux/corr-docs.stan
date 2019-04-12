@@ -6,29 +6,32 @@ data {
 parameters {
 	vector[2] mu;             
 	real<lower=0> sigma[2];   
-	real<lower=1> nu;         
 	real<lower=-1, upper=1> rho;  
 }
 
 transformed parameters {
-	// Covariance matrix
+	// Matriz de covariancias
 	cov_matrix[2] cov = [[  	sigma[1] ^ 2   	, sigma[1] * sigma[2] * rho],
                      	[sigma[1] * sigma[2] * rho,   	sigma[2] ^ 2   	]];
 }
 
 model {
-  // Likelihood
-  // Bivariate Student's t-distribution instead of normal for robustness
-  x ~ multi_student_t(nu, mu, cov);
+  // Priors
+  rho ~ normal(0.1,1); //Correlacao
+  // hale 
+  sigma[1] ~ normal(5,2); 
+  mu[1] ~ normal(60, 3);
+  // log_docs
+  sigma[2] ~ normal(1,10);
+  mu[2] ~ normal(0, 2);
+  
+  // Likelihood - Bivariate normal
+  x ~ multi_normal_lpdf(mu, cov);
     
-  // Noninformative priors on all parameters
-  sigma ~ normal(0,100);
-  mu ~ normal(0, 100);
-  nu ~ gamma(2, 0.1);
 }
 
 generated quantities {
-  // Random samples from the estimated bivariate t-distribution (for assessment of fit)
+  // Amostras com pares ordenados
   vector[2] x_rand;
-  x_rand = multi_student_t_rng(nu, mu, cov);
+  x_rand = multi_normal_rng(mu, cov);
 }

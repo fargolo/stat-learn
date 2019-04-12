@@ -216,7 +216,6 @@ Ela pode ser bem precisa ou trazer muita incerteza. Chamamos a estimativa basal 
 Em linguagem das probabilidades, ela é uma distribuição. Nossas crenças prévias podem ser pouco informativas (e.g. não examinamos o paciente; distribuição uniforme sobre os valores possíveis) ou bastante definidas (e.g. o paciente está assintomático; distribuição concentrada nas proximidades de 0).  
 
 ```r
-    > library(ggplot2)
     > a <- runif(10000)
     > b <- runif(10000, min = 0, max=0.2)
     > priors <- data.frame(uniform=a, low=b)
@@ -252,11 +251,11 @@ Mestre Foo levantou e começou a caminhar pelo escritório. O recrutador ficou i
 
 “Sim, mas este piso é novo para mim” replicou Mestre Foo.  
 
-Ao ouvir isso, o recrutador foi iluminado.
+Ao ouvir isso, o recrutador foi iluminado.  
 
-[^29]: http://www.catb.org/~esr/writings/unix-koans/recruiter.html
+[^29]: http://www.catb.org/~esr/writings/unix-koans/recruiter.html  
 
----
+---  
 
 ### Dear Stan
 
@@ -268,6 +267,8 @@ Especificamos o modelo num arquivo auxiliar de extensão *.stan*, que é manipul
 Reproduziremos à maneira bayesiana dois exemplos conhecidos: diferença entre médias (análogo ao test t) e correlação.  
 
 Aqui, fica claro que o racional é mais direto que o anterior.  
+
+#### Comparando amostras de distribuição normal
 
 Lembremos (cap. 1) que, para comparar amostras usando o teste t: (1) assumimos normalidade na origem dos dados; (2) imaginamos a distribuição das médias normalizadas pelo erro padrão em amostras hipotéticas semelhantes, retiradas da mesma população; (3) calculamos o valor p conhendo a distribuição (Student's t).  
 
@@ -348,8 +349,8 @@ O comando acima iniciará os cálculos. Vamos plotar as distribuições posterio
        geom_histogram(alpha=0.6,color="green")+
        geom_vline(xintercept=obs_diff,
               	color="light blue",size=1)+ # line for observed difference
-       xlab("Distribution for difference of means")+ylab("")+ ylim(0,2500)+
-       geom_text(label="Observed difference of means:\n -0.557",
+       xlab("Distribuição para diferença de médias")+ylab("")+ ylim(0,2500)+
+       geom_text(label="Diferença observada:\n -0.557",
              	color="white",x=mean(muDiff)+0.05,y=2000)+
        theme_hc(style="darkunica")+
        theme(axis.text.y=element_blank())       	
@@ -360,30 +361,128 @@ A distribuição acima contém outras informações. Perdemos a elegante estimat
 
 --- 
 
-### Correlação
+#### Correlação linear  
 
-![](images/chap5-docs-posterior.jpg)
+Reproduziremos a análise de correlação do capítulo 2, quando falamos em indicadores de saúde. As variáveis importantes são o logaritmo do número de médicos e a expectativa de vida saudável (Health Adjusted Life Expectancy). O banco foi criado com nome `uni_df`, contendo as variáveis `log_docs` e `hale`.  
 
-@Correlacao  
+Sistematizando nossa abordagem, vamos escolher **Priors:**  
+*Correlação* $\rho$: Vamos assumir que ela é positiva entre número de médicos e expectativa de vida saudável. Vamos indicar um valor baixo (0,1) para essa correlação.
+$$N(0.1,1)$$  
+*Médias e desvios* $\mu$ e $\sigma$: Não temos muita idea média para o logaritmo do número de médicos. Uma leve inspeção mostra que os valores têm baixa magnitude. Vamos indicar priors pouco informativos para $\mu_{\text{medicos}}, \sigma_{\text{medicos}}$ na forma de gaussianas de média 0 e desvios altos.   
+$$\mu_{\text{medicos}} \sim N(0, 2), \sigma_{\text{medicos}} \sim N(0, 10)$$  
+Uma breve consulta em mecanismos de busca sugere que uma média $\mu_{\text{hale}}$ de *60* anos seja um chute razoável. Vamos estimar o prior do desvio-padrão $\sigma_{\text{hale}}$ em 5.  
+$$\mu_{\text{hale}} \sim N(60, 3), \sigma_{\text{hale}} \sim N(5, 2)$$
+
+
+**Likelihood function:** Nosso modelo para os dados é de que eles são dados através de uma distribuição normal bivariada, com médias $\mu_{1},\mu_{2}$ e desvios $\sigma_{1},\sigma_{2}$. Como vimos antes, a definição para o coeficiente de Pearson entre as amostras $X$ e $X'$ é
+$$\rho_{XX'}= \frac{cov(X,X')}{\sigma_{X}\sigma_{X'}}$$
+Então, 
+$$cov(X,X') = \sigma_{X}\sigma_{X'} * \rho_{XX'}$$  
+Podemos então definir a matriz de covariância de nossa distribuição bivariada:  
+$$\text{Cov. Matrix} = \begin{pmatrix} 
+\sigma_{1}^2 & \sigma_{1}\sigma_{2'} * \rho  \\ 
+\sigma_{1}\sigma_{2'} * \rho & \sigma_{2}^2  \end{pmatrix}$$
+
+Nosso código em Stan:
+```
+data {
+	int<lower=1> N;
+	vector[2] x[N];  
+}
+
+parameters {
+	vector[2] mu;             
+	real<lower=0> sigma[2];   
+	real<lower=-1, upper=1> rho;  
+}
+
+transformed parameters {
+	// Matriz de covariancias
+	cov_matrix[2] cov = [[  	sigma[1] ^ 2   	, sigma[1] * sigma[2] * rho],
+                     	[sigma[1] * sigma[2] * rho,   	sigma[2] ^ 2   	]];
+}
+
+model {
+  // Priors
+  sigma ~ normal(0,1);
+  mu ~ normal(0.2, 1);
+  
+  // Likelihood - Bivariate normal
+  x ~ multi_normal_lpdf(mu, cov);
+    
+}
+
+generated quantities {
+  // Amostras com pares ordenados
+  vector[2] x_rand;
+  x_rand = multi_normal_rng(mu, cov);
+}
+```
+E então podemos iniciar as estimativas.  
 
 ```r
-    >fit <- rstan::stan(file="aux/corr-docs.stan",
-           	data=uni_df,
-           	iter=3000, warmup=100, chains = 6)
+    # Stan não aceita missing values
+    > c_cases <- uni_df[complete.cases(uni_df[,c(3,4)]),] 
+    > vec_2 <- matrix(data = c(c_cases$hale,c_cases$log_docs),ncol = 2,nrow = 145)
+    > health_data  <- list(N=nrow(c_cases),x = vec_2) 
+    > fit <- rstan::stan(file="aux/corr-docs.stan",
+           	data=health_data,
+           	iter=3000, warmup=120, chains = 6)
+    SAMPLING FOR MODEL 'corr-docs' NOW (CHAIN 1).
+    (...)
 ```
-Ellipse:
+E então, vamos observar nossa estimativa posterior para o valor de $\rho$:  
+```r
+    > obs_rho <- cor.test(vec_2[,1],vec_2[,2])$estimate
+    > posterior <- rstan::extract(fit,par = c("rho"))
+    > ggplot(data.frame(rho=posterior$rho), aes(x=rho))+
+       geom_density(alpha=0.6,color="green")+
+       geom_vline(xintercept=obs_rho,
+              	color="light blue",size=1)+ # line for observed difference
+       xlab("")+ylab("")+ xlim(-1,1)+
+       geom_text(label="Valor observado \n 0.841",
+             	color="white",x=obs_rho-0.1, y = 5,
+             	size=3)+
+       geom_text(label="Média do posterior \n 0.833",
+             	color="white",x=obs_rho-0.05, y = 13,
+             	size=3)+
+       theme_hc(style="darkunica")+
+       theme(axis.text.y=element_blank()) 
+```
+![](images/chap5-corr-post1.png)
+
+Notamos que as estimativa posterior para $\rho$ foram razoavelmente distruídas ao redor do valor empiricamente calculado na amostra. Podemos ainda observar na distribuição  intervalos com alta densidade de probabilidade (HDI, High density intervals) ou ainda outros fins.  
+
+```r
+    > quantile(posterior$rho,probs = c(0.025,0.5,0.975))
+         2.5%       50%     97.5% 
+    0.7790645 0.8353651 0.8777544  
+    > cor.test(vec_2[,1],vec_2[,2])$conf.int
+    [1] 0.7854248 0.8828027
+```  
+
+O HDI muitas vezes é próximo do intervalo de confiança como calculado tradicionalmente, mas isso não é garantido.  
+
+Podemos plotar nossa amostra aleatória gerada a partir do posterior e inspecionar visualmente como os valores da amostra estariam dentro da probabilidade estimada.  
 
 ```r
     >x.rand = extract(fit, c("x_rand"))[[1]]
-    >plot(uni_df[,c("log_docs","hale")],
+    >plot(uni_df[,c("log_docs","hale")], 
      	xlim=c(-5,5), ylim=c(20, 100), pch=16)
     >dataEllipse(x.rand, levels = c(0.75,0.95,0.99),
             	fill=T, plot.points = FALSE)
+    > sample_data <- data.frame(x.rand)
+    > names(sample_data) <- c("HALE","Logdocs")        	
+    > ggplot(sample_data,aes(x=Logdocs,y=HALE))+
+         geom_point(alpha=0.1,color="green",size=2)+
+         xlab("Log (Número de Médicos) ") + ylab("HALE")+
+         geom_point(data=uni_df,aes(x=log_docs,y=hale),color="yellow")+
+                theme_hc(style="darkunica")
 ```
-![](images/chap5-ellipses.jpg)
+![](images/chap5-rand-vs-obs.png)
 
-* Flexibilidade Bayesiana
-  * Usando priors
-  * O estimador Markov Chain Monte Carlo
+Você pode experimentar com diferentes priors (famílias e parâmetros) observando como o valor final muda.  
+
+### O estimador Markov Chain Monte Carlo
   
 \pagebreak
