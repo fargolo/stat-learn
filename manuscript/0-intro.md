@@ -56,9 +56,9 @@ Métodos iterativos também foram usados para aproximar a raiz quadrada de núme
 Essas técnicas deram fruto a abstrações mais gerais, aos campos da estatística e dos métodos numéricos. Em particular, o último século (XX) contou com a invenção do computador universal e dos processadores eletrônicos, impulsionando o poder de cálculos vertiginosamente.  
 
 O aperfeiçoamento teórico e instrumental trouxe ferramentas mais adequadas para cientistas e também algoritmos mais potentes para aplicações práticas.  
-Nos últimos anos, o campo ganhou forte notoriedade social e acadêmica em virtude dos resultados inéditos em problemas de predição com aplicação prática. Avanços em processamento de linguagem natural, visão computacional e algoritmos preditivos foram rapidamentes aplicados pela indústria e por pesquisadores.  
+Nos últimos anos, o campo ganhou forte notoriedade social e acadêmica em virtude dos resultados inéditos em problemas de predição com aplicação prática. Avanços em processamento de linguagem natural, visão computacional e algoritmos preditivos foram rapidamente aplicados pela indústria e por pesquisadores.  
 
-Uma descrição abrangente pode facilmente alcançar 1,000 páginas de texto sucinto, como o clássico ‘Deep Learning (Adaptive Computation and Machine Learning)’ de Goodfellow, Bengio and Courville. Outra obra de escopo e tamanho semelhante é a “Neural networks and learning machines”, de Simon Haykin. Inúmeros cursos online e videoaulas são produzidos por instituições de prestígio (e.g. Curso integral da Oxford em Deep Learning: https://www.youtube.com/watch?v=PlhFWT7vAEw ).  
+Uma descrição abrangente pode facilmente alcançar 1,000 páginas de texto sucinto, como o clássico ‘*Deep Learning* (*Adaptive Computation and Machine Learning*)’ de Goodfellow, Bengio and Courville. Outra obra de escopo e tamanho semelhante é a “*Neural networks and learning machines*”, de Simon Haykin. Inúmeros cursos online e videoaulas são produzidos por instituições de prestígio (e.g. Curso integral da Oxford em Deep Learning: https://www.youtube.com/watch?v=PlhFWT7vAEw ).  
 
 
 
@@ -66,18 +66,18 @@ Uma descrição abrangente pode facilmente alcançar 1,000 páginas de texto suc
 
 Apesar da popularização da área e do enorme conteúdo disponível, ainda predominam duas características: *(1)* a formulação matemática é usada de forma intimidadora para credibilizar exposições; *(2)* os procedimentos e conclusões são executados ignorando premissas filosóficas.
 
-Este texto percorre temas em diferentes profundidades. Os tópicos são escolhidos de maneira a amparar o estudo progressivo de estruturas matemáticas e preceitos epistemológicos em aprendizagem estatística (ciência de dados/machine learning).  
+Este texto percorre temas em diferentes profundidades. Os tópicos são escolhidos de maneira a amparar o estudo progressivo de estruturas matemáticas e preceitos epistemológicos em aprendizagem estatística (ciência de dados/*machine learning*).  
 Um guia para aplicação destas ferramentas para aqueles trabalhando na fronteira entre matemática aplicada e ciências naturais.   
 
-São exemplos de campos que fazem uso extenso das ferramentas descritas: neurociências (e.g. modelos lineares para sinal BOLD em *fmri*), psicometria (e.g. análise fatorial), ecologia, biologia molecular (e.g. testes estatísticos), ciências clínicas (e.g. meta-análises e inferência causal), economia (e.g. algo trading, modelos de mercado), marketing (e.g. mecanismos de recomendação).  
+São exemplos de campos que fazem uso extenso das ferramentas descritas: neurociências (e.g. modelos lineares para sinal BOLD em *fmri*), psicometria (e.g. análise fatorial), ecologia, biologia molecular (e.g. testes estatísticos), ciências clínicas (e.g. meta-análises e inferência causal), economia (e.g. *algo trading*, modelos de mercado), marketing (e.g. mecanismos de recomendação).  
 
 O primeiro capítulo ilustra como o racional hipotético-dedutivo funciona para estudar teorias científicas. Aborda a relação entre ciências empíricas, o teorema do limite central, a distribuição normal e a distribuição *t*. O teste *t* de Student é aplicado para comparação de uma medida entre amostras.  
 
-O segundo capítulo amplia a perspectiva de comparações e testes. Entendemos o papel de descrever relações com os conceitos de tamanho de efeito (D de Cohen) e correlações lineares ($\rho$ de Pearson). Também são introduzidas alternativas não-paramétricas aos procedimentos ($\rho$ de Spearman e teste U de Mann-Whitney). Usando o gancho das relações lineares, vemos o conceito de regressão para fazer predições. Um framework 'frequencista' e linguagem R são usados para demonstrações de exemplos e exercícios. 
+O segundo capítulo amplia a perspectiva de comparações e testes. Entendemos o papel de descrever relações com os conceitos de tamanho de efeito (D de Cohen) e correlações lineares ($\rho$ de Pearson). Também são introduzidas alternativas não-paramétricas aos procedimentos ($\rho$ de Spearman e teste U de Mann-Whitney). Usando o gancho das relações lineares, vemos o conceito de regressão para fazer predições. Um *framework* 'frequencista' e linguagem R são usados para demonstrações de exemplos e exercícios. 
 
 O terceiro capítulo introduz o uso de muitas variáveis (análise multivariada). Grafos são a abstração base para relacionarmos múltiplos conceitos. Estudaremos regressão linear múltipla, colinearidade, mediação e moderação. Conheceremos análise fatorial e sua generalização em equações estruturais: a implementação matemática do abrangente paradigma filosófico para modelos causais de Judea Pearl.  
 
-O quarto capítulo introduz redes neurais. Começamos da inspiração biológica envolvida nas primeiras abstrações concebidas para um neurônio artificial. Conheceremos a primeiram máquina inteligente da história: Mark I Perceptron. Codificaremos um Mark I virtual do zero (*from scratch*) e observaremos a aprendizagem. Entenderemos o algoritmo de Gradient Descent, usando derivativas para encontrar mínimos na função de erro.  
+O quarto capítulo introduz redes neurais. Começamos da inspiração biológica envolvida nas primeiras abstrações concebidas para um neurônio artificial. Conheceremos a primeira máquina inteligente da história: Mark I Perceptron. Codificaremos um Mark I virtual do zero (*from scratch*) e observaremos a aprendizagem. Entenderemos o algoritmo de *Gradient Descent*, usando derivativas para encontrar mínimos na função de erro.  
 
 Redes Neurais expandem o poder de um neurônio com múltiplos nodos para a construção de sistemas preditivos complexos. Redes profundas incluem camadas sucessivas, permitindo transformações em sequência para resolver classes mais gerais de problemas. Entenderemos como os neurônios podem propagar erros aos outros, otimizando gradientes em conjunto com o mecanismo de *backpropagation*. Também codificaremos uma rede neural *from scratch*, Mark II.  
 
@@ -99,7 +99,7 @@ Capítulo 0 - Ferramentas : programação com estatística básica
   * Funções
   * Vetores, loops e recursões: calculando a variância 
 
-Capítulo 1 - Os pássaros de Darwin e o método hipotético dedutivo  
+Capítulo 1 - Os pássaros de Darwin e o método hipotético-dedutivo  
 
   * Pássaros em Galápagos
     * Distribuição normal
@@ -115,9 +115,9 @@ Capítulo 2 - Sobre a natureza das relações
   * Correlações lineares
     * Coeficiente de correlação $\rho$ de Pearson
     * Predições com regressão linear
-  * Correlações e testes não paramétricos
+  * Correlações e testes não-paramétricos
     * $\rho$ de Spearman
-    * Teste U de Mann Whitney
+    * Teste U de Mann-Whitney
 
 Capítulo 3 - Análise multivariada, grafos e inferência causal 
 
