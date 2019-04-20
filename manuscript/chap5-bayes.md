@@ -483,6 +483,155 @@ Podemos plotar nossa amostra aleatória gerada a partir do posterior e inspecion
 
 Você pode experimentar com diferentes priors (famílias e parâmetros) observando como o valor final muda.  
 
-### O estimador Markov Chain Monte Carlo
-  
-\pagebreak
+### Estimadores e métodos Markov Chain Monte Carlo
+
+Nas implementações acima, partimos da equação envolvendo priors, likelihood e probabilidades marginais.  
+$$P(\theta \mid X) = \frac{ P(X \mid \theta) \space P(\theta) }{P(X)}, P(X) \neq 0$$
+Usando Stan, informamos priors, a função de verossimilhança, observações e todo o trabalho sujo é realizado sem mais esforços.  
+A estimativa de $P(\theta \mid X)$ pode ser feita de diferentes maneiras.  
+Uma delas envolve partir de uma distribuição $P(\kappa)$ e gradualmente minimizar uma medida da diferença (em geral, a *divergência de Kullback-Leibler*) entre ela e $P(\theta \ mid X)$. Esses métodos (cálculo variacional, *Variational Bayesian methods*) envolvem soluções analíticas para cada modelo.  
+Abordaremos um outro método: **Markov Chain Monte Carlo**.  
+
+#### Nem todos que andam sem destino estão perdidos
+[^30]  
+
+**Soluções fechadas**  
+Quando falamos em regressão (Cap. 2), estimamos as inclinações de reta $\beta_{i}$. Lançamos mão de uma *função de verossimilhança* *(likelihood function)*, com o mesmo sentido aqui empregado, definindo a probabilidade das observações dado um modelo teórico.  
+
+Obtivemos soluções que maximizassem essa função *(maximum likelihood)*. Para o caso da regressão linear, apontamos soluções fechadas 
+$$\text{Max log likelihood}(\beta_{0},\beta_{1},\sigma^{2})$$
+$$=\text{Max log} \prod_{i=1}^{n} P(y_{i}|x_{i}; \beta_{0},\beta_{1},\sigma^{2})$$
+Por exemplo, o coeficiente angular ($\beta_{1}$) é  
+$$\hat{\beta_{1}}=\frac{cov(XY)}{\sigma_{x}^{2}}$$  
+
+**Gradient Descent**
+No capítulo 4, mostramos outra maneira de estimar parâmetros, analisando uma função de perda. Usando derivadas parciais, calculamos o gradiente, análogo à *inclinação* de uma superfície em 3 dimensões. Isso foi possível pois sabíamos as derivadas em cada nodo (neurônio). A rede consiste no sequenciamento de unidades em camadas, então a regra cadeia funciona perfeitamente (*backpropagation*).  
+
+$$(g \circ f)' = (g'\circ f)f'$$
+
+**Markov Chain Monte Carlo**
+Estimadores Markov Chain Monte Carlo (MCMC) funcionam para tratar problemas sem solução fechada e em que não sabemos os gradientes com exatidão.  
+Outras formas de tratamento existe. Aqui abordamos uma estratégia de MCMC chamada Metropolis-Hastings. Para estimar nosso posterior, $P(\theta \ mid X)$, usamos um algoritmo que permite obter amostras representativas de $P(\theta \ mid X)$. Para isso, a condição é de que exista uma função $f(x)$ proporcional à densidade de $P(\theta \ mid X)$ e que possamos calculá-la.  
+
+1 - Começamos com parâmetros em um estado (e.g. $s_{0} : \beta_{0} = 0.1 , \beta_{1} = 0.2$) e analisamos a função (e.g. $f: \text{log likelihood function}$) naquele estado ($f(s_{0})$) considerando os parâmetros em $s_{0}$. 
+2 - Em seguida, damos um passo em direção aleatória, modificando dos valores de $\beta_{i}$. Uma opção bastante usada é a de uma gaussiana com centro no estado anterior (*random walk*). Reavaliamos o estado ($f(s_{1})$).  
+2.1 - Se ele é mais provável, $f(s_{1}) > f(s_{0})$, então $s_{1}$ é aceito como novo ponto de partida.  
+2.2 - Se ele é menos provável, mas próximo o suficiente do estado anterior, $f(s_{1}) - f(s_{0}) < \epsilon$, também tomamos $s_{1}$ como ponto de partida para o próximo passo aleatório.  
+2.3 - Se ele é menos provável com uma margem grande, $f(s_{1}) - f(s_{0}) > \epsilon$, rejeitamos $s_{1}$ e sorteamos um novo estado aleatório.  
+
+O processo caminha para estados mais prováveis, com alguma probabilidade de visitar estados menos prováveis. Se a função escolhida é proporcional à densidade do posterior, $f(x) \sim \text{dens}(P(\theta \ mid X))$, as frequências de parâmetros na amostra de estados visitados,$s_{i}$, correspondem ao posterior. É uma prática comum descartar as primeiras iterações, pois os valores ser muito representativos de locais com baixa densidade.  
+
+[^30]: All that is gold does not glitter,/*Not all those who wander are lost*; The old that is strong does not wither,/ Deep roots are not reached by the frost./From the ashes, a fire shall be woken,/A light from the shadows shall spring;/Renewed shall be blade that was broken,/The crownless again shall be king.  **J.R.R Tolkien. The Fellowship of the ring 1954,**
+
+#### Equações
+
+Para fins práticos, vamos trabalhar com um parâmetro desconhecido $\mu$ e considerar $\sigma^{2}=1$. 
+
+A função $f$ proporcional deve ser proporcional à densidade do posterior.  
+
+$$\text{Posterior} \propto \frac{\text{Prior} \times \text{Likelihood}}{\text{Prob. Marginal}}$$  
+
+**Probabilidades marginais**
+É a probabilidade das observações $P(X)$. Elas são constantes no processo, servindo apenas para normalizar estimativas, então:
+$$\text{Posterior} \propto \text{Prior} \times \text{Likelihood}$$  
+
+**Priors**  
+Nosso prior é normal, com média 0 e desvio-padrão 1, $P(\mu) \sim N(0,1)$.  
+
+**Likelihood**
+Se as observações são independentes, precisamos apenas multiplicar a probabilidade cada uma delas.  
+Assumimos que a distribuição das medidas é normal, com média $\mu$ e desvio $\sigma^{2}$. Para o estado $s_i$, a probabilidade das observações $X$ considerando o $\mu_{i}$ é:   
+$$P(X | \mu_{i})=$$
+$$\prod_{j=1}^{n} P(x_{j} | N( \mu_{i}, 1))=$$ 
+$$\prod_{j=1}^{n} \frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{(x_{j} - \mu_{i})}{2}}$$
+
+**Função proporcional à densidade do posterior**
+Usaremos o $\text{log likelihood}$ pelas vantagens descritas antes: produtório se torna um somatório e passamos o contradomínio do intervalo $[0;1]$ para $[-\infty,0)$ (ou $(0,+\infty]$ multiplicando por $-1$).
+
+$$\text{log(Posterior)} \propto log(\text{Prior} \times \text{Likelihood})$$  
+
+$$f: L(s_{i}) = \text{log}(P(X | \mu_{i} , 1) \times N(0,1))$$
+$$\text{log}(\prod_{j=1}^{n} P(x_{j} | N( \mu_{i} , 1)) \times N(0,1))=$$ 
+$$\text{log}(\prod_{j=1}^{n} P(x_{j} | N( \mu_{i} , 1))) + \text{log}(N(0,1))=$$ 
+
+O segundo termo é uma distribuição normal com média e variância conhecidas. Precisaremos apenas usar valores transformados por logaritmo.  
+O primeiro termo é[^31] :  
+$$\sum_{j=1}^{n} \text{log}(P(x_{j} | N( \mu_{i} , 1)))=$$ 
+$$=-\frac{n}{2}\text{log}({2\pi\sigma_{i}^{2}}) -
+\frac{1}{2\sigma_{i}^{2}}\sum_{j=1}^{n}(x_{j} - \mu_{i})^{2}$$  
+
+
+Finalmente, podemos calcular para cada estado um valor para os parâmetros $\mu_{i} , \sigma_{i}$, aceitá-los ou rejeitá-los. 
+
+
+[^31]: Dedução em https://www.statlect.com/fundamentals-of-statistics/normal-distribution-maximum-likelihood
+
+#### Implementação
+
+Implementaremos MCMC usando o algoritmo descrito acima para a diferença entre médias.  Usaremos as amostras `a` e `b`, $n=400$, de populações com médias $\mu_{a}=0 , \mu_{b}=0.6$, e distribuição normal.  
+
+```r
+    >set.seed(2600)
+
+    >a <- rnorm(n=n_obs, sd =1, mean=0)
+    >b <- rnorm(n=n_obs, sd=1, mean=0.6)
+```
+Vamos definir nossa função de verossimilhança:  
+
+```r
+    >likel <- function(n,x,mu,sigma){
+      l_val <- (-n/2)*log(2*pi*sigma^2) - (1/2*sigma^2)*sum((x - mu)^2)
+      return(-l_val) # multiplica(-1)
+    }
+```
+Definindo a função para fornecer $\text{log}(N(0,1))$. Obteremos as probabilidades e o logaritmo delas para um $n$ grande e esse número será normalizado pelo tamanho de nossa amostra para permitir passos numa escala razoável.  
+```r
+    >log_norm <- function(n,mu,sigma){
+      require(magrittr) # para o operador %>%
+      # Truque para obter distribuicao ~ uniforme em [-Inf,+Inf]
+      unif_dist <- 1/runif(n = n, min = -1,max = 1) 
+      l_val <- log(dnorm(x=unif_dist,mean = 0,sd = 1)) # 
+      l_val <- car::recode(l_val,"-Inf=-1000") %>% sum
+      return(-l_val)
+    }
+```
+
+E um loop para rodar a simulação MCMC:  
+```r
+      # MCMC chain
+      >mc_chain <- function(obs,iter=4000,n_obs=length(obs)){
+        # seeds e objetos
+        sample <- matrix(nrow = iter, ncol = 2)
+        s1_mu <- rnorm(n=1,mean=0) # media inicial
+        s_sigma <- 1 # variancia = 1
+        s1_lik <- 2000
+        for (i in 1:iter){
+          # Salva estado
+          s0_mu <- s1_mu
+          s0_lik <- s1_lik
+          
+          # Realiza um passo (random walk)
+          s1_mu <- s1_mu + rnorm(n=1,mean = 0, sd=0.5)
+          s1_lik <- log_lik(n=n_obs,x=obs,mu=s1_mu,sigma=s_sigma) + 
+            # log do prior é normalizado por 1000 
+            log_norm(n=10000,mu=0,sigma=1)/1000 
+          
+          # Rejeita diferenças maiores que 5, assumindo o valor no estado anterior
+          if(s1_lik - s0_lik > 5)  
+            s1_mu <- s0_mu 
+          sample[i,] <- c(s1_mu,s_sigma) # Salva
+        }
+        return(sample[1001:iter,1])
+      }
+```
+Podems então obter nossas distribuições posteriores: 
+
+```r
+    > b_posterior <- mc_chain(b)
+    > mean(b_posterior)
+    [1] 0.6094977
+    > a_posterior <- mc_chain(a)
+    > mean(a_posterior)
+    [1] 0.07064681
+```
+

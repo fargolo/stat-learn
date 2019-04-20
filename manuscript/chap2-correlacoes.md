@@ -455,15 +455,15 @@ Essa é nossa função de verossimilhança e expressa a probabilidade de observa
 
 O objetivo então é encontrar parâmetros que maximizem essa função. Por conveniência, aplicamos uma transformação logaritmica nesta função $(log \quad likelihood \quad function)$. Isso transforma nosso produtório em um somatório e passamos o contradomínio do intervalo $[0;1]$ para $[-\infty,0)$.  
 
-$$log \quad likelihood(\beta_{0},\beta_{1},\sigma^{2})=log\prod_{i=1}^{n} P(y_{i}|x_{i}; \beta_{0},\beta_{1},\sigma^{2})$$
+$$\text{log likelihood}(\beta_{0},\beta_{1},\sigma^{2})=log\prod_{i=1}^{n} P(y_{i}|x_{i}; \beta_{0},\beta_{1},\sigma^{2})$$
 $$=\sum_{i=1}^{n} log P(y_{i}|x_{i}; \beta_{0},\beta_{1},\sigma^{2})$$
-$$=-\frac{n}{2}log{2\pi} - n log{\sigma} - \frac{1}{2\sigma^{2}}\sum_{i=1}^{n}(y_{i}-(\beta_{0} + \beta_{1}x_{i}))^{2}$$
+$$=-\frac{n}{2}\text{log}({2\pi\sigma^{2}}) - \frac{1}{2\sigma^{2}}\sum_{i=1}^{n}(y_{i}-(\beta_{0} + \beta_{1}x_{i}))^{2}$$
 
 Os parâmetros que maximizam a função de verossimilhança (max. likelihood, ML) são os mesmos que maximizam a o logaritmo da função de verossimilhança (log-likelihood).  
 
 Introduzimos o racional do estimador ML pois ele será útil futuramente. Em verdade, é fácil entender as fórmulas fechadas para nossos parâmetros, pois apenas expressam as relações lineares exploradas [^19]:  
 
-$\hat{\beta_{1}}$ expressa a magnitude da correlação entre $X$ e $Y$. É natural que sue valor seja a covariãncia normalizada pela variância do preditor.  
+$\hat{\beta_{1}}$ expressa a magnitude da correlação entre $X$ e $Y$. É natural que seu valor seja a covariãncia normalizada pela variância do preditor.  
 $$\hat{\beta_{1}}=\frac{cov(XY)}{\sigma_{x}^{2}}$$  
 
 $\hat{\beta_{0}}$ é nosso intercepto, então é a diferença entre médias preditas e predições considerando o valor médio em X.  
