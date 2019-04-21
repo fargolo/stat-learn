@@ -120,7 +120,7 @@ A princípio, essas declarações parecem triviais. Entretanto, considerando os 
 
 Estimar livremente os parâmetros de que falamos naturalmente é muito mais intuitivo que adequar uma ideia aos procedimentos hipotético-dedutivos.  
 
-### Bayesian estimation
+## Inferência Bayesiana
 
 No capítulo 1, ao fazer um teste t, calculamos a estatística t correspondente às diferenças encontradas e então a probabilidade de obter valores iguais ou mais extremos.    
 É possível usar inferência bayesiana para analisar uma situação idêntica. Como aludido antes, não estamos muito interessados no valor p.  
@@ -495,7 +495,8 @@ Abordaremos um outro método: **Markov Chain Monte Carlo**.
 #### Nem todos que andam sem destino estão perdidos
 [^30]  
 
-**Soluções fechadas**  
+**Soluções fechadas**   
+
 Quando falamos em regressão (Cap. 2), estimamos as inclinações de reta $\beta_{i}$. Lançamos mão de uma *função de verossimilhança* *(likelihood function)*, com o mesmo sentido aqui empregado, definindo a probabilidade das observações dado um modelo teórico.  
 
 Obtivemos soluções que maximizassem essa função *(maximum likelihood)*. Para o caso da regressão linear, apontamos soluções fechadas 
@@ -504,12 +505,14 @@ $$=\text{Max log} \prod_{i=1}^{n} P(y_{i}|x_{i}; \beta_{0},\beta_{1},\sigma^{2})
 Por exemplo, o coeficiente angular ($\beta_{1}$) é  
 $$\hat{\beta_{1}}=\frac{cov(XY)}{\sigma_{x}^{2}}$$  
 
-**Gradient Descent**
+**Gradient Descent**  
+
 No capítulo 4, mostramos outra maneira de estimar parâmetros, analisando uma função de perda. Usando derivadas parciais, calculamos o gradiente, análogo à *inclinação* de uma superfície em 3 dimensões. Isso foi possível pois sabíamos as derivadas em cada nodo (neurônio). A rede consiste no sequenciamento de unidades em camadas, então a regra cadeia funciona perfeitamente (*backpropagation*).  
 
 $$(g \circ f)' = (g'\circ f)f'$$
 
-**Markov Chain Monte Carlo**
+**Markov Chain Monte Carlo**  
+
 Estimadores Markov Chain Monte Carlo (MCMC) funcionam para tratar problemas sem solução fechada e em que não sabemos os gradientes com exatidão.  
 Outras formas de tratamento existe. Aqui abordamos uma estratégia de MCMC chamada Metropolis-Hastings. Para estimar nosso posterior, $P(\theta \ mid X)$, usamos um algoritmo que permite obter amostras representativas de $P(\theta \ mid X)$. Para isso, a condição é de que exista uma função $f(x)$ proporcional à densidade de $P(\theta \ mid X)$ e que possamos calculá-la.  
 
@@ -519,7 +522,7 @@ Outras formas de tratamento existe. Aqui abordamos uma estratégia de MCMC chama
 2.2 - Se ele é menos provável, mas próximo o suficiente do estado anterior, $f(s_{1}) - f(s_{0}) < \epsilon$, também tomamos $s_{1}$ como ponto de partida para o próximo passo aleatório.  
 2.3 - Se ele é menos provável com uma margem grande, $f(s_{1}) - f(s_{0}) > \epsilon$, rejeitamos $s_{1}$ e sorteamos um novo estado aleatório.  
 
-O processo caminha para estados mais prováveis, com alguma probabilidade de visitar estados menos prováveis. Se a função escolhida é proporcional à densidade do posterior, $f(x) \sim \text{dens}(P(\theta \ mid X))$, as frequências de parâmetros na amostra de estados visitados,$s_{i}$, correspondem ao posterior. É uma prática comum descartar as primeiras iterações, pois os valores ser muito representativos de locais com baixa densidade.  
+O processo caminha para estados mais prováveis, com alguma probabilidade de visitar estados menos prováveis. Se a função escolhida é proporcional à densidade do posterior, $f(x) \sim \text{dens}(P(\theta \ mid X))$, as frequências de parâmetros na amostra de estados visitados,$s_{i}$, correspondem ao posterior. É uma prática comum descartar as primeiras iterações (*warm up*), pois os valores ser muito representativos de locais com baixa densidade.  
 
 [^30]: All that is gold does not glitter,/*Not all those who wander are lost*; The old that is strong does not wither,/ Deep roots are not reached by the frost./From the ashes, a fire shall be woken,/A light from the shadows shall spring;/Renewed shall be blade that was broken,/The crownless again shall be king.  **J.R.R Tolkien. The Fellowship of the ring 1954,**
 
@@ -568,15 +571,23 @@ Finalmente, podemos calcular para cada estado um valor para os parâmetros $\mu_
 
 #### Implementação
 
-Implementaremos MCMC usando o algoritmo descrito acima para a diferença entre médias.  Usaremos as amostras `a` e `b`, $n=400$, de populações com médias $\mu_{a}=0 , \mu_{b}=0.6$, e distribuição normal.  
+Implementaremos MCMC como prova de conceito para ilustrar o mecanismo de convergência. Para uma aplicação real com resultados robustos, alguns esforços a mais seriam necessários. Por exemplo, os passos do nosso programa serão sempre idênticos, a normalização dos valores foi feita artesenalmente para a amostra e usamos apenas uma cadeia para estimar o posterior.  
+
+Stan usa uma versão altamente sofisticada de MCMC, em que a evolução do sistema é guiado por uma função (Hamiltoniana) da energia total. É possível observar um gradiente e, assim como em fenômenos físicos, estados com menores níveis de energia têm maior probabilidade de serem ocupados (e.g. distribuição de Boltzmann em mecânica estatística).  
+
+ 
+---  
+
+Usando o algoritmo descrito acima para a diferença entre médias, geramos as amostras `a` e `b`, $n=400$, de populações com médias $\mu_{a}=0 , \mu_{b}=0.6$, e distribuição normal.  
 
 ```r
     >set.seed(2600)
-
+    
+    >n_obs <- 400
     >a <- rnorm(n=n_obs, sd =1, mean=0)
     >b <- rnorm(n=n_obs, sd=1, mean=0.6)
 ```
-Vamos definir nossa função de verossimilhança:  
+Vamos definir nossa função de verossimilhança (usando transformação de *-log*):  
 
 ```r
     >likel <- function(n,x,mu,sigma){
@@ -584,14 +595,14 @@ Vamos definir nossa função de verossimilhança:
       return(-l_val) # multiplica(-1)
     }
 ```
-Definindo a função para fornecer $\text{log}(N(0,1))$. Obteremos as probabilidades e o logaritmo delas para um $n$ grande e esse número será normalizado pelo tamanho de nossa amostra para permitir passos numa escala razoável.  
+Definindo a função para fornecer $\text{log}(N(0,1))$. Obteremos as probabilidades e o logaritmo delas para um $n$ grande, representativo. Esse número será normalizado pelo tamanho de nossa amostra para permitir passos numa escala razoável nos cálculos da cadeia.  
 ```r
     >log_norm <- function(n,mu,sigma){
       require(magrittr) # para o operador %>%
       # Truque para obter distribuicao ~ uniforme em [-Inf,+Inf]
       unif_dist <- 1/runif(n = n, min = -1,max = 1) 
-      l_val <- log(dnorm(x=unif_dist,mean = 0,sd = 1)) # 
-      l_val <- car::recode(l_val,"-Inf=-1000") %>% sum
+      l_val <- dnorm(x=unif_dist,mean = 0,sd = 1, log=T) 
+      l_val <- car::recode(l_val,"-Inf:-1000=-1000") %>% sum # recod. valores extremos
       return(-l_val)
     }
 ```
@@ -612,8 +623,8 @@ E um loop para rodar a simulação MCMC:
           
           # Realiza um passo (random walk)
           s1_mu <- s1_mu + rnorm(n=1,mean = 0, sd=0.5)
-          s1_lik <- log_lik(n=n_obs,x=obs,mu=s1_mu,sigma=s_sigma) + 
-            # log do prior é normalizado por 1000 
+          s1_lik <- likel(n=n_obs,x=obs,mu=s1_mu,sigma=s_sigma) + 
+            # log do prior se baseian numa densidade de n=10000 e é normalizado por 1000 
             log_norm(n=10000,mu=0,sigma=1)/1000 
           
           # Rejeita diferenças maiores que 5, assumindo o valor no estado anterior
@@ -621,17 +632,35 @@ E um loop para rodar a simulação MCMC:
             s1_mu <- s0_mu 
           sample[i,] <- c(s1_mu,s_sigma) # Salva
         }
-        return(sample[1001:iter,1])
+        return(sample[1001:iter,1]) # Descarta as primeiras 1000 amostras (warm-up)
       }
 ```
-Podems então obter nossas distribuições posteriores: 
+Podemos então obter nossas distribuições posteriores para $\mu_{A}, \mu_{B}$ e para a diferença. Também vamos visualizar a evolução dos estados ao longo do tempo.  
 
 ```r
-    > b_posterior <- mc_chain(b)
-    > mean(b_posterior)
-    [1] 0.6094977
-    > a_posterior <- mc_chain(a)
-    > mean(a_posterior)
-    [1] 0.07064681
+    >posterior_a <- mc_chain(obs = a,iter = 4000)
+    >posterior_b <- mc_chain(obs = b,iter = 4000)
+    >posteriors_data <- data.frame(post_a=posterior_a, post_b=posterior_b)
+    >posts_plot <- ggplot(data = posteriors_data, aes(x=posterior_a)) +
+       geom_histogram(aes(y=..density..),color = "light green", alpha=0.1) +
+       geom_histogram(aes(x=posterior_b, y=..density..), alpha=0.1, color="dark green") +
+       geom_density(aes(x=(posterior_b - posterior_a)), color="green") +
+       xlab("Posteriors") + ylab("Densidade") +
+       geom_text(label="P(A|X) \n mu ~ 0.08",color="white",x=-0.2,y=1)+
+       geom_text(label="P(B|X) \n mu ~ 0.57",color="white",x=1,y=1)+
+       geom_text(label="Posterior da diferença \n mu ~ 0.49",color="white",x=0.3,y=0.3)+
+       theme_hc(style = "darkunica")
+    >traces_plot <- ggplot(data=posteriors_data,
+      aes(y=posterior_a,x=1:nrow(posteriors_data)))+
+      geom_line(color="light green")+xlab("Chains")+ylab("")+
+      geom_line(aes(y=posterior_b,x=1:nrow(posteriors_data)),
+      color="dark green")+
+      theme_hc(style="darkunica")
+    > multiplot(posts_plot,traces_plot,cols = 1)
 ```
+![](images/chap5-posterior_diff_mcmc.png)
 
+O painel superior da visualização destaca distribuições posteriores de A (verde claro) e B (verde escuro), assim como da diferença. Elas refletem razoavelmente bem as distribuições de origem ($N(0,1) , N(0.6,1$) inferidas a partir dos dados.  
+No painel inferior, temos as cadeias para A (média menor, com sinal oscilando num nível menor) e B(média maior, com sinal osicilando acima). Ainda que seja um modelo ilustrativo, o resultado parece bom, com distribuições representativas.  
+
+\pagebreak

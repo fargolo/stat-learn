@@ -17,7 +17,7 @@ Estudamos a relação natural entre ciências empíricas e duas distribuições 
 
 Usamos as distribuições citadas para estudar as medidas dos bicos dos tentilhões em pequenas amostras de cada ilha e fazer inferências sobre as populações. O racional de testes de hipótese é introduzido.  
 
-![Figura 1. Fringilídeos em Galápagos.](images/chap1-birds-one.png)
+![Fringilídeos em Galápagos.](images/chap1-birds-one.png)
 
 \pagebreak 
 
@@ -47,7 +47,7 @@ Em trabalhos empíricos, é comum a suposição de que medidas de uma variável 
 
 Abraham de Moivre (26 May 1667 – 27 November 1754) , sem financiamento exclusivo para estudos e pesquisa, prestava serviços secundários. Entre eles, cálculos de probabilidades em jogos de azar para clientes. Em 1733, de Moivre percebeu que as probabilidades de uma distribuição binomial, como o lançamento de moedas $(p(cara) = p(coroa) = 0.5)$, aproximam-se de uma curva suave (contínua) à medida em que a quantidade de eventos aumenta.  
 
-![Figura 2. Distribuições binomiais para diferentes números de lançamentos com p = 0.5 (e.g: lançamento de uma moeda). Para n >1, valores extremos indicam resultados com apenas caras (cauda à esquerda, 0000…) ou coroas (cauda à direita, 1111…)](images/chap1-binomials.png)
+![Distribuições binomiais para diferentes números de lançamentos com p = 0.5 (e.g: lançamento de uma moeda). Para n >1, valores extremos indicam resultados com apenas caras (cauda à esquerda, 0000…) ou coroas (cauda à direita, 1111…)](images/chap1-binomials.png)
 
 A distribuição de Bernoulli descreve a possibilidade de dois eventos, como o lançamento de moedas. Tomando os valores dicretos de caras (0) e coroas (1), a observação é $1$ com probabilidade $p$ e $0$ caso contrário $(1-p)$.
 Para uma moeda honesta, temos uma distribuição probablística uniforme sobre o domínio, $X={0,1}$:  $P(1) = P(0) = 0.5$. 
@@ -56,7 +56,7 @@ Se somarmos distribuições de Bernoulli, obtemos a distribuição binomial. Cad
 
 Para $n = 10$, é muito mais provável obter um número de caras próximo a 5 (centro das curvas) que um resultado com 9 ou 10 lançamentos iguais. É possível demonstrar que aumentar o valor de n faz que com que a distribuição se aproxime da seguinte curva contínua:  
 
-![Figura 3: Distribuição normal (gaussiana), cujo formato lembra o de um sino ](images/chap1-norm-one.png)
+![Distribuição normal (gaussiana), cujo formato lembra o de um sino ](images/chap1-norm-one.png)
 
 De Moivre intuiu que a distribuição de binomiais com muitos lançamentos aproximava o de uma função suave. 
 Ele buscava uma aproximação em termos da função exponencial [natural] $e^x$.  
@@ -67,7 +67,7 @@ Primeiro, de Moivre deduziu a solução para o problema das moedas $(p = \frac{1
 
 $$P(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}}$$
 
-O número de Euler $(e \sim 2.72…)$, que será melhor explicado no capítulo 5. 
+Em que $e$ é número de Euler $(e \sim 2.72…)$.  
 A fórmula consiste em um fator, $\frac{1}{\sqrt{2\pi}}$ (aproximadamente 0.4), multiplicando o resultado da exponencial.  
 Em R, podemos definir:  
 
@@ -75,21 +75,19 @@ Em R, podemos definir:
     >mgauss <- function(x) 0.4*exp((-1)*(x^2)/2)
 ```
 
-Em seguida, obter valores no intervalo $[-5,5]$ e plotá-los:
+Em seguida, obter valores no intervalo $[-5,5]$ e plotá-los, dando origem à curva gaussiana anterior.   
 
 ```r
     >library(ggplot2)
     >x_seq <- seq(-5,5,by = 0.1)
     >ndist <- purrr::map(.f=mgauss,.x=x_seq) %>% unlist
     >ggplot(data.frame(ndist,x_seq),aes(x=x_seq,y=ndist))+
-     geom_point()+
+     geom_point()+ ylab("")+xlab("")+
      geom_vline(xintercept = 2,color="light blue")+
      geom_vline(xintercept = -2,color="light blue")+
      geom_vline(xintercept = 0,color="light pink")+
      theme_economist_white(gray_bg = F)
 ```
-
-![](images/chap1-norm-one.png)
 
 Observamos como a distribuição se dá a partir da equação.  
 
@@ -113,6 +111,7 @@ $$P(x)=\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{ -\frac{(x-\mu)^{2}}{2\sigma^{2}}}$$
 
 O valor $\frac{1}{\sqrt{2\pi}}$ surge como normalizador para avaliarmos a função como densidade de probabilidade. A integral de $-\infty$ a $+\infty$ deve ser 1. O valor $\pi$ surge da integral de Gauss $\int_{-\infty}^{+\infty} e^{-x^{2}}dx = \sqrt{\pi}$ e decorre do fato de $2\pi i$ ser período da função $e^{x}$.  
 
+---  
 
 Poderíamos encontrar características desejáveis, como a simetria citada acima, em outras distribuições. 
 
