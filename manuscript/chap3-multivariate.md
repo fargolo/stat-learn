@@ -180,6 +180,8 @@ Em R:
     (...)
 ```
 A diferença numérica entre valores de $\beta_{x_{1}}$ é a magnitude do efeito indireto (*Ind. Effect*). Podemos usar uma estimativa do erro padrão para derivar uma estatística t e um valor p associados (teste de Sobel). Usando libs do CRAN:  
+Usando o dataset `bh1996`, com medidades sobre liderança, bem-estar e horas de trabalho.  
+A pergunta é: clima de liderança media relação entre horas de trabalho e bem-estar?   
 
 ```r
     >library(bda)
@@ -190,7 +192,6 @@ A diferença numérica entre valores de $\beta_{x_{1}}$ é a magnitude do efeito
     # WBEING : Bem-estar
     # HRS : Horas de trabalho
     
-    # Clima de liderança media relação entre horas de trabalho e bem-estar? 
     
     >sobel(pred=bh1996$HRS,med=bh1996$LEAD,out=bh1996$WBEING)
     $`Mod1: Y~X`
@@ -224,7 +225,7 @@ A diferença numérica entre valores de $\beta_{x_{1}}$ é a magnitude do efeito
 
 #### Exercícios
 
-1. Examine o VIF da regressão múltipla usada no processo de mediação que com banco de dados *bh1996*.  
+1. Examine o VIF da regressão múltipla usada no processo de mediação com banco de dados *bh1996*.  
   * Há colinearidade entre mediador e preditor principal?  
   
 2. Examine a mudança de performance (e.g. $R^{2}$) após inclusão do mediador no modelo.  

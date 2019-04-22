@@ -569,21 +569,6 @@ Uma lista completa de premissas, junto aos códigos em R para testá-las, está 
 
 \pagebreak
 
-### Exercícios
-
-1. Usando o dataset *iris*:
-  * Calcule medidas de tendência central e dispersão para cada variável.  
-    * Execute um teste t para uma das medidas entre duas espécies.   
-    * Obtenha o tamanho de efeito (D de Cohen) para a diferença.  
-  * Faça um scatterplot entre duas medidas  
-    * Verifique se há correlação linear significativa entre as variáveis.  
-    * Se existir, ajuste um modelo de regressão linear.  
-    * Adicione cores de acordo com a espécie.  
-    * Ajuste um modelo de regressão para cada espécie.  
-    * Observe os valores de $R^{2}$ para cada modelo. Qual a sua impressão sobre as mudanças de performance?  
-    
-\pagebreak
-
 ## Correlações e testes não paramétricos
 
 Verificamos minuciosamente análises envolvendo a distribuição normal, a distribuição t e relações lineares. Entretanto, muitas vezes as medidas não seguem uma distribuição definida. Assim, realizar inferências usando os **parâmetros** descritos $(\mu,\sigma, t...)$ nos levaria a conclusões erradas.  
@@ -682,3 +667,25 @@ A definição para o teste não é unânime na literatura, de forma que alguns a
 Em R, as funções **dwilcox(x,m,n)** e **pwilcox(q,m,n)** retornam a distribuição e a densidade cumulativa para a estatística U correspondente a amostras com tamanhos m e n.  **wilcox.test(x,y,...)** é a implementação base do teste de Mann Whitney. O teste de Mann Whitney é o teste de Wilcoxon de duas amostras.  
 
 \pagebreak
+
+### Exercícios
+
+1. O coeficiente produto-momento de Pearson descreve quais tipos de relação?   
+  * Ele é útil para modelar relações quadráticas entre variáveis?  
+  * Citamos relações não lineares, como $E=mc^{2}$. Cite um outro exemplo de fenômeno natural de perfil não-linear em que o $\rho$ de Pearson não funciona.   
+  
+2. Crie uma função que calcula o n-ésimo momento para uma amostra:
+  * `n_moment <- function(x,n) {sum((x- mean(x))^n)/length(x)}`
+  * Calcule o valor de skewness. Como citado no capítulo, é o 3o momento normalizado [pelo 2o momento ao expoente 3/2].  $$\frac{\mu_{3}}{\mu_{2}^{3/2}}$$
+  * Calcule o valor de kurtosis. Como citado, é o 4 momento noramlizado [pelo quadrado do 2o momento menos 3].  $$\frac{\mu_{4}}{\mu_{2}^{2} - 3}$$
+  * Os valores podem ser conferidos com as implementações `e1071::skewness` e `e1071::kurtosis`  
+
+3. Usando o dataset *iris*, compare as 4 variáveis numéricas (*Sepal/Petal* *Lenght/Width*) entre espécies (*Species*) usando teste t de Student e teste de U Mann Whitney. Em quais casos os métodos divergem quanto à rejeição da hipótese nula?   
+  * Obtenha o tamanho de efeito (D de Cohen) para as diferenças.  
+
+4. Usando o dataset *iris*:  
+  * Faça um scatterplot entre duas medidas. A função `pairs` pode ajudar.    
+    * Verifique se há correlação linear significativa entre as variáveis.  
+    * Se existir, ajuste um modelo de regressão linear.  
+    * Ajuste um modelo de regressão para cada espécie.  
+    * Observe os valores de $R^{2}$ para cada modelo. Qual a sua impressão sobre as mudanças de performance?  
