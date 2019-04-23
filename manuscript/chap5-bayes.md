@@ -664,3 +664,18 @@ O painel superior da visualização destaca distribuições posteriores de A (ve
 No painel inferior, temos as cadeias para A (média menor, com sinal oscilando num nível menor) e B(média maior, com sinal osicilando acima). Ainda que seja um modelo ilustrativo, o resultado parece bom, com distribuições representativas.  
 
 \pagebreak
+
+### Exercícios
+
+1. Usando Stan, implemente regressão linear para dados à sua escolha. A *likelihood function* para observações pode ser uma gaussiana cuja média é pela equação de regressão. O guia de usuários deve ajudar. https://mc-stan.org/docs/2_18/stan-users-guide/linear-regression.html  
+  * Implemente regressão linear com mais de um preditor.  
+  * Compare a média dos posteriores para os coeficientes $\beta$ com a estimativa pontual clássica usando `glm`.  
+
+
+2. Com a biblioteca `BEST` conduza a comparação de médias do exemplo final, invocando a função `BESTmcmc` e especifique o argumento `numSavedSteps = 3000`.   
+  * Extraia as distribuições posteriores, `mu1` e `mu2`, do objeto resultante.  
+  * Obtenha a diferença entre distribuições `mu1 - mu2` e compare visualmente (densidade ou histograma) com o posterior que geramos através do MCMC artesanal.  
+
+3. Aperfeiçoe a simulação MCMC modificando a função `mc_chain`.  
+  * Obtenha a amostra final para o posterior sorteando valores gerados por 4 cadeias independentes.  
+  * Faça com que o tamanho dos passos diminua linearmente com o número de simulações decorridas.   
