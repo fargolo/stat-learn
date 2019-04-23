@@ -680,7 +680,7 @@ Em R, as funções **dwilcox(x,m,n)** e **pwilcox(q,m,n)** retornam a distribui�
   * Calcule o valor de kurtosis. Como citado, é o 4 momento noramlizado [pelo quadrado do 2o momento menos 3].  $$\frac{\mu_{4}}{\mu_{2}^{2} - 3}$$
   * Os valores podem ser conferidos com as implementações `e1071::skewness` e `e1071::kurtosis`  
 
-3. Usando o dataset *iris*, compare as 4 variáveis numéricas (*Sepal/Petal* *Lenght/Width*) entre espécies (*Species*) usando teste t de Student e teste de U Mann Whitney. Em quais casos os métodos divergem quanto à rejeição da hipótese nula?   
+3. Usando o dataset *iris*, compare as 4 variáveis numéricas (*Sepal/Petal* *Lenght/Width*) entre espécies (*Species*) usando teste t de Student e teste de U Mann Whitney. Em algum caso os métodos divergem quanto à rejeição da hipótese nula?   
   * Obtenha o tamanho de efeito (D de Cohen) para as diferenças.  
 
 4. Usando o dataset *iris*:  

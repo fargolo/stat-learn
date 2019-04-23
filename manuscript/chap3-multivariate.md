@@ -221,23 +221,6 @@ A pergunta é: clima de liderança media relação entre horas de trabalho e bem
     # Aroian e Goodman são outros testes para o parâmetro de efeito indireto
 ```
 
-\pagebreak 
-
-#### Exercícios
-
-1. Examine o VIF da regressão múltipla usada no processo de mediação com banco de dados *bh1996*.  
-  * Há colinearidade entre mediador e preditor principal?  
-  
-2. Examine a mudança de performance (e.g. $R^{2}$) após inclusão do mediador no modelo.  
-  * Se a variável mediadora $M$ explicar as mesmas vias causais que a variável preditora $X_{1}$, é esperado que essa mudança seja grande? Discuta.  
-
-3. Usando dados à sua escolha:  
-  * Ajuste uma regressão linear simples  
-  * Adicione outro preditor (regressão linear múltipla)  
-  * Verifique se há colinearidade  
-  * Cheque outras premissas observando o material auxiliar **/aux** (e.g. independência dos erros com Durbin-Watson)  
-  * Teste uma relação de mediação usando 3 variáveis  
-
 \pagebreak
 
 **Moderação e Interações**
@@ -251,7 +234,7 @@ Em moderação, adicionamos um termo à nossa combinação linear. É um coefici
 
 $$Risk = Nicotina*\beta_{1} + Genes_{(+)}\beta_{2} + Nicotina*Genes_{(+)}\beta_{3}$$
 Será que *fumar* **e** ter *genes de risco* é diferente da combinação do efeito de ambos em separado?  
-
+ 
 Esse é um dos poucos casos em que é mais fácil observar o aspecto algébrico antes. Estamos multiplicando os valores de preditores $X_{1}$ e $X_{2}$. Se ambos tiverem mesmo sentido ($+$ ou $-$), a interação terá efeito positivo. Caso contrário, negativo. Ainda, vemos que as magnitudes são multiplicadas. O coeficiente $\beta_{3}$ quantifica essa multiplicação em relação ao efeito em $y$, seja alterando o sentido ($\beta_{3}$ negativo) ou escalando o valor absoluto.  
 
 $$y = X_{1}*\beta_{1} + X_{2}*\beta{2} + X_{1}X_{2}\beta_{3}$$
@@ -553,4 +536,27 @@ Wright, S. (1921). "Correlation and causation". J. Agricultural Research. 20: 55
 https://stats.stackexchange.com/questions/123063/is-there-any-good-reason-to-use-pca-instead-of-efa-also-can-pca-be-a-substitut
 https://steemit.com/steemstem/@dexterdev/linear-transformations-a-20-sbd-coding-contest-announcement
 
+\pagebreak
+
+#### Exercícios
+
+1. Examine o VIF da regressão múltipla usada no processo de mediação com banco de dados *bh1996*.  
+  * Há colinearidade entre mediador e preditor principal?  
+  
+2. Examine a mudança de performance (e.g. $R^{2}$) após inclusão do mediador no modelo.  
+  * Se a variável mediadora $M$ explicar as mesmas vias causais que a variável preditora $X_{1}$, é esperado que essa mudança seja grande? Discuta.  
+
+3. Usando dados à sua escolha:  
+  * Ajuste uma regressão linear simples  
+  * Adicione outro preditor (regressão linear múltipla)  
+  * Verifique se há colinearidade  
+  * Cheque outras premissas observando o material auxiliar **/aux** (e.g. independência dos erros com Durbin-Watson)  
+  * Teste uma relação de mediação usando 3 variáveis  
+
+4. Usando os dados *iris*:  
+  * Escolha duas medidas corelacionadas e vefique se a espécie *modera* a relação entre elas. Lembre-se: você deve adicionar um termo de interação `var1*var` na formula da regressão.  
+  * Execute **(1)** análise de componentes principais (PCA) e **(2)** análise fatorial exploratória (EFA) para as variáveis numéricas.  
+  * Extraia **(1)** a projeção de cada observação nos dois primeiros componentes, $PC_{1}, PC_{2}$, e **(2)** o score gerado a partir de cada fator. A função `princomp` retorna um objeto acessível `$scores`. 
+  * Verifique a correlação entre ambos.  
+  
 \pagebreak
