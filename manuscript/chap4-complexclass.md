@@ -30,25 +30,25 @@ O aparato reproduzia o entendimento da época sobre o funcionamento de um neurô
 
 Em 1949, Donald Hebb descreveu em seu clássico *The Organization of Behavior* um mecanismo plausível para a aprendizagem. Comumente expressa na máxima "Cells that fire together wire together" (células que disparam juntas, conectam-se entre si).  
 
-Com o objetivo de criar uma máquina que pudesse processar inputs diretamente do ambiente físco (e.g. luz e som), Rosenblatt concebeu extensão elegante do modelo em 1957 ("The Perceptron[*do latim, percipio, compreender“*]--a perceiving and recognizing automaton. Report 85-460-1, Cornell Aeronautical Laboratory"). Composto de três partes: o sistema S (sensório); o sistema A (associação) e o sistema R (resposta).  
+Com o objetivo de criar uma máquina que pudesse processar inputs diretamente do ambiente físco (e.g. luz e som), Rosenblatt concebeu uma extensão elegante do modelo em 1957 ("The Perceptron[*do latim, percipio, compreender“*] -- a perceiving and recognizing automaton. Report 85-460-1, Cornell Aeronautical Laboratory"). Composto de três partes: o sistema S (sensório); o sistema A (associação) e o sistema R (resposta).  
 O neurônio "lógico" cru de McChulloch & Pitts foi modificado de maneira a processar inputs através de pesos antes da saída. A aprendizagem se dá pela modificação desses pesos. 
 
 ![Organização do Mark I, retirado de seu manual de uso original](images/chap4-perceptronscheme.png)  
 
-Inicialmente, o perceptron foi simulado em um IBM 704 (também berço das linguagens FORTRAN e LISP). Em seguida, implementado como um dispositivo físico, batizado de Mark I Perceptron.[^23] Um estudo mais profundo foi publicado por ele em 1962 (Principles of neurodynamics)
+Inicialmente, o perceptron foi simulado em um IBM 704 (também berço das linguagens FORTRAN e LISP). Em seguida, implementado como um dispositivo físico, batizado de Mark I Perceptron.[^23] Um estudo mais profundo foi publicado por ele em 1962 (Principles of neurodynamics).  
+
 
 [^22]: Ele consegue diferenciar um gato de um cachorro, ainda que não seja capaz de dizer se o cachorro estava à esquerda ou à direita do gato. No momento, não tem uso prático, Dr. Rosenblatt admitiu, porém disse que um dia pode ser útil para enviar um [aparato] ao espaço para capturar impressões para nós.  
 [^23]: Mark I é um título comumente utilizado para a primeira versão de uma máquina.
 
+
 \pagebreak 
 
-Rosenblatt protagonizava calorosos debates sobre inteligência artificial na comunidade científica junto a Marvin Minsky, um amigo da adolescência. Em 1969, Minsky e um matemático (Seymour Papert) publicaram um livro centrado no Perceptron.
-(Perceptrons: An Introduction to Computational Geometry). Nele, provaram que o neurônio artificial era incapaz de resolver problemas não-lineares do tipo XOR. Para um problema eXclusive OR (OU eXclusivo) o neurônio deve disparar diante do estímulo A ou do estímulo B, porém não diante de ambos.  
+Rosenblatt protagonizava calorosos debates sobre inteligência artificial na comunidade científica junto a Marvin Minsky, um amigo da adolescência. Em 1969, Minsky e um matemático (Seymour Papert) publicaram um livro centrado no Perceptron (Perceptrons: An Introduction to Computational Geometry). Nele, provaram que o neurônio artificial era incapaz de resolver problemas não-lineares do tipo XOR. Para um problema eXclusive OR (OU eXclusivo) o neurônio deve disparar diante do estímulo A ou do estímulo B, porém não diante de ambos.  
 
-O impacto foi devastador sobre o otimismo vigente e se passou um período de 10 anos de baixíssima produção, conhecido como idade das trevas do conexionismo. A retomada dos neurônios artificiais aconteceu somente na década de 80. Infelizmente, Rosenblatt morreu prematuramente em 1972 num acidente de barco, não presenciando o renascimento dos perceptrons.  
+O impacto foi devastador sobre o otimismo vigente e se passou um período de 10 anos de baixíssima produção, conhecido como 'idade das trevas' do conexionismo. A retomada dos neurônios artificiais aconteceu somente na década de 80. Infelizmente, Rosenblatt morreu prematuramente em 1972 num acidente de barco, não presenciando o renascimento dos perceptrons.  
 
-Sabendo das origens do modelo, é curioso que a maioria dos cursos introduzam perceptrons do ponto de vista puramente matemático, apontando a semelhança com neurônios como mera curiosidade. Pelo contrário, a inspiração em neurônios biológicos e posterior sucesso nas tarefas designadas fala em favor de um fantástico caso de sucesso para engenharia reversa.  
-A Natureza, através de evolução por seleção natural, é a verdadeira mãe desse algoritmo.  
+Sabendo das origens do modelo, é curioso que a maioria dos cursos introduzam perceptrons do ponto de vista puramente matemático, apontando a semelhança com neurônios como mera curiosidade. Pelo contrário, a inspiração em neurônios biológicos e posterior sucesso nas tarefas designadas fala em favor de um fantástico caso de sucesso via engenharia reversa.  
 
 \pagebreak
 
@@ -58,30 +58,48 @@ Mark I foi criado para reconhecimento visual, podendo ser considerado avô da vi
 Possuía um campo de entrada fotossensível de 20x20 (400) células de Sulfeto de Cádmio, as unidades S. Ao reagir com a luz, CdS emite um elétron:
 $$CdS + \gamma \rightarrow e^{-} + CdS^{+}$$
 
-Caso a célula seja ativada, envia o sinal eletrônico a uma unidade intermediária A. A unidade intermediária, por sua vez, transmite um sinal eletrônico à saída. A intensidade do sinal é regulada por sucessos prévios. Esse processo ficará mais claro com a implementação a seguir.
+Caso a célula seja ativada, envia o sinal eletrônico a uma unidade intermediária A. A unidade intermediária, por sua vez, transmite um sinal eletrônico à saída. **A intensidade do sinal é regulada por sucessos prévios** de maneira a ajustar o sinal para a classficação correta. O aparato físico mimetiza o modelo matemático do **classificador**.  
+
+Um sinal luminioso excita cada campo de maneira diferente, ativando células de acordo com a quantidade de luz captada. Matematicamente, representamos cada neurônio sensível à luz como uma célula na matriz de entrada. 
 
 ![Exemplo de “1” em letra cursiva e sua representação numa matriz 2x2. http://colah.github.io/posts/2014-10-Visualizing-MNIST/](images/chap4-digit.jpg)
 
-Imaginemos que a imagem acima tenha 10 pixels de altura e 10 de largura.  
-Para simplificação, 10 x 10 pixels em preto e branco (100 pixels com valores entre 0,preto, e 255, branco). Esses pixels podem ser esticados e vistos como uma matriz x de dimensão $[100 x 1]$ com valores entre 0 e 255 em cada elemento.  
-Vamos simular uma imagem deste tamanho gerando uma matriz de dimensão 10x10 com 100 valores naturais aleatórios (entre 0 e 255) no R:  
+O dígito acima ('$1$') está numa imagem com 14 x 14 pixels (196 valores entre: 1, preto; e 0, branco). Esses pixels podem ser esticados e vistos como uma matriz $X$ de dimensão $[196 x 1]$ com valores entre 0 e 1 em cada elemento.  
+Vamos simular uma imagem semelhante:  
 
 ```r
+Um sinal luminioso excita cada campo de maneira diferente, ativando células de acordo com a quantidade de luz captada.  
+    >library(magrittr)
     >set.seed(2600)
-    >my.image.data <- sample(0:255,100,replace=T)
-    >x <- matrix(my.image.data,10,10)
+    >my.image.data <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                   0,0,0,0,1,.9,.6,1,0,0,0,0,0,0,
+                   0,0,0,0,1,0,1,1,0,0,0,0,0,0,
+                   0,0,0,0,0.9,0,1,1,0,0,0,0,0,0,
+                   0,0,0,0,0,0,1,1,0,0,0,0,0,0,
+                   0,0,0,0,0,0,1,1,0,0,0,0,0,0,
+                   0,0,0,0,0,0,1,1,0,0,0,0,0,0,
+                   0,0,0,0,0,0,.7,1,0,0,0,0,0,0,
+                   0,0,0,0,0,0,1,1,0,0,0,0,0,0,
+                   0,0,0,0,0,0,1,1,0,0,0,0,0,0,
+                   0,0,0,0,0,0,1,.9,0,0,0,0,0,0,
+                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                   0,0,0,0,0,0,0,0,0,0,0,0,0,0) %>% 
+                   matrix(.,14,14,byrow=T)
+    > image(t(my.image.data[14:1,]), axes = FALSE, col = grey(seq(1, 0, length = 256)))
 ```
-![](images/chap4-shipmat.jpg)
+![](images/chap4-num7.png)
 
-Eis a nossa imagem [10x10]. O computador lê os valores entre 0 (preto) e 255 (branco), dispondo para nós o sinal visual correspondente.  
+Eis a nossa imagem [14x14]. O computador lê os valores entre 0 (branco) e 1 (branco), dispondo para nós o sinal visual correspondente numa paleta de cores.  Aqui usamos 256 tons  cinza.   
 
-Em nosso exemplo hipotético, o classificador precisa saber se uma imagem apresentada corresponde à de um navio ou não.  
+Em regressão linear múltipla, calculamos um peso $\beta$ para cada variável. O racional aqui é parecido: ponderamos cada pixel por seus respectivos pesos. Em analogia, cada imagem é uma observação de 196 variáveis.  
 
-Em regressão linear múltipla, calculamos um peso $\beta$ para cada variável. O racional aqui é parecido: ponderamos cada pixel por seus respectivos pesos. Em analogia, cada imagem é uma observação de 100 variáveis.  
+## Classificação  
 
-O neurônio deve disparar (output $y=1$) caso seja um navio ou permanecer em repouso ($y=-1$) caso não seja.  
+Na tarefa de regressão linear, o output deveria ser um número real $Y ~ \beta * X$ com $X,Y \in \mathbb{R}$. Usaremos o perceptron para classificação: as possibilidades de saída são categorias. Isto é, o output é discretizado, geralmente num conjunto binário (e.g. $\{ -1,1\}$ ou $\{ 0,1\}$).  
+O neurônio deve disparar (output $y=1$) caso reconheça um objeto ou permanecer em repouso ($y=-1$) caso não seja.  
 
-Matematicamente, é uma multiplicação da matriz de valores da imagem $x_{j}$, de dimensão $[100 x 1]$ por uma matriz $W_{[100 X 1]}$ que traz i pesos (weights) estimados para cada pixel para cada classe. Então, forçamos o resultado para +1 ou -1 com uma função de ativação $(\phi)$.  
+Matematicamente, é uma multiplicação da matrizes entre imagem $x_{j}$, de dimensão $[196 x 1]$ por uma matriz $W_{[196 X 1]}$ que traz *i* pesos (**w***eights*) estimados para cada pixel para cada classe. Essa formulação é idêntica àquela feita em regressão linear. A diferença vem quando forçamos o resultado para +1 ou -1 com uma função de ativação $(\phi)$.  
 
 $$y = \phi(W^{T}X)$$
 
@@ -95,26 +113,25 @@ $$\phi(x)= \begin{cases}
 
 Em R:  
 ```r
-    library(magrittr)
     # Heaviside
     >phi_heavi <- function(x){ifelse(x >=0,1,-1)}
     # Iniciando pesos com base em distribuição normal
-    >my_weights <- rnorm(100)/100
-    >w <- matrix(my_weights,100,1)
+    >my_weights <- rnorm(196)
+    >w <- matrix(my_weights,196,1)
     # Multiplicacao usando o operador %*%
-    >as.vector(x) %*% w
+    >as.vector(my.image.data) %*% w
     # Score
-             [,1]
-    [1,] 20.19958
-    # Funcao de ativacao usando %>% para encadeamento
+            [,1]
+    [1,] 3.688397
+    # Funcao de ativacao
     >as.vector(x) %*% w %>% phi_heavi
          [,1]
     [1,]   1
 ```
 
-Para o exemplo acima, nosso neurônio com pesos aleatórios foi ativado para o estímulo aleatório $x$.
-Inicialmente, estabelecemos pesos aleatórios a partir de uma distribuição normal.  
-Então, o objetivo é observar as respostas corretas em várias imagens $x_{i}$ e alterar os valores de $W$ para que os scores maiores sejam os das classes corretas.  
+Para o exemplo acima, nosso neurônio com pesos aleatórios foi ativado para o estímulo contendo o '$7$'.
+Inicialmente, estabelecemos pesos aleatórios a partir de uma distribuição normal (`my_weights <- rnorm(...)`). 
+O processo de treinar o classificador é observar as respostas muitos exemplos de imagens $x_{i}$, alterando os valores de $W$ para que os scores maiores sejam os das classes corretas. Assim, neurônio só dispara $y=1$ quando diante do estímulo adequado.  
 
 O processo de treino é bastante simples:  
 Seja $x_{i_{j}}$ o $i$-ésimo pixel da observação $j$. E $w_{0}$ o peso correspondente inicial, o peso atualizado, $w'$ é:
@@ -209,7 +226,7 @@ E então, podemos ativá-lo:
      [73]  1 -1 -1  1 -1 -1  1  1 -1  1 -1  1  1  1  1  1  1 -1  1  1 -1  1 -1  1
      [97] -1  1  1 -1
 ```
-Usando $\eta = 0.002$, obtivemos $41 \%$ de acurácia (classificações corretas). Podemos modificar a taxa de aprendizagem. Com $\eta = 0.05$, aumentamos para $59\%$. Com $\eta = 0.1$, temos $62\%$. Um bom valor é $0.01$, com $77\%$. **Nada mau!** Codificamos nosso neurônio *do zero*, usando algumas matrizes, pesos aleatórios e um algoritmo sequencial de operações e atualização de pesos. Com isso, atingimos uma acurácia razoável.     
+Usando $\eta = 0.002$, obtivemos $41 \%$ de acurácia (classificações corretas). Podemos modificar a taxa de aprendizagem. Com $\eta = 0.05$, aumentamos para $59\%$. Com $\eta = 0.1$, temos $62\%$. Um bom valor é $0.01$, com $77\%$. Uma acurácia considerável em relação ao esperado com adivinhação (50%).  
 
 ```r    
     > y_preds <- mark_i(x_features, y_target, 0.05)
@@ -236,6 +253,94 @@ Usando $\eta = 0.002$, obtivemos $41 \%$ de acurácia (classificações corretas
     -1 43 16    
     1   7 34
 ```
+Mas afinal, porque atualizamos os pesos assim? 
+
+Durante a exposição, a seguinte regra nos ajudou, mas não foi explicada.  
+$$\Delta w_{i} = \eta (score{j} - output_{j}) x_{i}$$
+
+Antes, verificamos (Cap. 2) uma solução fechada para o problema de regressão, em que a melhor estimativa para a inclinação da reta, $\beta$, poderia ser calculada diretamente.  
+O perceptron atualiza seus pesos de maneira recursiva, aprendendo um pouco ($\Delta w_{i}$) com cada exemplo. Um novo estímulo quanto (magnitude em $\Delta {w}$) e em que direção ($+$ ou $-$) um peso deve mudar para diminuir erros.  
+
+### Gradient Descent para o Perceptron
+
+Ao otimizar estimativas, nos concentramos em encontrar máximos ou mínimos para espaços definidos. Em geral, estes são superfícies descrevendo o tamanho dos erros em função dos pesos adotados pelo modelo. O nosso objetivo é encontrar o local mais *baixo*. Para superfícies muito irregulares, aceitamos um ponto suficientemente *baixo*.  
+
+Em regressão linear, o espaço é conhecido, portanto podemos ir ao ponto mais baixo diretamente. Para outros modelos, isso não é tão simples.   
+$\Delta w_{i}$ pode ser obtido usando o conceito de *Gradient Descent*.  
+O processo é como descer uma montanha de olhos vendados. Só podemos saber a inclinação local (diferença entre pé esquerdo e pé direito). Podemos descer dando passos sempre na direção do pé mais baixo.  
+O que precisamos então é da inclinação da superfície relacionada aos erros em função dos pesos.  
+
+Levando em conta cada $j$-ésima observação, primeiro definimos uma função de perda $L$ expressando a soma dos erros nos $n$ exemplos.   
+$$L=\sum_{j}^{n}E(score_{j},output_{j})$$  
+Usaremos para nossa função de erro a distância euclidiana entre score desejado e output. O score desejado é a resposta ótima e o output é um produto entre pesos e entrada:  
+$$E = d_{eucl.}(score_{j},output_{j}) = (score_{j} - output_{j})^{2}$$
+
+Essa função descreve a superfície em função dos erros usando uma relação quadrática: errar para cima tem o mesmo peso que errar para baixo e erros extremos são magnificados ($x^{2}$) polinomialmente.  
+
+O processo envolve implementar uma função de erro entre resultados da rede e um espaço virtual de scores ótimos. O sucesso do treinamento depende de uma correspondência entre a função de distância escolhida e a distância real no espaço em que os dados foram gerados. Não sabemos se isso reflete a realidade. No exemplo, cada pixel reflete um sinal de 0 a 255.  
+A figura abaixo mostra a correspondência entre valores da medida e escala visual.   
+![](images/chap4-pixels.png)  
+
+A intuição para sensibilidade à luz pode ser percebida num intervalo contínuo entre incidência total de luz (valores extremos de branco, medida: 255) e ausência total (valores extremos de preto, medida: 0). Supondo que podemos atribuir um rótulo a cada tom de cinza e que esse conjunto é ordenável pela *clareza*, dizemos que há isomorfismo de ordem entre os conjuntos.  
+
+Isso implica que a distância eulidiana deve funcionar em nossas medidas como nos números reais $\mathbf{R}$. Resta saber se a projeção das observações é linearmente separável. É intuitivo para seres humanos saber quais problemas serão separáveis: basta imaginar a tarefa de diferenciar tipos de imagens com uma regua numa tela em preto e branco.  
+
+Para descobrir o valor mínimo de $L$, vamos encontrar polos através de derivadas parciais. Ou, seu equivalente para funções de múltiplas variáveis (espaços multidimensionais), o gradiente ($\nabla$). 
+
+Para cada observação $x_{j}$, a derivada parcial da função de perda em relação a um peso $w_{i}$ expressa a taxa de variação no erro global em função daquele peso. 
+$\frac{d}{dw_{i}}L(w_{i}) = \frac{d}{dw_{i}} \frac{1}{n}\sum_{j}{n}E(score_{j},output_{j})$ 
+
+Sabemos então se devemos ajustar o peso para cima ou para baixo, assim com a magnitude do passo. Algebricamente, modificaremos $w$ seguindo o inverso do gradiente. A taxa de aprendizagem é um hiperparâmetro que regula artificialmente o tamanho desse passo:  
+$$\Delta w_{i} = - \eta \frac{dL}{dw_{i}}$$
+$$= - \eta \frac{d}{dw_{i}}\frac{1}{n}\sum_{j}^{n}E(score_{j},output_{j})$$  
+Lembrando que o erro é dado pela distância euclidiana:  
+$$= - \eta \frac{d}{dw_{i}}\frac{1}{n}\sum_{j}^{n}(score_{j} - output_{j})^{2}$$.  
+
+Fazemos $f(x) = (score_{j} - output_{j})$ e $g(x) = x^{2}$, de maneira que
+$$L = \frac{1}{n}\sum_{j}^{n} E(score_{j}, output_{j}) = (g \circ f)$$  
+$$= \frac{1}{n}\sum_{j}^{n} (score_{j} - output_{j})^{2}$$  
+
+Podemos resolver $\frac{d}{dw_{i}}L$ aplicando a regra de cadeia $(g \circ f)' = (g'\circ f)f'$ e a 'regra do tombo' para derivadas de polinômios $(\frac{d}{dx}(x^{n})=nx^{n-1})$.  
+
+Então,
+$$f' = \frac{d}{dw_{i}}(score_{j} - output_{j})$$
+O output é dado pelo produto escalar entre pesos $w_{j}$ e entradas $x_{j}$:  
+$$f'=\frac{d}{dw_{i}}(score_{j} - w_{j} \cdot x_{j})$$
+O score desejado não depende dos pesos, portanto a primeira derivativa é 0.  
+$$f' = 0 - \frac{d}{dw_{i}} w_{j} \cdot x_{j}$$
+$$=-\frac{d}{dw_{i}}\sum_{i,j}^{n} w_{i,j}*x_{i,j}$$
+$$= =-\frac{d}{dw_{i}}(w_{0}*x_{0}+...+w_{i}*x_{i}+w_{n}*x_{n})$$  
+Os termos não dependentes de $w_{i}$ também são zerados e ficamos com o primeiro termo da soma:  
+$$f'=- \frac{d}{dw_{i}} w_{i}x_{i}$$  
+A função a ser derivada agora descreve uma relação linear (polinômio de grau 1) em $w_{i}$ e temos:
+$$f'= (-x_{i,j})$$
+
+Sabendo $f'$, buscamos o outro termo em $(g \circ f)'$:
+$$(g \circ f) = (score_{j} - output_{j})^{2-1}$$
+$$(g'\circ f) = 2(score_{j} - output_{j})^{2-1}$$
+
+$$= 2(score_{j} - output_{j})$$
+
+Por fim, a derivada parcial da função de perda para o i-ésimo peso $w_{i}$ é:
+
+$$\frac{dL}{dw_{i}} = \sum_{j}^{n}\frac{d}{dw_{i}}(score_{j} - output_{j})^{2}$$.  
+$$= \sum_{i,j}^{n} 2(score_{j} - w_{j} \cdot x_{j}) (-x_{i,j})$$
+
+Para simplificar a expressão e estabelecer o tamanho dos incrementos sobre o pesos, escalamos por uma constante, dada por $-\frac{1}{2} \eta_{0}$:  
+$$-\frac{1}{2}*\eta_{0} \frac{dL}{dw_{i}}=-\frac{1}{2}\eta_{0}*2(score_{j} - output_{j}) (-x_{j})$$
+$$\Delta w_{i} = \eta_{0} \sum_{j}^{n} (score_{j} - w \cdot x)(x_{j})$$
+E $\eta_{0}$ é um [hiper]parâmetro que simplifica a equação e define o tamanho dos incrementos usados.  
+
+
+Como implementamos antes no Auto MaRK I.  
+```r
+    (...)
+    ypred <- sum(w * as.numeric(x[i, ])) %>% phi_heavi 
+    delta_w <- eta * (y[i] - ypred) * as.numeric(x[i, ]) #<--------------------
+    w <- w + delta_w
+    (...)
+```
+
 Chamamos $\eta$ de hiperparâmetro. A escolha de valores para hiperparâmetros é um dos desafios em aprendizagem estatística. Uma maneira trivial é testar muitos valores possíveis e observar o desempenho, entretanto isso não é exequível para grandes volumes de dados e/ou muitos parâmetros. Existem diversos processos heurísticos e algoritmos para encontrar valores ótimos.  
 
 Uma forma popular para otimizar o treinamento é particionar o dataset em pedaços e apresentar os particionamentos (epochs) repetidas vezes ao classificador ou acumular os erros de epochs ao invés de exemplos individuais. Assim, calculamos erros agregados e evitamos mínimos locais.  
@@ -263,7 +368,7 @@ Muitas entidades são diferentes, porém similares o suficiente para pertencer a
 ![](images/chap4-species.jpg)  
 
 Todos são naturalmente reconhecidos como felinos, mas apresentam variações de tamanho, cor e proporção em todo o corpo. Esse é um problema interessante e antigo, mais conhecido na ideia de entes platônicos, os quais capturam a essência de um conceito.  
-Alguns filósofos contomporâneos acreditam que abstrações humanas são instâncias de um conceito mais genérico: mapas biológicos contidos em redes neuronais (Paul Churchland, Plato’s Camera).  
+Alguns filósofos contemporâneos acreditam que abstrações humanas são instâncias de um conceito mais genérico: mapas biológicos contidos em redes neuronais (Paul Churchland, Plato’s Camera).  
 Esses mapas estão associados de forma hierarquizada. Numerosos padrões em níveis inferiores e um número menor em camadas superiores.  
 No caso da visão, neurônios superficiais captam pontos luminosos. O padrão de ativação sensorial enviado ao córtex visual primário é o primeiro mapa, que é torcido e filtrado caminho cima.  
 
@@ -401,93 +506,10 @@ Além disso, o uso de processadores gráficos (GPU), desenhados para as operaç�
 
 [^26]: (http://people.idsia.ch/~juergen/who-invented-backpropagation.html)
 
-### Gradient Descent para o Perceptron
-
-Até o momento, ilustramos intuições e aplicações básicas, porém o grande desafio de modelos com muitos parâmetros está em orquestrar o treinamento conjunto de diferentes nodos.  
-
-Usamos os pesos com uma fórmula contendo taxa de aprendizagem $(\eta)$ e outros parâmetros: a função de erro entre score desejado$(score)$ e output $E= d(score_{j},output_{j})$; valor da entrada $(x_{i})$.  
-
-$$w_{i}' = w_{i} + \Delta w_{i}$$
-
-$\Delta w_{i}$ pode ser obtido usando o conceito de Gradient Descent.
-Intuitivamente, calculamos a inclinação local e caminhamos no sentido oposto ao mais íngreme. O valor de $\eta$ governa o tamanho dos passos.    
-
-Levando em conta cada $j$-ésima observação, definimos uma função de perda $L$ expressando a soma dos erros nos $n$ exemplos e minimizamos ela.  
-$$min(L)=min\sum_{j}^{n}E(score_{j},output_{j}))$$
-Calculamos o valor dos pesos atuais e percorremos o espaço em direção a um valor mínimo local. Se a superfície $L$ for convexa, acharemos uma solução ótima com o número suficiente de passos.  
-
-Usaremos para nossa função de erro a distância euclidiana entre score desejado e output. O score desejado é a resposta ótima e o output é um produto entre pesos e entrada:
-
-$$E = d_{eucl.}(score_{j},output_{j}) = (score_{j} - output_{j})^{2}$$
-
-Notem que o processo envolve implementar uma função de erro entre resultados da rede e um espaço virtual de scores ótimos. O sucesso do treinamento depende de uma correspondência entre a função de distância escolhida e a distância real no espaço em que os dados foram gerados. Não sabemos se isso reflete a realidade. No exemplo, cada pixel reflete um sinal de 0 a 255.  
-A figura abaixo mostra a correspondência entre valores da medida e escala visual.   
-![](images/chap4-pixels.png)
-
-A intuição para sensibilidade à luz pode ser percebida num intervalo contínuo entre incidência total de luz (valores extremos de branco, medida: 255) e ausência total (valores extremos de preto, medida: 0). Supondo que podemos atribuir um rótulo a cada tom de cinza e que esse conjunto é ordenável pela *clareza*, dizemos que há isomorfismo de ordem entre os conjuntos.  
-
-Isso implica que a distância eulidiana deve funcionar em nossas medidas como nos números reais $\mathbf{R}$. Resta saber se a projeção das observações é linearmente separável. É intuitivo para seres humanos saber quais problemas serão separáveis: basta imaginar a tarefa de diferenciar tipos de imagens com uma regua numa tela em preto e branco.  
-
-Para descobrir o valor mínimo de $L$, vamos encontrar polos através de derivadas parciais. Ou, seu equivalente para funções de múltiplas variáveis (espaços multidimensionais), o gradiente($\nabla$). 
-É o produto escalar das derivadas parciais daquela função. 
-
-Para cada observação $x_{j}$, a derivada parcial da função de perda em relação a um peso $w_{i}$ expressa a taxa de variação no erro global em função daquele peso. 
-$\frac{d}{dw_{i}}L(w_{i}) = \frac{d}{dw_{i}} \frac{1}{n}\sum_{j}{n}E(score_{j},output_{j})$ 
-
-Sabemos então se devemos ajustar o peso para cima ou para baixo, assim com a magnitude do passo. Algebricamente, modificaremos $w$ seguindo o inverso do gradiente. A taxa de aprendizagem é um hiperparâmetro que regula artificialmente o tamanho desse passo:  
-$$\Delta w_{i} = - \eta \frac{dL}{dw_{i}}$$
-$$= - \eta \frac{d}{dw_{i}}\frac{1}{n}\sum_{j}^{n}E(score_{j},output_{j})$$  
-Lembrando que o erro é dado pela distância euclidiana:  
-$$= - \eta \frac{d}{dw_{i}}\frac{1}{n}\sum_{j}^{n}(score_{j} - output_{j})^{2}$$.  
-
-Fazemos $f(x) = (score_{j} - output_{j})$ e $g(x) = x^{2}$, de maneira que
-$$L = \frac{1}{n}\sum_{j}^{n} E(score_{j}, output_{j}) = (g \circ f)$$  
-$$= \frac{1}{n}\sum_{j}^{n} (score_{j} - output_{j})^{2}$$  
-
-Podemos resolver $\frac{d}{dw_{i}}L$ aplicando a regra de cadeia $(g \circ f)' = (g'\circ f)f'$ e a 'regra do tombo' para derivadas de polinômios $(\frac{d}{dx}(x^{n})=nx^{n-1})$.  
-
-Então,
-$$f' = \frac{d}{dw_{i}}(score_{j} - output_{j})$$
-O output é dado pelo produto escalar entre pesos $w_{j}$ e entradas $x_{j}$:  
-$$f'=\frac{d}{dw_{i}}(score_{j} - w_{j} \cdot x_{j})$$
-O score desejado não depende dos pesos, portanto a primeira derivativa é 0.  
-$$f' = 0 - \frac{d}{dw_{i}} w_{j} \cdot x_{j}$$
-$$=-\frac{d}{dw_{i}}\sum_{i,j}^{n} w_{i,j}*x_{i,j}$$
-$$= =-\frac{d}{dw_{i}}(w_{0}*x_{0}+...+w_{i}*x_{i}+w_{n}*x_{n})$$  
-Os termos não dependentes de $w_{i}$ também são zerados e ficamos com o primeiro termo da soma:  
-$$f'=- \frac{d}{dw_{i}} w_{i}x_{i}$$  
-A função a ser derivada agora descreve uma relação linear (polinômio de grau 1) em $w_{i}$ e temos:
-$$f'= (-x_{i,j})$$
-
-Sabendo $f'$, buscamos o outro termo em $(g \circ f)'$:
-$$(g \circ f) = (score_{j} - output_{j})^{2-1}$$
-$$(g'\circ f) = 2(score_{j} - output_{j})^{2-1}$$
-
-$$= 2(score_{j} - output_{j})$$
-
-Por fim, a derivada parcial da função de perda para o i-ésimo peso $w_{i}$ é:
-
-$$\frac{dL}{dw_{i}} = \sum_{j}^{n}\frac{d}{dw_{i}}(score_{j} - output_{j})^{2}$$.  
-$$= \sum_{i,j}^{n} 2(score_{j} - w_{j} \cdot x_{j}) (-x_{i,j})$$
-
-Para simplificar a expressão e estabelecer o tamanho dos incrementos sobre o pesos, escalamos a derivada parcial por uma constante, dada por $-\frac{1}{2} \eta_{0}$:  
-$$-\frac{1}{2}*\eta_{0} \frac{dL}{dw_{i}}=-\frac{1}{2}\eta_{0}*2(score_{j} - output_{j}) (-x_{j})$$
-$$\Delta w_{i} = \eta_{0} \sum_{j}^{n} (score_{j} - w \cdot x)(x_{j})$$
-E $\eta_{0}$ é um [hiper]parâmetro que simplifico a equação e define o tamanho dos incrementos usados. 
-
-Como implementamos antes no Auto MaRK I.  
-```r
-    (...)
-    ypred <- sum(w * as.numeric(x[i, ])) %>% phi_heavi 
-    delta_w <- eta * (y[i] - ypred) * as.numeric(x[i, ]) #<--------------------
-    w <- w + delta_w
-    (...)
-```
 
 ### Backpropagation
 
-Uma vez que o texto é sobre deep leaning, precisamos falar de backpropagation. 
-É o conceito de propagar gradientes da função perda ao longo da rede de maneira a atualizar cada nodo de maneira única. 
+Backpropagation é um processo chave em para permitir o treinamento de classficadores em deep learning. É o conceito de propagar gradientes da função de perda ao longo da rede de maneira a atualizar cada nodo. Historicamente, surgiu no estudo de teoria do controle.  
 
 Como vimos, podemos encarar a rede neural como uma sequência de funções plugadas. Algebricamente, se o primeiro nodo é $q(x,y)$, o neurônio $f$ que recebe sua saída como input tem valor $f(q(x,y))$ ou $f \circ q$.
 
@@ -496,8 +518,9 @@ Neurônio de input: $q(x,y) = 3x+2y$
 Segundo neurônio: $f(z) = z^{2}$  
 Output final: $f(q(x,y)) = q^{2} = (3x+2y)^{2}$  
 
+À primeira vista funções complexas vão possuir gradientes difíceis de calcular. Além disso, temos que calcular valores para cada neurônio em camadas diferentes. *Backpropagation* usa a *regra de cadeia* para calcular as derivadas por camada. Encadeando sequências de funções elementares com derivada conhecida, podemos atingir mapeamentos complexos e ainda assim calcular o gradiente sem muito esforço.  
 
-Podemos calcular o efeito de mudanças inter nodos com a regra de cadeia funções compostas. Isto é, podemos obter o gradiente de erro no nodo de hierarquia mais alta $(f)$, com respeito a uma das variáveis de entrada $(x)$ na hierarquia mais baixa. A operação é computacionalmente barata, bastando multiplicar as derivadas parciais dos erros em cada parte.
+Podemos obter o gradiente da função de perda no nodo de hierarquia mais alta $(f)$, com respeito a uma das variáveis de entrada $(x)$ na hierarquia mais baixa. A operação é computacionalmente barata, bastando multiplicar as derivadas parciais dos erros em cada parte.
 
 $$\frac{df}{dx}=\frac{df}{dq}\frac{dq}{dx}$$
 
@@ -524,7 +547,7 @@ $$\frac{df}{dx}=\frac{df}{dq}\frac{dq}{dx}$$
 
 Usando essa lógica, calculamos os gradientes para a função de erro e treinamos o modelo.
 
-Podemos então implementar nossa rede neural, Mark II.
+Podemos então implementar nossa rede neural, Mark II.  
 
 #### Mark II
 
@@ -687,6 +710,39 @@ Podemos observar o modelo convergindo à medida em que os pesos se estabilizam e
       geom_abline(slope = 1,intercept = 0)
 ```
 ![](images/chap4-markii-preds.png)
+
+De maneira prática, não precisamos calcular os gradientes ou a topologia da rede (número de  neurônios, camadas e como estão conectados). Implementações de uso mais fácil estão disponíveis. Usando a lib `caret`:  
+
+```r
+    > library(caret)
+    # https://topepo.github.io/caret/train-models-by-tag.html
+    > train(x=x_features,y = y_target,method = "mlpWeightDecay")
+        Multi-Layer Perceptron     
+
+    150 samples
+      2 predictors   
+
+    No pre-processing
+    Resampling: Bootstrapped (25 reps) 
+    Summary of sample sizes: 150, 150, 150, 150, 150, 150, ... 
+    Resampling results across tuning parameters:   
+
+      size  decay  RMSE      Rsquared   MAE      
+      1     0e+00  1.830946  0.3132915  1.5795672
+      1     1e-04  1.831956  0.4041400  1.5641681
+      1     1e-01  2.203828  0.5889224  1.9507964
+      3     0e+00  1.035326  0.6731265  0.8242900
+      3     1e-04  1.129702  0.6322950  0.8921468
+      3     1e-01  2.230236  0.6531256  1.9114274
+      5     0e+00  1.094755  0.6558700  0.8567348
+      5     1e-04  1.121093  0.6523228  0.9007250
+      5     1e-01  2.143342  0.6639255  1.7652741    
+
+    RMSE was used to select the optimal model using the
+     smallest value.
+    The final values used for the model were size = 3 and decay = 0.
+```
+Temos $R^2 \sim 0.673$ com 3 unidades escondidas. Outras arquiteturas (e.g. defina `method = "brnn"`) incluem nodos com funções de ativação diferente, assim como variações para o funcionamento de outros pontos. 
 
 #### Referências
 
