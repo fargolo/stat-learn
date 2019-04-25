@@ -35,7 +35,7 @@ E, ao ouvir isso, o aprendiz foi iluminado.*
 
 Ao longo do texto, usaremos exemplos com software. Computadores são úteis para acelerar os cálculos necessárias para nossos objetivos.  
 
-Há milênios, o homem usa instrumentos, como ábacos e tabelas, para fazer operações extensas e precisas envolvendo grandes números. Dado um problema ou dado a ser computado, esses instrumentos mecanismos automatizam partes do processo devido à maneira como foram construídos. A principal diferença destas ferramentas para os computadores de hoje é que nossas máquinas podem ser programadas para fazer computações arbitrárias.  
+Há milênios, o homem usa instrumentos, como ábacos e tabelas, para fazer operações extensas e precisas envolvendo grandes números. Dado um problema ou dado a ser computado, esses mecanismos automatizam partes do processo devido à maneira como foram construídos. A principal diferença destas ferramentas para os computadores de hoje é que nossas máquinas podem ser programadas para fazer computações arbitrárias.  
 
 Ada Lovelace (*10 December 1815 – 27 November 1852*) foi a primeira a descobrir essa possibilidade. Estudando a Máquina Analítica de Charles Babbage, Ada concebeu uma maneira de realizar computações para as quais a máquina não havia sido desenhada originalmente. O programa concebido calculava os Números de Bernoulli. Discutivelmente, alterar a estrutura de máquinas mais simples também consiste em reprogramá-las.   
 
@@ -53,7 +53,7 @@ Stan é uma linguagem/plataforma de domínio específico bastante popular entre 
 
 ## R: Curso rápido
 
-Programas de computador são importantes ao longo dos próximos capítulos para realizar cálculos, gerar dados  e visualizações.  
+Códigos são importantes ao longo dos próximos capítulos para realizar cálculos, gerar dados  e visualizações.  
 Felizmente, os programas que escreveremos são simples, de forma que não precisamos conhecer todos os recursos e características da linguagem R. Neste capítulo, entenderemos os instrumentos básicos para caminharmos.  
 Veremos diversas maneiras de escrever um programa para calcular a variância $\sigma^{2}$ de um conjunto de medidas.   
 
@@ -64,7 +64,7 @@ Veremos diversas maneiras de escrever um programa para calcular a variância $\s
 Instruções para download e instalação podem ser encontradas em:  
 https://cloud.r-project.org/  
 Em Windows, o processo costuma consistir em clicar no executável de instalação e concordar com os prompts.   
-Para Linux, envolve adicionar o CRAN à lista de repositórios e baixar o pacote *r-base* ou o código-fonte/tarball diretamente do website. Há inúmeros tutoriais explicando a instalação.  
+Para Linux, envolve adicionar o CRAN à lista de repositórios e baixar o pacote *r-base* ou o código-fonte/tarball diretamente do website. 
 
 #### Rstudio
 
@@ -130,7 +130,7 @@ Para instalar uma biblioteca do repositório oficial (CRAN), usamos o comando *i
 ### Matrizes e data frames
 
 R possui estruturas que ajudam a manipulação de dados estruturados como os que vemos comumente em ciências.  
-A mais simples é a lista. Uma lista é um conjunto de objeto de quaisquer tipos. Assim, podemos ter uma lista contendo vetores, doubles, matrizes e gráficos! Tudo em uma estrutura.  
+A mais simples é a lista. Uma lista é um conjunto de objeto de quaisquer tipos. Podemos ter uma lista contendo vetores, doubles, matrizes e gráficos.  
  
 ```r
     >mlist <- list(a = c(1,5,6,7), b = c("a","b","c",”d”))

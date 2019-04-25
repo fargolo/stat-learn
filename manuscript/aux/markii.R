@@ -64,6 +64,8 @@ acc_data$errors <- y_target - mark_ii_preds
 cor.test(acc_data$y_preds,acc_data$y_targs)
 
 ggplot(acc_data,aes(y=y_preds,x=y_targs,color=errors))+
-  geom_point()+xlim(0,10)+ylim(0,10)+
-  geom_abline(slope = 1,intercept = 0)
+  geom_point()+xlim(0,10)+ylim(0,10)+xlab("Observações")+ylab("Predições")+
+  scale_color_continuous(low="plum2",high="purple3",name="MSE")+
+  geom_abline(slope = 1,intercept = 0,color="gold")+
+  theme_hc(style="darkunica")
 

@@ -154,32 +154,31 @@ ggplot(big_regn_plot, aes(x = x, y = y,
 
 
 ## Mark ii reg
-mark_reg <- matrix(c(1,0,0,0,0,0,
-                     1,1,0,0,0,0,
-                     0,1,1,0,0,0,
-                     0,1,0,1,0,0,
-                     0,0,1,1,1,0,
-                     0,0,0,0,1,1),ncol=6,nrow = 6)
+mark_reg <- matrix(c(1,1,0,0,0,0,
+                     0,1,1,1,0,0,
+                     0,0,1,0,1,0,
+                     0,0,0,1,1,0,
+                     0,0,0,0,1,1,
+                     0,0,0,0,0,1),ncol=6,nrow = 6)
 mark_regn <- network(mark_reg)
 
 set.vertex.attribute(mark_regn, attrname = "vertex.names", 
-                     value = c("X","W1","W21","W22","+","Y"))
+                     value = c("Y","+","W21","W22","W1","X"))
 
 mark_regn_plot <- ggnetwork(mark_regn)
 
 ggplot(mark_regn_plot, aes(x = x, y = y, 
                            xend = xend, yend = yend)) +
-  geom_nodes(color="light blue",size=11) +
+  geom_nodes(color="magenta",size=11) +
   geom_edges(arrow = arrow(length = unit(4, "pt"),
-                           type = "closed"),
-             color = "grey70",
-             curvature = 0.3,size=0.15) +
-  geom_nodetext(aes(label = vertex.names),
-                fontface = "bold",size=3) +
-  xlim(-0.2,1.2)+ylim(-0.2,1.2)+
-  theme_minimal()+
+                           type = "open",ends = "last"),
+             color = "white",
+             curvature = 0,size=1) +
+  geom_nodetext(aes(label = vertex.names),color="white",
+                fontface = "bold",size=3,nudge_y = -0.2) +
+  xlim(-0.1,1.1)+ylim(-0.3,1.2)+
+  theme_hc(style="darkunica")+ylab("")+xlab("")+
   theme(axis.text = element_blank(),
         axis.title = element_blank(),
-        panel.background = element_rect(fill = "white"),
         panel.grid = element_blank())
 

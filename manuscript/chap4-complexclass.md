@@ -7,12 +7,11 @@ output:
 
 # Capítulo 4 : Neurônios
 
-Em março de 2016, o software AlphaGo venceu um mestre de Go. O feito é impressionante por se tratar de um jogo difícil de computar.  
-Inventado há mais de 2,500 anos, motivou avanços em matemática. Existem $2,08*10^{170}$ maneiras válidas de dispor as peças no tabuleiro. O polímata chinês Shen Kuo (1031–1095) chegou a um resultado próximo $10^{172}$ séculos atrás. Vale lembrar que o número de átomos no universo observável é de módicos $10^{80}$.  
+Em março de 2016, o software AlphaGo venceu um mestre de Go. Inventado há mais de 2,500 anos, o jogo motivou avanços em matemática. Existem $2,08*10^{170}$ maneiras válidas de dispor as peças no tabuleiro. O polímata chinês Shen Kuo (1031–1095) chegou a um resultado próximo $10^{172}$ séculos atrás. Vale lembrar que o número de átomos no universo observável é de módicos $10^{80}$.  
 
-No capítulo anterior, aprendemos uma formulação básica de modelo preditivo, a regressão linear simples. A seguir, estenderemos nosso leque de ferramentas para novas classes de relações, também incluindo mais informações na entrada de nossos modelos.   
+No capítulo anterior, aprendemos formulações básicas de modelo preditivo com regressão. Aqui, conheceremos a primeira máquina inteligente da história implementando um *perceptron*. Ele é capaz de lidar mais dimensões (e.g. processamento de imagens). Estimadores com solução fechada não existem como na regressão linear, então usamos informações locais para 'caminhar' (*gradient descent*) em direção a um mínimo.  
 
-Mais do que isso, conheceremos a primeira máquina inteligente da história.  
+Estenderemos nossa caixa de ferramentas para abranger relações mais complexas, não lineares. Encadeando neurônios simples, podemos aprender sinais complexos sem apelar para funções complexas, intratáveis ou demasiadamente flexíveis.   
 
 \pagebreak 
 
@@ -90,9 +89,9 @@ Um sinal luminioso excita cada campo de maneira diferente, ativando células de 
 ```
 ![](images/chap4-num7.png)
 
-Eis a nossa imagem [14x14]. O computador lê os valores entre 0 (branco) e 1 (branco), dispondo para nós o sinal visual correspondente numa paleta de cores.  Aqui usamos 256 tons  cinza.   
+Eis a nossa imagem [14x14]. O computador lê os valores entre 0 (branco) e 1 (branco), dispondo para nós o sinal visual correspondente numa paleta de cores.  Aqui usamos 256 tons cinza.   
 
-Em regressão linear múltipla, calculamos um peso $\beta$ para cada variável. O racional aqui é parecido: ponderamos cada pixel por seus respectivos pesos. Em analogia, cada imagem é uma observação de 196 variáveis.  
+Em regressão linear múltipla, calculamos um peso $\beta_{i}$ para cada variável. O racional aqui é parecido: ponderamos cada pixel por seus respectivos pesos. Em analogia, cada imagem é uma observação de 196 variáveis.  
 
 ## Classificação  
 
@@ -109,7 +108,7 @@ $$\phi(x)= \begin{cases}
   -1 \quad se \quad x < 0
   \end{cases}$$
   
-![Heaviside step function](images/chap4-heaviside.jpg)
+![Heaviside step function](images/chap4-heaviside.png)
 
 Em R:  
 ```r
@@ -148,9 +147,11 @@ Assim, funciona para separar flores *setosa* de outra classe, mas não teriamos 
 
 ```r
     >ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width,color=Species))+
-    geom_point()+ geom_abline(slope = 0.92,intercept = -1.9)
+    geom_point(shape=5)+ geom_abline(slope = 0.92,intercept = -1.9,color="mediumorchid1")+ 
+    scale_colour_manual(values = c("yellow", "springgreen", "deepskyblue"))+
+    theme_hc(style = "darkunica")
 ```
-![](images/chap4-sepiris.png)
+![](images/chap4-sepiris2.png)
 
 \pagebreak
 
@@ -368,13 +369,13 @@ Muitas entidades são diferentes, porém similares o suficiente para pertencer a
 ![](images/chap4-species.jpg)  
 
 Todos são naturalmente reconhecidos como felinos, mas apresentam variações de tamanho, cor e proporção em todo o corpo. Esse é um problema interessante e antigo, mais conhecido na ideia de entes platônicos, os quais capturam a essência de um conceito.  
-Alguns filósofos contemporâneos acreditam que abstrações humanas são instâncias de um conceito mais genérico: mapas biológicos contidos em redes neuronais (Paul Churchland, Plato’s Camera).  
+Alguns filósofos contemporâneos tomam as abstrações humanas como instâncias de um conceito mais genérico: mapas biológicos contidos em redes neuronais (Paul Churchland, Plato’s Camera).  
 Esses mapas estão associados de forma hierarquizada. Numerosos padrões em níveis inferiores e um número menor em camadas superiores.  
-No caso da visão, neurônios superficiais captam pontos luminosos. O padrão de ativação sensorial enviado ao córtex visual primário é o primeiro mapa, que é torcido e filtrado caminho cima.  
+No caso da visão, neurônios superficiais captam pontos luminosos. O padrão de ativação sensorial enviado ao córtex visual primário é o primeiro mapa, que é torcido e filtrado caminho cima.    
 
 ![Resposta a estímulos visuais em V1 de Macaca fascicularis http://www.jneurosci.org/content/32/40/13971](images/chap4-cortex.jpg)  
 
-Neurônios intermediários possuem configurações que identificam características simples: olhos e subcomponentes da face. Por fim, temos camadas mais profundas, ligadas a abstrações.  
+Neurônios intermediários possuem configurações que identificam características simples: olhos e subcomponentes da face. Por fim, temos camadas mais profundas, ligadas a abstrações. A interpretação relativa de cones sensíveis a diferentes faixas de energia compõe a paleta de cores que percebemos.   
 
 ![Retirado de: https://www.youtube.com/watch?v=SeyIg6ArS4Y](images/chap4-deepedges.jpg)
 

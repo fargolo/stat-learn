@@ -22,7 +22,7 @@ felipe.c.argolo@protonmail.com
 
 \vspace{2cm}
 
-São Paulo, 21 de Abril de 2019  
+São Paulo, 25 de Abril de 2019  
 
 \href{http://www.leanpub.com/fargolo}{Página oficial: https://http://www.leanpub.com/fargolo}  
 
@@ -34,10 +34,6 @@ Volume 1
 
 \pagebreak
 
-Para comentários, críticas, sugestões, ou simplesmente dizer *oi*: felipe.c.argolo@protonmail.com.  
-
-\pagebreak
-
 ## Prefácio  
 
 *Remember that all models are wrong; the practical question is how wrong do they have to be to not be useful*  
@@ -46,21 +42,24 @@ Para comentários, críticas, sugestões, ou simplesmente dizer *oi*: felipe.c.a
 Nos últimos anos, os termos *inteligência artificial (artificial intelligence)*, *aprendizagem de máquina (machine learning)*, *big data* e *ciência de dados* ganharam forte notoriedade em virtude dos resultados inéditos em problemas de aplicação prática. Avanços em processamento de linguagem natural, visão computacional e algoritmos preditivos foram rapidamentes aplicados em por engenheiros e pesquisadores em finanças, indústria e ciências.  
 Uma descrição abrangente das técnicas desenvolvidas pode facilmente alcançar 1,000 páginas de texto sucinto, como o clássico *‘Deep Learning (Adaptive Computation and Machine Learning)’* de Goodfellow, Bengio and Courville. Outra obra de escopo e tamanho semelhante é a *“Neural networks and learning machines”*, de Simon Haykin. Inúmeros cursos online e videoaulas são produzidos e disponibilizados por instituições de prestígio (e.g. Curso integral da Oxford em Deep Learning: https://www.youtube.com/watch?v=PlhFWT7vAEw ).  
 
-No conteúdo disponível, a abordagem costuma ser '*bottom-up*'. Isto é, uma noção do campo é construída através de estudo focado em modelos: cursos específicos para *time series*, *clustering*, *redes neurais* ou ainda ferramentas (e.g. R, Julia, Python, Stan, Matlab...). Funciona bem como roteiro natural em cursos de engenharia e ciências exatas.  
+No conteúdo disponível, a abordagem costuma ser '*bottom-up*'. Uma noção do campo é construída através de estudo focado em modelos: cursos específicos para *time series*, *clustering*, *redes neurais* ou ainda ferramentas (e.g. R, Julia, Python, Stan, Matlab...). Funciona bem como roteiro natural em cursos de engenharia e ciências exatas.  
 
 **De cima para baixo**  
-Este texto visita temas num roteiro inverso (*top-down*). Os modelos são contextualizados como ferramentas na exploração de um roteiro com eixo em filosofia das ciências. Assim, as formulações matemática surgem como resposta a exemplos inspirados em fenômenos naturais de biologia (testes estatísticos), psicologia (análise fatorial), saúde pública/economia (correlação, regressão e causalidade) e neurociências (perceptron e redes neurais).  
+Este texto visita temas num roteiro inverso (*top-down*). Os modelos são contextualizados como ferramentas na exploração de um roteiro com eixo em filosofia das ciências. As formulações surgem como resposta a questões sobre fenômenos naturais de biologia (testes estatísticos), psicologia (análise fatorial), saúde pública/economia (correlação, regressão e causalidade) e neurociências (perceptron e redes neurais).  
 
-O primeiro capítulo acompanha Darwin estudando tentilhões em Galápagos. Ilustra como o racional hipotético-dedutivo funciona para estudar teorias científicas. O teste *t* de Student é aplicado para comparação dos bicos das aves. Aborda a relação entre ciências empíricas, o teorema do limite central, a distribuição normal e a distribuição *t*.   
+O *primeiro capítulo* acompanhamos Charles Darwin em Galápagos. Darwin esperou 20 anos entre a concepção da teoria e sua publicação. Ele trabalhou incansavelmente para investigar se suas impressões não eram falsas. Este capítulo ilustra como o racional hipotético-dedutivo funciona para estudar hipóteses científicas. O teste *t* de Student é aplicado para comparação dos bicos de aves em Galápagos. Aborda a relação entre ciências empíricas, o teorema do limite central, a distribuição normal e a distribuição *t*.   
 
-O segundo capítulo destaca o papel descritivo e preditivo de teorias. Além de testar hipóteses, criamos modelos para as relações entre medidas, usando os conceitos de correlações lineares ($\rho$ de Pearson) e tamanho de efeito (*D de Cohen*). Também são introduzidas alternativas não-paramétricas aos procedimentos ($\rho$ de Spearman e teste U de Mann-Whitney). Usamos regressão para fazer predições.  
+O *segundo capítulo* destaca o papel descritivo e preditivo de teorias. Além de testar hipóteses, criamos modelos para as relações entre medidas. Partindo dos estudos de Arquimedes sobre alavancas, aprenderemos correlações lineares ($\rho$ de Pearson) e tamanho de efeito (*D de Cohen*). Também são introduzidas alternativas não-paramétricas aos procedimentos ($\rho$ de Spearman e teste U de Mann-Whitney) anteriores.  
+Usamos regressão para fazer predições e estimamos parâmetros usando *formas fechadas*, reoslvendo analiticamente as equações do modelo.  
 
-O terceiro capítulo introduz o uso de muitas variáveis (análise multivariada). Grafos são a abstração base para relacionarmos múltiplos conceitos. Estudaremos regressão linear múltipla, colinearidade, mediação e moderação. Conheceremos análise fatorial e sua generalização em equações estruturais: a implementação matemática do abrangente paradigma filosófico para **modelos causais** de Judea Pearl.  
+O *terceiro capítulo* introduz a implementação matemática do abrangente paradigma filosófico para **modelos causais** de Judea Pearl. Com muitas variáveis (análise multivariada), grafos são a abstração base para relacionarmos conceitos. Estudaremos regressão linear múltipla, colinearidade, mediação e moderação. Conheceremos análise fatorial, análise de componentes principais (PCA) e sua generalização em equações estruturais (SEM).   
 
-O quarto capítulo introduz redes neurais. Começamos da inspiração biológica dos neurônios artificiais. Conheceremos a primeira máquina inteligente da história: o *Mark I Perceptron*. Codificaremos um Mark I virtual do zero (*from scratch*) e observaremos a aprendizagem por *gradient descent*, usando derivativas para minizar erros.  
+O *quarto capítulo* introduz redes neurais. Começamos da inspiração biológica dos neurônios artificiais e da primeira máquina inteligente da história: o *Mark I Perceptron*.   Codificamos um Mark I virtual, que usa uma nova forma de estimar parâmetros: *gradient descent*. Ao invés de usar uma fórmula fechada, usamos derivativas para 'caminhar' em direção ao mínimo progressivamente.  
 
-Redes Neurais expandem o poder de um neurônio com múltiplos nodos para a construção de sistemas preditivos complexos. Redes profundas incluem camadas sucessivas, permitindo transformações em sequência para resolver classes mais gerais de problemas. Entenderemos como os neurônios podem propagar erros aos outros, otimizando gradientes em conjunto com o mecanismo de *backpropagation*. Também codificaremos uma rede neural *from scratch*, Mark II.  
-O quinto capítulo constrasta as duas principais escolas de interpretação da probabilidade: a **frequencista** e a **bayesiana**. O contexto é dado por alternativas ao método hipotético dedutivo: Carnap demonstra a dificuldade de refutações, Feyerabend propõe uma anarquia epistemológica amparada em fatos históricos e W. van Quine pinta um sistema entrelaçado para teorias, hipóteses e observações. Reabordamos alguns exemplos anteriores usando Stan para inferência bayesiana. Exploramos o poder das simulações através de *Markov Chain Monte Carlo* para obter estimativas difíceis de tratar analiticamente.  
+Redes Neurais expandem o poder de um neurônio com múltiplos nodos para a construção de sistemas preditivos complexos. Redes profundas incluem camadas sucessivas, permitindo transformações em sequência para resolver classes mais gerais de problemas. Entenderemos como os neurônios podem propagar erros aos outros, otimizando gradientes em conjunto com o mecanismo de *backpropagation*. Também codificaremos uma rede neural, Mark II.  
+
+O *quinto capítulo* constrasta as duas principais escolas de interpretação da probabilidade: a **frequencista** e a **bayesiana**. O contexto é dado por alternativas ao método hipotético dedutivo: Carnap demonstra a dificuldade de refutações, Feyerabend propõe uma anarquia epistemológica amparada em fatos históricos e W. van Quine pinta um sistema entrelaçado para teorias, hipóteses e observações. Reabordamos alguns exemplos anteriores usando Stan para inferência bayesiana.  
+Exploramos uma terceira forma de estimar parâmetros. Sem fórmulas fechadas ou derivativas (*gradient descent*), usamos o poder das simulações estocásticas (*Markov Chain Monte Carlo*).  
 
 \pagebreak
 
@@ -202,6 +201,9 @@ Minha família, Suzana, Paulo, Isaac e Chris. Amigos Gabriel, Guilherme, Wei.
 
 Aos professores: Carla Daltro, Anibal Neto, Lucas Quarantini, Luis Correia, Rodrigo Bressan, Ary Gadelha.  
 
-Aos colegas Fatori, Luccas, Macedo, Walter, Sato, Hiroshi, Lais, Luci, Davi, Oddone, Jones, n3k00n3 (Fernando Pinheiro), userx (victor).
+Aos colegas Fatori, Luccas, Macedo, Walter, Sato, Hiroshi, Lais, Luci, Davi, Oddone, Jones, n3k00n3 (Fernando), Loli (Lorena).
+
+Para comentários, críticas, sugestões, ou simplesmente dizer *oi*: felipe.c.argolo@protonmail.com.  
+
 
 \pagebreak

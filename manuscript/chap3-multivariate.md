@@ -7,8 +7,9 @@ output:
 
 # Capítulo 3 : Análise multivariada, grafos e inferência causal 
 
-## Intrudução
-Até este ponto, aplicamos modelagem matemática para uma ou duas variáveis aleatórias. Procedimentos diferentes foram empregados para correlação, comparação e regressão. Neste capítulo, incorporaremos novas medidas e construtos. Começamos expandindo a regressão linear simples. 
+## Introdução
+Neste capítulo, incorporaremos construtos como base para estudar um conceito do  berço da filosofia ocidental: *causalidade*. A filosofia Aristotélica investiga causas materiais, formais, eficientes e finais. Causas exprimem a ideia de isolar relações entre fatores. A maioria das definições envolvem *efeitos* que dependem, mesmo que parcialmente, de *causas* precedentes. Relações de causalidade *explicam* a evolução de sistemas em certas condições. Veremos discussões atuais sobre o conceito, em que a obra de Judea Pearl é importante.  
+Até este ponto, aplicamos modelagem matemática para uma ou duas variáveis aleatórias. Procedimentos diferentes foram empregados para correlação, comparação e regressão. Neste capítulos conheceremos as técnicas de regressão múltipla, mediação, moderação, análise de componentes principais e análise fatorial.   
 
 ## Regressão múltipla
 
@@ -87,7 +88,7 @@ Veremos uma formalização desse conceito a seguir, com o procedimento para exam
 Costumeiramente, traduzimos os procedimentos acima afirmando que a estimativa para *"a relação entre X e Y é controlada para confundidores [A, B e C]"*. A esse ponto, fica óbvio que a simplificação linguística é perigosa. A falta de cautela em traduzir abstrações matemáticas para linguagem natural é responsável pela injusta fama da estatística como ferramenta para enganos.  
 Assim como o valor p é indevidamente interpretado muitas vezes, o "controle para confundidores"" nada mais é que o ajuste de estimativas selecionando outras variáveis arbitrariamente para uma combinação linear.  
 O prejuízo é herdado por todas as disciplinas que usam métodos quantitativos. Pior, criamos a possibilidade para testar múltiplas combinações de confundidores. Nas mãos de alguém incauto ou mal intencionado, testes sucessivos têm grandes chances de alcançar resultados "significantes". De uma forma global, vemos uma série de verdades transitórias ventiladas na comunidade científica (e na mídia leiga), resultantes de análises mal conduzidas.  
-Para inferências desse tipo, é recomendado que os confundidores sejam mitigados experimentalmente (e.g. randomização) sempre que possível.  
+Para inferências desse tipo, é recomendado que os confundidores sejam mitigados experimentalmente (e.g. randomização) sempre que possível e que premissas do modelo sejam respeitadas.  
 
 ---
 
@@ -104,6 +105,7 @@ Ou múltipla com dois preditores:
 O conceito foi usado para resolver o problema das pontes de Königsberg. Dada uma série de pontes conectando partes diferentes da cidade, fazer um percurso que cruzae cada uma apenas uma vez?  
 
 ![](images/chap3-konigsberg.jpg)  
+
 
 Euler mostrou que era impossível. Note que não usamos distâncias. Apenas descrevemos como elementos são conectados. Podemos atrelar diversas estruturas. Os grafos acima, por exemplo, são direcionamos e possuem equações vinculadas.  
 
@@ -152,7 +154,7 @@ Seguindo o exemplo sugerido, espera-se que exista uma relação entre hábito de
 ![](images/chap3-med.png)  
 
 O diagrama abaixo ilustra passos rigorosamente.
-As 3 regressões para checar premissas estão na sessãi superior e a regressão múltipla no setor inferior). Foram suprimidos termos de erro. Estimativas para a relação entre $X_{1}$ e $Y$ são $\hat{\beta_{1}}$ e $\hat{\beta_{1}}'$ grifados nas equações. O comportamento desses parâmetros define as conclusões sobre o modelo de mediação.  
+As 3 regressões para checar premissas estão na sessão superior e a regressão múltipla no setor inferior. Foram suprimidos termos de erro. Estimativas para a relação entre $X_{1}$ e $Y$ são $\hat{\beta_{1}}$ e $\hat{\beta_{1}}'$ grifados nas equações. O comportamento desses parâmetros define as conclusões sobre o modelo de mediação.  
 
 ![](images/chap3-diagram.jpeg)  
 
@@ -225,7 +227,7 @@ A pergunta é: clima de liderança media relação entre horas de trabalho e bem
 
 **Moderação e Interações**
 
-Modelos incluindo termos de moderação são aqueles que incluem **interação** entre variáveis. Como discutimos antes, a relação entre hábito de fumar e câncer pode ser explicada por fatores intermediários, como a concentração de nicotina e presença de variantes genéticas de risco.  
+Modelos incluindo termos de moderação são aqueles que incluem **interação** entre variáveis. Usando o jargão de inferência causal, é o mesmo que modificador de efeito (*effect-modifier*). Como discutimos antes, a relação entre hábito de fumar e câncer pode ser explicada por fatores intermediários, como a concentração de nicotina e presença de variantes genéticas de risco.  
 Podemos supor que a concetração de nicotina inalada diariamente tenha um efeito independente. Igualmente, uma configuração genética tem efeito causal por si.  
 
 $$Risk = Nicotina*\beta_{1} + Genes_{(+)}\beta_{2}$$
@@ -287,6 +289,8 @@ $$x_{3,n} = F_{1,n}\lambda _{3} + F_{2,n}\lambda _{3}' + \epsilon$$
 $$x_{4,n} = F_{1,n}\lambda _{4} + F_{2,n}\lambda _{4}' + \epsilon$$
 
 Podemos perceber que a matriz $\Lambda$ terá 8 elementos, com 4 pesos para o fator $F_{1}$ e 4 pesos para o fator $F_{2}$. Sabendo os dois scores latentes de cada sujeito, seria possível reconstruir as observações com algum grau de perda. Perceba que expressamos qualquer item com apenas dois parâmetros ($F_{1}$ e $F_{2}$). As informações em nosso dataset poderiam então então ser condensadas de $[nx4]$ dimensões para $[nx2]$.
+
+![](images/chap3-cfa.png)
 
 Para estimar os parâmetros acima, supomos que a variância de **cada item possui uma variância intrínseca e uma variância compartilhada, que é determinada pelos fatores latentes**.
 Usamos uma matriz de covariâncias entre os items para estimar os pesos dos fatores latentes. Além disso, estimamos parâmetros relacionados à diagonal da matriz (variâncias).  
@@ -413,11 +417,7 @@ Os processos descritos acima são exploratórios por natureza. Buscamos o melhor
 
 Pensando na elaboração de uma escala para medir um traço de personalidade, retomamos o argumento de Popper (capítulo 2) contra o indutivismo. É desejável que tenhamos um modelo prévio e hipóteses testáveis de antemão. Do contrário, é fácil encontrar um modelo oferecendo bom ajuste em quase qualquer caso.  
 
-Na análise fatorial confirmatória, fazemos uma restrição direta ao modelo. Os parâmetros são pré-determinados com base em diagrama (grafo) expresso por quem conduz a análise. Assim, podemos especificar uma relações:
-
-![](images/chap3-cfa.png)
-
-No diagrama acima, o primeiro fator latente possui cargas nas relações com items $X_{3},X_{4},X_{5}$ e o segundo fator com $X_{1},X_{2}$.  
+Na análise fatorial confirmatória, fazemos uma restrição direta ao modelo. Os parâmetros são pré-determinados com base em diagrama (grafo) expresso por quem conduz a análise. Assim, podemos especificar uma relações. No diagrama acima, o primeiro fator latente possui cargas nas relações com items $X_{3},X_{4},X_{5}$ e o segundo fator com $X_{1},X_{2}$.  
 
 Nesse caso, os estimadores serão um pouco mais complexos.
 

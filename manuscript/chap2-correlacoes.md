@@ -9,9 +9,8 @@ output:
 
 ## Prelúdio: Quem precisa do valor p?
 
-O racional apresentado no capítulo anterior é diretamente relacionado ao método hipotético-dedutivo e seus princípios filosóficos.  
-Apesar dos inúmeros avanços citados, a interpretação do valor p não é muito intuitiva.  
-Envolve mensurar quão improváveis são as observações em um cenário hipotético na vigência da hipótese nula.  
+O racional apresentado no capítulo anterior é diretamente relacionado ao método hipotético-dedutivo e seus princípios filosóficos.  Apesar de adequado a este cenário, a interpretação do valor p não é muito intuitiva.  
+Envolve *mensurar quão improváveis são as observações em um cenário hipotético na vigência da hipótese nula*.  
 Sua tradução (errada) mais popular é de que representa *"a chance de o resultado deste estudo estar errado".*  
 
 O arcabouço descrito no capítulo anterior é suficiente para produzir um trabalho científico críptico para leigos.   
@@ -26,7 +25,7 @@ A difícil interpretabilidade do valor p e as armadilhas frequentes envolvidas n
 No próximo capítulo, vamos conhecer argumentos contundentes ao método hipotético dedutivo.  
 Por enquanto, basta sabermos que é sempre vantajoso obter outras informações, complementares ou alternativas.     
 
-Neste capítulos, vamos aprender a estimar (1) a magnitude da diferença entre duas amostras e (2) quão relacionados são valores pareados (e.g. peso e altura).
+Neste capítulos, vamos aprender a estimar (1) a magnitude da diferença entre duas amostras e (2) quão relacionados são valores pareados (e.g. peso e altura).  
 
 ## Tamanho de efeito
 
@@ -41,8 +40,8 @@ Além de saber quão improvável é a diferença observada, é natural imaginarm
 Uma medida bastante popular é o *D de Cohen (Cohen's D)*.  
 
 É um parâmetro que expressa a magnitude da diferença sem usar unidades de medida.  
-Uma torcedora de futebol conta (feliz) a um amigo que seu time favorito venceu com placar de 4 *x* 1 (gols). Porém, esse amigo acompanha basquetebol e está acostumado a placares como 102 *x* 93 (cestas).  
-Como é possível comparar gols com cestas? Qual vitória representa pontuações mais discrepantes: 4 *x* 1 ou 102 *x* 93?  
+Uma torcedora de futebol conta (feliz) a um amigo que seu time favorito venceu com placar de 4 $\times$ 1 (gols). Porém, esse amigo acompanha basquetebol e está acostumado a placares como 102 $\times$ 93 (cestas).  
+Como é possível comparar gols com cestas? Qual vitória representa pontuações mais discrepantes: 4 $\times$ 1 ou 102 $\times$ 93?  
 
 O problema aqui é que as pontuações se comportam de maneiras diferentes entre os esportes. O D de Cohen consiste em expressar essa diferença em desvios-padrão. Bastante simples:  
 $$D_{cohen} = \frac{\mu_{1}-\mu_{2}}{\sigma_{pooled}}$$  
@@ -81,7 +80,7 @@ $$\vec{F}=m\vec{a}$$
 E a relação entre massa e energia para um objeto em repouso, descoberta por Einstein:  
 $$E=mc^{2}; c^{2} \sim 8.988*10^{16} \frac{m^{2}}{s^2}$$  
 
-As equações acima descreve uma relação linear entre grandezas.  
+As equações acima descrevem uma relação linear entre grandezas.  
 
 ### Relações lineares
 
@@ -89,7 +88,7 @@ Uma relação linear entre duas variáveis indica que elas estão correlacionada
 
 Isto é, valores maiores de massa correspondem a um aumento proporcional em energia. O valor de $c^{2}$ expressa essa proporção constante.  
 
-**Exemplo:** uma molécula de água pesa aproximadamente $m_{H_{2}O} =2.992×10^{-23} g$. Portanto, a energia associada é $E_{H_{2}O} = 2.992\cdot 10^{-23}\cdot 8.988\cdot 10^{16} \sim 2.689^{-6}J$. Se triplicarmos o número de moléculas de água, o mesmo acontecerá com a energia associada: $E_{3H_{2}O} = 3\cdot E_{H_{2}O}$.  
+**Exemplo:** uma molécula de água pesa aproximadamente $m_{H_{2}O} =2.992\times 10^{-23} g$. Portanto, a energia associada é $E_{H_{2}O} = 2.992\times 10^{-23}\times 8.988\times 10^{16} \sim 2.689^{-6}J$. Se triplicarmos o número de moléculas de água, o mesmo acontecerá com a energia associada: $E_{3H_{2}O} = 3\times E_{H_{2}O}$.  
  
 Se a correlação é positiva, incrementos em $x$ serão proporcionais a incrementos em $y$. Se a correlação é negativa, incrementos em $x$ serão proporcionais a decréscimos em $y$.  
 
@@ -100,7 +99,8 @@ Num cenário perfeito, se sabemos que há uma relação linear entre variáveis,
     >ggplot()+
     geom_point(mapping=aes(x=1,y=2))+
     geom_point(mapping=aes(x=2,y=4))+
-    xlim(0,3)+ylim(0,5)
+    xlim(0,3)+ylim(0,5)+
+    theme_economist()
 ```
 ![](images/chap2-twopoints.png)
 
@@ -112,7 +112,8 @@ $a=(1,2); b=(2,4) \rightarrow \beta = 2$
     geom_point(mapping=aes(x=1,y=2))+
     geom_point(mapping=aes(x=2,y=4))+
     xlim(0,3)+ylim(0,5)+
-        geom_abline(slope = 2)
+    geom_abline(slope = 2)+
+    theme_economist()
 ```
 ![](images/chap2-twopointsline.png)
 
@@ -132,9 +133,8 @@ Podemos simular este cenário partindo de variáveis idênticas e adicionando ru
     >b <- seq(1:100)+rnorm(n=100,sd=3)
 
     >cor_data <- data.frame(a,b)
-    
     >ggplot(cor_data,aes(x=a,y=b))+
-    geom_point()
+    geom_point()+theme_economist()
 ```
 ![](images/chap2-scatterline.png)  
 
@@ -171,7 +171,7 @@ $M = F*d$
 
 Supondo uma força constante, quanto mais nos afastamos do ponto fixo, maior o momento resultante. Posteriormente, os físicos  estenderam o conceito para outros domínios. Por exemplo, um objeto com cargas opostas $-q$ e $+q$ separados por uma distância $d$ possui momento (momento dipolar elétrico) análogo:
 $M = q*d$  
-De uma maneira geral, falamos em momento ao multiplicarmos uma grandeza física por uma distância. 
+De uma maneira geral, *falamos em momento ao multiplicarmos uma grandeza física por uma distância*. 
 
 #### Momento resultante 
 ![Como o brinquedo acima fica equilibrado sobre apenas um ponto?](images/chap2-birdeq.jpg)
@@ -236,14 +236,17 @@ $$= \int_{-\infty}^{\infty} f(x)dx = 1$$.
 
 Podemos entender melhor o teorema do limite central. As informações fornecidas pelos momentos são valiosas: uma função de probabilidade é totalmente definida por seus momentos.  
 O Teorema do Limite Central, de que falamos antes, é provado mostrado equivalência entre momentos da curva normal e da soma de *n* distribuições idênticas através de outras ferramentas.  
-Podemos criar uma função geradora de momentos, $M_{X}(t)=E[e^{tX}]$. Chamamos ela assim, pois sua forma polinomial via expansão de Taylor corresponde à soma $1+tX+\frac{t^{2}X^{2}}{2!}+\frac{t^{3}X^{3}}{3!}+...$.  
-O valor esperado dessa soma:  
+Podemos criar uma *Função geradora de momentos*, $M_{X}(t)=E[e^{tX}]$ em que t é um valor fixo. Chamamos ela assim, pois sua forma polinomial via expansão de Taylor corresponde à uma série que contém todos os momentos $M_{n}$:   $1+tX+\frac{t^{2}M_{2}}{2!}+\frac{t^{3}M_{3}}{3!}+...$, já que $\frac{d{e^x}}{dx} = e^x$ e a derivada de ordem $n$ multiplica a de ordem $n-1$:  
+$$e^{x}= \sum_{n=0}^{\infty}{\frac{x^{n}}{n!}} = 1+x+{ \frac{x^{2}}{2!}}+{ \frac{x^{3}}{3!}} +...$$
+
+
 $$E[M_{X}(t)]=1+tE[X]+\frac{t^{2}E[X^{2}]}{2!}+\frac{t^{3}E[X^{3}]}{3!}+...$$
 $$=1+tM_{1}+\frac{t^{2}M_{2}}{2!}+\frac{t^{3}M_{3}}{3!}+...$$
-Em que $M_{n}$ corresponde ao n-ésimo momento.   
-A função característica é a transformada de Fourier da função de probabilidade, associando componentes periódicos no plano imaginário. É o mesmo que multiplicar o argumento t da função geradora de momentos pela unidade imaginária $M_{X}(t)=E[e^{tX}] , \rightarrow \phi_{X}(t)= M_{X}(it) = E[e^{itX}]$. Funções com cumulantes idênticos possuem momentos idênticos e podemos demonstrar que a função característica que a soma de $n$ distribuições iguais possui momentos idênticos aos da normal. [^15]
 
-[^15]: Two Proofs of the Central Limit Theorem, Yuval Filmus, 2010. http://www.cs.toronto.edu/~yuvalf/CLT.pdf
+A *Função característica* é a transformada de Fourier da função de densidade, associando valores a componentes periódicos no plano imaginário. Envolve multiplicar t pela unidade na definiçao da função geradora de momentos $M_{X}(t)=E[e^{tX}] , \phi_{X}(t) = M_{X}(it) = E[e^{itX}]$. É possível usar a função característica para mostrar que os momentos na soma de distribuições semelhantes convergem para os momentos de uma distribuição gaussiana. Isto é: $\phi_{\sum{X_{n}}}(t) \sim \phi_{N(\mu,\sigma)}(t)$ para $X_{n}$ semelhantes [^15].  
+
+
+[^15]: As primeiras provas assumiam $X_{n}$ idênticas, porém versões mais gerais foram demonstradas. Two Proofs of the Central Limit Theorem, Yuval Filmus, 2010. http://www.cs.toronto.edu/~yuvalf/CLT.pdf
 
 ---
 
@@ -319,7 +322,8 @@ Usando dados obtidos dos portais da WHO e do World Bank, plotamos os pontos no p
     >ggplot(uni_df,aes(x=n_docs,y=hale))+
       geom_point(alpha=0.5,size=3) +
       xlab("No. de medicos / 1,000 hab.")+
-      ylab("Expectativa de vida saudavel ao nascer")
+      ylab("Expectativa de vida saudavel ao nascer")+
+      theme_economist()
 ```
 ![](images/chap2-logcurve.png)
 
@@ -337,7 +341,8 @@ Então a expectativa de vida se torna linearmente correlacionada ao logaritmo do
     >ggplot(uni_df,aes(x=log_docs,y=hale))+
       geom_point(alpha=0.5,size=3) +
       xlab("ln de No. de medicos / 1,000 hab.")+
-      ylab("Expectativa de vida saudavel ao nascer")
+      ylab("Expectativa de vida saudavel ao nascer")+
+      theme_economist()
 ```
 ![](images/chap2-logtransf.png) 
 
@@ -382,21 +387,24 @@ A equação que descreve essa reta nos informa o valor esperado para expectativa
 ```r
     >uni_df$log_docs <- log(uni_df$n_docs)
     >ggplot(uni_df,aes(x=log_docs,y=hale))+
-      geom_point(alpha=0.5,size=3) +
-      geom_point(y=66.0,x=0.61626614,color="red")+
-      geom_text(y=64.5,x=0.61626614,label="Brasil",color="dark red")+
-      geom_point(y=73.2,x=0.93177030,color="blue")+
-      geom_text(y=71.5,x=0.93177030,label="Canada",color="dark blue")+
-      geom_smooth(method="lm")+
-      xlab("ln de No. de medicos / 1,000 hab.")+
-      ylab("Expectativa de vida saudavel ao nascer")
+       geom_point(alpha=0.3,size=3) +  geom_smooth(method="lm")+
+       geom_point(y=66.0,x=0.61626614,color="light green")+
+       geom_text(y=64.5,x=0.61626614,label="Brasil",color="dark green")+
+       geom_point(y=73.2,x=0.93177030,color="red")+
+       geom_text(y=71.5,x=0.73177030,label="Canada",color="dark red")+
+       geom_point(y=72.0,x=1.833381,color="blue")+
+       geom_text(y=74.0,x=1.833381,label="Grécia",color="dark blue")+
+       xlab("ln de No. de medicos / 1,000 hab.")+
+       ylab("Expectativa de vida saudavel ao nascer")+
+       theme_economist()
 ```
 ![](images/chap2-bras-can-line.png) 
 
-Assumindo que realmente há uma relação linear, vemos que o Brasil está bastante próximo do esperado para o número de médicos[^18]. O Canadá possui uma expectativa de vida alta para o número de profissionais.  
-Como viemos discutindo ao longo do texto, questões filosóficas e metodológicas devem ser enderaçadas antes de tomar conclusões.  
-
-Entretanto, temos uma boa ilustração de como ciência de dados pode nos ajudar a tomar decisões em contextos reais. 
+Vieses devem ser enderaçados antes de conclusões, mas o modelo é suficientemente interpretável para tomar decisões.  
+Uma boa política pode comparar o valor de investimento por setores com outros países em condições semelhantes e resultados diferentes.  
+Assumindo que realmente há uma relação linear, vemos que o Brasil está bastante próximo do esperado para o número de médicos[^18]. Caso a estratégia seja contratar mais pessoas, podemos nos espelhar em programas de países com mais médicos por habitante resultados correspondentes (e.g. Grécia).  
+Se a estratégia for economizar com a folha de pagamentos e priorizar investimento em estrutura, podemos usar países com expectativa de vida alta para o número de profissionais esperado (e.g. Canada).  
+  
 
 [^18]: É praticamente consenso entre especialistas que o Brasil possui problema de distribuição de profissionais, com déficit de médicos em áreas mais pobres e pouco populosas.  
 
@@ -508,7 +516,7 @@ Uma visualização intuitiva de SSR e TSS:
         geom_smooth(method="lm")+
         xlab("")+
         ylab("Expectativa de vida saudavel ao nascer")+
-        ggplot2::ggtitle("SSR")
+        ggplot2::ggtitle("SSR") + theme_economist()
     
     >tss_res <- ggplot(uni_df,aes(x=log_docs,y=hale))+
         geom_point(alpha=0.5,size=3) +
@@ -516,7 +524,7 @@ Uma visualização intuitiva de SSR e TSS:
         geom_abline(slope = 0,intercept = 63.28165)+
         xlab("ln de No. de medicos / 1,000 hab.")+
         ylab("Expectativa de vida saudavel ao nascer")+
-        ggplot2::ggtitle("TSS")
+        ggplot2::ggtitle("TSS")+theme_economist()
     
     >multiplot(ssr_res,tss_res)
 
@@ -588,7 +596,7 @@ Para a relação (sigmoide), entre x e y abaixo:
     >sig_data <- data.frame(y_vals = -(1 / (1 + exp(seq(-10,10,by =0.3) )*100 ) ),
                        x_vals = 1:67)
     >ggplot(sig_data,aes(x=x_vals,y=y_vals))+
-    geom_point()
+    geom_point()+theme_economist()
 ```
 ![](images/chap2-sigpoints.png)
 
@@ -611,8 +619,8 @@ O coeficiente de Pearson é $\rho \sim 0.850$[^20] :
     0.8497162 
     
     >ggplot(sig_data,aes(x=x_vals,y=y_vals))+
-      geom_point()+
-      geom_smooth(method="lm")
+      geom_point()+ geom_smooth(method="lm")+
+      theme_economist()
 ```
 ![](images/chap2-sigline.png)
 
