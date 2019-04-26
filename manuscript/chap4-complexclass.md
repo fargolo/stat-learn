@@ -9,7 +9,7 @@ output:
 
 Em março de 2016, o software AlphaGo venceu um mestre de Go. Inventado há mais de 2,500 anos, o jogo motivou avanços em matemática. Existem $2,08*10^{170}$ maneiras válidas de dispor as peças no tabuleiro. O polímata chinês Shen Kuo (1031–1095) chegou a um resultado próximo $10^{172}$ séculos atrás. Vale lembrar que o número de átomos no universo observável é de módicos $10^{80}$.  
 
-No capítulo anterior, aprendemos formulações básicas de modelo preditivo com regressão. Aqui, conheceremos a primeira máquina inteligente da história implementando um *perceptron*. Ele é capaz de lidar mais dimensões (e.g. processamento de imagens). Estimadores com solução fechada não existem como na regressão linear, então usamos informações locais para 'caminhar' (*gradient descent*) em direção a um mínimo.  
+No capítulo anterior, aprendemos formulações básicas de modelo preditivo com regressão. Aqui, conheceremos a primeira máquina inteligente da história implementando um *perceptron*. Ele é capaz de lidar com mais dimensões (e.g. processamento de imagens). Estimadores com solução fechada não existem como na regressão linear, então usamos informações locais para 'caminhar' (*gradient descent*) em direção a um mínimo.  
 
 Estenderemos nossa caixa de ferramentas para abranger relações mais complexas, não lineares. Encadeando neurônios simples, podemos aprender sinais complexos sem apelar para funções complexas, intratáveis ou demasiadamente flexíveis.   
 
@@ -67,7 +67,6 @@ O dígito acima ('$1$') está numa imagem com 14 x 14 pixels (196 valores entre:
 Vamos simular uma imagem semelhante:  
 
 ```r
-Um sinal luminioso excita cada campo de maneira diferente, ativando células de acordo com a quantidade de luz captada.  
     >library(magrittr)
     >set.seed(2600)
     >my.image.data <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -84,23 +83,25 @@ Um sinal luminioso excita cada campo de maneira diferente, ativando células de 
                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,
                    0,0,0,0,0,0,0,0,0,0,0,0,0,0) %>% 
-                   matrix(.,14,14,byrow=T)
+   matrix(.,14,14,byrow=T)
     > image(t(my.image.data[14:1,]), axes = FALSE, col = grey(seq(1, 0, length = 256)))
 ```
 ![](images/chap4-num7.png)
 
 Eis a nossa imagem [14x14]. O computador lê os valores entre 0 (branco) e 1 (branco), dispondo para nós o sinal visual correspondente numa paleta de cores.  Aqui usamos 256 tons cinza.   
 
-Em regressão linear múltipla, calculamos um peso $\beta_{i}$ para cada variável. O racional aqui é parecido: ponderamos cada pixel por seus respectivos pesos. Em analogia, cada imagem é uma observação de 196 variáveis.  
+Em regressão linear múltipla, calculamos um peso $\beta_{i}$ para cada variável. O racional é parecido: ponderamos cada pixel por seus respectivos pesos $w_{i}$. Em analogia, cada imagem é uma observação de 196 variáveis.  
 
 ## Classificação  
 
-Na tarefa de regressão linear, o output deveria ser um número real $Y ~ \beta * X$ com $X,Y \in \mathbb{R}$. Usaremos o perceptron para classificação: as possibilidades de saída são categorias. Isto é, o output é discretizado, geralmente num conjunto binário (e.g. $\{ -1,1\}$ ou $\{ 0,1\}$).  
-O neurônio deve disparar (output $y=1$) caso reconheça um objeto ou permanecer em repouso ($y=-1$) caso não seja.  
+Na tarefa de regressão linear, o output deveria ser um número real $Y \sim \beta * X$ com $X,Y \in \mathbb{R}$, como o número médio de profissionais ou a expectativa de vida. Usaremos o perceptron para outra tarefa, a classificação, em que as possibilidades de saída são **categorias**. Isto é, o output é *discretizado*, geralmente num conjunto binário (e.g. $\{ -1,1\}$ ou $\{ 0,1\}$) que sinaliza pertencimento à classe.  
+Em nossa notação, o neurônio deve disparar (output $y=1$) caso reconheça um objeto ou permanecer em repouso ($y=-1$) caso não seja.  
 
-Matematicamente, é uma multiplicação da matrizes entre imagem $x_{j}$, de dimensão $[196 x 1]$ por uma matriz $W_{[196 X 1]}$ que traz *i* pesos (**w***eights*) estimados para cada pixel para cada classe. Essa formulação é idêntica àquela feita em regressão linear. A diferença vem quando forçamos o resultado para +1 ou -1 com uma função de ativação $(\phi)$.  
+Algebricamente, é uma multiplicação da matrizes entre imagem $x_{j}$, de dimensão $[196 x 1]$ por uma matriz $W_{[196 X 1]}$ que traz *i* pesos (**w***eights*) estimados para cada pixel para cada classe. Essa formulação é idêntica àquela feita em regressão linear. Para uma saída discreta, forçamos o resultado para +1 ou -1 com uma função de ativação $(\phi)$. O output linear $W^{T}X$ é transformado:  
 
 $$y = \phi(W^{T}X)$$
+
+Assim, o produto $W^{T}X$ deve ter valor proporcional à probabilidade de ativação: se o input pertence à classe o resultado deve ser alto.  
 
 Usaremos a função *Heaviside step*:  
 $$\phi(x)= \begin{cases}
@@ -121,9 +122,9 @@ Em R:
     >as.vector(my.image.data) %*% w
     # Score
             [,1]
-    [1,] 3.688397
+    [1,] -0.3794718
     # Funcao de ativacao
-    >as.vector(x) %*% w %>% phi_heavi
+    >as.vector(my.image.data) %*% w %>% phi_heavi
          [,1]
     [1,]   1
 ```
@@ -141,30 +142,17 @@ $$\Delta w_{i} = \eta (score{j} - output_{j}) x_{i}$$
 
 Em que $x_{i_{j}}$ é o valor do $i$-ésimo pixel, $w_{i}$ é o $i$-ésimo peso e $\eta$ uma constante chamada *taxa de aprendizagem* (learning rate), que determina o tamanho dos incrementos feitos pelo algoritmo. Mostraremos a derivação dessa equação a seguir.  
 
-Se os dados são linearmente separáveis, o algoritmo converge com um número suficiente de exemplos.  
-
-Assim, funciona para separar flores *setosa* de outra classe, mas não teriamos bons resultados separando virginica de versicolor.  
-
-```r
-    >ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width,color=Species))+
-    geom_point(shape=5)+ geom_abline(slope = 0.92,intercept = -1.9,color="mediumorchid1")+ 
-    scale_colour_manual(values = c("yellow", "springgreen", "deepskyblue"))+
-    theme_hc(style = "darkunica")
-```
-![](images/chap4-sepiris2.png)
-
 \pagebreak
 
 #### Auto MaRk I
 
 Usando as abstrações acima, codificamos nosso perceptron em R, o Auto MaRk I.   
-**Argumentos:** Exemplos (x, vetor de números reais) e estados esperados (y, disparar = 1 vs. não disparar = -1) devem ter mesmo tamanho.  
+**Argumentos:** Exemplos ($x$, vetor de números reais) e estados esperados ($y$, disparar = 1 vs. não disparar = -1) devem ter mesmo tamanho.  
 **Eta:** Número especificando constante de aprendizagem.
 
-Auto MaRK I inicializa um peso aleatório para cada entrada e, numa ordem aleatória, percorre os exeplos atualizando os pesos.  
+Auto MaRK I inicializa um peso aleatório para cada entrada e, também numa ordem aleatória, percorre os exemplos atualizando os pesos.  
 
 ```r
-    library(magrittr)
     >mark_i <- function(x, y, eta) {
       # inicializa pesos randomicos de distribuicao normal
       w <- rnorm(dim(x)[2]) # numero de pesos = numero de colunas em x
@@ -214,12 +202,11 @@ E então, podemos ativá-lo:
 
 ```r
     >y_preds <- mark_i(x_features, y_target, 0.002)
-    [1] "Weights:  0.309434266643425" 
-    [2] "Weights:  -0.426791898133975"
-    > table(y_preds,train_df$target)
+    [1] "Weights:  -0.117938333229087" "Weights:  0.212055910242074" 
+    > table(y_preds,train_df$target) # matriz de confusao
     y_preds -1  1
-         -1 19  1
-         1  31 49
+          -1 27  5
+           1  23 45
     > y_preds
       [1]  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
      [25]  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 -1  1  1  1  1  1  1
@@ -227,48 +214,48 @@ E então, podemos ativá-lo:
      [73]  1 -1 -1  1 -1 -1  1  1 -1  1 -1  1  1  1  1  1  1 -1  1  1 -1  1 -1  1
      [97] -1  1  1 -1
 ```
-Usando $\eta = 0.002$, obtivemos $41 \%$ de acurácia (classificações corretas). Podemos modificar a taxa de aprendizagem. Com $\eta = 0.05$, aumentamos para $59\%$. Com $\eta = 0.1$, temos $62\%$. Um bom valor é $0.01$, com $77\%$. Uma acurácia considerável em relação ao esperado com adivinhação (50%).  
+Usando $\eta = 0.002$, obtivemos $72 \%$ de acurácia (classificações corretas, diagonal na matriz de confusão). Podemos modificar a taxa de aprendizagem. Com $\eta = 0.05$, ficamos com $51\%$. Com $\eta = 0.1$, temos $60\%$. Uma acurácia considerável em relação ao esperado com adivinhação. Contudo, estas soluções não são estáveis e passagens repetidas geram predições muito diferentes. 
 
 ```r    
     > y_preds <- mark_i(x_features, y_target, 0.05)
-    [1] "Weights:  -1.12748454064396"
-    [2] "Weights:  1.35197455996465" 
+      [1] "Weights:  -1.26323926081935" "Weights:  1.85983709987067"     
     > table(y_preds,train_df$target)  
     y_preds -1  1    
-    -1 30 21    
-    1  20 29
+      -1 35 16    
+      1  15 34
     
     > y_preds <- mark_i(x_features, y_target, 0.1)
-    [1] "Weights:  -2.08944843785222"
-    [2] "Weights:  3.35800090343738" 
+      [1] "Weights:  -1.83248546552824" "Weights:  3.19075461158561"  
     > table(y_preds,train_df$target)    
     y_preds -1  1    
-    -1 36 14    
-    1  14 36
+      -1 31 21    
+      1  19 29
     
     > y_preds <- mark_i(x_features, y_target, 0.01)
     [1] "Weights:  -0.250410476080629"
     [2] "Weights:  0.447470183281492" 
     > table(y_preds,train_df$target)    
-    y_preds -1  1    
-    -1 43 16    
-    1   7 34
+     y_preds -1  1    
+    -1 25 27    
+    1   25 23
 ```
-Mas afinal, porque atualizamos os pesos assim? 
+O que há de "errado" com nosso estimador?  
 
 Durante a exposição, a seguinte regra nos ajudou, mas não foi explicada.  
 $$\Delta w_{i} = \eta (score{j} - output_{j}) x_{i}$$
 
 Antes, verificamos (Cap. 2) uma solução fechada para o problema de regressão, em que a melhor estimativa para a inclinação da reta, $\beta$, poderia ser calculada diretamente.  
-O perceptron atualiza seus pesos de maneira recursiva, aprendendo um pouco ($\Delta w_{i}$) com cada exemplo. Um novo estímulo quanto (magnitude em $\Delta {w}$) e em que direção ($+$ ou $-$) um peso deve mudar para diminuir erros.  
+O perceptron atualiza seus pesos de maneira recursiva, aprendendo um pouco ($\Delta w_{i}$) com cada exemplo. Um novo estímulo determina quanto (magnitude em $\Delta {w}$) e em que direção ($+$ ou $-$) um peso deve mudar para diminuir erros.  
+
+![](images/chap4-walk.jpg)
 
 ### Gradient Descent para o Perceptron
 
 Ao otimizar estimativas, nos concentramos em encontrar máximos ou mínimos para espaços definidos. Em geral, estes são superfícies descrevendo o tamanho dos erros em função dos pesos adotados pelo modelo. O nosso objetivo é encontrar o local mais *baixo*. Para superfícies muito irregulares, aceitamos um ponto suficientemente *baixo*.  
 
-Em regressão linear, o espaço é conhecido, portanto podemos ir ao ponto mais baixo diretamente. Para outros modelos, isso não é tão simples.   
+Em regressão linear, o espaço é conhecido, é possível ir ao ponto mais baixo diretamente. Para outros modelos, isso não é tão simples.   
 $\Delta w_{i}$ pode ser obtido usando o conceito de *Gradient Descent*.  
-O processo é como descer uma montanha de olhos vendados. Só podemos saber a inclinação local (diferença entre pé esquerdo e pé direito). Podemos descer dando passos sempre na direção do pé mais baixo.  
+O processo é como descer uma ladeira *de olhos vendados*. Só podemos saber a inclinação local (diferença entre pé esquerdo e pé direito). Podemos descer dando passos sempre na direção do pé mais baixo.  
 O que precisamos então é da inclinação da superfície relacionada aos erros em função dos pesos.  
 
 Levando em conta cada $j$-ésima observação, primeiro definimos uma função de perda $L$ expressando a soma dos erros nos $n$ exemplos.   
@@ -282,9 +269,22 @@ O processo envolve implementar uma função de erro entre resultados da rede e u
 A figura abaixo mostra a correspondência entre valores da medida e escala visual.   
 ![](images/chap4-pixels.png)  
 
-A intuição para sensibilidade à luz pode ser percebida num intervalo contínuo entre incidência total de luz (valores extremos de branco, medida: 255) e ausência total (valores extremos de preto, medida: 0). Supondo que podemos atribuir um rótulo a cada tom de cinza e que esse conjunto é ordenável pela *clareza*, dizemos que há isomorfismo de ordem entre os conjuntos.  
+A intuição para sensibilidade à luz pode ser percebida num intervalo contínuo entre incidência total de luz (valores extremos de branco, medida: 255) e ausência total (valores extremos de preto, medida: 0). Supondo que podemos atribuir um rótulo a cada tom de cinza e que esse conjunto é ordenável pela *clareza*, dizemos que há isomorfismo de ordem entre os conjuntos. Isso implica que a distância eulidiana deve funcionar razoavelmente em nossas medidas como em números reais $\mathbb{R}$.  
 
-Isso implica que a distância eulidiana deve funcionar em nossas medidas como nos números reais $\mathbf{R}$. Resta saber se a projeção das observações é linearmente separável. É intuitivo para seres humanos saber quais problemas serão separáveis: basta imaginar a tarefa de diferenciar tipos de imagens com uma regua numa tela em preto e branco.  
+\pagebreak
+
+Resta saber se a projeção das observações é linearmente separável. É intuitivo para seres humanos saber quais problemas serão separáveis: basta imaginar a tarefa de diferenciar tipos de imagens com uma régua numa tela em preto e branco.  
+
+*Se os dados são linearmente separáveis*, o algoritmo converge com um número suficiente de exemplos. Usando o *iris*, funcionaria para separar flores *setosa* de outra classe, mas não teriamos bons resultados separando virginica de versicolor.  
+
+```r
+    >ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width,color=Species))+
+    geom_point(shape=5)+ geom_abline(slope = 0.92,intercept = -1.9,color="mediumorchid1")+ 
+    scale_colour_manual(values = c("yellow", "springgreen", "deepskyblue"))+
+    theme_hc(style = "darkunica")
+```
+![](images/chap4-sepiris2.png)
+
 
 Para descobrir o valor mínimo de $L$, vamos encontrar polos através de derivadas parciais. Ou, seu equivalente para funções de múltiplas variáveis (espaços multidimensionais), o gradiente ($\nabla$). 
 
@@ -342,14 +342,44 @@ Como implementamos antes no Auto MaRK I.
     (...)
 ```
 
-Chamamos $\eta$ de hiperparâmetro. A escolha de valores para hiperparâmetros é um dos desafios em aprendizagem estatística. Uma maneira trivial é testar muitos valores possíveis e observar o desempenho, entretanto isso não é exequível para grandes volumes de dados e/ou muitos parâmetros. Existem diversos processos heurísticos e algoritmos para encontrar valores ótimos.  
+Chamamos $\eta$ de hiperparâmetro. A escolha de valores para hiperparâmetros é um dos desafios em aprendizagem estatística. Repetindo a aprendizagem com *iris*, vamos testar: 
 
-Uma forma popular para otimizar o treinamento é particionar o dataset em pedaços e apresentar os particionamentos (epochs) repetidas vezes ao classificador ou acumular os erros de epochs ao invés de exemplos individuais. Assim, calculamos erros agregados e evitamos mínimos locais.  
-Para evitar andar em círculos, avançamos por mais tempo em uma direção antes de recalcular a rota.  
+```r
+    > y_preds <- mark_i(x_features, y_target, 0.01)
+    [1] "Weights:  -0.0153861618736636" "Weights:  0.0812191914731158"
+    > table(y_preds,train_df$target)
+      y_preds -1  1
+          -1 25 27
+          1  25 23    
+    >  y_preds <- mark_i(x_features, y_target, 0.01)
+    [1] "Weights:  -0.685141728446126" "Weights:  1.03174770234754"  
+    > table(y_preds,train_df$target)
+      y_preds -1  1
+           -1 47 10
+           1   3 40
+    > y_preds <- mark_i(x_features, y_target, 0.01)
+    [1] "Weights:  -0.193515893657872" "Weights:  0.180589056542887" 
+    > table(y_preds,train_df$target)
+      y_preds -1  1
+           -1 19 37
+           1  31 13
+    > y_preds <- mark_i(x_features, y_target, 0.01)
+    [1] "Weights:  -0.0672147799277951" "Weights:  0.115145797950982"  
+    > table(y_preds,train_df$target)
+      y_preds -1  1
+           -1 45 12
+           1   5 38
+```
 
-\pagebreak
+Usando $\eta = 0.01$, temos $48\%$. Entretanto, rodar repetidas vezes retorna classificações muito boas ($\text{Acc.} > 0.8$) ou muito ruins. O que se passa?  
 
-![](images/chap4-walk.jpg)
+Em geral, passos grandes impossibilitam ajustes finos e podem não convergir, assim como é impossível para um animal grande explorar um vale estreito.  
+Taxas pequenas levam mais tempo ($n$ de observações) para atingir um mínimo. Se o espaço for irregular, também existem mais chances de se atingir um mínimo secundário ao invés do fundo do espaço. Assim como um animal pequeno percorre o caminho mais lentamente e pode ter a ilusão de que atingiu mínimos rapidamente.  
+
+Uma maneira trivial é testar muitos valores possíveis e observar o desempenho, entretanto isso não é exequível para grandes volumes de dados e/ou muitos parâmetros. Existem diversos processos heurísticos e algoritmos para encontrar valores ótimos. Podemos também ajustar parâmetros ao longo do processo de aprendizagem ou testar pontos diferentes de partida.
+
+Uma forma popular para otimizar o treinamento é particionar o dataset em pedaços e apresentar os particionamentos (epochs) repetidas vezes ao classificador ou acumular os erros de epochs ao invés de exemplos individuais. Assim, calculamos erros agregados e evitamos mínimos locais. 
+Para evitar muitas alterações e andar em círculos, avançamos por mais tempo em apenas uma direção antes de recalcular a rota. Epochs podem ser recombinados e/ou reapresentados, aumentando artificialmente o $n$ para calcular gradientes.  
 
 ## Deep learning
 
@@ -357,8 +387,19 @@ Para evitar andar em círculos, avançamos por mais tempo em uma direção antes
 
 **Intuições**
 
-Com o aprendizado através de exemplos, otimizamos otimizamos nosso classificador (mudando pesos $W$) para minimizar a perda usando aproximações. Assim como estendemos modelos simples do capítulo 2 usando grafos no capítulo 3, aqui vamos aplicar o mesmo conceito e imaginar relações entre neurônios.  
-Os dados são apresentados aos perceptrons na linha de frente. O output, porém, não é o resultado dessa primeira operação: esse valor é usado como input para neurônios da próxima camada.  
+Com o aprendizado através de exemplos, otimizamos nosso classificador (mudando pesos $W$) para minimizar a perda gradualmente. Uma das condições para o *perceptron* acima funcionar foi a separabilidade linear das classes no espaço examinado.  
+Aguns problemas são mais difíceis, sendo separados por curvas. Outros são ainda mais difíceis, exigindo muitas transformações e funções específicas. Uma alternativa é usar polinômios de ordem maior. 
+Ao invés de $Y \sim \beta_{0} + \beta_{1}X$, podemos introduzir termos com expoentes maiores em $X$: $$Y \sim \beta_{0} + \beta_{1}X + \beta_{2}X^{2} + \beta_{3}X^{3} + ...$$
+A inclusão flexibiliza a função, que pode se adequar melhor aos dados.  
+Na regressão linear, ajustamos o ângulo e a altura de uma barra fixa para reduzir a distância até os pontos. Com termos quadráticos, é possível dobrar essa barra em relação ao centro, mas as pontas devem ir numa mesma direção. Com termos cúbicos, isso é flexibilizado.   
+
+![](images/chap4-bar.png)
+
+A introdução de termos polinomiais de ordem maior torna consideravelmente mais difícil a otimização das estimativas.  
+
+Um neurônio *linearmente sensível* a input e dotado de uma barreira (*threhold*) para disparos é capaz de resolver problemas de classificação mais simples. Para problemas mais difíceis, ao invés de implementar células de processamento radicalmente diferentes e/ou mais complexas, a natureza usa um artifício engenhoso. Neurônios comuns são encadedados: cálculos simples e comunicação local das unidades possibilita a aprendizagem.  
+
+Os dados são apresentados aos perceptrons na linha de frente. O output das primeiras células é usado como input para neurônios da próxima camada.  
 Assim, conseguimos implementar transformações adequadas (rotações, torções, escalonamentos, dobras) em sequência, de maneira que abstrações complexas possam ser capturadas.  
 
 ### Going Deep
@@ -369,87 +410,119 @@ Muitas entidades são diferentes, porém similares o suficiente para pertencer a
 ![](images/chap4-species.jpg)  
 
 Todos são naturalmente reconhecidos como felinos, mas apresentam variações de tamanho, cor e proporção em todo o corpo. Esse é um problema interessante e antigo, mais conhecido na ideia de entes platônicos, os quais capturam a essência de um conceito.  
-Alguns filósofos contemporâneos tomam as abstrações humanas como instâncias de um conceito mais genérico: mapas biológicos contidos em redes neuronais (Paul Churchland, Plato’s Camera).  
-Esses mapas estão associados de forma hierarquizada. Numerosos padrões em níveis inferiores e um número menor em camadas superiores.  
-No caso da visão, neurônios superficiais captam pontos luminosos. O padrão de ativação sensorial enviado ao córtex visual primário é o primeiro mapa, que é torcido e filtrado caminho cima.    
+Alguns filósofos contemporâneos tomam as abstrações humanas como instâncias de um conceito mais genérico: mapas biológicos contidos em redes neuronais. Uma brilhante exposição é feita por Paul Churchland em *Plato’s Camera*.  
+Esses mapas estão associados de forma hierarquizada. Numerosos padrões em níveis inferiores e menos deles em camadas superiores.  
+No caso da visão, neurônios superficiais captam pontos luminosos. O padrão de ativação sensorial captado na retira e enviado ao córtex visual primário é o primeiro mapa, que é torcido e filtrado caminho cima.  
+Em níveis superiores, sinais individuais de cones sensíveis faixas de energia compõem a paleta de cores que percebemos.  
 
 ![Resposta a estímulos visuais em V1 de Macaca fascicularis http://www.jneurosci.org/content/32/40/13971](images/chap4-cortex.jpg)  
 
-Neurônios intermediários possuem configurações que identificam características simples: olhos e subcomponentes da face. Por fim, temos camadas mais profundas, ligadas a abstrações. A interpretação relativa de cones sensíveis a diferentes faixas de energia compõe a paleta de cores que percebemos.   
+Neurônios intermediários possuem configurações que identificam características simples: olhos e subcomponentes da face. Por fim, temos camadas mais profundas, ligadas a abstrações complexas e funções superiores (e.g. linguagem).
 
 ![Retirado de: https://www.youtube.com/watch?v=SeyIg6ArS4Y](images/chap4-deepedges.jpg)
 
 ### Deduzindo superfícies
 
-Um classificador deve capturar essa estrutura abstrata a partir de modelos matemáticos tratáveis. Para examinarmos esse aspecto, usemos um exemplo. O gráfico abaixo representa milhares de amostras com: (1) a curva diária natural de um hormônio (em vermelho) e a curva sob uso de esteroides anabolizantes (azul).
+Um classificador deve capturar essa estrutura abstrata a partir de modelos matemáticos tratáveis. Para examinarmos esse aspecto, usemos um exemplo. O gráfico abaixo representa milhares de amostras com: (1) a curva diária natural de testosterona (branco) e a curvas para medidas sob uso de esteroides anabolizantes (amarelo).
 
-![Exemplo inspirado no texto de Chris Olah (http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/)](images/chap4-artifdata.jpg)
+```r
+    >normal <- (purrr::map(seq(-3,3,0.01), .f =function(x) x^2) %>% 
+    as.numeric)+ rnorm(601)
+    >over <-  (purrr::map(seq(-3,3,0.01), .f =function(x) x^2+2) %>% 
+    as.numeric)+ rnorm(601)
+    >horm_df <- data.frame(norm = normal, ov = over,time=1:601)
+    >ggplot(data=horm_df,aes(y=norm,x=time))+
+    >  geom_point(color="white",shape=5)+
+    >  geom_point(data=horm_df,aes(y=over,x=time),color="yellow",shape=5)+
+    >  ylab("Hormônio (Beta)")+xlab("Tempo (t)")+
+    >  scale_x_continuous(labels=NULL)+
+    >  theme_hc(style="darkunica")
+```
 
-Como hipotéticos membros de uma comitê atlético, nosso objetivo aqui é, dada uma amostra, saber se o atleta está sob efeito de esteroides.
-Quando experimentamos, normalmente haverá ruídos (erros) na medida e receberemos medições imprecisas da curva. Variações na dieta daquele dia, micções, sudorese, stress e outros fatores.
+![](images/chap4-hormones.png)
+![Ciclo circadiano para níveis de testosterona em homens jogens e idoso. Bremner, W. J., Vitiello, M. V., & Prinz, P. N. (1983). Loss of Circadian Rhythmicity in Blood Testosterone Levels with Aging in Normal Men*. The Journal of Clinical Endocrinology & Metabolism, 56(6), 1278–1281. doi:10.1210/jcem-56-6-1278 ](images/chap4-testost.png)
 
-Usamos o tempo ($t$, eixo horizontal) e nível hormonal ($\beta$, eixo vertical). 
+Como hipotéticos membros de uma comitê atlético, nosso objetivo aqui é, dada uma amostra, saber se o atleta está sob efeito de esteroides.  
+Quando experimentamos, normalmente haverá ruídos (erros) na medida e receberemos medições imprecisas da curva. Variações na dieta daquele dia, micções, sudorese, stress e outros fatores. Sabemos que a testosterona flutua diariamente seguindo uma curva.
+
+Para cada medida, temos o tempo ($t$, eixo horizontal) e o nível hormonal ($\beta$, eixo vertical). 
+
 
 Um modelo bastante popular para classificações é o de regressão logística. Nele, estimamos probabilidade para um evento com base nas probabilidades de uma função sigmoide. Temos uma probabilidade (valor entre 0 e 1) definida por:
 $$P(h,\beta) = \frac{1}{1+e^{-(i + t * h + \beta * y + \epsilon )}}$$
 $\epsilon$ representa o erro e i é uma constante. 
 
+A equação parece estranha, mas aparece quando buscamos calcular probabilidades a partir de uma combinação linear dos nossos parâmetros:
+$$P(x) \sim i+t*x+\beta_{i}*y+\epsilon$$  
+Isso permite que o processo de estimação seja quase idêntico ao da regressão linear, que é facilmente tratável.  
+
 Em uma linha de R:
 
 ```r
-    >logist.fit <- glm(type_dic ~ beta + tempo, family=binomial,data=inv.ds)
+    >class_df <- class_df <- data.frame(measures=c(horm_df$norm,horm_df$ov),
+    time=c(horm_df$time,horm_df$time),
+    target=c(rep(0,601),rep(1,601)))
+    >logist.fit <- glm(target ~ measures + time, family=binomial,data=class_df)
 ```
 
-A vantagem de usar essa modelagem é que temos uma relação direta entre o inverso dessa função (P^(-1), “logito”) e a combinação linear dos nossos parâmetros:
-$$logit (P(x))=i+t*x+\beta*y+\epsilon$$  
-Em outras palavras, o processo de estimação é parecido com o da regressão linear, que é facilmente tratável. Outra consequência é que assumimos que a distinção entre classes (com base no logito, log odds) pode ser dada por um limite. Este tem uma relação linear com nossas variáveis. Estimamos a magnitude e o sentido dessas relações pelos parâmetros da regressão.
+Outra consequência é de que uma relação linear torna magnitude e o sentido dessas relações interpretáveis. Por exemplo, um parâmetro positivo (e.g. $\beta=0.241$) indica que aumentos em $X$ aumentam a probabilidade de ativação e parâmetros negativos (e.g. $\beta = -0.9517$) têm efeito contrário.  
+Muitas avaliações de risco em saúde ou avaliação de crédito em finanças estimam probabilidades com base nos parâmetros de uma regressão logística.  
 
-![](images/chap4-logitplane.jpg)
+Usamos um limite de decisão (*decision boundary*) dependente de relações lineares. Tecnicamente, um hiperplano. Um hiperplano divide o espaço em duas partes. É a generalização de plano (curvatura zero) para quaisquer dimensões. O hiperplano é um espaço de $n-1$ em um espaço $n$ dimensões. A reta é um hiperplano em duas dimensões (nosso caso), o plano tradicional é um hiperplano em 3 dimensões. Para dimensões mais altas, a visualização é menos simples.  
 
-Podemos imaginar que o log odds (z, eixo vertical) cresce linearmente com uma combinação de duas variaveis (x e y). Notem que a superfície definida pelo nossa equação/modelo é um [hiper]plano [^24] dado por $z = 3 + 3x + 2y$.  
-Estimamos qual seria a posição na reta dada por aquela medida e usamos um limite de decisão (decision boundary) linear. Voltando ao nosso exemplo, seria difícil capturar as diferenças usando apenas esta estratégia.
-
-[^24]: Um hiperplano é a generalização de plano (curvatura zero) para quaisquer dimensões. O hiperplano é um espaço de $n-1$ em um espaço $n$ dimensões. A reta é um hiperplano em duas dimensões, o plano é um hiperplano em 3 dimensões. Para dimensões mais altas, a visualização é menos simples. Um hiperplano divide os espaço em duas partes.   
+Para nosso exemplo não-linear, seria difícil capturar as diferenças entre atletas dopados usando apenas esta equação.  
 
 ![http://colah.github.io/posts/2015-01-Visualizing-Representations/](images/chap4-oneneuron.jpg)
 
-Acima, um neurônio sigmoide, que equivale à regressão logística. É como o plano anterior, mas visto de cima, dividimos ele em duas regiões para classficação. Por que? O classificador linear otimiza suas respostas levando em conta apenas o valor absoluto da medida hormonal. Isto é, valores acima de um limite serão considerados dopping, não considerando horário. Matematicamente, o coeficiente para o tempo foi ajustado em 0. Mudar isso tornaria a reta divisória inclinada em relação ao eixo x, piorando a classificação.
+Acima, um neurônio sigmoide, que equivale à regressão logística. É como o plano anterior, mas visto de cima, dividimos ele em duas regiões para classficação. Por que? O classificador linear otimiza suas respostas levando em conta apenas o valor absoluto da medida hormonal. Isto é, valores acima de um limite serão considerados dopping, não considerando horário.  
 
-Podemos verificar isso diretamente através dos parâmetros estimados em nosso modelo de regressão.
+O coeficiente para o tempo estimado foi tende a ser próximo de 0. Ao tentar dividir os grupos com uma régua, o melhor é tentar uma reta paralela ao eixo $x$.  
+Podemos verificar isso diretamente através dos parâmetros estimados em nosso modelo de regressão.  
+Mudar isso tornaria a reta divisória inclinada em relação ao eixo x, piorando a classificação para valores baixos ou altos.  
 
 ```r
     > summary(logist.fit)
-    Call:  glm(formula = type_dic ~ beta + tempo, family = binomial, data = inv.ds)
-    Coefficients:
-     (Intercept)     beta        tempo
-    -0.8752803   -3.6195723   -0.0001221 # Próximo a zero
-    Degrees of Freedom: 999 Total (i.e. Null);  997 Residual
-    Null Deviance:     1386
-    Residual Deviance: 774.4  AIC: 780.4
-    > prob=predict(logist.fit,type=c("response"))
-    > inv.ds$prob=prob
-    > curve <- roc(type_dic ~ prob, data = inv.ds)
-    > curve
+         Call:
+     glm(formula = target ~ measures + time, family = binomial, data = class_df)     
+     Deviance Residuals: 
+          Min        1Q    Median        3Q       Max  
+     -1.93641  -1.02791  -0.07236   1.12396   1.63490       
 
-    Call:
-     roc.formula(formula = type_dic ~ prob, data = inv.ds)
-    Data: prob in 500 controls (type_dic 0) < 500 cases (type_dic 1).
-    Area under the curve: 0.8767
+     Coefficients:
+                   Estimate Std. Error z value Pr(>|z|)    
+     (Intercept) -9.439e-01  1.504e-01  -6.276 3.48e-10 ***
+     measures     2.411e-01  2.186e-02  11.027  < 2e-16 ***
+     time        -2.597e-05  3.621e-04  -0.072    0.943    
+     ---
+     Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1     
+
+     (Dispersion parameter for binomial family taken to be 1)     
+
+         Null deviance: 1666.3  on 1201  degrees of freedom
+     Residual deviance: 1526.0  on 1199  degrees of freedom
+     AIC: 1532     
+
+     Number of Fisher Scoring iterations: 4
+    > prob <- predict(logist.fit,type=c("response"))
+    > class_df$prob <- prob
+    > curve <- roc(target ~ prob, data = class_df)
+    > curve
+     Call:
+     roc.formula(formula = target ~ prob, data = class_df)     
+
+     Data: prob in 601 controls (target 0) < 601 cases (target 1).
+     Area under the curve: 0.6964
 ```
 ### Quem poderá nos ajudar?
 
-A solução é introduzir termos polinomiais de grau mais alto $(x^{2},x^{3}…)$, interações ou usar funções mais complexas. Aí corremos o risco de realizar sobre ajuste. Deixar o sinal dos confundir e fazer um modelo complexo que não funciona em novos exemplos.
-
-E o que acontece se conectarmos classificadores simples hierarquicamente?  
-
-A resposta de uma unidade é usada como a entrada de outras. Quando processamos o sinal em etapas, cada camada modifica os dados para as camadas posteriores, transformando e filtrando/dando forma.
+Voltamos às redes neurais para resolver o problema. Quando processamos o sinal em etapas, cada camada modifica os dados para as camadas posteriores, transformando e filtrando/dando forma.  
 
 As camadas intermediárias permitem a transformação gradual do sinal, e o sistema acerta usando apenas dois classificadores simples (sigmoides). No exemplo acima, temos uma camada de 2 neurônios entre o input e o output.  
 
-![http://colah.github.io/posts/2015-01-Visualizing-Representations/](images/chap4-twolayers.jpg)
+![Visualização do processamento de sinal, tornando-o linearmente separável. Fonte: http://colah.github.io/posts/2015-01-Visualizing-Representations/](images/chap4-twolayers.jpg)
 
-Agora, a primeira camada (hidden) modifica a entrada com duas unidades sigmoides e a segunda camada pode classificar corretamente usando apenas uma reta, algo que era impossível antes.
-Em tese, esse modelo pode capturar melhor as características que geraram os dados (flutuação hormonal ao longo do dia).
+Agora, a primeira camada (hidden) modifica a entrada com duas unidades sigmoides e a segunda camada pode classificar corretamente usando apenas uma reta, algo que era impossível antes.  
+Em tese, esse modelo pode capturar melhor as características que geraram os dados (flutuação hormonal ao longo do dia).  
 
 ### Neurônios
 
@@ -472,35 +545,31 @@ Na prática, é difícil obter boas performances. Tão difícil que as redes neu
 Normalmente, depende da qualidade e da quantidade dos dados. O boom veio com a descoberta de topologias de rede específicamente boas para certas tarefas (e.g. LSTM para linguagem natural, *Conv Nets* para visão computacional).  
 Em outras palavras, modelar uma rede neural para problemas inéditos pode ser algo desafiador.  
 
-O código a seguir mostra como implementar uma rede com a topologia descrita usando a lib **deepnet**. O modelo tem um funcionamento ligeiramente diferente (deep belief networks), porém não nos preocupemos com issso no momento.  
+O código a seguir mostra como implementar uma rede com topologia similar usando a lib **caret**. Conseguimos acurácia de 81% usando 5 neurônios.  
 
 ```r
     # Neural Net para o exemplo
-    # Processo para gerar dados em arquivos auxiliares ao livro(/aux)
-    >library(deepnet)
-    >inv.ds$tempo.norm <- normalize(inv.ds$tempo)
-    >deep.log.dbn <- dbn.dnn.train(
-     x=as.matrix(inv.ds[,c("beta","tempo.norm")]),
-     y=as.numeric(as.character(inv.ds$type_dic)),
-     hidden = c(2), activationfun = "sigm",
-     learningrate=2.65, momentum=0.85, learningrate_scale=1,
-     output = "sigm", numepochs=3, batchsize= 11)
-     (...)
-     begin to train dbn ......
-     training layer 1 rbm ...
-     dbn has been trained.
-     begin to train deep nn ......
-     deep nn has been trained.
-     >inv.ds$deep.test <- nn.predict(deep.log.dbn,
-                               x=as.matrix(inv.ds[,c("beta","tempo")]))
+    >library(caret)
+    > class_df$time_sc <- scale(class_df$time)
+    > nn_horm <- caret::train(x = class_df[,c(1,5)], y=factor(class_df$target),method="mlp")
+    Multi-Layer Perceptron     
 
-     >curve <- roc(type_dic ~ deep.test, data=inv.ds)
-     >plot(curve)    
-     >curve
-     Call:
-     roc.formula(formula = type_dic ~ deep.test, data = inv.ds)
-     Data: deep.test in 1000 controls (type_dic 0) < 1000 cases (type_dic 1).
-     Area under the curve: 0.6671
+    1202 samples
+       2 predictors
+       2 classes: '0', '1'     
+
+    No pre-processing
+    Resampling: Bootstrapped (25 reps) 
+    Summary of sample sizes: 1202, 1202, 1202, 1202, 1202, 1202, ... 
+    Resampling results across tuning parameters:    
+
+      size  Accuracy   Kappa    
+      1     0.6488305  0.2948640
+      3     0.8181583  0.6355261
+      5     0.8198874  0.6393824    
+
+    Accuracy was used to select the optimal model using the largest value.
+    The final value used for the model was size = 5.
 ```
 As redes neurais passaram algum tempo esquecidas, até que algumas reviravoltas [^26]  permitiram o treinamento eficaz dessas redes. Algoritmos para melhorar o treinamento, assim como arquiteturas econômicas ou especialmente boas em determinadas tarefas.
 Além disso, o uso de processadores gráficos (GPU), desenhados para as operações de álgebra linear que discutimos (com matrizes) permitiu treinar em um volume maior de dados.
@@ -510,7 +579,7 @@ Além disso, o uso de processadores gráficos (GPU), desenhados para as operaç�
 
 ### Backpropagation
 
-Backpropagation é um processo chave em para permitir o treinamento de classficadores em deep learning. É o conceito de propagar gradientes da função de perda ao longo da rede de maneira a atualizar cada nodo. Historicamente, surgiu no estudo de teoria do controle.  
+Backpropagation é um processo chave em para permitir o treinamento de classficadores em deep learning. É o conceito de propagar gradientes da função de perda ao longo da rede de maneira a atualizar cada nodo. Historicamente, surgiu nos estudos sobre teoria do controle.  
 
 Como vimos, podemos encarar a rede neural como uma sequência de funções plugadas. Algebricamente, se o primeiro nodo é $q(x,y)$, o neurônio $f$ que recebe sua saída como input tem valor $f(q(x,y))$ ou $f \circ q$.
 
@@ -712,7 +781,7 @@ Podemos observar o modelo convergindo à medida em que os pesos se estabilizam e
 ```
 ![](images/chap4-markii-preds.png)
 
-De maneira prática, não precisamos calcular os gradientes ou a topologia da rede (número de  neurônios, camadas e como estão conectados). Implementações de uso mais fácil estão disponíveis. Usando a lib `caret`:  
+De maneira prática, não precisamos calcular os gradientes ou a topologia da rede (número de  neurônios, camadas e como estão conectados). Bibliotecas voltadas à aprendizagem de máquina automatizam partes do processo, oferecendo rápida usabilidade para muitos classificadores eficientes. Usando a lib `caret`:  
 
 ```r
     > library(caret)
@@ -754,3 +823,18 @@ https://sebastianraschka.com/Articles/2015_singlelayer_neurons.html
 https://rpubs.com/FaiHas/197581
 
 \pagebreak
+
+### Exercícios
+
+1. Uma câmera é posicionada no teto e precisamos criar um algoritmo que determine se a bolinha está do lado esquerdo ou direito. Um perceptron como o apresentado seria capaz de aprender corretamente como indicar posse de bola?  
+
+2. Em neurônios biológicos, modelamos a ativação em função da voltagem na membrana neuronal. Quais modelos de função de ativação existem? Consulte softwares livres avançados para simulação de redes em Neural Ensemble ( https://neuralensemble.org/projects/ )  
+
+3. Reformule o algoritmo de aprendizagem (loop `for`) para que a taxa de aprendizagem $\eta$ seja reduzida para $\frac{\eta}{10}$ nos últimos exemplos.  
+
+4. Implemente Mark I adaptado para aprender com epochs e teste com gradiente $\eta$ pequeno.  
+
+5. Explore outras arquiteturas de rede neural usando *caret*.  
+
+\pagebreak
+

@@ -22,7 +22,7 @@ felipe.c.argolo@protonmail.com
 
 \vspace{2cm}
 
-São Paulo, 25 de Abril de 2019  
+São Paulo, 26 de Abril de 2019  
 
 \href{http://www.leanpub.com/fargolo}{Página oficial: https://http://www.leanpub.com/fargolo}  
 
