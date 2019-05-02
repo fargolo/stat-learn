@@ -429,7 +429,7 @@ $$\int_{-\infty}^{-36.51}f(t)dt$$
 
 Em R, a função nativa *pt* faz o trabalho sujo: 
 
-```r
+```
     >pt(-36.51, df = 29)
     [1] 4.262e-26
 ``` 

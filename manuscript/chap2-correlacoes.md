@@ -596,7 +596,7 @@ Para a relação (sigmoide), entre x e y abaixo:
     >sig_data <- data.frame(y_vals = -(1 / (1 + exp(seq(-10,10,by =0.3) )*100 ) ),
                        x_vals = 1:67)
     >ggplot(sig_data,aes(x=x_vals,y=y_vals))+
-    geom_point()+theme_economist()
+    geom_point()+theme_economist()+xlab("")+ylab("")
 ```
 ![](images/chap2-sigpoints.png)
 
@@ -620,7 +620,7 @@ O coeficiente de Pearson é $\rho \sim 0.850$[^20] :
     
     >ggplot(sig_data,aes(x=x_vals,y=y_vals))+
       geom_point()+ geom_smooth(method="lm")+
-      theme_economist()
+      theme_economist()+xlab("")+ylab("")
 ```
 ![](images/chap2-sigline.png)
 

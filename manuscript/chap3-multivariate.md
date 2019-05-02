@@ -155,8 +155,8 @@ Seguindo o exemplo sugerido, espera-se que exista uma relação entre hábito de
 
 O diagrama abaixo ilustra passos rigorosamente.
 As 3 regressões para checar premissas estão na sessão superior e a regressão múltipla no setor inferior. Foram suprimidos termos de erro. Estimativas para a relação entre $X_{1}$ e $Y$ são $\hat{\beta_{1}}$ e $\hat{\beta_{1}}'$ grifados nas equações. O comportamento desses parâmetros define as conclusões sobre o modelo de mediação.  
-
-![](images/chap3-diagram.jpeg)  
+  
+![](images/chap3-diagram.jpeg)
 
 ---
 
@@ -378,6 +378,7 @@ Isto é: uma matriz identidade com ruído introduzido através de apenas um par�
 Uma curiosidade é que a diagonal acaba influindo menos com o aumento do rank das matrizes. Então, o resultado das técnicas acima converge em situações com alta dimensionalidade ($n \rightarrow \infty$). Uma discussão mais completa pode ser conferida em outro lugar (ver referências).  
 
 Em sumário:  
+![](images/chap3-pca-efa.jpeg)
 $$PCA: Cov \sim \Lambda \Lambda^{T}$$  
 $$PPCA: Cov \sim \Lambda \Lambda^{T} + \sigma^{2}I$$  
 $$EFA: Cov \sim \Lambda \Lambda^{T} + \psi$$  

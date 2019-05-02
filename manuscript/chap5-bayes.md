@@ -221,11 +221,16 @@ Em linguagem das probabilidades, ela é uma distribuição. Nossas crenças pré
     > priors <- data.frame(uniform=a, low=b)
     > ggplot(priors)+
     geom_density(aes(x=uniform),color="#F0E442")+
+    geom_jitter(aes(y=uniform*4.5,x=seq(0,0.2,length.out = 10000)),
+    color="#009E73",alpha=0.015)+
     geom_density(aes(x=low),color="#009E73")+
-    ylab("Densidade")+xlab("Priors: informativo(verde) ou incerto (amarelo)")+
+    geom_jitter(aes(y=low*3,x=seq(0,1,length.out = 10000)),
+    color="#F0E442",alpha=0.01)+ylab("Densidade")+
+    xlab("Priors: informativo(verde) ou incerto (amarelo)")+
     theme_hc(style="darkunica")+theme(axis.text.y=element_blank())
+
 ```
-![O prior verde supõe maiores probabilidades para valores baixos. O prior amarelo é pouco, informativo atribuindo probabilidades semelhantes em todo o intervalo](images/chap5-priors.png)
+![O prior verde supõe maiores probabilidades para valores baixos. O prior amarelo é pouco informativo, atribuindo probabilidades semelhantes em todo o intervalo](images/chap5-priors.png)
 
 
 Conhecendo nossos construtos, podemos então reescrever os procedimentos:  
