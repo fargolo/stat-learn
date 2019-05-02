@@ -22,7 +22,7 @@ felipe.c.argolo@protonmail.com
 
 \vspace{2cm}
 
-São Paulo, 26 de Abril de 2019  
+São Paulo, 02 de Maio de 2019  
 
 \href{http://www.leanpub.com/fargolo}{Página oficial: https://http://www.leanpub.com/fargolo}  
 
@@ -201,7 +201,7 @@ Minha família, Suzana, Paulo, Isaac e Chris. Amigos Gabriel, Guilherme, Wei.
 
 Aos professores: Carla Daltro, Anibal Neto, Lucas Quarantini, Luis Correia, Rodrigo Bressan, Ary Gadelha.  
 
-Aos colegas Fatori, Luccas, Macedo, Walter, Sato, Hiroshi, Lais, Luci, Davi, Oddone, Jones, n3k00n3 (Fernando), Loli (Lorena).
+Aos colegas Fatori, Luccas, Macedo, Walter, Sato, André, Hiroshi, Lais, Luci, Davi, Oddone, Jones, n3k00n3 (Fernando), Loli (Lorena).
 
 Para comentários, críticas, sugestões, ou simplesmente dizer *oi*: felipe.c.argolo@protonmail.com.  
 

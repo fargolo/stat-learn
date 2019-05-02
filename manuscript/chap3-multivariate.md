@@ -104,8 +104,9 @@ Ou múltipla com dois preditores:
 É fácil relacionar *nodos com variáveis* e *conexões com relações* descritas pelas equações estimadas. Formalmente, tratamos essas abstrações com o nome de **grafos**. O campo começou a ser tratado por Euler em 1736. Chamamos os pontos de nodos, ou vértices, e as ligações de arestas (*edges*). Cada aresta conecta dois nodos.  
 O conceito foi usado para resolver o problema das pontes de Königsberg. Dada uma série de pontes conectando partes diferentes da cidade, fazer um percurso que cruzae cada uma apenas uma vez?  
 
-![](images/chap3-konigsberg.jpg)  
+![.](images/chap3-konigsberg.jpg)  
 
+\pagebreak
 
 Euler mostrou que era impossível. Note que não usamos distâncias. Apenas descrevemos como elementos são conectados. Podemos atrelar diversas estruturas. Os grafos acima, por exemplo, são direcionamos e possuem equações vinculadas.  
 
@@ -378,7 +379,10 @@ Isto é: uma matriz identidade com ruído introduzido através de apenas um par�
 Uma curiosidade é que a diagonal acaba influindo menos com o aumento do rank das matrizes. Então, o resultado das técnicas acima converge em situações com alta dimensionalidade ($n \rightarrow \infty$). Uma discussão mais completa pode ser conferida em outro lugar (ver referências).  
 
 Em sumário:  
-![](images/chap3-pca-efa.jpeg)
+
+![.](images/chap3-pca-efa.jpeg)  
+
+.
 $$PCA: Cov \sim \Lambda \Lambda^{T}$$  
 $$PPCA: Cov \sim \Lambda \Lambda^{T} + \sigma^{2}I$$  
 $$EFA: Cov \sim \Lambda \Lambda^{T} + \psi$$  

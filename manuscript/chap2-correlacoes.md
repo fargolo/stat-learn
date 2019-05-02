@@ -164,7 +164,7 @@ Para adquirir uma intuição sobre o coeficiente, é interessante resgatar o con
 
 Em *Sobre o equilíbrio dos planos*, Arquimedes declara que *Magnitudes ficam em equilíbrio quando em distância reciprocamente proporcional aos seus pesos.* 
 
-![](images/chap2-lever.png)
+![.](images/chap2-lever.png)
 
 Essa é a conhecida Lei da alavanca. Dado um ponto de apoio e um plano sobre ele, aplicamos uma força em qualquer local do plano. O momento (torque) resultante é o resultado da multiplicação da grandeza física $(F)$ pela distância até o ponto fixo $(d)$.  
 $M = F*d$  
@@ -172,6 +172,8 @@ $M = F*d$
 Supondo uma força constante, quanto mais nos afastamos do ponto fixo, maior o momento resultante. Posteriormente, os físicos  estenderam o conceito para outros domínios. Por exemplo, um objeto com cargas opostas $-q$ e $+q$ separados por uma distância $d$ possui momento (momento dipolar elétrico) análogo:
 $M = q*d$  
 De uma maneira geral, *falamos em momento ao multiplicarmos uma grandeza física por uma distância*. 
+
+\pagebreak
 
 #### Momento resultante 
 ![Como o brinquedo acima fica equilibrado sobre apenas um ponto?](images/chap2-birdeq.jpg)
@@ -181,7 +183,7 @@ $$M = \sum_{i=1}^{N} F_{i}d_{i}$$
 
 Um sistema, como o pássaro apoiado sobre o dedo, está em equilíbrio quando a soma dos momentos em relação ao ponto fixo é zero. Para cargas elétricas, o sistema é apolar quando o momento é zero. Na figura abaixo, vemos como a molécula de $CO_{2}$ é apolar, enquanto a molécula de água é polar:  
 
-![](images/chap2-water.jpg)
+![.](images/chap2-water.jpg)  
 
 Os momentos descritos acima são expressões do *primeiro momento*, uma vez que a grandeza é multiplicada pela distância com expoente 1: $d = d^{1}$. 
 
