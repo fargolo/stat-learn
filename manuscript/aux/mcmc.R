@@ -1,3 +1,4 @@
+library(ggplot2)
 set.seed(2600)
 
 n_obs <- 400

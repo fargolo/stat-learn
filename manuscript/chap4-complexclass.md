@@ -301,7 +301,7 @@ Fazemos $f(x) = (score_{j} - output_{j})$ e $g(x) = x^{2}$, de maneira que
 $$L = \frac{1}{n}\sum_{j}^{n} E(score_{j}, output_{j}) = (g \circ f)$$  
 $$= \frac{1}{n}\sum_{j}^{n} (score_{j} - output_{j})^{2}$$  
 
-Podemos resolver $\frac{d}{dw_{i}}L$ aplicando a regra de cadeia $(g \circ f)' = (g'\circ f)f'$ e a 'regra do tombo' para derivadas de polinômios $(\frac{d}{dx}(x^{n})=nx^{n-1})$.  
+Podemos resolver $\frac{d}{dw_{i}}L$ aplicando a regra de cadeia $$(g \circ f)' = (g'\circ f)f'$$ e a 'regra do tombo' para derivadas de polinômios $(\frac{d}{dx}(x^{n})=nx^{n-1})$.  
 
 Então,
 $$f' = \frac{d}{dw_{i}}(score_{j} - output_{j})$$

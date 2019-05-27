@@ -82,7 +82,7 @@ Mas quais os parâmetros da curva?
 
 Primeiro, de Moivre deduziu a solução para o problema das moedas $(p = \frac{1}{2})$. A seguinte expressão geral descreve a probabilidade $P(x)$ correspondente à curva que procuramos, conhecida como *gaussiana*.  
 
-$$P(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}}$$
+$$f(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}}$$
 
 Em que $e$ é número de Euler $(e \sim 2.72…)$.  
 
@@ -112,21 +112,24 @@ Observamos como a distribuição se dá a partir da equação.
 
 Já que $x^{2}$ retorna apenas valores positivos, $-x^{2}$ sempre retorna negativos. Nossa função gera valores entre 0 e 1 exponenciando $(e \sim 2.718...)$ a um fator negativo quadrático $(y = 0.4*e^{-x^{2}/2})$.  
 
-Notamos também que valores próximos ao centro $(x \sim \mu = 0)$ fazem com que o expoente de se aproxime de 0, maximizando nossa função: $f(0) = 0.4 * e{-x^{2}/2} = 0.4 * e^{0} = 0.4)$. O valor obtido (0.4) corresponde ao topo da curva no gráfico acima (linha rosa). 
+Notamos também que valores próximos ao centro $(x \sim \mu = 0)$ fazem com que o expoente de se aproxime de 0, maximizando nossa função: $f(0) = 0.4 * e{-x^{2}/2} = 0.4 * e^{0} = 0.4)$. O valor obtido (0.4) corresponde ao topo da curva no gráfico acima (linha rosa).  
 
 Observamos a curva se aproximar simetricamente do máximo em valores próximos de 0.  
 
-Isso reflete diretamente o fato de que valores próximos à média serão mais prováveis e valores extremos menos prováveis. 
+Isso reflete diretamente o fato de que valores próximos à média serão mais prováveis e valores extremos menos prováveis. A rigor, a probabilidade para qualquer valor dentre os infinitos possíveis é zero.  
 
-Para comparação: $f(2) = 0.4 * e^{-2^{2}/2} = 0.4 * e^{-2} =  0.4 * 0.135 \sim 0.05$ (linha azul). A probabilidade de se obter o valor médio $(x = 0, p \sim 0.4)$ é oito vezes maior que a probabilidade de se obter o valor 2 $(x = 2; p = 0.05)$.   
+É possível avaliar a probablidade de evento um relacionado ao intervalo entre os pontos $a$ e $b$ pela integral de $f(x)$ sobre o intervalo $[a,b]$:  $$P(x) = \int_{a}^{b}{f(x)dx}$$  
+Por exemplo, um evento ($A$) relacionado a 'valores menores ou iguais a zero' em uma escala estão no intervalo $[-\infty,0]$:  
+$$P(A) = \int_{-\infty}^{0}{f(x)dx}$$  
 
-O termo quadrático torna a distribuição simétrica para valores opostos em relação à média. $P(x) = P(-x)$. Como calculamos $P(2)$ antes, sabemos que: $P(-2) = P(2) = 0.05$ para $\mu = 0$. É igualmente provável encontrar valores duas unidades maiores ou duas unidades menores que a média. Esses pontos estão marcados por uma linhas azuis na figura.  
+O termo quadrático torna a distribuição simétrica para valores opostos em relação à média. $P(A) = P(-A)$. Como calculamos $f(2)$ antes, sabemos que: $f(-2) = f(2) = 0.05$ para $\mu = 0$. É igualmente provável encontrar valores duas unidades maiores ou duas unidades menores que a média. Esses pontos estão marcados por uma linhas azuis na figura.  
 
 Podemos trabalhar com curvas normais com centros (média $\mu$) deslocados para a esquerda ($\mu$ < 0) ou para a direita ($\mu$ > 0), subtraindo o termo de $x$ em nosso expoente. Além disso, diferentes variâncias ($\sigma^{2}$) refletem a frequência de valores longe da média e o quão distante dela eles são. Visualmente, determina o tamanho da base do sino na ilustração (Figura 3).  
 
 Usamos a notação $N \sim (\mu, \sigma^{2})$ para descrever uma distribuição gaussiana com média $\mu$ e variância $\sigma^{2}$ arbitrárias:
 
-$$P(x)=\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{ -\frac{(x-\mu)^{2}}{2\sigma^{2}}}$$
+$$f(x) = \frac{1}{\sqrt{2\pi\sigma^{2}}}e^{ -\frac{(x-\mu)^{2}}{2\sigma^{2}}}$$
+$$P(A_{a,b})= \int_{a}^{b}{f(x)dx}$$  
 
 O valor $\frac{1}{\sqrt{2\pi}}$ surge como normalizador para avaliarmos a função como densidade de probabilidade (A integral de $-\infty$ a $+\infty$ deve ser 1). O valor $\pi$ surge da integral de Gauss para $e^-x^{2}$ e decorre do fato de $2\pi i$ ser período da função $e^{x}$:  
 $$\int_{-\infty}^{+\infty} e^{-x^{2}}dx = \sqrt{\pi}$$  

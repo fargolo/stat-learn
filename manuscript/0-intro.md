@@ -45,7 +45,7 @@ Uma descrição abrangente das técnicas desenvolvidas pode facilmente alcançar
 No conteúdo disponível, a abordagem costuma ser '*bottom-up*'. Uma noção do campo é construída através de estudo focado em modelos: cursos específicos para *time series*, *clustering*, *redes neurais* ou ainda ferramentas (e.g. R, Julia, Python, Stan, Matlab...). Funciona bem como roteiro natural em cursos de engenharia e ciências exatas.  
 
 **De cima para baixo**  
-Este texto visita temas num roteiro inverso (*top-down*). Os modelos são contextualizados como ferramentas na exploração de um roteiro com eixo em filosofia das ciências. As formulações surgem como resposta a questões sobre fenômenos naturais de biologia (testes estatísticos), psicologia (análise fatorial), saúde pública/economia (correlação, regressão e causalidade) e neurociências (perceptron e redes neurais).  
+Este texto visita temas num roteiro inverso (*top-down*). Os modelos são contextualizados como ferramentas na exploração de um roteiro com eixo em filosofia das ciências. As formulações surgem nas respostas a questões sobre fenômenos naturais de biologia (testes estatísticos), psicologia (análise fatorial), saúde pública/economia (correlação, regressão e causalidade) e neurociências (perceptron e redes neurais).  
 
 O *primeiro capítulo* acompanhamos Charles Darwin em Galápagos. Darwin esperou 20 anos entre a concepção da teoria e sua publicação. Ele trabalhou incansavelmente para investigar se suas impressões não eram falsas. Este capítulo ilustra como o racional hipotético-dedutivo funciona para estudar hipóteses científicas. O teste *t* de Student é aplicado para comparação dos bicos de aves em Galápagos. Aborda a relação entre ciências empíricas, o teorema do limite central, a distribuição normal e a distribuição *t*.   
 
@@ -128,27 +128,6 @@ Capítulo 5 - Contexto e inferência Bayesiana
   * Estimadores e Métodos Markov Chain Monte Carlo
     * Soluções fechadas, Gradient Descent e MCMC
 
-*Volume 2 (em construção)*  
-Capítulo 6 - Programação probabilística para contextos gerais  
-
-  * Processos Gaussianos
-  * Inferência Bayesiana para cosmologia
-  * Redes neurais probabilísticas com PyMC
-
-Capítulo 7 - Ambientes desconhecidos  
-
-  * Aprendizagem não supervisionada
-  * Redução de dimensões 
-  * Clustering
-  * Aprendizagem semi-supervisionada
-  * Reinforcement learning
-  
-Capítulo 8 - Tópicos especiais  
-
-  * Séries temporais
-  * Sistemas dinâmicos 
-  * Processamento de linguagem natural
-  
 \pagebreak
 
 ## Pré-requisitos
