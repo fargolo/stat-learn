@@ -13,16 +13,17 @@ output:
 
 \vspace{5cm}
 
-Curvas: funções elementares e series temporais  
+Curvas  
+Funções elementares e series temporais   
 
 \vspace{5cm}
 
-Felipe Coelho Argolo  
-felipe.c.argolo@protonmail.com  
+Felipe Coelho Argolo   
+felipe.c.argolo@protonmail.com   
 
 \vspace{2cm}
 
-São Paulo, 25 de Maio de 2019  
+São Paulo, 03 de Junho de 2019  
 
 \href{http://www.leanpub.com/fargolo}{Página oficial: https://http://www.leanpub.com/fargolo}  
 
@@ -42,17 +43,13 @@ Volume 2
 Os capítulos do primeiro volume (1-5) introduzem ferramentas comuns no repertório para análise de dados, assim como nortes em filosofia do conhecimento para aplicá-las.  
 De maneira geral, lidamos apenas com relações lineares. Retas cuja inclinação é determinada por um coeficiente angular: coeficiente produto-momento de Pearson ($\rho$), regressão linear ($\beta$), perceptrons ($W$) ou redes neurais ($W_{i}$).   
 
-No sexto capítulo, retomamos os níveis diários de testosterona usados para ilustrar relações não lineares quando apresentamos redes neurais. Veremos como é possível usar análises exploratórias, visulizações e intuições espaciais para escolher a modelagem adequada.  
+No sexto capítulo, retomamos os níveis diários de testosterona usados  quando apresentamos redes neurais. Veremos como é possível usar análises exploratórias, visulizações e intuições espaciais para escolher modelagens não lineares adequadas.   
 
-Usando funções de transformação específicas, é possível atingir acurácias muito boas. Construiremos Mark III, uma rede elegante, com topologia e funções de ativação específica para resolver o problema dos atletas sob efeito de dopping.   
+Usando funções de transformação específicas, é possível atingir acurácias muito boas. Construiremos Mark III, uma rede elegante, com topologia e funções de ativação específica para resolver o problema dos atletas sob efeito de dopping.  
 
-![](images/chap6-hormones.png)
+Em seguida, o sétimo capítulo examina outras intuições importantes para análise de séries temporais. Descreveremos análogos aos ritmos musicais, através de regressão harmônica (Transformada de Fourier em $\text{sen}(x) , \text{cos}(x)$ e semelhantes). Também, o efeito cumulativo de fases anteriores (*momentum*) com média móvel e auto-regressão (ARIMA).  
 
-Usaremos a interação entre efeitos polinomiais ($x^1, x^2 , x^3 , ... , x^n$) para obter curvas ótimas. Também falamos em exponenciais ($\beta^{x} , 2^x ,  e^{x}$) e logaritmos ($\text{log}(x) , \text{ln}(x)$).  
-
-Em seguida, o sétimo capítulo examina outras intuições importantes para análise de séries temporais. Descreveremos o análogo a ritmos, através de regressão harmônica (Transformada de Fourier em $\text{sen}(x) , \text{cos}(x)$ e semelhantes). Também, o efeito cumulativo de fases anteriores (*momentum*) com média móvel e auto-regressão (ARIMA).  
-
-O oitavo capítulo aborda volatilidade, incerteza e caos. Quantificamos amplitudes, precisão e exploramos modelos quasi-randômicos para séries temporais (*Processos Gaussianos*). Aprenderemos uma nova linguagem (Julia) para falar em caos e implementar expoentes de Lyapunov.   
+O oitavo capítulo aborda volatilidade, incerteza e caos. Quantificamos amplitudes, precisão e exploramos modelos quasi-randômicos para séries temporais (*Processos Gaussianos*). Usaremos uma nova linguagem (Julia) para falar em caos e implementar expoentes de Lyapunov.   
 
 \pagebreak  
 
@@ -89,7 +86,7 @@ Capítulo 8 - Caos
 
 ## Pré-requisitos
 
-Recomendo o [volume 1](https://leanpub.com/cienciadados), com textos (Caps. 0 ~ 5) introduzindo conceitos necessários (regressões, redes neurais e ferramentas como R e Stan).  
+Recomendo o [volume 1](https://leanpub.com/cienciadados), com textos introduzindo conceitos necessários: regressões, redes neurais e ferramentas como R e Stan (Caps. 0 ~ 5).  
 
 Todos os exemplos podem ser reproduzidos usando software livre.  
 
