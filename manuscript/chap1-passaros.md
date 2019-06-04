@@ -118,7 +118,9 @@ Observamos a curva se aproximar simetricamente do máximo em valores próximos d
 
 Isso reflete diretamente o fato de que valores próximos à média serão mais prováveis e valores extremos menos prováveis. A rigor, a probabilidade para qualquer valor dentre os infinitos possíveis é zero.  
 
-É possível avaliar a probablidade de evento um relacionado ao intervalo entre os pontos $a$ e $b$ pela integral de $f(x)$ sobre o intervalo $[a,b]$:  $$P(x) = \int_{a}^{b}{f(x)dx}$$  
+É possível avaliar a probablidade de evento um relacionado ao intervalo entre os pontos $a$ e $b$ pela integral de $f(x)$ sobre o intervalo $[a,b]$:   
+$$P(A_{a,b})= \int_{a}^{b}{f(x)dx}$$  
+
 Por exemplo, um evento ($A$) relacionado a 'valores menores ou iguais a zero' em uma escala estão no intervalo $[-\infty,0]$:  
 $$P(A) = \int_{-\infty}^{0}{f(x)dx}$$  
 
@@ -129,7 +131,8 @@ Podemos trabalhar com curvas normais com centros (média $\mu$) deslocados para 
 Usamos a notação $N \sim (\mu, \sigma^{2})$ para descrever uma distribuição gaussiana com média $\mu$ e variância $\sigma^{2}$ arbitrárias:
 
 $$f(x) = \frac{1}{\sqrt{2\pi\sigma^{2}}}e^{ -\frac{(x-\mu)^{2}}{2\sigma^{2}}}$$
-$$P(A_{a,b})= \int_{a}^{b}{f(x)dx}$$  
+
+---  
 
 O valor $\frac{1}{\sqrt{2\pi}}$ surge como normalizador para avaliarmos a função como densidade de probabilidade (A integral de $-\infty$ a $+\infty$ deve ser 1). O valor $\pi$ surge da integral de Gauss para $e^-x^{2}$ e decorre do fato de $2\pi i$ ser período da função $e^{x}$:  
 $$\int_{-\infty}^{+\infty} e^{-x^{2}}dx = \sqrt{\pi}$$  
