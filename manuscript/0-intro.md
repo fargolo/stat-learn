@@ -155,6 +155,7 @@ Neurociências
 Matemática/computação  
 
 * Coleção '*Fundamentos da matemática elementar*'
+* Bioestatistica sem segredos. Annibal Muniz.  
 * What is mathematics - Courant & Robbins
 * Better Explained ( https://betterexplained.com/ )
 * http://material.curso-r.com/
