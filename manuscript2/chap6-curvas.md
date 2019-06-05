@@ -5,7 +5,7 @@ output:
 ---
 # Capítulo 6 - Curvas: Funções elementares e séries temporais  
 
-Nos primeiros capítulos (1-5), aprendemos relações lineares. Retas descritas por um coeficiente angular: coeficiente produto-momento de Pearson ($\rho$), regressão linear ($\beta$), perceptrons ($W$) ou redes neurais ($W_{i}$) de ativação simples.  
+Nos primeiros capítulos (1-5), aprendemos relações lineares. Retas descritas por um coeficiente angular: coeficiente produto-momento de Pearson ($\rho$), regressão linear ($\beta$), perceptrons ($W$) ou redes neurais (múltiplos $W_{i}$) de ativação simples. Aprenderemos a escolher modelos um pouco mais sofisticados, naturalmente não lineares, para solução de problemas.   
 
 ## O caso das drogas ergogênicas
 
@@ -14,13 +14,12 @@ O gráfico a seguir, retirado do *Capítulo 4*, é baseado em observações biol
 
 ![](images/chap4-hormones.png)
 
-Como as curvas não são separáveis linearmente, usamos transformações em sequência para atingir classificação satisfatória unicamente com pedaços lineares. Uma rede neural (Mark II) teve acurácia demonstrada para o problema com medida de flores (*iris*).    
+Anteriormente, diante de problemas não são separáveis linearmente, usamos transformações em sequência para atingir classificação satisfatória unicamente com pedaços lineares.  
+Uma rede neural (Mark II) teve acurácia demonstrada para o problema com medida de flores (*iris*). Com redes neurais, fazemos ajustes graduais através de funções elementares e obtemos uma boa solução final. Entretanto, a convergência é lenta e necessitamos de muitas observações ou truques na apresentação dos dados (e.g. *epochs*). Vamos avançar um pouco, criando modelos cuidadosamente escolhidos para cada situação.  
 
-Com redes neurais, fazemos ajustes graduais através de funções elementares e obtemos uma boa solução final. Entretanto, a convergência é lenta e necessitamos de muitas observações ou truques na apresentação dos dados (e.g. *epochs*). Vamos avançar um pouco, criando modelos finamente ajustados para os problemas.
+**Em última instância, a adequação do modelo depende de uma simetria entre sua estrutura e aquela presente nos dados.** Quão melhor a intuição sobre as características dos dados, maior será a capacidade de escolher um modelo de melhor performance e menor fragilidade a erros (e.g. *overfitting*).  
 
-Em última instância, a adequação do modelo depende de uma simetria entre sua estrutura e aquela presente nos dados. Quão melhor a intuição sobre as características dos dados, maior será a capacidade de escolher um modelo de melhor performance e menor fragilidade a erros (e.g. *overfitting*).  
-
-Existem muitas maneiras de extrair *insights* sobre a estrutura dos dados. Por exemplo, as ideias podem vir de conhecimentos prévios sobre o fenômeno natural examinado. Abordaremos alguns métodos, com foco em visualizações e intuições espaciais sobre as medidas disponíveis.  
+Existem muitas maneiras de extrair *insights* sobre a estrutura dos dados. Por exemplo, as ideias podem vir de conhecimentos prévios sobre o fenômeno natural examinado. Acompanharemos o processo de chegar a um modelo final com base em visualizações e intuições espaciais sobre as medidas disponíveis.  
 
 ### Regressão quadrática e simetrias
 
@@ -32,12 +31,20 @@ Alguns fenômenos se apresentam de maneira diferente. As magnitudes podem cresce
 
 Observando a figura acima, notamos que níveis de testosterona *descrescem* com o tempo (sentidos inversos) a partir de 08:00 até atingirem um mímino por volta das 20:00. Passando deste ponto, passam a *crescer* com o avançar do tempo (sentidos iguais), até atingir um máximo.  
 
-Podemos modelar essas assimetrias usando termos *polinomiais*. Assim, os valores são multiplicados por si. Há um efeito sobre a magnitude geral: quão mais longe do $0$, maior a taxa de aumento. Valores extremos possuem imagens ainda mais extremas.  
+Podemos modelar essas simetrias usando termos *polinomiais* ($f(x) \sim x^n$). Em polinômios de ordem maior, os valores são multiplicados por si ($x \times x \times x \times x ...$). Há um efeito sobre a magnitude geral: quão mais longe do $0$, maior a taxa de aumento. Valores de entrada extremos possuem imagens com valores absolutos ainda mais extremos.  
 
-O principal é que temos a possibilidade de modelar assimetrias, uma vez que o produto de dois números negativos é positivo (e.g. $-2 \times -2 = 4$). Assim, espelhamos imagens negativas e podemos recriar curvas de diversos tipos.  
+Entretanto, o principal efeito é que temos a possibilidade de modelar diferentes simetrias, uma vez que o produto de dois números negativos é positivo (e.g. $-a \times -b = ab$). Assim, espelhamos imagens e podemos desenhar curvas de diversos tipos.  
 
-Para o caso da testosterona, se definirmos a origem ($0$) em 20:00, um modelo quadrático ($Y \sim X^2$, parábola) expressa perfeitamente a distribuição. O que seriam extremos negativos num modelo linear passam a ser extremos positivos num modelo quadrático, que decrescem em magnitude com o avançar do tempo. Quando atingimos a origem, os valores voltam a crescer.  
+As retas com inclinação positivas ($f(x) \sim \beta x$) e negativas ($f(x) \sim -\beta x$) que estudamos correspondem a polinômios de primeiro grau ($n=1$).  
 
+Polinômios de ordem par ($n=2,4,6...$) correspondem a curvas simétricas em relação aos valores de $f(x)$, o eixo y: $f(x) = f(-x)$.  
+A concavidade pode ser voltada para cima ($f(x) \sim \beta x^2, f(x) \sim \beta x^4, ...$) ou para baixo ($f(x) \sim -\beta x^2, f(x) \sim -\beta x^4, ...$) a depender do sinal do coeficiente.  
+
+Polinômios de ordem ímpar ($n=1,3,5,7...$) correspondem a curvas simétricas em relação à origem: $f(-x) = -f(x)$. Podemos enxergá-las como extensões das retas[^1], uma vez que a relação entre magnitudes é igual em sentido para qualquer intervalo (*‘se A cresce, B decresce’*). A diferença é que, como exposto antes, entradas extremas terão valores de imagens ainda mais extremas.   
+
+[^1]: Retas são 'curvas' com curvatura 0.
+
+Para o caso da testosterona, se definirmos o tempo zero (eixo $x$) em 20:00, um polinômio de ordem par, como o modelo quadrático ($Y \sim X^2$, parábola) expressa perfeitamente a distribuição. O que seriam extremos negativos num modelo linear passam a ser extremos positivos num modelo quadrático, que decrescem em magnitude com o avançar do tempo. Quando atingimos $0$, os valores voltam a crescer.  
 
 Simulação dos dados com cerca de 600 observações em cada classe (dopados e não dopados):  
 
@@ -64,8 +71,8 @@ Simulação dos dados com cerca de 600 observações em cada classe (dopados e n
     6    6  norm  9.552046   0  6
 ```
 
-Como verificado no *Capítulo 4*, o problema não é linearmente separável. Não é possível dividir os grupos com uma reta, então a regressão logística será apenas parcialmente satisfatória.  
-Usaremos biblioteca *Deducer* para avaliar rapidamente a performance do modelo usando curva ROC.  
+Como verificado no *Capítulo 4*, não é possível dividir os grupos com uma reta. O problema não é linearmente separável, então a regressão logística será apenas parcialmente satisfatória.  
+Usaremos a biblioteca *Deducer* para avaliar rapidamente a performance do modelo usando curva ROC.  
 ```r
     >library(Deducer)
     >library(ggplot2)
@@ -119,7 +126,9 @@ O que acontece é que o modelo simples, com termos lineares, usa apenas doses de
 ```
 ![](images/chap6-vis_preds.png)  
 
-As probabilidades previstas pelo modelo linear (vermelho) flutuam com o tempo e se concentram numa faixa nebulosa (entre 0.25 e 0.75). Por outro lado, as probabilidades previstas pelo modelo quadrático (verde) são acuradas. O modelo atribui valores próximos a 0 (azul claro, na inferior à esquerda) para medidas normais e próximos a 1 (azul escuro, na margem superior à direita) para medidas sob efeito de dopping.  
+As probabilidades previstas pelo modelo linear (vermelho) flutuam com o tempo: observações perto dos horários de pico recebem alta probabilidade. Além disso, todas as previsões se concentram numa faixa nebulosa (entre 0.25 e 0.75).  
+
+Por outro lado, as probabilidades previstas pelo modelo quadrático (verde) são acuradas. O modelo atribui valores próximos a 0 (azul claro, na inferior à esquerda) para medidas normais e próximos a 1 (azul escuro, na margem superior à direita) para medidas sob efeito de dopping.  
 
 
 ## Soma de efeitos e séries de Taylor  

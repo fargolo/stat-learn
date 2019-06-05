@@ -41,7 +41,7 @@ Volume 2
 *Miyamoto Musashi, Go Rin No Sho (1645), Book of Earth, The Book of Five Rings*  
   
 Os capítulos do primeiro volume (1-5) introduzem ferramentas comuns no repertório para análise de dados, assim como nortes em filosofia do conhecimento para aplicá-las.  
-De maneira geral, lidamos apenas com relações lineares. Retas cuja inclinação é determinada por um coeficiente angular: coeficiente produto-momento de Pearson ($\rho$), regressão linear ($\beta$), perceptrons ($W$) ou redes neurais ($W_{i}$).   
+De maneira geral, lidamos apenas com relações lineares. Retas cuja inclinação é determinada por um coeficiente angular.   
 
 No sexto capítulo, retomamos os níveis diários de testosterona usados  quando apresentamos redes neurais. Veremos como é possível usar análises exploratórias, visulizações e intuições espaciais para escolher modelagens não lineares adequadas.   
 
