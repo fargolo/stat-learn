@@ -147,6 +147,7 @@ Filosofia e divulgação científica
 * Contra o Método - Paul Feyerabend
 * Dois dogmas do empiricismo - Willard van Quine
 * Stanford Encyclopedia of Philosophy - https://plato.stanford.edu/
+* The Open Handbook of Formal Epistemology - https://jonathanweisberg.org/post/open-handbook/
 
 Neurociências  
 

@@ -76,7 +76,7 @@ Estimamos parâmetros($\mu_{\text{diff}}$ e valor p) para testar uma hipótese s
 
 Podemos, inclusive, usar probabilidades obtidas via inferência bayesiana para continuar testando hipóteses. Entretanto, é conveniente introduzir ferramentas bayesianas junto ao pensamento de filósofos que ofereceram outras alternativas[^27].  
 
-[^27]:Existe um programa de pesquisa mais abrangente em filosofia sobre epistemologia Bayesiana, mas este não é nosso foco.
+[^27]:Existe um programa de pesquisa mais abrangente em filosofia sobre epistemologia Bayesiana, mas este não é nosso foco. [Consulte The Open Handbook of Formal Epistemology](https://jonathanweisberg.org/post/open-handbook/)
 
 ## Muitos métodos científicos: Feyerabend, Carnap e Quine
 
