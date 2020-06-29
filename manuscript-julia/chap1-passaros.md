@@ -88,21 +88,20 @@ Em que $e$ é número de Euler $(e \sim 2.72…)$.
 
 **Intuições**
 A fórmula consiste em um fator, $\frac{1}{\sqrt{2\pi}}$ (aproximadamente 0.4), multiplicando o resultado da exponencial.  
-Em R, podemos definir:  
+Em Julia, podemos definir a função e observar a probabilidade associada a alguns pontos em torno do máximo ($f(0)=0.4$):  
 
 ```julia
     julia>mgauss(x) = 0.4*exp((-1)*(x^2)/2)  
-    julia>mgauss(0)
-    0.4
+    julia> mgauss(-2), mgauss(-1), mgauss(0) , mgauss(1) , mgauss(2)
+    (0.054134113294645084, 0.2426122638850534, 0.4, 0.2426122638850534, 0.054134113294645084) 
 ```
 
 Em seguida, obter alguns valores no intervalo $[-5,5]$ e plotá-los, dando origem à curva gaussiana anterior.   
 
 ```julia
     julia>using Plots,  Distributions
-    julia>unicodeplots()
     julia>gauss_values = map(mgauss,-5:0.1:5)
-    julia>Plots.plot(map(mgauss,-5:0.1:5),xaxis=("Gaussian"),leg=false)
+    julia>plot(gauss_values,xaxis=("Gaussian"),leg=false)
 ```
 
 Observamos como a distribuição se dá a partir da equação.  
@@ -161,16 +160,16 @@ Vamos fazer um experimento virtual usando 100 lançamentos de 11 dados.
 O código em Julia para a seguir gera os dados e as visualizações de que precisamos:  
 
 ```julia
-    julia>using Distributions
+    julia>using Distributions, Plots, StatsPlots
     julia>dice_fun(x) = rand(DiscreteUniform(1,6),x)
     julia>data_mat = [dice_fun(100) for _ in 1:11]
-    julia>p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11 = map(x->histogram(x,bins=6),data_mat)
-    julia>p12 = histogram(sum(data_mat,dims=1))
+    julia>p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11 = map(x->histogram(x,bins=6,legend=false),data_mat)
+    julia>p12 = histogram(sum(data_mat,dims=1),bins=30,legend=false)
     julia>plot(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,layout=(4,3))
 ```
 \pagebreak 
 
-![Soma de amostras (n=100) de 11 distribuições uniformes correspondentes ao lançamento de dados honestos de 6 faces. O resultado está na célula inferior à direita.](images/chap1-unifsum.png)
+![Soma de amostras (n=100) de 11 distribuições uniformes correspondentes ao lançamento de dados honestos de 6 faces. O resultado está na célula inferior à direita.](images/chap1-unisum-j.png)
 
 Notamos que as barras estão distribuídas com alturas bastante parecidas nas 11 primeiras células. A frequência esperada para cada valor é ~ 1/6 do total de 100 lançamentos. $Freq (X_{i}) \sim \frac{1}{6}*100 \sim 16.66$  
 Algo interessante ocorre com a soma das distribuições (canto inferior direito).   
@@ -211,22 +210,16 @@ $X \sim \gamma_{1}(\alpha, \beta) + ... + \gamma_{n}(\alpha, \beta) = X \sim N(\
 
 Para valores grandes de n:
  
-```r
-    >gamma_fun <- function(n){rgamma(n,1)}
-    >data_mat <- replicate(n=n_plots-1,gamma_fun(100))
-    >data_mat <- cbind(data_mat,rowSums(data_mat))
-    
-    >plot_list <- vector("list", n_plots)
-    >plot_list <- apply(X=data_mat, MARGIN=2, FUN=function(x)
-      ggplot(data.frame(obs=x),aes(x=obs)) +
-    	geom_histogram(binwidth = 0.2)+
-    	ylab("")+xlab("")+
-    	theme_economist())
-    
-    >m_plot <- multiplot(plotlist = plot_list,cols=n_plots/3)
+```julia
+    julia>gamma_fun(x) = rand(Gamma(1),x)
+    julia>data_mat = [gamma_fun(100) for _ in 1:11]
+    julia>data_mat <- cbind(data_mat,rowSums(data_mat))
+    julia>append!(data_mat,sum(data_mat,dims=1))
+    julia>p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12 = map(x->histogram(x,legend=false),data_mat)
+    julia>plot(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,layout=(4,3))
 ```
 
-![ Soma de amostras (n=100) de 11 distribuições gama. O resultado está na célula inferior à direita. Função de densidade de probabilidade para distribuição gama: $f(x) = 1/\Gamma(\alpha) * \beta\alpha * x \alpha -1 * e - \beta x$, com  $\alpha = \beta = 1$](images/chap1-gammasum.png)
+![ Soma de amostras (n=100) de 11 distribuições gama. O resultado está na célula inferior à direita. Função de densidade de probabilidade para distribuição gama: $f(x) = 1/\Gamma(\alpha) * \beta\alpha * x \alpha -1 * e - \beta x$, com  $\alpha = \beta = 1$](images/chap1-gammasum-j.png)
 
 
 Novamente, verificamos que a soma começa a ser simétrica em torno da média, com formato de sinos (base alargada). 
@@ -239,7 +232,7 @@ A descoberta das equações que regem mecanismos de convergência em cenários p
 ### Exercícios
 
 1. Sobre a distribuição normal para uma variável aleatória, é verdadeiro (mais de uma possibilidade):
-    * a.  A soma da probabilidade de todos os valores possíveis é 1.
+    * a.  A soma das probabilidades de todos os valores possíveis é 1.
         * i.  $\int_{-\infty}^{+\infty} f(x) dx= 1.$  
     * b. É simétrica em relação à moda.
     * c. O valor esperado é dado por 1/$\sigma\sqrt{2\pi}$.
@@ -268,57 +261,37 @@ Pássaros têm um número fixo de n de genes aditivos em cada amostra, sorteado 
 
 Para simular os dados com as condições acima:
 
-```r
-    >library(magrittr)
-    >library(ggthemes)
-    >library(ggplot2)
-    >set.seed(2600)
+```julia
+    julia> using Distributions , DataFrames
+
+    julia>n_birds = 150 # sample_size   
+    julia>genes_low = 80 # lower bound on number of genes
+    julia>genes_hi = 100 # upper bound on numbe
+    julia>n_islands = 4 #samples
+    julia>function unif_sum(n_genes)
+          gene_samples = [rand(Uniform(0,1),100) for _ in 1:n_genes]
+          effects_sums = sum(gene_samples)
+          return effects_sums
+        end
+    julia>function generate_pop(;n_pop,n_genes)
+          pupulation = [unif_sum(n_genes) |> mean for _ in 1:n_pop]
+        end
+    julia>galapagos_birds = map(x -> generate_pop(n_pop=n_birds, n_genes=x) , 
+    rand( DiscreteUniform(genes_low,genes_hi), n_islands)) |> DataFrame
     
-    >n_birds <- 150 # sample_size
-    >genes_low <- 80 # lower bound on number of genes
-    >genes <- 100 # upper bound on number of genes
-    >n_islands <- 4 #samples
-     
-    >unif_sum <- function(genes){
-    	replicate(n = genes,
-              	expr = runif(100, min=0, max = 1)) %>%
-    	rowSums
-      }
-    
-    >generate_pop <- function(n_pop,n_genes){
-      replicate(n=n_pop,
-            	expr = unif_sum(n_genes) %>% mean)
-      }
-    
-    
-    >galapagos_birds <- purrr::map(.f = function(x) generate_pop(n_pop=n_birds,
-                                                            	n_genes = x),
-                              	.x = runif(n=n_islands, genes_low, genes) %>% ceiling) %>%
-      unlist %>% matrix(nrow=n_birds,byrow=F) %>%
-      data.frame
 ```
 
 Como esperado, verificamos que o histograma das medidas finais se aproximam de uma gaussiana. 
 
 ```r
-    >my_alpha <- 0.5
-    >my_bins <- 50
-    >ggplot(data=galapagos_birds,aes(x=X1))+
-      geom_histogram(alpha=my_alpha,bins = my_bins)+
-      geom_histogram(data=galapagos_birds,aes(x=X2),fill="dark blue",
-                 	alpha=my_alpha,bins = my_bins)+
-      geom_histogram(data=galapagos_birds,aes(x=X3),fill="dark red",
-                 	alpha=my_alpha,bins = my_bins)+
-      geom_histogram(data=galapagos_birds,aes(x=X4),fill="dark green",
-                 	alpha=my_alpha,bins = my_bins)+
-      xlab("Beak size")+ylab("Count")+
-      ggtitle("Darwin's Finches",subtitle = "4 samples from 4 islands")+
-      theme_economist_white(gray_bg = F)
+    julia>@df stack(galapagos_birds) groupedhist(:value, group = :variable, 
+      bar_position = :dodge,bins=50,title=("Darwin Finches"),
+    xlabel="Break Size",ylabel="Count",legend=false)
 ```
 
 ![Figura 4. Distribuição das medidas de bicos em populações simuladas para genes com efeito aditivo.](images/chap1-finch-hists.png)
 
-Os números aleatórios gerados usando a semente sugerida (set.seed(2600), linha 4 do código acima) são semelhantes à suposição de Darwin: 4 ilhas (amostras) e três espécies (distribuições de bicos). Notamos que há duas amostras (verde, azul) de medidas bastante parecidas e outras duas separadas (cinza, vermelho).   
+Os números aleatórios gerados usando a semente sugerida (set.seed(2600), linha 4 do código acima) são semelhantes à suposição de Darwin: 4 ilhas (amostras) e três espécies (distribuições de bicos). Notamos que há duas amostras (verde, azul) de medidas bastante parecidas e outras duas separadas (rosa, vermelho).   
 Supondo que medimos os bicos de algumas aves, como saber se os grupos são diferentes?  
 Calculando as diferenças entre distribuições, podemos inferir se duas amostras têm o mesmo número de genes subjacentes! Para isso, usaremos um racional e algumas ferramentas novas.  
 
@@ -415,11 +388,12 @@ Sabendo a estatística t (-36.51) e os graus de liberdade para nossa família de
 Para tanto, somamos as probabilidades de valores extremos menores que a estatística t fornecida.  
 $$\int_{-\infty}^{-36.51}f(t)dt$$
 
-Em R, a função nativa *pt* faz o trabalho sujo: 
+Em julia, a função nativa *cdf* faz o trabalho sujo de calcular a integral:  
 
-```
-    >pt(-36.51, df = 29)
-    [1] 4.262e-26
+```julia
+    julia> Using Distributions
+    julia>cdf(TDist(29),-36.51)
+    4.262182718504655e-2
 ``` 
 
 Esse valor reflete a probabilidade de valores t negativos mais extremos (menores) que os nosso ($t < -36.51$).  
@@ -438,15 +412,16 @@ Ao fazer esse ajuste, chamamos o teste de bicaudal.
 
 Sabendo da simetria na distribuição t, podemos fazer então usar o seguinte truque:
 
-```r
-    > 2*pt(-36.51, df = 29)
-    [1] 8.524e-26 # valor p 'bicaudal'
+```julia
+    julia> 2*cdf(TDist(29),-36.51)
+    8.52436543700931e-26
 ```
 
-Não é possível calcular diretamente as probabilidades para t = 36.51, pois o R aproxima a integral acima $(p \sim 1 - 4.262^{-26}) \sim 1$.
-```r
-    > pt(36.51, df = 29)
-    [1] 1
+Não é possível calcular diretamente as probabilidades para t = 36.51, pois Julia aproxima a integral acima $(p \sim 1 - 4.262^{-26}) \sim 1$.
+```julia
+    julia> cdf(TDist(29),36.51)
+    1.0
+
 ```
 
 #### Nota
@@ -498,78 +473,96 @@ $$\sigma_{pooled} = \sqrt{ \frac{(n_{1}-1)\sigma_{1}^{2}+(n_{2}-1)\sigma_{2}^{2}
 
 Considerando $(n_{1}-1) + (n_{2}-1)$ graus de liberdade, calculamos a estatística t e o valor p correspondente para nossos graus de liberdade. Usando as amostras criadas anteriormente, correspondentes às  barras cinza (A) e azul(B), vamos plotar os histogramas.
 
-```r
-    >ggplot(data=galapagos_birds,aes(x=A))+
-      geom_histogram(alpha=my_alpha,bins = my_bins)+
-      geom_histogram(data=galapagos_birds,aes(x=B),fill="dark blue",
-                 	alpha=my_alpha,bins = my_bins)+
-      xlab("Beak size")+ylab("Count")+
-      ggtitle("Darwin's Finches",subtitle = "Samples A and B")+
-      theme_economist_white(gray_bg = F)
+```julia
+    julia> @df stack(galapagos_birds[:,[:x1,:x2]]) groupedhist(:value, group = :variable, 
+    bar_position = :dodge,bins=50,title=("Darwin Finches"),
+    xlabel="Break Size",ylabel="Count",legend=false)
+
 ```
 
-![](images/chap1-birds-hist2.png)
+![](images/chap1-finch-hist2.png)
 
-```r
+```julia
     # Ajustes nos dados
-    >a <- galapagos_birds$X1
-    >b <- galapagos_birds$X2
-    >sd_a <- sd(a) #desvio-padrao
-    >sd_b <- sd(b)
+    julia>a = galapagos_birds[:,:x2]
+    julia>b = galapagos_birds[:,:x4]
+    julia> sd_a = std(a)
+    0.2864951772455354
+    julia> sd_b = std(b)
+    0.2806718618380952
 ```
 
 Aqui, ao invés de comparar as estimativas das médias de distribuição t para amostras A e B.  
 Calculamos a (1) Diferença esperada na vigência da hipótese nula ($\mathit{diff}_{H_{0}} = 0)$, (2) estimativa da diferença $(\mathit{diff} = \mu_{A}-\mu_{B})$, graus de liberdade (df) e erro padrão balanceado $(se_{pooled})$ para a distribuição das diferenças de médias.
 
-```r 
-    > expected_diff <- 0
-    > mean_diff <- mean(a) - mean(b) #diferença de medias
-     
-    > df_pool <- length(a) + length(b) - 2 # graus de liberdade balanceados
-    > sd_pool  <- sqrt(((length(a) - 1) * sd_a^2 + (length(b) - 1) * sd_b^2)/
-                   	df_pool) # desvio padrao balanceado 
+```julia
+    julia> expected_diff = 0
+    julia> mean_diff = mean(a) - mean(b)
+    6.963886183171148
+    julia> df_pool = length(a) + length(b) - 2 # graus de liberdade balanceados
+    julia> sd_pool  = sqrt(((length(a) - 1) * sd_a^2 + (length(b) - 1) * sd_b^2)/df_pool) # desvio padrao balanceado 
 ```
 A estatística t correspondente à diferença observada, considerando uma distribuição t com os parâmetros calculados acima.
 
-```r
+```julia
     # Diferenca dividida por erro padrao
-    > t   <- (mean_diff - expected_diff)/ (sd_pool * sqrt(1/length(a) + 1/length(b))) # t-statistic
+    julia> t = (mean_diff - expected_diff)/ (sd_pool * sqrt(1/length(a) + 1/length(b))) # t-statistic
 
 ```
 Valor p para hipótese bicaudal (resultados extremos considerando a possibilidade de a diferença ser maior ou menor que 0): 
 
-```r
-    >p <- 2*pt(-abs(t), df = df_pool)
+```julia
+    julia>p = 2*cdf(TDist(df_pool),-abs(t))
+    1.2306604944028464e-179
 ```
 
 Finalmente, agregando o sumário dos resultados (médias A e B, diferença verificada, estatística t resultante, valor p):
 
-```r
-    >result <- c(mean_diff, t, p, mean(a), mean(b))
-    >names(result) <- c("Difference of means", "t", "p-value","Mean A","Mean B")
-    >result
-    Difference of means       	t
-       	1.533321e+00    	4.728513e+01
-            	p-value          	Mean A          	Mean B
-      	1.532661e-140    	4.352244e+01    	4.198912e+01
+```julia
+    julia> results = Dict(
+           "Mean Difference" =>mean_diff, 
+           "t"=>t,"p value" => p, 
+           "Mean in A" => mean(a),"Mean in B" => mean(b))
+    Dict{String,Float64} with 5 entries:
+      "Mean Difference" => 2.01372
+      "t"           => 65.8589
+      "p value"     => 1.23066e-179
+      "Mean in A"   => 42.0315
+      "Mean in B"   => 40.0178
+
+
 ```
 
 Obtivemos um valor p significativo (p < 0.001) usando n = 150. Os graus de liberdade são 149 (150 - 1) em cada amostra, sendo 298 ao total.  
-Sendo uma linguagem voltada à estatatística, R possui em sua biblioteca de base uma função para automatizar o processo em 1 linha:
+Podemos automatizar o processo em 1 linha:
 
-```r
-    >t.test(a,b,var.equal = T)
-    Two Sample t-test / data:  a and b
-    t = 47.285, df = 298, p-value < 2.2e-16
-    Alternative hypothesis: true difference in means is not equal to 0
-    95 percent confidence interval:  1.469506 1.597136
-    Sample estimates:
-    mean of x mean of y
-     43.52244  41.98912
+```julia
+    julia>using HypothesisTests
+    julia>UnequalVarianceTTest(x, y)
+    julia>pvalue(UnequalVarianceTTest(x, y))
+    julia> julia> EqualVarianceTTest(a, b)
+    Two sample t-test (equal variance)
+      ----------------------------------
+      Population details:
+          parameter of interest:   Mean difference
+          value under h_0:         0
+          point estimate:          2.013716309684817
+          95% confidence interval: (1.9535, 2.0739)      
+
+      Test summary:
+          outcome with 95% confidence: reject h_0
+          two-sided p-value:           <1e-99      
+
+      Details:
+          number of observations:   [150,150]
+          t-statistic:              65.85887867093128
+          degrees of freedom:       298
+          empirical standard error: 0.030576231334676962
+
 ```
 
-Estatística t e graus de liberdade apresentados pela implementação nativa do R(t.test) são idênticos aos que encontramos realizando o procedimento passo a passo.  
-Ao invés do valor exato $(p=1.53^{-140})$, recebemos a informação de que $p < 2.2^{-16}$.  
+A estatística t e graus de liberdade apresentados pela implementação são idênticos aos que encontramos realizando o procedimento passo a passo.  
+Ao invés do valor exato $(p=1.23^{-179})$, recebemos a informação de que $p < 1e^{-99}$.  
 Diante do valor p obtido, concluiríamos que a distribuição dos dados como observada é improvável se for verdade a hipótese nula $H_{0}$ de que a diferença entre amostras é 0.   
 
 #### Exemplo de relatório
