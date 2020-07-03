@@ -215,8 +215,9 @@ Para valores grandes de n:
     julia>data_mat = [gamma_fun(100) for _ in 1:11]
     julia>data_mat <- cbind(data_mat,rowSums(data_mat))
     julia>append!(data_mat,sum(data_mat,dims=1))
-    julia>p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12 = map(x->histogram(x,legend=false),data_mat)
-    julia>plot(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,layout=(4,3))
+    julia>p1 = map(x->histogram(x,legend=false),data_mat)
+    julia>p2 = histogram(sum(data_mat,dims=1),bins=30,legend=false)
+    julia>plot(p1...,p2,layout=(4,3))
 ```
 
 ![ Soma de amostras (n=100) de 11 distribuições gama. O resultado está na célula inferior à direita. Função de densidade de probabilidade para distribuição gama: $f(x) = 1/\Gamma(\alpha) * \beta\alpha * x \alpha -1 * e - \beta x$, com  $\alpha = \beta = 1$](images/chap1-gammasum-j.png)
