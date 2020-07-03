@@ -160,12 +160,12 @@ Vamos fazer um experimento virtual usando 100 lançamentos de 11 dados.
 O código em Julia para a seguir gera os dados e as visualizações de que precisamos:  
 
 ```julia
-    julia>using Distributions, Plots, StatsPlots
+    julia>using Distributions, Plots, StatsPlots  
     julia>dice_fun(x) = rand(DiscreteUniform(1,6),x)
     julia>data_mat = [dice_fun(100) for _ in 1:11]
-    julia>p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11 = map(x->histogram(x,bins=6,legend=false),data_mat)
-    julia>p12 = histogram(sum(data_mat,dims=1),bins=30,legend=false)
-    julia>plot(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,layout=(4,3))
+    julia>p1= map(x->histogram(x,bins=6,legend=false),data_mat)
+    julia>p2 = histogram(sum(data_mat,dims=1),bins=30,legend=false)
+    julia>plot(p1...,p2,layout=(4,3))
 ```
 \pagebreak 
 
