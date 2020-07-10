@@ -7,7 +7,9 @@ output:
 
 # Capítulo 2 : Sobre a natureza das relações 
 
-## Prelúdio: Quem precisa do valor p?
+## Prelúdio: *Hypotheses non fingo*?
+
+*Eu ainda não fui capaz de descobrir a razão para essas propriedades da gravidade*, e não faço hipóteses. *Tudo aquilo que não é deduzido do fenômeno pode ser chamado de hipótese; e hipóteses, sejam metafísicas ou físicas, ou baseadas em qualidades ocultas, ou mecânicas, não têm lugar na filosofia experimental. Nesta filosofia, as proposições particulares são inferidas a partir do fenômeno, e então generalizadas por indução.*  
 
 O racional apresentado no capítulo anterior é diretamente relacionado ao método hipotético-dedutivo e seus princípios filosóficos.  Apesar de adequado a este cenário, a interpretação do valor p não é muito intuitiva.  
 Envolve *mensurar quão improváveis são as observações em um cenário hipotético na vigência da hipótese nula*.  
@@ -17,15 +19,23 @@ O arcabouço descrito no capítulo anterior é suficiente para produzir um traba
 
 Ao seguir receitas pré-definidas (formulação de $H_{0}$ e $H_{1}$, cálculo de estatísticas e valores p), um texto parece estar em conformação com os padrões acadêmicos, mesmo que a hipótese elementar em torno do objeto de pesquisa seja simplória. Assim, inadvertidamente, priorizamos a forma e relegamos a segundo plano o miolo de propostas científicas.  
 
-Trabalhos de pouca originalidade recebem grande atenção pelo rigor por atributos quantitativos (e.g. tamanho amostral grande, valor p baixo), enquanto criativos e revolucionários experimentos menores levam anos ou décadas até atingirem a comunidade.  
+Trabalhos de pouca originalidade recebem grande atenção pelo rigor metodológico (e.g. tamanho amostral grande, valor p baixo), enquanto criativos e revolucionários experimentos menores levam anos ou décadas até atingirem a comunidade.  
 Outro efeito colateral é a busca por valores p que rejeitem $H_{0}$, desprezando precedentes teóricos e premissas probabilísticas (múltiplos testes).  
 
 A difícil interpretabilidade do valor p e as armadilhas frequentes envolvidas no processo de inferência levaram a comunidade científica a questionar a hegemonia desse parâmetro. Há uma presente tendência a abandonar o valor p e o limite $p<0.05$ como critérios canônicos.  
 
-No próximo capítulo, vamos conhecer argumentos contundentes ao método hipotético dedutivo.  
+Vamos começar conhecer argumentos contundentes ao método hipotético dedutivo.  
 Por enquanto, basta sabermos que é sempre vantajoso obter outras informações, complementares ou alternativas.     
 
 Neste capítulos, vamos aprender a estimar (1) a magnitude da diferença entre duas amostras e (2) quão relacionados são valores pareados (e.g. peso e altura).  
+
+---  
+
+I have not as yet been able to discover the reason for these properties of gravity from phenomena, and I do not feign hypotheses. For whatever is not deduced from the phenomena must be called a hypothesis; and hypotheses, whether metaphysical or physical, or based on occult qualities, or mechanical, have no place in experimental philosophy. In this philosophy particular propositions are inferred from the phenomena, and afterwards rendered general by induction. *Isaac Newton (1726). Philosophiae Naturalis Principia Mathematica, General Scholium. Third edition, page 943 of I. Bernard Cohen and Anne Whitman's 1999 translation, University of California Press ISBN 0-520-08817-4, 974 pages.*  
+
+---  
+
+\pagebreak
 
 ## Tamanho de efeito
 

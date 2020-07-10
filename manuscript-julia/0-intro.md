@@ -9,7 +9,7 @@ output:
 
 \begin{center}
 
-\textbf{Estatística e Probabilidade}  
+\textbf{Estatística e Probabilidade em Ciências}  
 
 \vspace{5cm}
 
@@ -37,8 +37,12 @@ Segunda Edição
 
 ## Prefácio  
 
+---  
+
+*Lembre-se de que todos os modelos são errados\; a questão prática é quão errados eles precisam ser para não serem úteis*  
 *Remember that all models are wrong; the practical question is how wrong do they have to be to not be useful*  
 *George Box & Norman R. Draper, Empirical Model-Building and Response Surfaces*  
+---  
 
 Quando entramos no século XXI, os termos *inteligência artificial (artificial intelligence)*, *aprendizagem de máquina (machine learning)*, *big data* e *ciência de dados* ganharam forte notoriedade em virtude de resultados inéditos em problemas de aplicação prática. Avanços técnicos em processamento de linguagem natural, visão computacional e outros campos foram rapidamentes implementados por engenheiros e pesquisadores em finanças, indústria e ciências.  
 Uma abordagem detalhada do formalismo envolvido pode facilmente alcançar 1.000 páginas de texto sucinto, como o clássico *‘Deep Learning (Adaptive Computation and Machine Learning)’* de Goodfellow, Bengio and Courville. Outra obra de escopo e tamanho semelhante é a *“Neural networks and learning machines”*, de Simon Haykin. Inúmeros cursos online e videoaulas são produzidos e disponibilizados por instituições de prestígio..  
@@ -71,16 +75,11 @@ Exploramos uma terceira forma de estimar parâmetros. Sem fórmulas fechadas, us
 
 ## Prefácio à segunda edição  
 
-Aproximadamente um ano se passou desde o lançamento da 1ª edição. Algumas modificações foram importantes foram incorporadas.  
+Aproximadamente um ano se passou desde o lançamento da 1ª edição. Algumas modificações importantes foram incorporadas.  
 
-**Julia** foi incluída como uma linguagem alternativa a R.  
+**Julia** foi incluída como uma linguagem alternativa a R. É uma linguagem com uma comunidade menor, mas bastante promissora. Além de oferecer maior velocidade de execução, ela oferece uma sintaxe mais concisa para os exemplos.  
 
-O capítulo 1 inclui uma segunda perspectiva (máxima entropia) para a utilização da distrição normal em ciências naturais. 
-
-O capítulo 3 foi reestruturado para incluir uma abordagem mais geral do estudo de causalidade com grafos direcionados. O capítulo 5 foi aumentado para incluir mais detalhes no ajuste de modelos Bayesianos.  
-
-O capítulo 6 adiciona análise de sistemas dinâmicos (séries temporais) ao livro.  
-
+Entrei em contato com o trabalho de Richard McElreath (Statistical Rethinking), o que resultou em frutos positivos: O capítulo 1 inclui uma segunda perspectiva (máxima entropia) para a utilização da distrição normal em ciências naturais. O capítulo 3 foi reestruturado para incluir uma abordagem mais geral do estudo de causalidade com grafos direcionados, usando o pacote/software **dagitty**. O capítulo 5 inclui conteúdo sobre a escolha de priors em modelos Bayesianos.  
 
 \pagebreak
 
@@ -137,8 +136,6 @@ Capítulo 5 - Contexto e inferência Bayesiana
   * Estimadores e Métodos Markov Chain Monte Carlo
     * Soluções fechadas, Gradient Descent e MCMC
     
-Capítulo 6 - Sistemas dinâmicos e séries temporais  
-
 \pagebreak
 
 ## Pré-requisitos
@@ -167,7 +164,7 @@ Neurociências
 Matemática/computação  
 
 * Coleção '*Fundamentos da matemática elementar*'
-* Statistical Rethinking. A Bayesian Course with Examples in R and Stan
+* Statistical Rethinking. A Bayesian Course with Examples in R and Stan, Richard McElreath.  
 * Bioestatistica sem segredos. Annibal Muniz.  
 * What is mathematics - Courant & Robbins
 * Better Explained ( https://betterexplained.com/ )

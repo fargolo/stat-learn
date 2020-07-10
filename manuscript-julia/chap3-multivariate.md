@@ -8,8 +8,8 @@ output:
 # Capítulo 3 : Análise multivariada, grafos e inferência causal 
 
 ## Introdução
-Neste capítulo, incorporaremos construtos como base para estudar um conceito do  berço da filosofia ocidental: *causalidade*. A filosofia Aristotélica investiga causas materiais, formais, eficientes e finais. Causas exprimem a ideia de isolar relações entre fatores. A maioria das definições envolvem *efeitos* que dependem, mesmo que parcialmente, de *causas* precedentes. Relações de causalidade *explicam* a evolução de sistemas em certas condições. Veremos discussões atuais sobre o conceito, em que a obra de Judea Pearl é importante.  
-Até este ponto, aplicamos modelagem matemática para uma ou duas variáveis aleatórias. Procedimentos diferentes foram empregados para correlação, comparação e regressão. Neste capítulos conheceremos as técnicas de regressão múltipla, mediação, moderação, análise de componentes principais e análise fatorial.   
+Neste capítulo, incorporaremos construtos como base para estudar um conceito do  berço da filosofia ocidental: *causalidade*. A filosofia Aristotélica investiga causas materiais, formais, eficientes e finais. Causas exprimem a ideia de isolar relações entre fatores. A maioria das definições envolvem *efeitos* que dependem, mesmo que parcialmente, de *causas* precedentes. Relações de causalidade *explicam* a evolução de sistemas em certas condições.  
+Até este ponto, aplicamos modelagem matemática para uma ou duas variáveis aleatórias. Procedimentos diferentes foram empregados para correlação, comparação e regressão. Neste capítulo, lidaremos com análise multivariada. Diagramas causais e controle de vieses, mediação, moderação, regressão múltipla, análise de componentes principais e análise fatorial.   
 
 ## Regressão múltipla
 
@@ -23,54 +23,10 @@ Na *regressão linear múltipla*, introduzimos mais uma variável preditora. Em 
 $$hale_{i} = \beta_{0} + \beta_{1}n_{i} + \beta_{2}IDH_{i}' + \epsilon$$
 
 Em geral, temos dois objetivos:  
-**(1)** melhorar a performance do modelo ao adicionar informações pertinentes; **(2)** examinar o efeito sobre as demais variáveis preditoras.  
+**(1)** melhorar a performance do modelo ao adicionar informações pertinentes; **(2)** examinar as relações considerando múltiplas variáveis.  
 
 O primeiro objetivo é intuitivamente óbvio, entretanto precisamos ter cuidado com redundância de informações. Especificamente, há uma troca quase inevitável entre complexidade e robustez do modelo. Acrescentar variáveis ou usar classes de relações mais flexíveis implica dar liberdade para um sobreajuste aos dados. Isto é, nosso modelo aprenderá idiossincrasias sobre os dados disponíveis (datasets WHO e World Bank) e não sobre a relação entre as abstrações (e.g.expectativa de vida saudável). Veremos nas próximas sessões como mitigar esse problema.  
 
-Para o caso da regressão linear múltipla, podemos verificar se há colinearidade (relação linear) entre variáveis preditoras. Se as variáveis preditoras são altamente correlacionadas, é provável que estejamos fornecendo informações redundantes ao modelo, o que é nocivo. Existem alguns indicadores que podem ajudar a tomar essa decisão.  
-
-Comumente, observamos o VIF *Variance inflation factor*.
-
-**VIF**
-
-A intuição aqui é de que se as variáveis são muito relacionadas $X_{1} \sim X_{2}$, os valores de $\beta$ estimados em $Y = \beta_{1}X_{1} + \beta_{2}X_{2} + ...$ não serão únicos. Por exemplo, poderíamos trocar $\beta_{1}$ por $\beta_{2}$ e a solução permaneceria praticamente inalterada. O VIF estima a colinearidade em relação à combinação de outros preditores usados.      
-   
-Para calcular o VIF referente a um preditor $X'$, ajustamos uma nova regressão, em que a variável resposta é $X'$ e as preditoras são as outras variáveis preditoras. O VIF é dado por: $\frac{1}{1-R^{2}}$, sendo $R^{2}$ o coeficiente de determinação da regressão, como calculamos antes.  
-Valores de VIF altos refletem valores de $R^2$ altos, isto é: a combinação linear de outras variáveis explicaria muito bem a variável preditora em questão.
-Não há regra canônica, porém VIF > 10 ($R^{2} = 0.9$) e VIF > 5($R^{2} = 0.8$) são citados como fronteiras indicando colinearidade inaceitável.  
-
-A função **vif** do pacote *car* implementa o procedimento. Ajustamos uma regressão linear múltipla para o comprimento das sépalas no dataset *iris* a partir de outras 3 variáveis. Podemos verificar que há colinearidade ($VIF_{pet.leng.}\sim 15.1$, $VIF_{pet.wid.}\sim 14.2$) entre largura e comprimento da pétala. Por outro lado, a colinearidade com o comprimento da sépala é baixa ($VIF_{pet.wid.} \sim 1.3$). 
- 
-```r
-    >car::vif(lm(Sepal.Length ~ Petal.Length + Petal.Width + Sepal.Width,    
-        data=iris))
-    Petal.Length  Petal.Width  Sepal.Width 
-       15.097572    14.234335     1.270815 
-```
-
-Se há colinearidade, é recomendado remover um dos preditores para eliminar a redundância. Como sempre, a inspeção visual ajuda.  
-
-```r
-    >pairs(iris[,1:4])
-```
-![](images/chap3-irispairs.png)
-
-Como podemos ver, usar duas variáveis preditoras (regressão múltipla) não colineares aumenta a performance do modelo em relação à regressão simples $(R^{2} \sim 0.84\enskip vs\enskip R^{2} = 0.76)$.  
-
-```r
-    >lm(Sepal.Length ~ Petal.Length,    
-    +         data=iris) %>% summary    
-
-    (...)
-    Multiple R-squared:   0.76,	Adjusted R-squared:  0.7583 
-    F-statistic: 468.6 on 1 and 148 DF,  p-value: < 2.2e-16    
-
-    >lm(Sepal.Length ~ Petal.Length + Sepal.Width,    
-    +         data=iris) %>% summary    
-    (...)
-    Multiple R-squared:  0.8402,	Adjusted R-squared:  0.838 
-    F-statistic: 386.4 on 2 and 147 DF,  p-value: < 2.2e-16
-```
 
 Um outro objetivo para a regressão múltipla é examinar o efeito modificador das variáveis acrescentadas. Em especial, é comum incluir variáveis auxiliares para corrigir estimativas.  
 
@@ -83,14 +39,12 @@ Veremos uma formalização desse conceito a seguir, com o procedimento para exam
 
 \pagebreak
 
----
+---  
 
 Costumeiramente, traduzimos os procedimentos acima afirmando que a estimativa para *"a relação entre X e Y é controlada para confundidores [A, B e C]"*. A esse ponto, fica óbvio que a simplificação linguística é perigosa. A falta de cautela em traduzir abstrações matemáticas para linguagem natural é responsável pela injusta fama da estatística como ferramenta para enganos.  
-Assim como o valor p é indevidamente interpretado muitas vezes, o "controle para confundidores"" nada mais é que o ajuste de estimativas selecionando outras variáveis arbitrariamente para uma combinação linear.  
-O prejuízo é herdado por todas as disciplinas que usam métodos quantitativos. Pior, criamos a possibilidade para testar múltiplas combinações de confundidores. Nas mãos de alguém incauto ou mal intencionado, testes sucessivos têm grandes chances de alcançar resultados "significantes". De uma forma global, vemos uma série de verdades transitórias ventiladas na comunidade científica (e na mídia leiga), resultantes de análises mal conduzidas.  
-Para inferências desse tipo, é recomendado que os confundidores sejam mitigados experimentalmente (e.g. randomização) sempre que possível e que premissas do modelo sejam respeitadas.  
+Assim como o valor p é indevidamente interpretado muitas vezes, o "controle para confundidores"" nada mais é que o ajuste de estimativas considerando um modelo causal. É recomendado que os confundidores sejam mitigados experimentalmente (e.g. randomização).  
 
----
+---  
 
 \pagebreak 
 
@@ -120,15 +74,122 @@ A pouco conhecida origem deste campo está no trabalho de um geneticista, Sewall
 
 ![Diagrama mostrando relação entre fatores influenciando peso de um porquinho-da-índia. Wright, 1921](images/chap3-guinea.jpg)
 
-Usando grafos direcionados (as conexões têm uma origem e um destino), é atrelar as noções de correlação e regressão de forma a ilustrar caminhos causais entre relações lineares. Sewall começou usando apenas grafos acíclicos (sem conexões levando ao ponto de origem do percurso) em condições restritas.  
+Usando grafos direcionados (as conexões têm uma origem e um destino), é atrelar as noções de correlação e regressão de forma a ilustrar caminhos causais entre relações lineares. Sewall começou usando apenas grafos acíclicos (sem trajetórias retornando a um mesmo ponto de origem) direcionados, DAGs, em condições restritas.  
 
 Décadas depois, o campo foi extrapolado para outros cenários mais gerais. Em específico, o boom de disponibilidade de poder computacional nas décadas de 1960 e 1970 impulsionou o surgimento de estimadores diversos para parâmetros nesses modelos.  
 É esperado que a quantidade de parâmetros cresça conforme a complexibilidade.  
 
-Um trabalho valoroso foi feito por Judea Pearl para unificar as abordagens. Pearl mostrou que muitos *frameworks* são situações especiais de modelos de equação estrutural (SEM, structural equation models), os quais também englobam versões não paramétricas. Por exemplo, o sistema causal de Rubin é equivalente a SEM: todos os teoremas podem ser deduzidos usando algumas identidades entre as abordagens.  
+Um trabalho valoroso foi feito por Judea Pearl para unificar as abordagens. Pearl mostrou que muitos *frameworks* são situações especiais de modelos de equação estrutural. Ele escreveu textos compreensivos alinhando a matemática aplicada a uma base epistemológica.  
+É especialmente digno de nota o conceito de *contrafactual*. Para estimar um efeito causal, imaginamos quais seriam as condições em um cenário sem ação do agente causal. Pearl conduz um cauteloso estudo logico-semântico das definições na tentativa de construir um sistema coerente de pesquisa empírica. 
 
-Ele também escreveu textos compreensivos alinhando a matemática aplicada a uma base epistemológica.  
-É especialmente digno de nota o conceito de *contrafactual*. Para estimar um efeito causal, imaginamos quais seriam as condições em um cenário sem ação do agente causal. Pearl conduz um cauteloso estudo logico-semântico das definições na tentativa de construir um sistema coerente de pesquisa empírica. Uma explicação completa foge do escopo do livro, entretanto conheceremos algumas aplicações.  
+#### Examinando covariáveis com Modelos causais
+
+Modelos causais baseados em grafos pressupõem efeitos unidirecionais. Isso preclui a descrição acurada de muitos casos. Por outro lado, o uso parcimonioso é uma ferramenta valiosa para fazer inferências causais.  
+O DAG a seguir analisa a qualidade de uma cerveja. Ela depende de água, lúpulo (hops) e malte. Queremos entender como a composição dos ingredientes sólidos (lúpulo & malte) interfere na pureza final, avaliada pela ausência de agrotóxicos. Temos dados de algumas fábricas locais. A concentração na água em cada cidade também varia, o que interfere diretamente na pureza final da cerveja. Além disso, a água é usada para regar o solo com lúpulo e malte, interferindo também indiretamente no desfecho.    
+
+```r
+library(dagitty)
+library(ggdag)
+
+dagified <- dagify(Quality ~ Water + HopsMalt, 
+                   HopsMalt ~ Soil,Soil ~ Water,
+                   exposure = "HopsMalt",
+                   outcome = "Quality")
+p1 <- ggdag(dagified) + theme_dag_blank()
+p1
+```  
+
+Traçar um DAG permite examinar formalmente os possíveis caminhos por onde a informação flui e, assim, realizar inferências corretamente. De forma prática, queremos:  
+
+1 . Testar se o modelo causal proposto é compatível com as observações.  
+2 . Estimar o efeito condicionando-o às covariáveis adequadas.  
+
+O grafo implica algumas *independências condicionais*. Isso significa que, se ele estiver correto, algumas variáveis serão independentes.  
+```r
+impliedConditionalIndependencies(dagified)
+#HopsMalt _||_ Water | Soil
+#Quality _||_ Soil | HopsMalt, Water
+```
+A notação `A _||_ B | C, D, E, F...` indica que A deve ser independente de B, se condicionarmos a estimativa do efeito às covariáveis C, D, E, F... "Condicionar a" significa incluir a covariável no modelo descritivo. A forma mais simples é através de regressão múltipla:  
+
+```r  
+beer_data <- simulateSEM(dagified,b.lower = 0.20,b.upper=0.25)
+# HopsMalt _||_ Water | Soil
+lm(HopsMalt ~ Water + Soil,beer_data)
+# Quality _||_ Soil | HopsMalt, Water
+lm(Quality ~ Soil + HopsMalt,beer_data)
+```  
+O esperado é que a estimativa do efeito (coeficiente) seja próxima de zero (associação inexistente) uma vez que condicionamos ela às covariáveis indicadas. Verificamos que isso acontece para o exemplo:  
+
+```r
+#(...)
+#Coefficients:
+#(Intercept)        Water         Soil  
+#    0.03709      0.02105      0.28069  
+
+#(...)
+#Coefficients:
+#(Intercept)         Soil     HopsMalt  
+#    0.05652      0.08347      0.15118  
+```
+![](images/chap3-dag.png)  
+
+Uma vez que aceitamos o DAG como adequado, podemos usá-lo como referência para calcular estimativas não-enviesadas (unbiased estimates). Isso significa que estamos ajustando o valor final de acordo com vias pelas quais a informação pode correr nas covariáveis examinadas.  
+A função `adjustmentSets` quais conjuntos de covariáveis podemos incluir para obter estimativas não enviesadas. A função `ggdag_adjustment_set` informa visualmente quais caminhos estamos fechando ao condicionarmos num grupo de covariáveis. Por vezes (como no exemplo), temos conjuntos alternativos:  
+
+```r
+p2 <- ggdag_adjustment_set(dagified,exposure="HopsMalt",outcome="Quality")
+multiplot(p1,p2)
+adjustmentSets(dagified)
+# { Water }
+# { Soil }
+```
+Um deles requer condicionar à água e outro requer condicionar ao solo. Os grafos plotados indicam o fluxo de informação em cada conjunto de ajustes. Em geral, reportamos os valores para uma das vias ou ambos os caminhos.  
+
+Podemos imaginar um novo fator, que interfere na pureza final e também na dos ingredientes sólidos.  
+
+```r
+dagified2 <- dagify(Quality ~ Water + HopsMalt + A, 
+                   HopsMalt ~ Soil + A , Soil ~ Water,
+                   exposure = "HopsMalt",
+                   outcome = "Quality")
+                   
+p3 <- ggdag(dagified2) + theme_dag_blank()
+p4 <- ggdag_adjustment_set(dagified2,exposure="HopsMalt",outcome="Quality")
+multiplot(p4,p3)
+```  
+
+![](images/chap3-dag2.png)  
+
+Agora, deveríamos testar as seguintes condições:  
+
+```r
+beer_data2 <- simulateSEM(dagified2,b.lower = 0.20,b.upper=0.25)
+#A _||_ Soil
+lm(A ~ Soil,beer_data2)
+#A _||_ Water
+lm(A ~ Water,beer_data2)
+#HopsMalt _||_ Water | Soil
+lm(HopsMalt ~ Water + Soil,beer_data2)
+#Quality _||_ Soil | A, HopsMalt, Water
+lm(Quality ~ Soil + A,beer_data2)
+```
+
+As possibilidades de ajuste para estimativa não enviesada são:  
+```r
+adjustmentSets(dagified2)
+# { A, Water }
+lm(Quality ~ HopsMalt + Water + A,beer_data2)
+# { A, Soil }
+lm(Quality ~ HopsMalt + Soil + A,beer_data2)
+```
+
+---  
+A prática (comum) de introduzir todas as covariáveis no modelo de regressão para controle resulta em estimativas que não correspondem às desejadas. O uso rigoroso do controle de confundidores na análise multivariada evita a interpretação errônea de coeficientes.  
+---  
+
+
+\pagebreak
 
 #### Mediação e Moderação
 
@@ -252,6 +313,55 @@ A inclinação (*slope*), que antes era uma constante (linha reta) $\beta_{1}$ p
 Esses detalhes tornam a interpretabilidade dos coeficientes difícil. Normalmente, são usadas heurísticas, como centralizar os dados em torno da média, para simplificar o contexto.  
 
 \pagebreak
+
+#### Colinearidade
+
+Verificar se há colinearidade (relação linear) entre variáveis preditoras. Se as variáveis preditoras são altamente correlacionadas, é possível que estejamos fornecendo informações redundantes ao modelo, o que é nocivo. Existem alguns indicadores que podem ajudar a tomar essa decisão.  
+
+Comumente, observamos o VIF *Variance inflation factor*.
+
+**VIF**
+
+A intuição aqui é de que se as variáveis são muito relacionadas $X_{1} \sim X_{2}$, os valores de $\beta$ estimados em $Y = \beta_{1}X_{1} + \beta_{2}X_{2} + ...$ não serão únicos. Por exemplo, poderíamos trocar $\beta_{1}$ por $\beta_{2}$ e a solução permaneceria praticamente inalterada. O VIF estima a colinearidade em relação à combinação de outros preditores usados.      
+   
+Para calcular o VIF referente a um preditor $X'$, ajustamos uma nova regressão, em que a variável resposta é $X'$ e as preditoras são as outras variáveis preditoras. O VIF é dado por: $\frac{1}{1-R^{2}}$, sendo $R^{2}$ o coeficiente de determinação da regressão, como calculamos antes.  
+Valores de VIF altos refletem valores de $R^2$ altos, isto é: a combinação linear de outras variáveis explicaria muito bem a variável preditora em questão.
+Não há regra canônica, porém VIF > 10 ($R^{2} = 0.9$) e VIF > 5($R^{2} = 0.8$) são citados como fronteiras indicando colinearidade inaceitável.  
+
+A função **vif** do pacote *car* implementa o procedimento. Ajustamos uma regressão linear múltipla para o comprimento das sépalas no dataset *iris* a partir de outras 3 variáveis. Podemos verificar que há colinearidade ($VIF_{pet.leng.}\sim 15.1$, $VIF_{pet.wid.}\sim 14.2$) entre largura e comprimento da pétala. Por outro lado, a colinearidade com o comprimento da sépala é baixa ($VIF_{pet.wid.} \sim 1.3$). 
+ 
+```r
+    >car::vif(lm(Sepal.Length ~ Petal.Length + Petal.Width + Sepal.Width,    
+        data=iris))
+    Petal.Length  Petal.Width  Sepal.Width 
+       15.097572    14.234335     1.270815 
+```
+
+Se há colinearidade, é recomendado remover um dos preditores para eliminar a redundância. Como sempre, a inspeção visual ajuda.  
+
+```r
+    >pairs(iris[,1:4])
+```
+![](images/chap3-irispairs.png)
+
+Como podemos ver, usar duas variáveis preditoras (regressão múltipla) não colineares aumenta a performance do modelo em relação à regressão simples $(R^{2} \sim 0.84\enskip vs\enskip R^{2} = 0.76)$.  
+
+```r
+    >lm(Sepal.Length ~ Petal.Length,    
+    +         data=iris) %>% summary    
+
+    (...)
+    Multiple R-squared:   0.76,	Adjusted R-squared:  0.7583 
+    F-statistic: 468.6 on 1 and 148 DF,  p-value: < 2.2e-16    
+
+    >lm(Sepal.Length ~ Petal.Length + Sepal.Width,    
+    +         data=iris) %>% summary    
+    (...)
+    Multiple R-squared:  0.8402,	Adjusted R-squared:  0.838 
+    F-statistic: 386.4 on 2 and 147 DF,  p-value: < 2.2e-16
+```
+\pagebreak
+
 
 #### Medidas latentes e análise fatorial
 

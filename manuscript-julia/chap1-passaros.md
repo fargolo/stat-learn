@@ -156,7 +156,7 @@ Em Julia, podemos definir a função e observar a probabilidade associada a algu
 
 ```julia
 mgauss(x) = 0.4*exp((-1)*(x^2)/2)
- mgauss(-2), mgauss(-1), mgauss(0) , mgauss(1) , mgauss(2)
+mgauss(-2), mgauss(-1), mgauss(0) , mgauss(1) , mgauss(2)
     (0.054134113294645084, 0.2426122638850534, 
     0.4, 0.2426122638850534, 0.054134113294645084)
 ```
@@ -417,7 +417,7 @@ $$\int_{-\infty}^{-36.51}f(t)dt$$
 Em julia, a função nativa *cdf* faz o trabalho sujo de calcular a integral:
 
 ```julia
- Using Distributions
+using Distributions
 cdf(TDist(29),-36.51)
     4.262182718504655e-2
 ```
@@ -439,13 +439,13 @@ Ao fazer esse ajuste, chamamos o teste de bicaudal.
 Sabendo da simetria na distribuição t, podemos fazer então usar o seguinte truque:
 
 ```julia
- 2*cdf(TDist(29),-36.51)
-    8.52436543700931e-26
+2*cdf(TDist(29),-36.51)
+  8.52436543700931e-26
 ```
 
 Não é possível calcular diretamente as probabilidades para t = 36.51, pois Julia aproxima a integral acima $(p \sim 1 - 4.262^{-26}) \sim 1$.
 ```julia
- cdf(TDist(29),36.51)
+cdf(TDist(29),36.51)
     1.0
 
 ```
@@ -500,7 +500,7 @@ $$\sigma_{pooled} = \sqrt{ \frac{(n_{1}-1)\sigma_{1}^{2}+(n_{2}-1)\sigma_{2}^{2}
 Considerando $(n_{1}-1) + (n_{2}-1)$ graus de liberdade, calculamos a estatística t e o valor p correspondente para nossos graus de liberdade. Usando as amostras criadas anteriormente, correspondentes às  barras cinza (A) e azul(B), vamos plotar os histogramas.
 
 ```julia
- @df stack(galapagos_birds[:,[:x1,:x2]]) groupedhist(:value, group = :variable,
+@df stack(galapagos_birds[:,[:x1,:x2]]) groupedhist(:value, group = :variable,
     bar_position = :dodge,bins=50,title=("Darwin Finches"),
     xlabel="Break Size",ylabel="Count",legend=false)
 
@@ -533,7 +533,7 @@ A estatística t correspondente à diferença observada, considerando uma distri
 ```julia
     # Diferenca dividida por erro padrao
  # t-statistic  
- t = (mean_diff - expected_diff)/ (sd_pool * sqrt(1/length(a) + 1/length(b))) 
+t = (mean_diff - expected_diff)/ (sd_pool * sqrt(1/length(a) + 1/length(b))) 
 ```
 Valor p para hipótese bicaudal (resultados extremos considerando a possibilidade de a diferença ser maior ou menor que 0):
 
