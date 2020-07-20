@@ -19,13 +19,11 @@ O arcabouço descrito no capítulo anterior é suficiente para produzir um traba
 
 Ao seguir receitas pré-definidas (formulação de $H_{0}$ e $H_{1}$, cálculo de estatísticas e valores p), um texto parece estar em conformação com os padrões acadêmicos, mesmo que a hipótese elementar em torno do objeto de pesquisa seja simplória. Assim, inadvertidamente, priorizamos a forma e relegamos a segundo plano o miolo de propostas científicas.  
 
-Trabalhos de pouca originalidade recebem grande atenção pelo rigor metodológico (e.g. tamanho amostral grande, valor p baixo), enquanto criativos e revolucionários experimentos menores levam anos ou décadas até atingirem a comunidade.  
 Outro efeito colateral é a busca por valores p que rejeitem $H_{0}$, desprezando precedentes teóricos e premissas probabilísticas (múltiplos testes).  
 
 A difícil interpretabilidade do valor p e as armadilhas frequentes envolvidas no processo de inferência levaram a comunidade científica a questionar a hegemonia desse parâmetro. Há uma presente tendência a abandonar o valor p e o limite $p<0.05$ como critérios canônicos.  
 
-Vamos começar conhecer argumentos contundentes ao método hipotético dedutivo.  
-Por enquanto, basta sabermos que é sempre vantajoso obter outras informações, complementares ou alternativas.     
+Vamos conhecer argumentos formais contra o método hipotético dedutivo nas ciências. Por enquanto, basta sabermos que é sempre vantajoso obter outras informações, complementares ou alternativas.     
 
 Neste capítulos, vamos aprender a estimar (1) a magnitude da diferença entre duas amostras e (2) quão relacionados são valores pareados (e.g. peso e altura).  
 
@@ -53,7 +51,8 @@ Uma medida bastante popular é o *D de Cohen (Cohen's D)*.
 Uma torcedora de futebol conta (feliz) a um amigo que seu time favorito venceu com placar de 4 $\times$ 1 (gols). Porém, esse amigo acompanha basquetebol e está acostumado a placares como 102 $\times$ 93 (cestas).  
 Como é possível comparar gols com cestas? Qual vitória representa pontuações mais discrepantes: 4 $\times$ 1 ou 102 $\times$ 93?  
 
-O problema aqui é que as pontuações se comportam de maneiras diferentes entre os esportes. O D de Cohen consiste em expressar essa diferença em desvios-padrão. Bastante simples:  
+O problema aqui é que as pontuações se comportam de maneiras diferentes entre os esportes. Os placares no basquete possuem médias e dispersões muito maiores.  
+O D de Cohen consiste em expressar essa diferença em desvios-padrão. Bastante simples:  
 $$D_{cohen} = \frac{\mu_{1}-\mu_{2}}{\sigma_{pooled}}$$  
 
 Usando a biblioteca *effects*, podemos calcular diretamente:   
@@ -77,7 +76,7 @@ Cohen propôs algumas faixas para classificar a magnitude desses efeitos:
 |---------|-----------|---------|----------|
 |Cohen's D|  0-0.2    | 0.2-0.5 | 0.5 - 0.8|
 
-Assim, podemos atualizar nossos resultados anteriores, reportando também o tamanho de efeito da diferença e seu intervalo de confiança.  
+Assim, podemos atualizar nossos resultados anteriores, reportando também o tamanho de efeito da diferença e seu intervalo de confiança. Se as distribuições forem da mesma família, temos uma estimativa comparável entre contextos. 
 
 ## Correlações
 
@@ -503,11 +502,11 @@ Devemos então nos preocupar em saber se o modelo linear encontrado é bom na pr
 
 #### Avaliando performance
 
-Existem diferentes parâmetros para avaliar a performance de um modelo. Boa parte da pesquisa em aprendizagem estatística hoje consiste em implementar heurísticas que levem a melhores indicadores de performance.  
+Existem diferentes parâmetros para avaliar a performance de um modelo. Em geral, eles buscam quantificar o quanto os resultados do modelo se distanciam de resultados ideais.   
 
 Para regressão linear, o $R^{2}$ (coeficiente de determinação) é um coeficiente bastante usado. Expressa a proporção entre **(1)** variância explicada pelo modelo e **(2)** variação total. Chamamos de resíduo(ou erro) a diferença entre valores preditos e valores reais.  
 
-**(1)** Para capturar a magnitude dos erros do modelo, somamos o quadrado de todos os resíduos *(sum of squared residuals, SSR)* em relaçã aos valores preditos. Sejam $y_{i}$ as observações e $\hat{y_{i}}$ as predições:  
+**(1)** Para capturar a magnitude dos erros do modelo, somamos o quadrado de todos os resíduos *(sum of squared residuals, SSR)* em relação aos valores preditos. Sejam $y_{i}$ as observações e $\hat{y_{i}}$ as predições:  
 $$SSR=\sum_{i=1}^{n} e_{i}^{2}=\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}$$  
 
 **(2)** A variabilidade total é quantificada pela soma do quadrado dos desvios em relação à média *(total sum of squares, TSS)*, um termo que vimos no cálculo da variância (segundo momento):
@@ -652,7 +651,7 @@ Como a relação é perfeitamente monotônica, os pares ordenados $(x_{i},y_{i})
       1 
 ```
 
-O coeficiente $\rho$ de Spearman é preferível quando as medidas diferem bastante de uma distribuição normal. Também oferece robustez quando é necessário lidar com *outliers*.    
+O coeficiente $\rho$ de Spearman é preferível quando as medidas parecem diferir muito quanto à família da distribuição de origem. Especialmente, quando a média não parece corresponder bem ao centro das distribuições. Lembre-se que de o coeficiente de Pearson é baseado nos desvios em relação à média em ambas as amostras.    
 
 [^20]: Como observamos no gráfico, a correlação linear não é tão alta. O coeficiente se aproxima de 1 $\rho \sim 0.850$ pois os desvios superiores compensam simetricamente os inferiores. O exemplo reforça a importância de plotar os dados para um melhor entendimento (ver Quarteto de Anscombe). 
 
@@ -667,7 +666,7 @@ Então, calculamos a probabilidade de nossas observações acontecerem caso a hi
 Desta vez, usaremos a estatística U. Lembremos que a estatística t era calculada com base em parâmetros extraídos da amostra:  
 $$t = Z/s=(\mu'-\mu)/\frac{\sigma}{\sqrt{n}}$$
 
-A estatística U não depende de parâmetros, sendo calculada com base em cada observação.  
+A estatística U não depende de parâmetros (e.g. $\mu$, $\sigma$), sendo calculada com base em cada observação.  
 
 Primeiro, calculamos os ranks de cada medida $r_{i}$ unindo as observações das amostras A e B, de tamanhos amostrais $n_{a}$ e $n_{b}$ em apenas um conjunto $(N_{tot} = n_{a} + n_{b})$.  
 

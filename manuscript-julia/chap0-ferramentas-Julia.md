@@ -4,7 +4,7 @@ output:
   html_document: default
 ---
 
-# Capítulo 0 : Ferramentas (Julia)
+# Capítulo 0 : Julia
 
 ### Instalação  
 

@@ -1,3 +1,3 @@
 
 
-pandoc +RTS -K512m -RTS *.md --to latex --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output stat-learn.pdf --highlight-style tango --pdf-engine pdflatex --variable graphics=yes --variable 'geometry:margin=1in' --variable 'compact-title:yes'
+pandoc +RTS -K512m -RTS *.md --to latex --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output stat-learn.pdf --highlight-style tango --pdf-engine pdflatex --variable graphics=yes --variable 'compact-title:yes'

@@ -45,7 +45,7 @@ Darwin levou aproximadamente 20 anos entre a concepção inicial da ideia (1838)
 A observação dos pássaros na ilha era uma evidência, porém não confirmava a teoria. Darwin então traçou um plano de investigação para testar diversas consequências distintas da teoria.  
 Distribuição geográfica, variabilidade fenotípica (hibridização e fertilização cruzada), variação sob domestição... Será que experimentos nessas áreas obedeceriam as predições?  
 
-As duas décadas foram dedicadas a contatar e interagir com especialistas de diferentes áreas (da botânica à criação de pombos e coelhos). As evidências acumuladas falaram fortemente em favor da explicação darwiniana, que descrevia campos diferentes num modelo abrangente e simples. O trabalho de formiga consistia em explorar dados e em convencer outros cientistas a aceitarem a ideia. Isto durou até que Alfred Wallace, antecipou algumas das consequências mais contundentes em 1855, as quais Darwin tinha evitado atacar diretamente. ("On the Law which has Regulated the Introduction of New Species", Annals and Magazine of Natural History).
+As duas décadas foram dedicadas a contatar e interagir com especialistas de diferentes áreas (da botânica à criação de pombos e coelhos). As evidências acumuladas falaram fortemente em favor da explicação darwiniana, que descrevia campos diferentes num modelo abrangente e simples. O trabalho de formiga consistia em explorar dados e em convencer outros cientistas a aceitarem a ideia. Isto durou até que Alfred Wallace antecipou algumas das consequências mais contundentes em 1855, as quais Darwin tinha evitado atacar diretamente. ("On the Law which has Regulated the Introduction of New Species", Annals and Magazine of Natural History).
 
 Charles Lyell era um geologista, amigo de Darwin, e foi quem incentivou fortemente a publicação de uma exposição sólida da teoria. A teoria concebida 1938 para a origem das espécies poderia estar errada, ainda que as evidências do Beagle fossem promissoras. O estudo das hipóteses secundárias esclareceria a veracidade da teoria. As confirmações experimentais deram segurança para uma defesa convincente.  
 
@@ -79,7 +79,7 @@ Theophrastus(c. 371–c. 287 AC) e Eudemus(400 AC) originalmente delinearam o *m
 
 K. Popper foi um líder da revitalização do método hipotético dedutivo no século passado. Para ele, a dificuldade em gerar hipóteses testáveis e falseáveis sinalizava uma evidente fragilidade nas teorias. A liberdade para testar a veracidade de teorias é uma característica marcante da ciência em oposição a práticas esotéricas e/ou baseadas em autoridade.  
  
-Popper, atacou severamente o materialismo dialético de Karl Marx, assim como a teoria de evolução por seleção natural de Charles Darwin e a psicanálise.  
+Popper atacou severamente o materialismo dialético de Karl Marx, assim como a teoria de evolução por seleção natural de Charles Darwin e a psicanálise.  
 
 Estes ramos do conhecimento humano encontraram dificuldades com o critério de demarcação proposto. Marx previu que a revolução aconteceria em uma nação industrializada, através da classe operária e outros eventos que não se concretizaram. Seus seguidores usaram hipóteses *ad-hoc* para justificar as observações mantendo as previsões feitas à luz do materialismo dialético.  
 A teoria da evolução por seleção natural de Darwin era amparada em muitos exemplos de reprodução impossível (e.g. recomposição da trajetória evolutiva em fósseis). A psicanálise também sofreu duras críticas, em virtude da irrefutabilidade de seus pilares centrais.
@@ -150,8 +150,16 @@ $$f(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}}$$
 
 Em que $e$ é número de Euler $(e \sim 2.72…)$.
 
+---  
+
+O valor $\frac{1}{\sqrt{2\pi}}$ surge como normalizador para avaliarmos a função como densidade de probabilidade (A integral de $-\infty$ a $+\infty$ deve ser 1). O valor $\pi$ surge da integral de Gauss para $e^{-x^{2}}$ e decorre do fato de $2\pi i$ ser período da função $e^{x}$:
+$$\int_{-\infty}^{+\infty} e^{-x^{2}}dx = \sqrt{\pi}$$   
+
+---  
+
+
 **Intuições**
-A fórmula consiste em um fator, $\frac{1}{\sqrt{2\pi}}$ (aproximadamente 0.4), multiplicando o resultado da exponencial.
+A definição possui um fator constante $\frac{1}{\sqrt{2\pi}}$ (aproximadamente 0.4), multiplicando o resultado da exponencial no formato $e^{-x}$.
 Em Julia, podemos definir a função e observar a probabilidade associada a alguns pontos em torno do máximo ($f(0)=0.4$):
 
 ```julia
@@ -171,7 +179,7 @@ plot(gauss_values,xaxis=("Gaussian"),leg=false)
 
 Observamos como a distribuição se dá a partir da equação.
 
-Já que $x^{2}$ retorna apenas valores positivos, $-x^{2}$ sempre retorna negativos. Nossa função gera valores entre 0 e 1 exponenciando $(e \sim 2.718...)$ a um fator negativo quadrático $(y = 0.4*e^{-x^{2}/2})$.
+Já que $x^{2}$ retorna apenas valores positivos, $-x^{2}$ sempre retorna negativos. A função retorna valores entre 0 e 1 exponenciando $(e \sim 2.718...)$ a um fator negativo quadrático $(y \sim 0.4*e^{-x^{2}/2})$.
 
 Notamos também que valores próximos ao centro $(x \sim \mu = 0)$ fazem com que o expoente de se aproxime de 0, maximizando nossa função: $f(0) = 0.4 * e{-x^{2}/2} = 0.4 * e^{0} = 0.4)$. O valor obtido (0.4) corresponde ao topo da curva no gráfico acima (linha rosa).
 
@@ -193,31 +201,28 @@ Usamos a notação $N \sim (\mu, \sigma^{2})$ para descrever uma distribuição 
 
 $$f(x) = \frac{1}{\sqrt{2\pi\sigma^{2}}}e^{ -\frac{(x-\mu)^{2}}{2\sigma^{2}}}$$
 
----
-
-O valor $\frac{1}{\sqrt{2\pi}}$ surge como normalizador para avaliarmos a função como densidade de probabilidade (A integral de $-\infty$ a $+\infty$ deve ser 1). O valor $\pi$ surge da integral de Gauss para $e^-x^{2}$ e decorre do fato de $2\pi i$ ser período da função $e^{x}$:
-$$\int_{-\infty}^{+\infty} e^{-x^{2}}dx = \sqrt{\pi}$$
-
----
 
 
 *Por que usamos a distribuição normal?*  
 Distribuições binomiais grandes e moedas são tão importantes? Os lançamentos são exemplo de uma classe maior de fenômenos. Cada série de resultados é composta por muitos eventos quase idênticos (lançamentos individuais).  
 
-#### Entropia  
+#### Entropia   
 
-Em ciências naturais, raramente conhecemos de antemão os mecanismos pelos quais as observações são geradas. Consequentemente, não sabemos a distribuição probabilística que eles obedecem. Um dado justo tem probabilidades equivalentes entre os valores possíveis (distribuição uniforme). Um dado viciado tende a cair com mais frequência em determinados valores (picos e vales).  
+Em ciências naturais, raramente conhecemos de antemão os mecanismos pelos quais as observações são geradas. Consequentemente, não sabemos a distribuição probabilística que elas obedecem. Um dado justo tem probabilidades equivalentes entre os valores possíveis (distribuição uniforme). Um dado viciado tende a cair com mais frequência em determinados valores (picos e vales).  
 Como veremos no capítulo a seguir, podemos descrever uma distribuição através das relações entre os valores possíveis e o centro. São os *momentos*. O primeiro momento reflete a posição relativa do centro (média), enquanto o segundo reflete a dispersão dos valores (variância). Conhecer o mecanismo natural de origem permitiria especificar distribuições diretamente, entretanto precisamos enfrentar as limitações do mundo real.   
 
-*Se temos idéia apenas da dispersão (variância) de uma distribuição, qual o palpite mais conservador possível?*  
+*Se sabemos apenas o centro (média) e a dispersão (variância) de uma distribuição, qual o palpite mais conservador possível?*  
 
-Considerando números reais (domínio em $[-\infty,+\infty]$) e uma dispersão (segundo momento) definida, a distribuição normal é aquela com máxima entropia em relação às outras. A grosso modo, isso quer dizer que é a forma mais conservadora de descrever qualquer distribuição oculta obedecendo essas restrições (contínua, com dispersão definida).  
+Considerando números reais (domínio em $[-\infty,+\infty]$), a distribuição normal é aquela com máxima entropia em relação às outras. A grosso modo, isso quer dizer que é a descrição usando menos informação quando comparada com qualquer outra distribuição obedecendo essas restrições (média e variância definidas).  
 
-A Gaussiana é aquela que introduz menos informação extra em relação às possíveis distribuições verdadeiras. Pelo **Princípio da Máxima Entropia**, é a que melhor  descreve os dados *a priori*, quando apenas temos idéia da média e da variância.
+A Gaussiana é aquela que introduz menos informação extra em relação às possíveis distribuições verdadeiras. Pelo **Princípio da Máxima Entropia**, é a que melhor  descreve observações *a priori*, quando apenas temos idéia da média e da variância. Essa é uma justificativa razoável para adotarmos gaussianas como ferramentas. A prova é razoavelmente complexa, envolvendo cálculo de variações para otimizar a expressão:  
+$$H(x) = -\int_{-\infty}^{+\infty}p(x) -\text{log}\ p(x) dx$$  
+
 
 #### O Teorema do Limite Central
 
-Se somarmos muitas distribuições de uma mesma família, a distribuição resultante se aproxima de uma normal. Sem muitas explicações, assumimos que isso era verdade para moedas.
+Outra ligação entre a distribuição normal e as ciências naturais se dá pelo teorema do limite central.  
+Se somarmos muitas distribuições de uma mesma família, a distribuição resultante se aproxima de uma normal. Sem muitas explicações, assumimos que isso era verdade para moedas.  
 Exemplos ajudam a ganhar intuição. Ao lançar um dado justo de 6 faces, temos probabilidade de $\frac{1}{6}$ em cada resultado.
 
 ![](images/chap1-dices.png)
@@ -250,14 +255,13 @@ O valor esperado é, como diz a intuição, a soma dos valores esperados em cada
 $E(X) = \sum_{i=1}^{11} E(U_{i} \sim (1,6)) = 11*3.5 = 38.5$
 
 O valor 38.5 corresponde aproximadamente ao centro da distribuição resultante  (Figura 2, canto inferior direito)
-Entretanto, a distribuição muda de forma! Sem muito esforço, é notável a semelhança com a curva normal, com valores extremos menos frequentes e simetricamente afastados da média (valor esperado), que define o valor máximo.
+É notável a semelhança com a curva normal, com valores extremos menos frequentes e simetricamente afastados da média (valor esperado), que define o valor máximo.  
 
 É possível provar que a soma de muitas distribuições de uma mesma família converge para a distribuição normal em qualquer caso. Desde que estas sejam independentes. A esse resultado damos o nome de Teorema do Limite Central. A prova formal pode ser consultada em outro local, [^6] mas voltaremos a ela.
 Este resultado tem uma sutil importância para o estudo dos fenômenos naturais através de experimentos.
 
 [^6]: Yuval Filmus. 2010. Two Proofs of the Central Limit Theorem http://www.cs.toronto.edu/~yuvalf/CLT.pdf . Ela se dá mostrando a convergência de momentos entre a soma e gaussiana, um conceito que entenderemos no capítulo a seguir.
 
-### Ciência experimental e o Teorema do Limite Central
 
 Muitos objetos de interesse para os cientistas são manifestações de fenômenos envolvendo múltiplos elementos. Um exemplo trivial está na cor da pele de seres humanos. Uma parte considerável depende do número de genes herdados relacionados à melanina. Eles se comportam de maneira aditiva.
 Assim, cada variante de gene extra pode contribuir para a cor final com X unidades na escala para medir pigmentação.
@@ -268,9 +272,7 @@ A cor de um indivíduo será influenciada pela soma dessas distribuições, o qu
 
 Podemos comparar grupos quanto a medidas fenotípicas finais (cor da pele) sem saber detalhes sobre as relações entre cada gene e seus mecanismos de expressão e regulação.
 
-A distribuição final de melanina vem da soma distribuições individuais semelhantes e tenderá a ser normal.
-
-Como vimos, o mesmo é válido para quaisquer distribuições subjacentes: se elas forem gama, uniformes ou de Poisson, a distribuição da soma ainda tenderá à normalidade.
+A distribuição final de melanina vem da soma distribuições individuais semelhantes e tenderá a ser normal. Como vimos, o mesmo é válido para quaisquer distribuições subjacentes: se elas forem gama, uniformes ou de Poisson, a distribuição da soma ainda tenderá à normalidade.
 
 A figura 2 mostra a soma de distribuições uniformes para dados honestos, evidenciando que esta se aproxima de uma normal.
 
@@ -296,7 +298,7 @@ plot(p1...,p2,layout=(4,3))
 
 
 Novamente, verificamos que a soma começa a ser simétrica em torno da média, com formato de sinos (base alargada).
-Muitos fenômenos observáveis em nosso universo são naturalmente compostos por múltiplos elementos semelhantes. Especialmente em sistemas biológicos, há redundância de componentes e um objeto de interesse para cientistas é resultado da combinação de muitas variáveis subjacentes. O teorema do limite central permite que utilizemos distribuições normais para uma grande variedade de problemas. Ainda que as distribuições subjacentes sejam desconhecidas, o efeito resultante de uma grande combinação terá distribuição gaussiana em muitos casos.
+Muitos fenômenos observáveis em nosso universo são naturalmente compostos por múltiplos elementos semelhantes. Especialmente em sistemas biológicos, há redundância de componentes e um objeto de interesse para cientistas é resultado da combinação de muitas variáveis subjacentes. 
 
 \pagebreak
 

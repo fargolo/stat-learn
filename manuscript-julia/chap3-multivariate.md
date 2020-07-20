@@ -154,7 +154,7 @@ dagified2 <- dagify(Quality ~ Water + HopsMalt + A,
                    exposure = "HopsMalt",
                    outcome = "Quality")
                    
-p3 <- ggdag(dagified2) + theme_dag_blank()
+p3 <- ggdag(dagified2)  + theme_dag_blank()
 p4 <- ggdag_adjustment_set(dagified2,exposure="HopsMalt",outcome="Quality")
 multiplot(p4,p3)
 ```  
