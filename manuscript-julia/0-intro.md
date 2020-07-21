@@ -54,66 +54,80 @@ Estas soluções usam modelos estatístico-probabilísticos para modelar medidas
 
 [^1]:Tábula Esmeralda. Tradução a partir de http://webapp1.dlib.indiana.edu/newton/mss/dipl/ALCH00017 Isaac Newton. "Keynes MS. 28". The Chymistry of Isaac Newton. Ed. William R. Newman. June 2010. Acessado em Junho de 2020   
 
-O eixo filosófico deste texto está na investigação de fênomenos naturais universais (ciência). 
-Ele introduz tópicos em filosofia, estatística e probabilidade usados na investigação científica. 
-Os temas de aprendizagem de máquina e inteligência artificial estão ligados aos métodos aprendidos. A difícil interpretabilidade de alguns desses modelos implica em questões de ordem prática (e ética) específicas.  
-
-**Adinkras**  
-
-As Adinkras, como a ave que ilustra a capa (Sankofa) são símbolos na cultura Akan. Eles representam conceitos e conhecimentos populares específicos, conectados à sua forma. Físicos teóricos também adotaram o nome para grafos representando as regras formais que regem partículas em modelo supersimétricos da gravidade.  
-   
-Um dos problemas na primeira versão foi encontrar títulos e temas adequados, que sintetizassem cada capítulo. Encontrar os Adinkras e os conceitos que eles representam foi um fortuito acontecimento. Os textos passam a estar ancorados a estes símbolos.  
-
-1 . **ADINKRA HENE**   
-
-Formado por círculos concêntricos, o Adinkra Rei é relacionado à inspiração e à criação dos outros Adrinkras.  
-São introduzidas intuições básicas em estatística descritiva e probabilidade (média e variância). Partindo do estudos de Arquimedes sobre alavancas, formas de descrever amostras e variáveis aleatórias usando intuições básicas. Aborda também a relação entre ciências empíricas e a distribuição normal.  
-
-
-2 . **DWENNIMMEN** 
-
-Representa visão de dois carneiros lutando. O Chifres de Carneiro simbolizam força e humildade, pois carneiros lutam ferozmente contra outros pares e predadores, porém aceitam o abate quando em cativeiro.  
-A identidade da ciência é fortemente ligada ao uso criterioso de experimentos para testar hipóteses. Elas abrem espaço para falhas.    
-O *segundo capítulo* acompanha Charles Darwin em Galápagos. Darwin esperou 20 anos entre a concepção da teoria e sua publicação. Trabalhou incansavelmente para investigar se suas impressões não eram falsas. Este capítulo ilustra como o racional hipotético-dedutivo funciona para estudar hipóteses científicas. O teste *t* de Student é aplicado para comparação dos bicos de aves em Galápagos.  
-
-3 . **FUNTUNFUNEFU-DENKYEMFUNEFU**   
-Os crocodilos que compartilham um estômago, mas que lutam por comida. Simbolizam unidade e cooperação. O *terceiro capítulo* destaca o papel descritivo e preditivo de teorias. Além de testar hipóteses, criamos modelos para as relações entre medidas. Aprenderemos correlações lineares ($\rho$ de Pearson) e tamanho de efeito (*D de Cohen*). Também são introduzidas alternativas não-paramétricas: $\rho$ de Spearman e teste U de Mann-Whitney).  
-Usamos regressão para fazer predições usando *formas fechadas*. Resolvendo analiticamente as equações do modelo, encontramos uma estimativa única para os parâmetros envolvidos.   
-
-
-4 . **AKOMA NTOSO** 
-Os corações conectados simbolizam concordância e entendimento mútuo. Com muitas variáveis (análise multivariada), grafos são a abstração base para relacionarmos conceitos. Estudamos regressão múltipla e sobre como lidar com covariáveis segundo um diagrama causal. O *quarto capítulo* introduz uma implementação formal do abrangente paradigma filosófico para **causalidade**. Colinearidade, confundidores, mediação e moderação. Para redução de dimensões e abordagem de medidas latentes, falaremos em análise fatorial, análise de componentes principais (PCA) e sua generalização em equações estruturais (SEM).   
-
-
-5 . **NEA ONNIM NO SUA A, OHU**
-"Aquele que não conhece pode conhecer pela aprendizagem". O *quinto capítulo* introduz redes neurais. Começamos da inspiração biológica dos neurônios artificiais e da primeira máquina inteligente da história: o *Mark I Perceptron*. Codificamos um Mark I virtual, que usa uma nova forma de estimar parâmetros: *gradient descent*. Ao invés de usar uma fórmula fechada, usamos derivativas para 'caminhar' em direção ao mínimo progressivamente.  
-
-Redes Neurais expandem o poder de um neurônio com múltiplos nodos para a construção de sistemas preditivos complexos. Redes profundas incluem camadas sucessivas, permitindo transformações em sequência para resolver classes mais gerais de problemas. Entendemos como os neurônios podem propagar erros aos outros, otimizando gradientes em conjunto com o mecanismo de *backpropagation*. Também codificaremos uma rede neural, Mark II.  
-
-
-6 . **SANKOFA** (San - Voltar; Ko - Ir ; Fa - Procurar, pegar)  
-
-O Adikra está ligado a retornar ao passado e aprender com ele. Modelos Bayesianos incorporam informações prévias (*prior*) em sua formulação. 
- O *sexto capítulo* analise o suposto embate entre as escolas de probabilidade **frequencista** e **bayesiana**. O contexto é dado por alternativas ao método hipotético dedutivo: Carnap demonstra a dificuldade de refutações, Feyerabend propõe uma anarquia epistemológica amparada em fatos históricos e W. van Quine pinta um sistema entrelaçado para teorias, hipóteses e observações. Reabordamos alguns exemplos anteriores usando Stan para inferência bayesiana.  
-Exploramos uma terceira forma de estimar parâmetros. Sem fórmulas fechadas, usamos o poder das simulações estocásticas (*Markov Chain Monte Carlo*).  
-
+Este texto introduz tópicos em filosofia, estatística e probabilidade usados na investigação científica. 
+Os temas de aprendizagem de máquina e inteligência artificial estão ligados aos métodos aprendidos.   
 
 ## Prefácio à segunda edição  
 
 Aproximadamente um ano se passou desde o lançamento da 1ª edição. Algumas modificações importantes foram incorporadas.  
 
-**Julia** foi incluída como uma linguagem alternativa a R. É uma linguagem com uma comunidade menor, mas bastante promissora. Além de oferecer maior velocidade de execução, ela oferece uma sintaxe mais concisa para os exemplos.  
+**Julia** foi incluída como uma linguagem alternativa a **R**. É uma linguagem com uma comunidade menor, mas bastante promissora. Além de oferecer maior velocidade de execução, ela oferece uma sintaxe mais concisa para os exemplos. 
 
-Entrei em contato com o trabalho de Richard McElreath (Statistical Rethinking), o que resultou em frutos positivos: O capítulo 1 inclui uma segunda perspectiva (máxima entropia) para a utilização da distrição normal em ciências naturais. O capítulo 3 foi reestruturado para incluir uma abordagem mais geral do estudo de causalidade com grafos direcionados, usando o pacote/software **dagitty**. O capítulo 5 tem trechos relacionados à escolha de priors e avaliação de performance. 
+Um compilado com aplicações diversas dos conceitos exemplificados nos capítulos agora é disponibilizado para ambas as linguagens em um livro de receitas.   
 
-Na primeira edição, o trabalho de Ron Eglash em etnomatemática já havia influenciado no uso das cores verde e amarelo, associadas à Orumla e à divinação Iorubá, que usam números binários. Os Adinkras trazem uma nova camada à estética do livro. 
+Entrei em contato com o trabalho de Richard McElreath (Statistical Rethinking), o que resultou em frutos positivos: O capítulo 1 inclui uma segunda perspectiva (máxima entropia) para a utilização da distrição normal em ciências naturais. O capítulo 4 foi restruturado para incluir uma abordagem mais geral do estudo de causalidade com grafos direcionados, usando o pacote/software **dagitty**. O capítulo 5 tem trechos relacionados à escolha de priors e avaliação de performance.  
+
+Na primeira edição, o trabalho de Ron Eglash em etnomatemática influenciou no uso das cores verde e amarelo, associadas à Orumla e à divinação Iorubá, que usa números binários. Um dos problemas na primeira versão foi encontrar títulos que sintetizassem cada capítulo. Encontrar os Adinkras e os conceitos que eles representam foi um fortuito acontecimento.  
+
+Os Adinkras são símbolos da Akan, incorporando abstrações ligadas a seus nomes, formas e também a ditos populares e elementos da cultura.  
+
+\pagebreak  
+
+## Introdução   
+
+**Adinkras**  
+
+Os Adinkras, como a ave que ilustra a capa (Sankofa), são símbolos na cultura Akan. Eles representam conceitos e conhecimentos populares específicos, conectados à sua forma. Físicos teóricos também adotaram o nome para grafos representando as regras formais que regem partículas em modelo supersimétricos da gravidade.  
+   
+1 . **ADINKRA HENE** (Adinkra Líder/Rei) - Bases em estatística descritiva e a distribuição normal   
+![](images/adinkras/adinkrahene.png)  
+
+Formado por círculos concêntricos, é relacionado à inspiração e à criação dos outros Adrinkras.  
+São introduzidas intuições básicas em estatística descritiva e probabilidade, ligadas a conceitos elementares da física. Partindo do estudos de Arquimedes sobre alavancas, formas de descrever amostras e variáveis aleatórias usando intuições básicas. Aborda também a relação entre ciências empíricas e a distribuição normal.  
+
+
+2 . **DWENNIMMEN** (Chifres de Carneiro) - Testes de hipóteses   
+![](images/adinkras/dwennimmen.jpg)  
+
+Representa visão de dois carneiros lutando. O Chifres de Carneiro simbolizam força e humildade, pois carneiros lutam ferozmente contra outros pares e predadores, porém aceitam a morte.  
+A identidade da ciência é fortemente ligada ao uso criterioso de experimentos para testar hipóteses. Elas abrem espaço para falhas.    
+O *segundo capítulo* acompanha Charles Darwin em Galápagos. Darwin esperou 20 anos entre a concepção da teoria e sua publicação. Trabalhou incansavelmente para investigar se suas impressões não eram falsas. Este capítulo ilustra como o racional hipotético-dedutivo funciona para estudar hipóteses científicas. O teste *t* de Student é aplicado para comparação dos bicos de aves em Galápagos.  
+
+3 . **FUNTUNFUNEFU-DENKYEMFUNEFU** (Crocodilos siameses) - Correlações e comparações.  
+![](images/adinkras/FUNTUNFUNEFU-DENKYEMFUNEFU.jpg)  
+
+Os crocodilos que compartilham um estômago. Simbolizam unidade e cooperação. O *terceiro capítulo* destaca relações entre medidas.  
+Aprenderemos correlações lineares ($\rho$ de Pearson) e tamanho de efeito (*D de Cohen*). Também são introduzidas alternativas não-paramétricas: $\rho$ de Spearman e teste U de Mann-Whitney).  
+Usamos regressão para fazer predições usando *formas fechadas*. Resolvendo analiticamente as equações do modelo, encontramos uma estimativa única para os parâmetros envolvidos.   
+
+
+4 . **AKOMA NTOSO**(Corações ligados) - Análise multivariada, modelos causais, confundidores, redução de dimensões e equações esruturais.     
+![](images/adinkras/AKOMA_NTOSO.jpg)  
+
+Os corações conectados simbolizam concordância e entendimento mútuo. Com muitas variáveis (análise multivariada), grafos são a abstração base para relacionarmos conceitos. Estudamos regressão múltipla e sobre como lidar com covariáveis segundo um diagrama causal. O *quarto capítulo* introduz uma implementação formal do abrangente paradigma filosófico para **causalidade**. Colinearidade, confundidores, mediação e moderação. 
+Também falamos sobre redução de dimensões e medidas latentes, com análise fatorial, análise de componentes principais (PCA) e equações estruturais (SEM).   
+
+
+5 . **NEA ONNIM NO SUA A, OHU** - Redes neurais   
+![](images/adinkras/NEA_ONNIM_NO_SUA_AOHU.png)  
+
+"Aquele que não conhece pode conhecer pela aprendizagem". O *quinto capítulo* introduz redes neurais, que parte de várias unidades simples e vazias, processando entradas para aprender padrões. Começamos da inspiração biológica dos neurônios artificiais e da primeira máquina inteligente da história: o *Mark I Perceptron*. Codificamos um Mark I virtual, que usa uma nova forma de estimar parâmetros: *gradient descent*. Ao invés de usar uma fórmula fechada, usamos derivativas para 'caminhar' em direção ao mínimo progressivamente.  
+
+Redes Neurais expandem o poder de um neurônio com múltiplos nodos para a construção de sistemas preditivos complexos. Redes profundas incluem camadas sucessivas, permitindo transformações em sequência para resolver classes mais gerais de problemas. Entendemos como os neurônios podem propagar erros aos outros, otimizando gradientes em conjunto com o mecanismo de *backpropagation*. Também codificaremos uma rede neural, Mark II.  
+
+
+6 . **SANKOFA** (San - Voltar; Ko - Ir ; Fa - Procurar, pegar) - Modelos Bayesianos   
+![Sankofa num peso ouro. Exibido no museu de Nova York. Feita entre os séculos 18 e 19](images/adinkras/SANKOFA_public_domain.jpg)
+
+O Adikra está ligado a retornar ao passado e aprender com ele. O provérbio diz "Não há nada de errado em aprender com o passado". Modelos Bayesianos incorporam informações prévias (*prior*) em sua formulação.  O *sexto capítulo* discute o suposto embate entre as escolas de probabilidade **frequencista** e **bayesiana**. O contexto é dado por alternativas ao método hipotético dedutivo: Carnap demonstra a dificuldade de refutações, Feyerabend propõe uma anarquia epistemológica amparada em fatos históricos e W. van Quine pinta um sistema entrelaçado para teorias, hipóteses e observações. Reabordamos alguns exemplos anteriores usando Stan para inferência bayesiana.  
+Exploramos uma terceira forma de estimar parâmetros. Sem fórmulas fechadas, usamos o poder das simulações estocásticas (*Markov Chain Monte Carlo*).  
 
 
 \pagebreak
 
 ## Sumário
 
-Capítulo 1 - ADINKRAHENE - Média, variância
+Capítulo 1 - ADINKRAHENE - Centro e dispersão    
  
   * Centro e dispersão
 	* Média e variância
@@ -121,14 +135,14 @@ Capítulo 1 - ADINKRAHENE - Média, variância
   * Ciência experimental e o Teorema do limite central
   * Momentos
 
-Capítulo 2 - DWENNIMMEN - Os pássaros de Darwin e o método hipotético dedutivo  
+Capítulo 2 - DWENNIMMEN (Força e humildade) - Método hipotético dedutivo e os tentilhões de Darwin 
 
   * Pássaros em Galápagos
   * Método hipotético-dedutivo e Testes de hipótese
     * Valor p
     * Distribuição t de Student e teste t
 
-Capítulo 3 - FUNTUNFUNEFU-DENKYEMFUNEFU - Sobre a natureza das relações  
+Capítulo 3 - FUNTUNFUNEFU-DENKYEMFUNEFU (Crocodilos unidos) - Sobre associações  
 
   * Prelúdio: Quem precisa do valor p?
   * Tamanho de efeito: D de Cohen
@@ -139,7 +153,7 @@ Capítulo 3 - FUNTUNFUNEFU-DENKYEMFUNEFU - Sobre a natureza das relações
     * $\rho$ de Spearman
     * Teste U de Mann Whitney
 
-Capítulo 4 - AKOMA NTOSO - Análise multivariada, grafos e inferência causal 
+Capítulo 4 - AKOMA NTOSO (Corações conectados) - Análise multivariada, grafos e inferência causal 
 
   * Regressão múltipla
     * Colinearidade
@@ -148,7 +162,7 @@ Capítulo 4 - AKOMA NTOSO - Análise multivariada, grafos e inferência causal
     * Análise fatorial
     * Equações estruturais
     
-Capítulo 5 - NEA ONNIM NO SUA A, OHU - Neurônios
+Capítulo 5 - NEA ONNIM NO SUA A, OHU (Aquele que não conhece pode conhecer pelo aprendizado) - Neurônios
 
   * Regressão logística
   * Um neurônio artificial: O perceptron
@@ -157,7 +171,7 @@ Capítulo 5 - NEA ONNIM NO SUA A, OHU - Neurônios
   * Gradient Descent
   * Backpropagation
 
-Capítulo 6 - SANKOFA - Contexto e inferência Bayesiana  
+Capítulo 6 - SANKOFA (Voltar e buscar) - Contexto e inferência Bayesiana  
 
   * Probabilidades
     * Frequencistas e Bayesianos
@@ -196,8 +210,8 @@ Neurociências
 Matemática/computação  
 
 * Coleção '*Fundamentos da matemática elementar*'
-* Statistical Rethinking. A Bayesian Course with Examples in R and Stan, Richard McElreath.  
-* Bioestatistica sem segredos. Annibal Muniz.  
+* Statistical Rethinking. A Bayesian Course with Examples in R and Stan, Richard McElreath.
+* Bioestatistica sem segredos. Annibal Muniz.
 * What is mathematics - Courant & Robbins
 * Better Explained ( https://betterexplained.com/ )
 * http://material.curso-r.com/
