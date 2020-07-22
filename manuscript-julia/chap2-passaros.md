@@ -339,7 +339,8 @@ A estatística t correspondente à diferença observada, considerando uma distri
 ```julia
 # Diferenca dividida por erro padrao
 # t-statistic  
-t = (mean_diff - expected_diff)/ (sd_pool * sqrt(1/length(a) + 1/length(b))) 
+t = (mean_diff - expected_diff) / 
+      (sd_pool * sqrt(1/length(a) + 1/length(b))) 
 ```
 Valor p para hipótese bicaudal (resultados extremos considerando a possibilidade de a diferença ser maior ou menor que 0):
 

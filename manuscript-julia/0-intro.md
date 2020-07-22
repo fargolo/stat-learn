@@ -63,13 +63,13 @@ Aproximadamente um ano se passou desde o lançamento da 1ª edição. Algumas mo
 
 **Julia** foi incluída como uma linguagem alternativa a **R**. É uma linguagem com uma comunidade menor, mas bastante promissora. Além de oferecer maior velocidade de execução, ela oferece uma sintaxe mais concisa para os exemplos. 
 
-Um compilado com aplicações diversas dos conceitos exemplificados nos capítulos agora é disponibilizado para ambas as linguagens em um livro de receitas.   
+Um compilado com aplicações diversas dos conceitos exemplificados nos capítulos agora é disponibilizado para ambas as linguagens em um livro de receitas.     
 
-Entrei em contato com o trabalho de Richard McElreath (Statistical Rethinking), o que resultou em frutos positivos: O capítulo 1 inclui uma segunda perspectiva (máxima entropia) para a utilização da distrição normal em ciências naturais. O capítulo 4 foi restruturado para incluir uma abordagem mais geral do estudo de causalidade com grafos direcionados, usando o pacote/software **dagitty**. O capítulo 5 tem trechos relacionados à escolha de priors e avaliação de performance.  
+Entrei em contato com o trabalho de Richard McElreath (Statistical Rethinking), o que resultou em frutos positivos: O capítulo 1 inclui uma segunda perspectiva (máxima entropia) para a utilização da distrição normal em ciências naturais. O capítulo 4 foi restruturado para incluir uma abordagem mais geral do estudo de causalidade com grafos direcionados, usando o pacote/software **dagitty**. O capítulo 6 tem trechos relacionados à escolha de priors e avaliação de performance.   
 
 Na primeira edição, o trabalho de Ron Eglash em etnomatemática influenciou no uso das cores verde e amarelo, associadas à Orumla e à divinação Iorubá, que usa números binários. Um dos problemas na primeira versão foi encontrar títulos que sintetizassem cada capítulo. Encontrar os Adinkras e os conceitos que eles representam foi um fortuito acontecimento.  
 
-Os Adinkras são símbolos da Akan, incorporando abstrações ligadas a seus nomes, formas e também a ditos populares e elementos da cultura.  
+Os Adinkras são símbolos da Akan, incorporando abstrações ligadas a seus nomes, formas e também a elementos da cultura, como ditos populares.  
 
 \pagebreak  
 
