@@ -24,7 +24,7 @@ felipe.c.argolo@protonmail.com
 
 Londres, 8 de Julho de 2020  
 
-\href{http://www.leanpub.com/fargolo}{Página oficial: https://http://www.leanpub.com/fargolo}  
+\href{http://www.leanpub.com/fargolo}{Página oficial: https://www.leanpub.com/fargolo}  
 
 \vspace{2cm}
 
@@ -79,21 +79,28 @@ Os Adinkras são símbolos da Akan, incorporando abstrações ligadas a seus nom
 
 Os Adinkras, como a ave que ilustra a capa (Sankofa), são símbolos na cultura Akan. Eles representam conceitos e conhecimentos populares específicos, conectados à sua forma. Físicos teóricos também adotaram o nome para grafos representando as regras formais que regem partículas em modelo supersimétricos da gravidade.  
    
-1 . **ADINKRA HENE** (Adinkra Líder/Rei) - Bases em estatística descritiva e a distribuição normal   
+1 . **ADINKRA HENE** (Adinkra Líder/Rei)  
+Bases em estatística descritiva e a distribuição normal   
+
+
 ![](images/adinkras/adinkrahene.png)  
 
 Formado por círculos concêntricos, é relacionado à inspiração e à criação dos outros Adrinkras.  
 São introduzidas intuições básicas em estatística descritiva e probabilidade, ligadas a conceitos elementares da física. Partindo do estudos de Arquimedes sobre alavancas, formas de descrever amostras e variáveis aleatórias usando intuições básicas. Aborda também a relação entre ciências empíricas e a distribuição normal.  
 
 
-2 . **DWENNIMMEN** (Chifres de Carneiro) - Testes de hipóteses   
+2 . **DWENNIMMEN** (Chifres de Carneiro)  
+Testes de hipóteses   
+
 ![](images/adinkras/dwennimmen.jpg)  
 
 Representa visão de dois carneiros lutando. O Chifres de Carneiro simbolizam força e humildade, pois carneiros lutam ferozmente contra outros pares e predadores, porém aceitam a morte.  
 A identidade da ciência é fortemente ligada ao uso criterioso de experimentos para testar hipóteses. Elas abrem espaço para falhas.    
 O *segundo capítulo* acompanha Charles Darwin em Galápagos. Darwin esperou 20 anos entre a concepção da teoria e sua publicação. Trabalhou incansavelmente para investigar se suas impressões não eram falsas. Este capítulo ilustra como o racional hipotético-dedutivo funciona para estudar hipóteses científicas. O teste *t* de Student é aplicado para comparação dos bicos de aves em Galápagos.  
 
-3 . **FUNTUNFUNEFU-DENKYEMFUNEFU** (Crocodilos siameses) - Correlações e comparações.  
+3 . **FUNTUNFUNEFU-DENKYEMFUNEFU** (Crocodilos siameses)  
+Correlações e comparações.  
+
 ![](images/adinkras/FUNTUNFUNEFU-DENKYEMFUNEFU.jpg)  
 
 Os crocodilos que compartilham um estômago. Simbolizam unidade e cooperação. O *terceiro capítulo* destaca relações entre medidas.  
@@ -101,14 +108,18 @@ Aprenderemos correlações lineares ($\rho$ de Pearson) e tamanho de efeito (*D 
 Usamos regressão para fazer predições usando *formas fechadas*. Resolvendo analiticamente as equações do modelo, encontramos uma estimativa única para os parâmetros envolvidos.   
 
 
-4 . **AKOMA NTOSO**(Corações ligados) - Análise multivariada, modelos causais, confundidores, redução de dimensões e equações esruturais.     
+4 . **AKOMA NTOSO**(Corações ligados)  
+Análise multivariada, modelos causais, confundidores, redução de dimensões e equações esruturais.     
+
 ![](images/adinkras/AKOMA_NTOSO.jpg)  
 
 Os corações conectados simbolizam concordância e entendimento mútuo. Com muitas variáveis (análise multivariada), grafos são a abstração base para relacionarmos conceitos. Estudamos regressão múltipla e sobre como lidar com covariáveis segundo um diagrama causal. O *quarto capítulo* introduz uma implementação formal do abrangente paradigma filosófico para **causalidade**. Colinearidade, confundidores, mediação e moderação. 
 Também falamos sobre redução de dimensões e medidas latentes, com análise fatorial, análise de componentes principais (PCA) e equações estruturais (SEM).   
 
 
-5 . **NEA ONNIM NO SUA A, OHU** - Redes neurais   
+5 . **NEA ONNIM NO SUA A, OHU**  
+Redes neurais   
+
 ![](images/adinkras/NEA_ONNIM_NO_SUA_AOHU.png)  
 
 "Aquele que não conhece pode conhecer pela aprendizagem". O *quinto capítulo* introduz redes neurais, que parte de várias unidades simples e vazias, processando entradas para aprender padrões. Começamos da inspiração biológica dos neurônios artificiais e da primeira máquina inteligente da história: o *Mark I Perceptron*. Codificamos um Mark I virtual, que usa uma nova forma de estimar parâmetros: *gradient descent*. Ao invés de usar uma fórmula fechada, usamos derivativas para 'caminhar' em direção ao mínimo progressivamente.  
@@ -116,8 +127,10 @@ Também falamos sobre redução de dimensões e medidas latentes, com análise f
 Redes Neurais expandem o poder de um neurônio com múltiplos nodos para a construção de sistemas preditivos complexos. Redes profundas incluem camadas sucessivas, permitindo transformações em sequência para resolver classes mais gerais de problemas. Entendemos como os neurônios podem propagar erros aos outros, otimizando gradientes em conjunto com o mecanismo de *backpropagation*. Também codificaremos uma rede neural, Mark II.  
 
 
-6 . **SANKOFA** (San - Voltar; Ko - Ir ; Fa - Procurar, pegar) - Modelos Bayesianos   
-![Sankofa num peso ouro. Exibido no museu de Nova York. Feita entre os séculos 18 e 19](images/adinkras/SANKOFA_public_domain.jpg)
+6 . **SANKOFA** (San - Voltar; Ko - Ir ; Fa - Procurar, pegar)  
+Modelos Bayesianos   
+
+![Sankofa num peso ouro. Exibido no museu de Nova York. Feita entre os séculos 18 e 19](images/adinkras/SANKOFA_public_domain.jpg)  
 
 O Adikra está ligado a retornar ao passado e aprender com ele. O provérbio diz "Não há nada de errado em aprender com o passado". Modelos Bayesianos incorporam informações prévias (*prior*) em sua formulação.  O *sexto capítulo* discute o suposto embate entre as escolas de probabilidade **frequencista** e **bayesiana**. O contexto é dado por alternativas ao método hipotético dedutivo: Carnap demonstra a dificuldade de refutações, Feyerabend propõe uma anarquia epistemológica amparada em fatos históricos e W. van Quine pinta um sistema entrelaçado para teorias, hipóteses e observações. Reabordamos alguns exemplos anteriores usando Stan para inferência bayesiana.  
 Exploramos uma terceira forma de estimar parâmetros. Sem fórmulas fechadas, usamos o poder das simulações estocásticas (*Markov Chain Monte Carlo*).  

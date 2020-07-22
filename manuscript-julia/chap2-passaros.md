@@ -327,16 +327,18 @@ Calculamos a (1) Diferença esperada na vigência da hipótese nula ($\mathit{di
 expected_diff = 0
 mean_diff = mean(a) - mean(b)
 6.963886183171148
+len_a , len_b = length(a) , length(b)
 # graus de liberdade balanceados
-df_pool = length(a) + length(b) - 2 
+df_pool = len_a + len_b - 2 
 # desvio padrao balanceado
-sd_pool  = sqrt(((length(a) - 1) * sd_a^2 + (length(b) - 1) * sd_b^2)/df_pool) 
+sd_pool  = sqrt(((len_a - 1) * sd_a^2 + (len_b - 1) * sd_b^2) / 
+  df_pool) 
 ```
 A estatística t correspondente à diferença observada, considerando uma distribuição t com os parâmetros calculados acima.
 
 ```julia
-    # Diferenca dividida por erro padrao
- # t-statistic  
+# Diferenca dividida por erro padrao
+# t-statistic  
 t = (mean_diff - expected_diff)/ (sd_pool * sqrt(1/length(a) + 1/length(b))) 
 ```
 Valor p para hipótese bicaudal (resultados extremos considerando a possibilidade de a diferença ser maior ou menor que 0):
@@ -403,7 +405,7 @@ A diferença estimada entre tamanho médio dos bicos entre amostras A e B foi si
 
 The estimated difference of beak mean  sizes among samples A and B was significantly (p<0.05) different from zero (t = 47.28, df = 298)
 
-|                 |Amostra A | Amostra B | valor p |
+|                 |Sample A | Sample B | valor p |
 |-----------------|----------|-----------|---------|
 | Mean ($\mu$)        | 43,52    | 41,99     | <0,001  |
 | Std. Dev. ($\sigma$)   | 0,28     | 0,28      |         |

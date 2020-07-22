@@ -10,30 +10,33 @@ output:
 
 ## Introdução 
 
-No capítulo inicial, entraremos em contato com os elementos básicos de nossa jornada. Com o conceito físico de *momentos*, aprenderemos sobre o centro e a dispersão de distribuições e amostras.  
+No capítulo inicial, entraremos em contato com os elementos básicos de nossa jornada. O ADINKRAHENE é composto de três círculos concêntricos e este capítulo tem três partes.  
 
-Também estudaremos a relação natural entre a distribuição normal e a distribuição *t*, ligadas entre si. A adoção da distribuição normal em trabalhos científicos é bastante popular. Para entender os motivos, o Teorema do Limite Central e o conceito de entropia são fundamentais.
+Primeiro, partimos do conceito físico de *momentos* e aprendemos sobre o centro e a dispersão de distribuições e amostras. Introduzimos **R** para calcular média e variância.  
 
+Em seguida, estudaremos a relação natural entre a distribuição normal e a distribuição *t*, ligadas entre si. A adoção da distribuição normal em trabalhos científicos é bastante popular. Para entender os motivos, o Teorema do Limite Central e o conceito de entropia são fundamentais.  Introduzimos **Julia**.  
+
+A terceira parte introduz visualização de dados com gramática dos gráficos e possui exemplos em ambas as linguagens.   
 
 \pagebreak  
 
-## Parte 1 - Centro, dispersão, média e variância
+## Parte 1 - Centro, dispersão, média e variância  
 
-![Dê-me um ponto de apoio e eu moverei a Terra](images/chap2-arch.png)
+![Dê-me um ponto de apoio e eu moverei a Terra](images/chap2-arch.png)  
 
-### Um breve mergulho na física: Momentos
-[^13]
+### Um breve mergulho na física: Momentos  
+[^13]  
 
-O conceito físico de momento foi originalmente concebido por Arquimedes. Embora não tenha inventado a alavanca, ele descreveu os princípios matemáticos por trás dela. 
+O conceito físico de momento foi originalmente concebido por Arquimedes. Embora não tenha inventado a alavanca, ele descreveu os princípios matemáticos por trás dela.  
 
-Em *Sobre o equilíbrio dos planos*, Arquimedes declara que *Magnitudes ficam em equilíbrio quando em distância reciprocamente proporcional aos seus pesos.* 
+Em *Sobre o equilíbrio dos planos*, Arquimedes declara que *Magnitudes ficam em equilíbrio quando em distância reciprocamente proporcional aos seus pesos.*  
 
 ![.](images/chap2-lever.png)
 
 Essa é a conhecida Lei da alavanca. Dado um ponto de apoio e um plano sobre ele, aplicamos uma força em qualquer local do plano. O momento (torque) resultante é o resultado da multiplicação da grandeza física $(F)$ pela distância até o ponto fixo $(d)$.  
 $M = F*d$  
 
-Supondo uma força constante, quanto mais nos afastamos do ponto fixo, maior o momento resultante. Posteriormente, os físicos  estenderam o conceito para outros domínios. Por exemplo, um objeto com cargas opostas $-q$ e $+q$ separados por uma distância $d$ possui momento (momento dipolar elétrico) análogo:
+Supondo uma força constante, quanto mais nos afastamos do ponto fixo, maior o momento resultante. Posteriormente, os físicos  estenderam o conceito para outros domínios. Por exemplo, um objeto com cargas opostas $-q$ e $+q$ separados por uma distância $d$ possui momento (momento dipolar elétrico) análogo:  
 $M = q*d$  
 De uma maneira geral, *falamos em momento ao multiplicarmos uma grandeza física por uma distância*. 
 
@@ -130,19 +133,10 @@ Máquinas desse tempo pesavam toneladas e eram muito mais lentas. O avançar dos
 
 Os programas aqui apresentados são escritos em R e Julia. São linguagens voltadas à computação estatística, possuindo ferramentas úteis. Sendo linguagens de ‘alto nível’, não temos sobrecarga cognitiva no programador com manejo de memória e hardware no código. A abstração de detalhes físicos, como registradores da CPU, são feitas automaticamente pelo interpretador. O ecossistema para visualização de dados possui poder e flexibilidade. A comunidade de ambas cresce rápido, com bases grandes de suporte. Ambas suportam estilos funcional, orientado a objetos e imperativo.  
 
-### Instalação  
 
-#### Julia  
+## Média e Variância
 
-Instruções para download e instalação podem ser encontradas em:  
-https://julialang.org/
-Para Linux, envolve baixar o binario/código-fonte/tarball diretamente do website. 
-
-#### IDE
-
-Com Julia instalado, recomendo o uso do ambiente de desenvolvimento Juno ( http://docs.junolab.org/stable/ ) para obter algumas facilidades. Entre elas: atalhos, editor com highlight de sintaxe, autocompletar, renderização em tempo real de animações e plots, visualização de datasets, ambiente de desenvolvimento, logs, suporte a markup languages.[^2]
-
-[^2]: Este texto é escrito em Markdown e o código-fonte pode ser encontrado em https://github.com/fargolo/stat-learn
+Podemos definir a função da média para um vetor de números, dado pela (1) soma dividida pelo (2) tamanho do vetor:  
 
 #### R
 
@@ -155,12 +149,8 @@ Para Linux, envolve adicionar o CRAN à lista de repositórios e baixar o pacote
 
 Com o R instalado, recomendo o uso do ambiente de desenvolvimento RStudio ( https://www.rstudio.com/ ) para obter algumas facilidades. Entre elas: atalhos *vim*, editor com highlight de sintaxe, autocompletar, renderização em tempo real de animações e plots, visualização de datasets, ambiente de desenvolvimento, logs, suporte a markup languages, como Markdown, RMarkdown e Latex.[^2]
 
-[^2]: Este texto é escrito em Markdown e o código-fonte pode ser encontrado em https://github.com/fargolo/stat-learn
+[^2]: Este texto é escrito em Markdown e o código-fonte pode ser encontrado em https://github.com/fargolo/stat-learn  
 
-
-### Média e variância com R
-
-Podemos definir a função de média para um vetor de números, dado pela (1) soma dividida pelo (2) tamanho do vetor:  
 
 ```r
     >mean_vec <- function(x){
@@ -222,10 +212,7 @@ Se queremos imprimir números entre 1 e 10:
     [1] 1
     [1] 2
     [1] 3
-    [1] 4
-    [1] 5
-    [1] 6
-    [1] 7
+    (...)
     [1] 8
     [1] 9
     [1] 10
@@ -267,7 +254,7 @@ Ainda, uma maneira de manipular muitos elementos é através de funções de alt
     >sq_dists <- purrr::map_dbl(.f = function(x) (x - y_mean)^2, 
     .x = a)
     # Somaas distancias e divide por n-1
-    >sum(sq_dists)/(length(y) - 1) }
+    >sum(sq_dists)/(length(a) - 1) }
 ```  
 
 Quando usamos o pipe, o caractere de ponto (.) se refere ao valor fornecido como entrada pela pipe anterior. Assim, unlist(.), no exemplo acima  unlist(.), que por sua vez, transforma em vetor uma lista de valores passada pela função *map*.
@@ -281,83 +268,6 @@ Nossa função pode ser escrita:
     > var_4(b)
     [1] 2.823333
 ```
-
-### Gramática dos gráficos com ggplot  
-
-Uma das ferramentas de destaque no ecossistema R é a **ggplot**. Ela provê uma sintaxe bastante poderosa e flexível para plotar visualizações. O segredo está em seu design, que utiliza gramática de gráficos (**G**rammar of **G**raphics**Plot**). 
-
-Bertin [^3] delineou essa abordagem, que consiste em mapear características dos dados a elementos visuais seguindo uma sintaxe consistente. A lib ggplot implementa uma gramática em camadas, possibilitando superposições para gráficos complexos.  
-
-[^3]: Bertin, J. (1983),Semiology of Graphics, Madison, WI: University of Wisconsin Press
-
-```r
-    >head(sleep)
-     extra group ID
-    1   0.7     1  1
-    2  -1.6     1  2
-    3  -0.2     1  3
-```
-
-Para usarmos o ggplot, podemos declarar (1) o dataframe usado, (2) a relação entre medidas e parâmetros estéticos e (3) objetos geométricos. Parâmetros opcionais podem ser usados, aumentando o número de camadas ou criando transformações.  
-
-Assim, podemos plotar um histograma das medidas dos dois grupos com (1) dataset iris; (2) dimensão y: tamanho da pétala, cores:espécie, dimensão x: espécie; e (3) objeto geométrico: ponto.  
-
-Assim, teremos pontos com a altura (dimensão y) correspondente à medida da pétala e separados ao longo do eixo x por espécies. O ggplot automaticamente discretiza o eixo x.   
-
-```r
-    >library(ggplot2)
-    >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
-      geom_point()
-```
-![](images/chap0-gg-one.png)
-Para ilustrar a flexibilidade da biblioteca, note que mudando apenas o objeto geométrico (geom), obtemos um gráfico diferente, mantendo dados e relações (mappings) iguais :  
-
-```r
-    >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
-     geom_boxplot()
-```
-![](images/chap0-gg-two.png)
-
-As figuras acimas são conhecidas como boxplots. O centro correspondente à mediana (percentil 50), as bordas correspondem aos percentis 25 (inferior) e 75 (superior). Os fios, conhecidos como “bigodes”, estendem-se até 1,5* IQR (onde IQR = Percentil 75 - Percentil 25).  
-É possível adicionar camadas e estas podem sobrescrever informação de camadas anteriores. Isso torna a sintaxe do ggplot altamente modular. A seguir, superpomos pontos e boxplot:  
-
-```r
-    >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
-      geom_point(alpha=0.4)+ # camada 1
-      geom_boxplot(alpha=0) # camada 2
-```
-![](images/chap0-gg-three.png)
-
-O parâmetro *alpha* regula a transparência dos objetos. Colocamos os boxplot com transparência total (alpha=0), dando visibilidade aos pontos (alpha=0.4). Adicionamos algum grau de transparência para que pontos superpostos sejam mais escuros que pontos individuais. Adicionaremos uma terceira camada, que  substitui o rótulo do eixo y para uma legenda em português:  
-
-```r
-    >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
-      geom_point(alpha=0.4)+ # camada 1
-      geom_boxplot(alpha=0)+ # camada 2
-      ylab("Tamanho da Pétala") # camada 3
-```
-![](images/chap0-gg-four.png)
-
-Ainda, existem temas prontos para mudar o estilo geral da imagem:  
-
-```r
-    >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
-      geom_point(alpha=0.4)+ # camada 1
-      geom_boxplot(alpha=0)+ # camada 2
-      ylab("Tamanho da Pétala") # camada 3  
-      theme_bw() # camada 4: tema
-```
-![](images/chap0-gg-five.png)
-
-```r
-    >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
-      geom_point(alpha=0.4)+ # camada 1
-      geom_boxplot(alpha=0)+ # camada 2
-      ylab("Tamanho da Pétala") # camada 3  
-      theme_economist_white(gray_bg = F) # camada 4: tema
-```
-![](images/chap0-gg-six.png)
-
 
 \pagebreak
 
@@ -504,7 +414,17 @@ $E(X) = E(U(1,6)) = (1+6) / 2 = 3.5$
 
 Vamos fazer um experimento virtual usando 100 lançamentos de 11 dados.
 
-O código em Julia a seguir gera os dados e as visualizações de que precisamos:
+#### Julia  
+
+Instruções para download e instalação podem ser encontradas em:  
+https://julialang.org/  
+Para Linux, envolve baixar o binario/código-fonte/tarball diretamente do website.  
+
+#### IDE  
+
+Com Julia instalado, recomendo o uso do ambiente de desenvolvimento Juno ( http://docs.junolab.org/stable/ ) para obter algumas facilidades. Entre elas: atalhos, editor com highlight de sintaxe, autocompletar, renderização em tempo real de animações e plots, visualização de datasets, ambiente de desenvolvimento, logs, suporte a markup languages.  
+
+O código em Julia a seguir gera os dados e as visualizações de que precisamos:  
 
 ```julia
 using Distributions, Plots, StatsPlots
@@ -518,8 +438,8 @@ plot(p1...,p2,layout=(4,3))
 
 ![Soma de amostras (n=100) de 11 distribuições uniformes correspondentes ao lançamento de dados honestos de 6 faces. O resultado está na célula inferior à direita.](images/chap1-unisum-j.png)
 
-Notamos que as barras estão distribuídas com alturas bastante parecidas nas 11 primeiras células. A frequência esperada para cada valor é ~ 1/6 do total de 100 lançamentos. $Freq (X_{i}) \sim \frac{1}{6}*100 \sim 16.66$
-Algo interessante ocorre com a soma das distribuições (canto inferior direito).
+Notamos que as barras estão distribuídas com alturas bastante parecidas nas 11 primeiras células. A frequência esperada para cada valor é ~ 1/6 do total de 100 lançamentos. $Freq (X_{i}) \sim \frac{1}{6}*100 \sim 16.66$  
+Algo interessante ocorre com a soma das distribuições (canto inferior direito).  
 
 O valor esperado é, como diz a intuição, a soma dos valores esperados em cada amostra:
 $E(X) = \sum_{i=1}^{11} E(U_{i} \sim (1,6)) = 11*3.5 = 38.5$
@@ -613,3 +533,91 @@ A *Função característica* é a transformada de Fourier da função de densida
 ---
 
 \pagebreak
+
+## Parte 3 - Gramática dos gráficos    
+
+Bertin [^3] delineou essa abordagem, que consiste em mapear características dos dados a elementos visuais seguindo uma sintaxe consistente.   
+
+Uma das ferramentas de destaque no ecossistema R é a **ggplot**. Ela provê uma sintaxe bastante poderosa e flexível para plotar visualizações. O segredo está em seu design, que utiliza gramática de gráficos (**G**rammar of **G**raphics**Plot**). A lib ggplot implementa uma gramática em camadas, possibilitando superposições para gráficos complexos. A implementação em Julia está no **Gadfly**.  
+
+[^3]: Wilkinson L. The grammar of graphics. InHandbook of Computational Statistics 2012 (pp. 375-414). Springer, Berlin, Heidelberg. Bertin, J. (1983),Semiology of Graphics, Madison, WI: University of Wisconsin Press. 
+
+Para usarmos o ggplot, podemos declarar (1) o dataframe usado, (2) a relação entre medidas e parâmetros estéticos e (3) objetos geométricos. Parâmetros opcionais podem ser usados, aumentando o número de camadas ou criando transformações.  
+
+Assim, podemos plotar um histograma das medidas dos dois grupos com (1) dataset iris; (2) dimensão y: tamanho da pétala, cores:espécie, dimensão x: espécie; e (3) objeto geométrico: ponto.  
+
+Assim, teremos pontos com a altura (dimensão y) correspondente à medida da pétala e separados ao longo do eixo x por espécies. O ggplot automaticamente discretiza o eixo x.   
+
+```r
+    >library(ggplot2)
+    >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
+      geom_point()
+```
+![](images/chap0-gg-one.png)
+Para ilustrar a flexibilidade da biblioteca, note que mudando apenas o objeto geométrico (geom), obtemos um gráfico diferente, mantendo dados e relações (mappings) iguais :  
+
+```r
+    >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
+     geom_boxplot()
+```
+![](images/chap0-gg-two.png)
+
+As figuras acimas são conhecidas como boxplots. O centro correspondente à mediana (percentil 50), as bordas correspondem aos percentis 25 (inferior) e 75 (superior). Os fios, conhecidos como “bigodes”, estendem-se até 1,5* IQR (onde IQR = Percentil 75 - Percentil 25).  
+É possível adicionar camadas e estas podem sobrescrever informação de camadas anteriores. Isso torna a sintaxe do ggplot altamente modular. A seguir, superpomos pontos e boxplot:  
+
+```r
+    >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
+      geom_point(alpha=0.4)+ # camada 1
+      geom_boxplot(alpha=0) # camada 2
+```
+![](images/chap0-gg-three.png)
+
+O parâmetro *alpha* regula a transparência dos objetos. Colocamos os boxplot com transparência total (alpha=0), dando visibilidade aos pontos (alpha=0.4). Adicionamos algum grau de transparência para que pontos superpostos sejam mais escuros que pontos individuais. Adicionaremos uma terceira camada, que  substitui o rótulo do eixo y para uma legenda em português:  
+
+```r
+    >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
+      geom_point(alpha=0.4)+ # camada 1
+      geom_boxplot(alpha=0)+ # camada 2
+      ylab("Tamanho da Pétala") # camada 3
+```
+![](images/chap0-gg-four.png)
+
+Ainda, existem temas prontos para mudar o estilo geral da imagem:  
+
+```r
+    >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
+      geom_point(alpha=0.4)+ # camada 1
+      geom_boxplot(alpha=0)+ # camada 2
+      ylab("Tamanho da Pétala") # camada 3  
+      theme_bw() # camada 4: tema
+```
+![](images/chap0-gg-five.png)
+
+```r
+    >ggplot(data=iris,aes(y=Petal.Length,x=Species,color=Species))+
+      geom_point(alpha=0.4)+ # camada 1
+      geom_boxplot(alpha=0)+ # camada 2
+      ylab("Tamanho da Pétala") # camada 3  
+      theme_economist_white(gray_bg = F) # camada 4: tema
+```
+![](images/chap0-gg-six.png)
+
+
+Em Gadfly (Julia), a sintaxe é parecida:  
+
+```julia
+julia>using Plots, RDatasets, ColorSchemes 
+julia>plot(iris,
+    layer(y=:PetalLength, x=:Species, color=:Species, 
+      Geom.point, Geom.boxplot),
+    Guide.ylabel("Tamanho da Pétala"))
+```
+Pétalas com densidade (`Geom.violin`) e Sépalas em boxplot (`Geom.boxplot`).  
+
+```julia
+julia>plot(iris,
+    layer(y=:PetalLength, x=:Species, color=:Species,
+      Geom.violin),
+    layer(y=:SepalLength, x=:Species, color=:Species, 
+      Geom.boxplot))
+```

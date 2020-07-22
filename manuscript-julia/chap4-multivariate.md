@@ -5,7 +5,7 @@ output:
 ---
 ![](images/chap3-cover.png)
 
-# Capítulo 3 : Análise multivariada, grafos e inferência causal 
+# Capítulo 4 : Análise multivariada, grafos e inferência causal 
 
 ## Introdução
 Neste capítulo, incorporaremos construtos como base para estudar um conceito do  berço da filosofia ocidental: *causalidade*. A filosofia Aristotélica investiga causas materiais, formais, eficientes e finais. Causas exprimem a ideia de isolar relações entre fatores. A maioria das definições envolvem *efeitos* que dependem, mesmo que parcialmente, de *causas* precedentes. Relações de causalidade *explicam* a evolução de sistemas em certas condições.  

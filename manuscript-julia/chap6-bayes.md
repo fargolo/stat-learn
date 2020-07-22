@@ -3,7 +3,7 @@ output:
   pdf_document: default
   html_document: default
 ---
-# Capítulo 5 : Contexto e Inferência Bayesiana
+# Capítulo 6 : Contexto e Inferência Bayesiana
 
 ## Probabilidades
 *"O provável é aquilo que acontece na maioria das vezes"*, Aristóteles, Retórica.  

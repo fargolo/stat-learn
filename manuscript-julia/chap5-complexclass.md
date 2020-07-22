@@ -5,7 +5,7 @@ output:
 ---
 ![](images/chap4-cover.jpg)  
 
-# Capítulo 4 : Neurônios
+# Capítulo 5 : Neurônios
 
 Em março de 2016, o software AlphaGo venceu um mestre de Go. Inventado há mais de 2,500 anos, o jogo motivou avanços em matemática. Existem $2,08*10^{170}$ maneiras válidas de dispor as peças no tabuleiro. O polímata chinês Shen Kuo (1031–1095) chegou a um resultado próximo $10^{172}$ séculos atrás. Vale lembrar que o número de átomos no universo observável é de módicos $10^{80}$.  
 
