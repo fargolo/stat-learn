@@ -65,7 +65,7 @@ Aproximadamente um ano se passou desde o lançamento da 1ª edição. Algumas mo
 
 Um compilado com aplicações diversas dos conceitos exemplificados nos capítulos agora é disponibilizado para ambas as linguagens em um livro de receitas.     
 
-Entrei em contato com o trabalho de Richard McElreath (Statistical Rethinking), o que resultou em frutos positivos: O capítulo 1 inclui uma segunda perspectiva (máxima entropia) para a utilização da distrição normal em ciências naturais. O capítulo 4 foi restruturado para incluir uma abordagem mais geral do estudo de causalidade com grafos direcionados, usando o pacote/software **dagitty**. O capítulo 6 tem trechos relacionados à escolha de priors e avaliação de performance.   
+Entrei em contato com o trabalho de Richard McElreath (Statistical Rethinking), o que resultou em frutos positivos: O capítulo 1 inclui uma segunda perspectiva (máxima entropia) para a utilização da distribuição normal em ciências naturais. O capítulo 4 foi restruturado para incluir uma abordagem mais geral do estudo de causalidade com grafos direcionados, usando o pacote/software **dagitty**. O capítulo 6 tem trechos relacionados à escolha de priors e avaliação de performance.   
 
 Na primeira edição, o trabalho de Ron Eglash em etnomatemática influenciou no uso das cores verde e amarelo, associadas à Orumla e à divinação Iorubá, que usa números binários. Um dos problemas na primeira versão foi encontrar títulos que sintetizassem cada capítulo. Encontrar os Adinkras e os conceitos que eles representam foi um fortuito acontecimento.  
 
@@ -79,7 +79,7 @@ Os Adinkras são símbolos da Akan, incorporando abstrações ligadas a seus nom
 
 Os Adinkras, como a ave que ilustra a capa (Sankofa), são símbolos na cultura Akan. Eles representam conceitos e conhecimentos populares específicos, conectados à sua forma. Físicos teóricos também adotaram o nome para grafos representando as regras formais que regem partículas em modelo supersimétricos da gravidade.  
    
-1 . **ADINKRA HENE** (Adinkra Líder/Rei)  
+* Capítulo 1 - **ADINKRA HENE** (Adinkra Líder/Rei)  
 Bases em estatística descritiva e a distribuição normal   
 
 
@@ -89,7 +89,7 @@ Formado por círculos concêntricos, é relacionado à inspiração e à criaç�
 São introduzidas intuições básicas em estatística descritiva e probabilidade, ligadas a conceitos elementares da física. Partindo do estudos de Arquimedes sobre alavancas, formas de descrever amostras e variáveis aleatórias usando intuições básicas. Aborda também a relação entre ciências empíricas e a distribuição normal.  
 
 
-2 . **DWENNIMMEN** (Chifres de Carneiro)  
+* Capítulo 2 - **DWENNIMMEN** (Chifres de Carneiro)  
 Testes de hipóteses   
 
 ![](images/adinkras/dwennimmen.jpg)  
@@ -98,7 +98,7 @@ Representa visão de dois carneiros lutando. O Chifres de Carneiro simbolizam fo
 A identidade da ciência é fortemente ligada ao uso criterioso de experimentos para testar hipóteses. Elas abrem espaço para falhas.    
 O *segundo capítulo* acompanha Charles Darwin em Galápagos. Darwin esperou 20 anos entre a concepção da teoria e sua publicação. Trabalhou incansavelmente para investigar se suas impressões não eram falsas. Este capítulo ilustra como o racional hipotético-dedutivo funciona para estudar hipóteses científicas. O teste *t* de Student é aplicado para comparação dos bicos de aves em Galápagos.  
 
-3 . **FUNTUNFUNEFU-DENKYEMFUNEFU** (Crocodilos siameses)  
+* Capítulo 3 - **FUNTUNFUNEFU-DENKYEMFUNEFU** (Crocodilos siameses)  
 Correlações e comparações.  
 
 ![](images/adinkras/FUNTUNFUNEFU-DENKYEMFUNEFU.jpg)  
@@ -108,8 +108,8 @@ Aprenderemos correlações lineares ($\rho$ de Pearson) e tamanho de efeito (*D 
 Usamos regressão para fazer predições usando *formas fechadas*. Resolvendo analiticamente as equações do modelo, encontramos uma estimativa única para os parâmetros envolvidos.   
 
 
-4 . **AKOMA NTOSO**(Corações ligados)  
-Análise multivariada, modelos causais, confundidores, redução de dimensões e equações esruturais.     
+* Capítulo 4 - **AKOMA NTOSO**(Corações ligados)  
+Análise multivariada, modelos causais, confundidores, redução de dimensões e equações estruturais.     
 
 ![](images/adinkras/AKOMA_NTOSO.jpg)  
 
@@ -117,7 +117,7 @@ Os corações conectados simbolizam concordância e entendimento mútuo. Com mui
 Também falamos sobre redução de dimensões e medidas latentes, com análise fatorial, análise de componentes principais (PCA) e equações estruturais (SEM).   
 
 
-5 . **NEA ONNIM NO SUA A, OHU**  
+* Capítulo 5 - **NEA ONNIM NO SUA A, OHU**  
 Redes neurais   
 
 ![](images/adinkras/NEA_ONNIM_NO_SUA_AOHU.png)  
@@ -127,12 +127,12 @@ Redes neurais
 Redes Neurais expandem o poder de um neurônio com múltiplos nodos para a construção de sistemas preditivos complexos. Redes profundas incluem camadas sucessivas, permitindo transformações em sequência para resolver classes mais gerais de problemas. Entendemos como os neurônios podem propagar erros aos outros, otimizando gradientes em conjunto com o mecanismo de *backpropagation*. Também codificaremos uma rede neural, Mark II.  
 
 
-6 . **SANKOFA** (San - Voltar; Ko - Ir ; Fa - Procurar, pegar)  
+* Capítulo 6 - **SANKOFA** (San - Voltar; Ko - Ir ; Fa - Procurar, pegar)  
 Modelos Bayesianos   
 
-![Sankofa num peso ouro. Exibido no museu de Nova York. Feita entre os séculos 18 e 19](images/adinkras/SANKOFA_public_domain.jpg)  
+![Sankofa num peso em ouro. Exibido no museu de Nova York. Feita entre os séculos 18 e 19](images/adinkras/SANKOFA_public_domain.jpg)  
 
-O Adikra está ligado a retornar ao passado e aprender com ele. O provérbio diz "Não há nada de errado em aprender com o passado". Modelos Bayesianos incorporam informações prévias (*prior*) em sua formulação.  O *sexto capítulo* discute o suposto embate entre as escolas de probabilidade **frequencista** e **bayesiana**. O contexto é dado por alternativas ao método hipotético dedutivo: Carnap demonstra a dificuldade de refutações, Feyerabend propõe uma anarquia epistemológica amparada em fatos históricos e W. van Quine pinta um sistema entrelaçado para teorias, hipóteses e observações. Reabordamos alguns exemplos anteriores usando Stan para inferência bayesiana.  
+O Adinkra está ligado a retornar ao passado e aprender com ele. O provérbio diz "Não há nada de errado em aprender com o passado". Modelos Bayesianos incorporam informações prévias (*prior*) em sua formulação.  O *sexto capítulo* discute o suposto embate entre as escolas de probabilidade **frequencista** e **bayesiana**. O contexto é dado por alternativas ao método hipotético dedutivo: Carnap demonstra a dificuldade de refutações, Feyerabend propõe uma anarquia epistemológica amparada em fatos históricos e W. van Quine pinta um sistema entrelaçado para teorias, hipóteses e observações. Reabordamos alguns exemplos anteriores usando Stan para inferência bayesiana.  
 Exploramos uma terceira forma de estimar parâmetros. Sem fórmulas fechadas, usamos o poder das simulações estocásticas (*Markov Chain Monte Carlo*).  
 
 
@@ -246,7 +246,7 @@ Machine Learning
 
 **Agradecimentos**
 
-Minha família, Suzana, Paulo, Isaac e Chris. Amigos Gabriel, Guilherme, Wei.  
+Minha família, Suzana, Paulo, Isaac e Chris. Amigos Pedro, Gabriel, Guilherme, Wei.  
 
 Aos professores: Carla Daltro, Anibal Neto, Lucas Quarantini, Luis Correia, Rodrigo Bressan, Ary Gadelha.  
 
