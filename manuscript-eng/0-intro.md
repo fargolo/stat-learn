@@ -35,6 +35,7 @@ Second edition
 
 \pagebreak
 
+
 ## Preface  
 
 ---  
@@ -72,6 +73,7 @@ Adinkras are symbols of Akan, incorporating abstractions linked to their names, 
 
 \pagebreak  
 
+
 ## Introduction   
 
 **Adinkras**  
@@ -80,7 +82,6 @@ The Adinkras, like the bird that illustrates the cover (Sankofa), are symbols in
    
 1 . **ADINKRA HENE** (Adinkra Leader / King)  
 Bases in descriptive statistics and the normal distribution  
-
 
 ![](images/adinkras/adinkrahene.png)  
 
@@ -94,7 +95,7 @@ Hypothesis testing
 
 It represents the vision of two sheep fighting. The Sheep Horns symbolize strength and humility, as sheep fight fiercely against other pairs and predators, but accept death.
 The identity of science is strongly linked to the judicious use of experiments to test hypotheses. They make room for failure.
-The *second chapter* accompanies Charles Darwin in the Galapagos. Darwin waited 20 years between the conception of the theory and its publication. He worked tirelessly to investigate whether his impressions were not false. This chapter illustrates how the hypothetical-deductive rationale works to study scientific hypotheses. The Student's *t* test is applied to compare bird beaks in Galápagos.  
+The *second chapter* accompanies Charles Darwin in the Galapagos. Darwin waited 20 years between the conception of the theory and its publication. He worked tirelessly to investigate whether his impressions were not false. This chapter illustrates how the hypothetical-deductive rationale works to study scientific hypotheses. The Student's *t* test is applied to compare bird beaks in Gal?pagos.  
 
 3 . **FUNTUNFUNEFU-DENKYEMFUNEFU** (Siamese crocodiles)  
 Correlations and comparisons.  
@@ -130,9 +131,8 @@ Modelos Bayesianos
 
 ![Sankofa in a gold weight. Displayed at the New York Museum. Made between the 18th and 19th centuries](images/adinkras/SANKOFA_public_domain.jpg)  
 
-This Adinkra is about returning to the past and learning from it. The proverb says "There is nothing wrong with learning from the past". Bayesian models incorporate prior information (*prior*) in their formulation. The *sixth chapter * discusses the supposed clash between the **frequentist** and **bayesian** probability schools. The context is given by alternatives to the hypothetical deductive method: Carnap demonstrates the difficulty of refutations, Feyerabend proposes an epistemological anarchy supported by historical facts and W. van Quine paints an intertwined system for theories, hypotheses and observations. We reiterate some previous examples using Stan for Bayesian inference.
+This Adinkra is about returning to the past and learning from it. The proverb says "There is nothing wrong with learning from the past". Bayesian models incorporate prior information (*prior*) in their formulation. The *sixth chapter* discusses the supposed clash between the **frequentist** and **bayesian** probability schools. The context is given by alternatives to the hypothetical deductive method: Carnap demonstrates the difficulty of refutations, Feyerabend proposes an epistemological anarchy supported by historical facts and W. van Quine paints an intertwined system for theories, hypotheses and observations. We reiterate some previous examples using Stan for Bayesian inference.
 We explore a third way of estimating parameters. Without closed formulas, we use the power of stochastic simulations (*Markov Chain Monte Carlo*).
-  
 
 
 \pagebreak
@@ -202,7 +202,7 @@ Chapter 6 - SANKOFA (Return and search) - Context and Bayesian inference
 
 All examples can be reproduced using free software.  
 
-###Recommended reading:
+### Recommended reading:
 
 Philosophy and scientific dissemination
 
@@ -251,7 +251,7 @@ To the teachers: Carla Daltro, Anibal Neto, Lucas Quarantini, Luis Correia, Rodr
 
 To colleagues Fatori, Luccas, Macedo, Walter, Rafael, Sato, Hiroshi, Lais, Luci, Davi, n3k00n3 (Fernando), Loli (Lorena).
 
-For comments, criticisms, suggestions, or just say * hi *: felipe.c.argolo@protonmail.com.  
+For comments, criticisms, suggestions, or just say *hi*: felipe.c.argolo@protonmail.com.  
 
 
 \pagebreak

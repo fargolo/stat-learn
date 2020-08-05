@@ -14,9 +14,9 @@ No capítulo inicial, entraremos em contato com os elementos básicos de nossa j
 
 Primeiro, partimos do conceito físico de *momentos* e aprendemos sobre o centro e a dispersão de distribuições e amostras. Introduzimos **R** para calcular média e variância.  
 
-Em seguida, estudaremos a relação natural entre a distribuição normal e a distribuição *t*, ligadas entre si. A adoção da distribuição normal em trabalhos científicos é bastante popular. Para entender os motivos, o Teorema do Limite Central e o conceito de entropia são fundamentais.  Introduzimos **Julia**.  
+Em seguida, estudaremos a relação natural entre a distribuição normal e a distribuição *t*, ligadas entre si. A adoção da distribuição normal em trabalhos científicos é bastante popular. Para entender os motivos, o Teorema do Limite Central e o conceito de entropia são fundamentais.  Usamos a linguagem **Julia**.  
 
-A terceira parte introduz visualização de dados com gramática dos gráficos e possui exemplos em ambas as linguagens.   
+A terceira parte apresenta visualização de dados com gramática dos gráficos e possui exemplos em ambas as linguagens.   
 
 \pagebreak  
 
@@ -75,7 +75,8 @@ O n-ésimo momento é dado por $$M_{n} = \sum_{i=1}^{N} m_{i}d_{i}^{n}$$.
 
 ### Generalizando momentos 
 
-Podemos generalizar ainda mais a abstração e calcular momentos de entidades abstratas, como variáveis aleatórias. **Melhor: já fizemos isso anteriormente!**  
+Calculamos alguns momentos para objetos físicos (momento zero: massa total, primeiro momento: centro de massa, segundo momento: momento de inércia).  
+Podemos generalizar o conceito e calcular momentos de entidades abstratas, como variáveis aleatórias. **Melhor: já fizemos isso anteriormente!**  
 
 Seja $f(x)$ a função que descreve uma distribuição de probabilidades para a variável,  
 
@@ -97,7 +98,7 @@ A soma de todas probabilidades de uma distribuição deve somar 1.
 $$= \int_{-\infty}^{\infty} f(x)dx = 1$$.   
 **Primeiro momento**: $\mu_{1}= \int_{-\infty}^{\infty} d(x,x_{0})f(x)dx$ , supondo centro em 0 $(x_{0}=0)$, temos a média, $$ \mu_{1} = \int_{-\infty}^{\infty} xf(x)dx$$, também chamado valor esperado $E[X]$. Estende a intuição de somar as medidas e dividir pelo número de observações ao passo em que usamos uma integral para somar as infinitesimais possibilidades para $f(x)$.    
 
-**Segundo momento**: $$\mu_{2}= \int_{-\infty}^{\infty} d(x,x_{0})^{2}f(x)dx$$. Como vimos no capítulo introdutório, a soma dos quadrados dos desvios, nossa variância, $$\sigma^{2} = E[(x-\mu)^{2}]$$.  
+**Segundo momento**: $$\mu_{2}= \int_{-\infty}^{\infty} d(x,x_{0})^{2}f(x)dx$$. A soma dos quadrados dos desvios, nossa variância, $$\sigma^{2} = E[(x-\mu)^{2}]$$.  
 
 \pagebreak  
 
@@ -107,7 +108,7 @@ $$= \int_{-\infty}^{\infty} f(x)dx = 1$$.
 
 ---
 
-*Um aprendiz do caminho Unix veio ao Mestre Foo e disse: “Estou confuso. Não é o caminh
+*Um aprendiz do caminho Unix veio ao Mestre Foo e disse: “Estou confuso. Não é o caminho
 Unix que cada programa deve se concentrar em uma coisa e fazê-la bem?  
 Mestre Foo assentiu.  
 O aprendiz continuou: “Também não é do caminho Unix que a roda não deve ser reinventada?  
@@ -125,7 +126,7 @@ E, ao ouvir isso, o aprendiz foi iluminado.*
 
 Ao longo do texto, usaremos exemplos com software. Computadores são úteis para acelerar os cálculos necessárias para nossos objetivos.
 
-Há milênios, o homem usa instrumentos, como ábacos e tabelas, para fazer operações extensas e precisas envolvendo grandes números. Dado um problema ou dado a ser computado, esses mecanismos automatizam partes do processo devido à maneira como foram construídos. A principal diferença destas ferramentas para os computadores de hoje é que nossas máquinas podem ser programadas para fazer computações arbitrárias.
+Há milênios, o homem usa instrumentos, como ábacos e tabelas, para fazer operações extensas e precisas envolvendo grandes números. Diante de um problema ou operações a serem computadas, esses mecanismos automatizam partes do processo devido à maneira como foram construídos. A principal diferença destas ferramentas para os computadores de hoje é que nossas máquinas podem ser programadas para fazer computações arbitrárias.
 
 Ada Lovelace (*10 December 1815 – 27 November 1852*) foi a primeira a descobrir essa possibilidade. Estudando a Máquina Analítica de Charles Babbage, Ada concebeu uma maneira de realizar computações para as quais a máquina não havia sido desenhada originalmente. O programa concebido calculava os Números de Bernoulli. Discutivelmente, alterar a estrutura de máquinas mais simples também consiste em reprogramá-las.
 
@@ -133,10 +134,7 @@ Máquinas desse tempo pesavam toneladas e eram muito mais lentas. O avançar dos
 
 Os programas aqui apresentados são escritos em R e Julia. São linguagens voltadas à computação estatística, possuindo ferramentas úteis. Sendo linguagens de ‘alto nível’, não temos sobrecarga cognitiva no programador com manejo de memória e hardware no código. A abstração de detalhes físicos, como registradores da CPU, são feitas automaticamente pelo interpretador. O ecossistema para visualização de dados possui poder e flexibilidade. A comunidade de ambas cresce rápido, com bases grandes de suporte. Ambas suportam estilos funcional, orientado a objetos e imperativo.  
 
-
-## Média e Variância
-
-Podemos definir a função da média para um vetor de números, dado pela (1) soma dividida pelo (2) tamanho do vetor:  
+---  
 
 #### R
 
@@ -151,6 +149,11 @@ Com o R instalado, recomendo o uso do ambiente de desenvolvimento RStudio ( http
 
 [^2]: Este texto é escrito em Markdown e o código-fonte pode ser encontrado em https://github.com/fargolo/stat-learn  
 
+---  
+
+## Média e Variância
+
+Podemos definir a função da média para um vetor de números, dado pela (1) soma dividida pelo (2) tamanho do vetor:  
 
 ```r
     >mean_vec <- function(x){
@@ -162,7 +165,7 @@ Com o R instalado, recomendo o uso do ambiente de desenvolvimento RStudio ( http
 
 sum(x) retorna a soma de todos os elementos do vetor x. length(x) retorna o tamanho (número de células) do vetor x.  
 
-A média é uma medida de tendência central para um conjunto de observações. É o ponto mais perto de todos os outros.  
+Como descrito anteriormente, a média é uma medida de tendência central para um conjunto de observações. É o ponto mais perto de todos os outros.  
 
 #### Muitas formas de calcular a variância
 
@@ -192,6 +195,8 @@ Outra medida de dispersão, dada nas unidades originais da medida observada, é 
     >var_2(b) %>% sqrt
     [1] 1.680278
 ```
+
+A divisão por $(n-1)$ ao invés de $n$ é uma correção aplicada para não subestimarmos o valor populacional da variância ($\frac{\sum_{1}^{n}(x - \mu)^2}{n}$) quando usamos uma amostra ($\frac{\sum_{1}^{n}(x - \mu)^2}{n-1}$).  
 
 ### Vetores, loops e recursões
 
@@ -257,7 +262,7 @@ Ainda, uma maneira de manipular muitos elementos é através de funções de alt
     >sum(sq_dists)/(length(a) - 1) }
 ```  
 
-Quando usamos o pipe, o caractere de ponto (.) se refere ao valor fornecido como entrada pela pipe anterior. Assim, unlist(.), no exemplo acima  unlist(.), que por sua vez, transforma em vetor uma lista de valores passada pela função *map*.
+Quando usamos o pipe, o caractere de ponto (.) se refere ao valor fornecido como entrada pela pipe anterior. Assim, sum(.), no exemplo a seguir, soma os valores passados pela função *map*.  
 Nossa função pode ser escrita:  
 
 ```r
@@ -361,7 +366,7 @@ Observamos como a distribuição se dá a partir da equação.
 
 Já que $x^{2}$ retorna apenas valores positivos, $-x^{2}$ sempre retorna negativos. A função retorna valores entre 0 e 1 exponenciando $(e \sim 2.718...)$ a um fator negativo quadrático $(y \sim 0.4*e^{-x^{2}/2})$.
 
-Notamos também que valores próximos ao centro $(x \sim \mu = 0)$ fazem com que o expoente de se aproxime de 0, maximizando nossa função: $f(0) = 0.4 * e{-x^{2}/2} = 0.4 * e^{0} = 0.4)$. O valor obtido (0.4) corresponde ao topo da curva no gráfico acima (linha rosa).
+Notamos também que valores próximos ao centro $(x \sim \mu = 0)$ fazem com que o expoente se aproxime de 0, maximizando nossa função: $f(0) = 0.4 * e{-x^{2}/2} = 0.4 * e^{0} = 0.4)$. O valor obtido (0.4) corresponde ao topo da curva no gráfico acima (linha rosa).
 
 Observamos a curva se aproximar simetricamente do máximo em valores próximos de 0.
 
@@ -383,21 +388,27 @@ $$f(x) = \frac{1}{\sqrt{2\pi\sigma^{2}}}e^{ -\frac{(x-\mu)^{2}}{2\sigma^{2}}}$$
 
 
 
-*Por que usamos a distribuição normal?*  
+#### Por que usamos a distribuição normal?   
+
 Distribuições binomiais grandes e moedas são tão importantes? Os lançamentos são exemplo de uma classe maior de fenômenos. Cada série de resultados é composta por muitos eventos quase idênticos (lançamentos individuais).  
 
 #### Entropia   
 
 Em ciências naturais, raramente conhecemos de antemão os mecanismos pelos quais as observações são geradas. Consequentemente, não sabemos a distribuição probabilística que elas obedecem. Um dado justo tem probabilidades equivalentes entre os valores possíveis (distribuição uniforme). Um dado viciado tende a cair com mais frequência em determinados valores (picos e vales).  
-Como veremos no capítulo a seguir, podemos descrever uma distribuição através das relações entre os valores possíveis e o centro. São os *momentos*. O primeiro momento reflete a posição relativa do centro (média), enquanto o segundo reflete a dispersão dos valores (variância). Conhecer o mecanismo natural de origem permitiria especificar distribuições diretamente, entretanto precisamos enfrentar as limitações do mundo real.   
+Como vimos anteriormente, podemos descrever uma distribuição através das relações entre os valores possíveis e o centro. São os *momentos*. O primeiro momento reflete a posição relativa do centro (média), enquanto o segundo reflete a dispersão dos valores (variância). Conhecer o mecanismo natural de origem permitiria especificar distribuições diretamente, entretanto precisamos enfrentar as limitações do mundo real.   
 
 *Se sabemos apenas o centro (média) e a dispersão (variância) de uma distribuição, qual o palpite mais conservador possível?*  
 
 Considerando números reais (domínio em $[-\infty,+\infty]$), a distribuição normal é aquela com máxima entropia em relação às outras. A grosso modo, isso quer dizer que é a descrição usando menos informação quando comparada com qualquer outra distribuição obedecendo essas restrições (média e variância definidas).  
 
-A Gaussiana é aquela que introduz menos informação extra em relação às possíveis distribuições verdadeiras. Pelo **Princípio da Máxima Entropia**, é a que melhor  descreve observações *a priori*, quando apenas temos idéia da média e da variância. Essa é uma justificativa razoável para adotarmos gaussianas como ferramentas. A prova é razoavelmente complexa, envolvendo cálculo de variações para otimizar a expressão:  
+A Gaussiana é aquela que introduz menos informação extra em relação às possíveis distribuições verdadeiras. Pelo **Princípio da Máxima Entropia**, é a que melhor  descreve observações *a priori*, quando apenas temos idéia da média e da variância. Essa é uma justificativa razoável para adotarmos gaussianas como ferramentas.  
+
+---  
+
+A prova é razoavelmente complexa, envolvendo cálculo de variações para otimizar a expressão:  
 $$H(x) = -\int_{-\infty}^{+\infty}p(x) -\text{log}\ p(x) dx$$  
 
+---  
 
 #### O Teorema do Limite Central
 
@@ -414,6 +425,8 @@ $E(X) = E(U(1,6)) = (1+6) / 2 = 3.5$
 
 Vamos fazer um experimento virtual usando 100 lançamentos de 11 dados.
 
+---  
+
 #### Julia  
 
 Instruções para download e instalação podem ser encontradas em:  
@@ -424,6 +437,7 @@ Para Linux, envolve baixar o binario/código-fonte/tarball diretamente do websit
 
 Com Julia instalado, recomendo o uso do ambiente de desenvolvimento Juno ( http://docs.junolab.org/stable/ ) para obter algumas facilidades. Entre elas: atalhos, editor com highlight de sintaxe, autocompletar, renderização em tempo real de animações e plots, visualização de datasets, ambiente de desenvolvimento, logs, suporte a markup languages.  
 
+---
 O código em Julia a seguir gera os dados e as visualizações de que precisamos:  
 
 ```julia
@@ -606,7 +620,7 @@ Ainda, existem temas prontos para mudar o estilo geral da imagem:
 Em Gadfly (Julia), a sintaxe é parecida:  
 
 ```julia
-julia>using Plots, RDatasets, ColorSchemes 
+julia>using Plots, Gadfly, RDatasets, ColorSchemes 
 julia>plot(iris,
     layer(y=:PetalLength, x=:Species, color=:Species, 
       Geom.point, Geom.boxplot),
