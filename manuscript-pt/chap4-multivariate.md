@@ -21,7 +21,7 @@ Ou múltipla com dois preditores:
 ![$y = \beta_{1}*X_{1} + \beta_{2}*X_{2}$](images/chap3-three-node-diagram.png)  
 
 É fácil relacionar *nodos com variáveis* e *conexões com relações* descritas pelas equações estimadas. Formalmente, tratamos essas abstrações com o nome de **grafos**. O campo começou a ser tratado por Euler em 1736. Chamamos os pontos de nodos, ou vértices, e as ligações de arestas (*edges*). Cada aresta conecta dois nodos.  
-O conceito foi usado para resolver o problema das pontes de Königsberg. Dada uma série de pontes conectando partes diferentes da cidade, fazer um percurso que cruzae cada uma apenas uma vez?  
+O conceito foi usado para resolver o problema das pontes de Königsberg. Dada uma série de pontes conectando partes diferentes da cidade, como fazer um percurso que cruze cada uma apenas uma vez?  
 
 ![.](images/chap3-konigsberg.jpg)  
 
@@ -39,7 +39,7 @@ A pouco conhecida origem deste campo está no trabalho de um geneticista, Sewall
 
 ![Diagrama mostrando relação entre fatores influenciando peso de um porquinho-da-índia. Wright, 1921](images/chap3-guinea.jpg)
 
-Usando grafos direcionados (as conexões têm uma origem e um destino), é atrelar as noções de correlação e regressão de forma a ilustrar caminhos causais entre relações lineares. Sewall começou usando apenas grafos acíclicos (sem trajetórias retornando a um mesmo ponto de origem) direcionados, DAGs, em condições restritas.  
+Usando grafos direcionados (as conexões têm uma origem e um destino), é possível atrelar as noções de correlação e regressão de forma a ilustrar caminhos causais entre relações lineares. Sewall começou usando apenas grafos acíclicos (sem trajetórias retornando a um mesmo ponto de origem) direcionados, DAGs, em condições restritas.  
 
 Décadas depois, o campo foi extrapolado para outros cenários mais gerais. Em específico, o boom de disponibilidade de poder computacional nas décadas de 1960 e 1970 impulsionou o surgimento de estimadores diversos para parâmetros nesses modelos.  
 É esperado que a quantidade de parâmetros cresça conforme a complexibilidade.  
@@ -136,7 +136,7 @@ beer_data <- simulateSEM(dagified,b.lower = 0.20,b.upper=0.25)
 # HopsMalt _||_ Water | Soil
 lm(HopsMalt ~ Water + Soil,beer_data)
 # Quality _||_ Soil | HopsMalt, Water
-lm(Quality ~ Soil + HopsMalt,beer_data)
+lm(Quality ~ Soil + HopsMalt + Water,beer_data)
 ```  
 O esperado é que a estimativa do efeito (coeficiente) seja próxima de zero (associação inexistente) uma vez que condicionamos ela às covariáveis indicadas. Verificamos que isso acontece para o exemplo:  
 
@@ -157,7 +157,7 @@ O esperado é que a estimativa do efeito (coeficiente) seja próxima de zero (as
 
 Uma vez que aceitamos o DAG como adequado, podemos usá-lo como referência para calcular estimativas não-enviesadas (unbiased estimates). Isso significa que estamos ajustando o valor final de acordo com vias pelas quais a informação pode correr nas covariáveis examinadas.  
 
-A função `adjustmentSets` quais conjuntos de covariáveis podemos incluir para obter estimativas não enviesadas. A função `ggdag_adjustment_set` informa visualmente quais caminhos estamos fechando ao condicionarmos num grupo de covariáveis. Por vezes (como no exemplo), temos conjuntos alternativos:  
+A função `adjustmentSets` retorna quais conjuntos de covariáveis podemos incluir para obter estimativas não enviesadas. A função `ggdag_adjustment_set` informa visualmente quais caminhos estamos fechando ao condicionarmos num grupo de covariáveis. Por vezes (como no exemplo), temos conjuntos alternativos:  
 
 ```r
 p2 <- ggdag_adjustment_set(dagified,exposure="HopsMalt",outcome="Quality")

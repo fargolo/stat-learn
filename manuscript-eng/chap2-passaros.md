@@ -7,7 +7,7 @@ output:
 ![](images/adinkras/dwennimmen.jpg)  
 
 # Chapter 2: Hypothetical-deductive method and Darwin's finches  
-**Testes estatísticos e distribuições probabilísticas**
+**Statistical tests and probabilistic distributions**
 
 ## Part 1 - Introduction
 
@@ -37,7 +37,7 @@ Before the publication of The Origin of Species, the case of finches (the name o
 
 ### Doubts - Hypotheses and observations
 
-Darwin took approximately 20 years between the initial conception of the idea (1838) and the publication of the work (1859). Aware that similar proposals were ridiculed, he was meticulous in defending his theory about the origin of species.  
+Darwin took approximately 20 years between the initial iception of the idea (1838) and the publication of the work (1859). Aware that similar proposals were ridiculed, he was meticulous in defending his theory about the origin of species.  
 
 Bird watching on the island was evidence, but it did not confirm the theory. Darwin then devised an investigation plan to test several different consequences of the theory. 
 Geographic distribution, phenotypic variability (hybridization and cross-fertilization), variation under domination ... Would experiments in these areas obey predictions?  
