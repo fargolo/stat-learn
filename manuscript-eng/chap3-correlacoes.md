@@ -7,27 +7,27 @@ output:
 
 ![](images/adinkras/FUNTUNFUNEFU-DENKYEMFUNEFU.jpg)  
 
-# Capítulo 3 : Sobre associações  
+# Chapter 3: About associations  
 
-## Prelúdio: *Hypotheses non fingo*?
+## Prelude: *Hypotheses non fingo*?
 
-*Eu ainda não fui capaz de descobrir a razão para essas propriedades da gravidade*, e não faço hipóteses. *Tudo aquilo que não é deduzido do fenômeno pode ser chamado de hipótese; e hipóteses, sejam metafísicas ou físicas, ou baseadas em qualidades ocultas, ou mecânicas, não têm lugar na filosofia experimental. Nesta filosofia, as proposições particulares são inferidas a partir do fenômeno, e então generalizadas por indução.*  
+*I have not yet been able to discover the reason for these properties of gravity *, and I make no assumptions. *Anything that is not deduced from the phenomenon can be called a hypothesis; and hypotheses, whether metaphysical or physical, or based on hidden qualities, or mechanical, have no place in experimental philosophy. In this philosophy, particular propositions are inferred from the phenomenon, and then generalized by induction.*  
 
-O racional apresentado no capítulo anterior é diretamente relacionado ao método hipotético-dedutivo e seus princípios filosóficos.  Apesar de adequado a este cenário, a interpretação do valor p não é muito intuitiva.  
-Envolve *mensurar quão improváveis são as observações em um cenário hipotético na vigência da hipótese nula*.  
-Sua tradução (errada) mais popular é de que representa *"a chance de o resultado deste estudo estar errado".*  
+The rationale presented in the previous chapter is directly related to the hypothetical-deductive method and its philosophical principles. Although suitable for this scenario, the interpretation of the p-value is not very intuitive.
+It involves *measuring how unlikely observations are in a hypothetical scenario under the null hypothesis*.
+His most popular (wrong) translation is that it represents *"the chance that the result of this study is wrong".*
+  
+The framework described in the previous chapter is sufficient to produce a cryptic scientific work for laypeople.   
 
-O arcabouço descrito no capítulo anterior é suficiente para produzir um trabalho científico críptico para leigos.   
+When following pre-defined recipes (formulation of $H_{0}$ and $H_{1}$, calculation of statistics and p-values), a text seems to conform to academic standards, even if the elementary hypothesis around the research object is simplistic. Thus, inadvertently, we prioritize the form and relegate the core of scientific proposals to the background.  
 
-Ao seguir receitas pré-definidas (formulação de $H_{0}$ e $H_{1}$, cálculo de estatísticas e valores p), um texto parece estar em conformação com os padrões acadêmicos, mesmo que a hipótese elementar em torno do objeto de pesquisa seja simplória. Assim, inadvertidamente, priorizamos a forma e relegamos a segundo plano o miolo de propostas científicas.  
+Another side effect is the search for p-values that reject $H_{0}$, disregarding theoretical precedents and probabilistic assumptions (multiple tests).  
 
-Outro efeito colateral é a busca por valores p que rejeitem $H_{0}$, desprezando precedentes teóricos e premissas probabilísticas (múltiplos testes).  
+The difficult interpretability of the p-value and the frequent pitfalls involved in the inference process led the scientific community to question the hegemony of this parameter. There is a present tendency to abandon the p value and the limit $p<0.05$ as canonical criteria.  
 
-A difícil interpretabilidade do valor p e as armadilhas frequentes envolvidas no processo de inferência levaram a comunidade científica a questionar a hegemonia desse parâmetro. Há uma presente tendência a abandonar o valor p e o limite $p<0.05$ como critérios canônicos.  
+We will learn about formal arguments against the hypothetical deductive method in science. For now, just know that it is always advantageous to obtain other information, complementary or alternative.     
 
-Vamos conhecer argumentos formais contra o método hipotético dedutivo nas ciências. Por enquanto, basta sabermos que é sempre vantajoso obter outras informações, complementares ou alternativas.     
-
-Neste capítulo, vamos aprender a estimar (1) a magnitude da diferença entre duas amostras e (2) quão relacionados são valores pareados (e.g. peso e altura).  
+In this chapter, we will learn how to estimate (1) the magnitude of the difference between two samples and (2) how related are paired values (e.g. weight and height).  
 
 ---  
 
@@ -37,31 +37,32 @@ I have not as yet been able to discover the reason for these properties of gravi
 
 \pagebreak
 
-## Tamanho de efeito
+## Effect size
 
-O tamanho de efeito nos ajuda a expressar magnitudes.  
-Retomando o exemplo anterior, de que adianta uma diferença significativa entre o tamanho dos bicos dos pássaros, se ela for de 0.00001 mm?  
+The effect size helps us to express magnitudes.
+Returning to the previous example, what is the use of a significant difference between the size of the birds' beaks, if it is 0.00001 mm?  
 
-Ainda, existem casos em que estudos pequenos sugerem efeitos importantes, porém o tamanho amostral não fornece poder estatístico suficiente para rejeição da hipótese nula.  
+Still, there are cases in which small studies suggest important effects, but the sample size does not provide enough statistical power to reject the null hypothesis.  
 
 
-Além de saber quão improvável é a diferença observada, é natural imaginarmos o quão grande ela é.  
+In addition to knowing how unlikely the difference is observed, it is natural to imagine how big it is.  
 
-Uma medida bastante popular é o *D de Cohen (Cohen's D)*.  
+A very popular measure is Cohen's *D (Cohen's D)*.  
 
-É um parâmetro que expressa a magnitude da diferença sem usar unidades de medida.  
-Uma torcedora de futebol conta (feliz) a um amigo que seu time favorito venceu com placar de 4 $\times$ 1 (gols). Porém, esse amigo acompanha basquetebol e está acostumado a placares como 102 $\times$ 93 (cestas).  
-Como é possível comparar gols com cestas? Qual vitória representa pontuações mais discrepantes: 4 $\times$ 1 ou 102 $\times$ 93?  
+It is a parameter that expresses the magnitude of the difference without using units of measurement.  
+A soccer fan tells (happily) to a friend that her favorite team won with a score of 4 $\times$ 1 (goals).However, this friend accompanies basketball and is used to scores like 102 $\times$ 93 (baskets).
+How is it possible to compare goals with baskets? Which win represents the most disparate scores: 4 $\times$ 1 or 102 $\times$ 93?  
 
-O problema aqui é que as pontuações se comportam de maneiras diferentes entre os esportes. Os placares no basquete possuem médias e dispersões muito maiores.  
-O D de Cohen consiste em expressar essa diferença em desvios-padrão. Bastante simples:  
+The problem here is that scores behave differently between sports. Basketball scores have much higher averages and dispersions.
+Cohen's D consists of expressing this difference in standard deviations. Simple enough:
+  
 $$D_{cohen} = \frac{\mu_{1}-\mu_{2}}{\sigma_{pooled}}$$  
 
-Usando a biblioteca *effects*, podemos calcular diretamente:   
+Using the * effects * library, we can directly calculate:   
 
 ```r
     library(effects)
-    # O dataset galapagos_birds foi criado no capitulo 1
+    # O dataset galapagos_birds was created in chapter 1
     >cohen.d(galapagos_birds$X1,galapagos_birds$X2)
 
     Cohen's d    
@@ -72,38 +73,38 @@ Usando a biblioteca *effects*, podemos calcular diretamente:
     -5.954047 -4.965987 
 ```
 
-Cohen propôs algumas faixas para classificar a magnitude desses efeitos:  
+Cohen proposed some tracks to classify the magnitude of these effects:  
 
-|         |  Pequeno  |  Médio  |  Grande  |	
+|         |  Small    |  Medium |  Big     |	
 |---------|-----------|---------|----------|
 |Cohen's D|  0-0.2    | 0.2-0.5 | 0.5 - 0.8|
 
-Assim, podemos atualizar nossos resultados anteriores, reportando também o tamanho de efeito da diferença e seu intervalo de confiança. Se as distribuições forem da mesma família, temos uma estimativa comparável entre contextos. 
+Thus, we can update our previous results, also reporting the effect size of the difference and its confidence interval. If the distributions are from the same family, we have a comparable estimate between contexts. 
 
-## Correlações
+## Correlations
 
-Na empreitada científica, não nos atemos apenas a comparações. Um objetivo mais nobre é descrever exatamente como se dá a relação entre entidades estudadas.  
+In the scientific endeavor, we don't just stick to comparisons. A more noble objective is to describe exactly how the relationship between studied entities occurs.  
 
-Como sabemos, existem muitas classes de funções para expressar relações entre variáveis/conjuntos. Nos capítulos anteriores, usamos algumas funções, como $y=\sqrt{x}$ e $y = e^{x}$.  
+As we know, there are many classes of functions to express relationships between variables / sets. In the previous chapters, we used some functions, such as $y=\sqrt{x}$ and $y = e^{x}$.  
 
-Diversas leis naturais tornaram-se particularmente conhecidas, como a relação entre força, massa e aceleração, elucidada por Newton:  
+Several natural laws have become particularly known, such as the relationship between force, mass and acceleration, elucidated by Newton:  
 $$\vec{F}=m\vec{a}$$  
-E a relação entre massa e energia para um objeto em repouso, descoberta por Einstein:  
+And the relationship between mass and energy for an object at rest, discovered by Einstein:  
 $$E=mc^{2}; c^{2} \sim 8.988*10^{16} \frac{m^{2}}{s^2}$$  
 
-As equações acima descrevem uma relação linear entre grandezas.  
+The above equations describe a linear relationship between quantities.  
 
-### Relações lineares
+### Linear relations
 
-Uma relação linear entre duas variáveis indica que elas estão correlacionadas em uma proporção constante para qualquer intervalo.
+A linear relationship between two variables indicates that they are correlated in a constant proportion for any interval.
 
-Isto é, valores maiores de massa correspondem a um aumento proporcional em energia. O valor de $c^{2}$ expressa essa proporção constante.  
+That is, higher mass values correspond to a proportional increase in energy. The value of $c^{2}$ expresses this constant proportion.  
 
-**Exemplo:** uma molécula de água pesa aproximadamente $m_{H_{2}O} =2.992\times 10^{-23} g$. Portanto, a energia associada é $E_{H_{2}O} = 2.992\times 10^{-23}\times 8.988\times 10^{16} \sim 2.689^{-6}J$. Se triplicarmos o número de moléculas de água, o mesmo acontecerá com a energia associada: $E_{3H_{2}O} = 3\times E_{H_{2}O}$.  
+**Example:** a water molecule weighs approximately $m_{H_{2}O} =2.992\times 10^{-23} g$. Therefore, the associated energy is $E_{H_{2}O} = 2.992\times 10^{-23}\times 8.988\times 10^{16} \sim 2.689^{-6}J$. If we triple the number of water molecules, the same will happen with the associated energy: $E_{3H_{2}O} = 3\times E_{H_{2}O}$.  
  
-Se a correlação é positiva, incrementos em $x$ serão proporcionais a incrementos em $y$. Se a correlação é negativa, incrementos em $x$ serão proporcionais a decréscimos em $y$.  
+If the correlation is positive, increments in $x$ will be proportional to increments in $y$. If the correlation is negative, increments in $x$ will be proportional to decreases in $y$.  
 
-Num cenário perfeito, se sabemos que há uma relação linear entre variáveis,  precisamos de apenas duas observações para descobrir proporção entre elas. Esse problema é idêntico ao de encontrar a inclinaçaõ da reta que passa por dois pontos. É de fácil resolução usando técnicas elementares.  
+In a perfect scenario, if we know that there is a linear relationship between variables, we need only two observations to find out the proportion between them. This problem is identical to that of finding the slope of the line that passes through two points. It is easy to solve using elementary techniques.  
 
 ```r
     >library(ggplot2)
@@ -128,16 +129,17 @@ $a=(1,2); b=(2,4) \rightarrow \beta = 2$
 ```
 ![](images/chap2-twopointsline.png)
 
-### Erros e aleatoriedade
+### Errors and randomness
 
-Controlando fatores experimentais, as relações descritas são bastante precisas. Em um cenário sem atrito com superfícies e com o ar, os erros de medida obtidos com $\vec{F}=m\vec{a}$ são muito baixos.  
-Entretanto, nem sempre isso é verdadeiro.  
-Primeiro, podemos sofrer interferência de variáveis desconhecidas.
+Controlling experimental factors, the relationships described are quite accurate. In a scenario without friction with surfaces and air, the measurement errors obtained with $\vec{F}=m\vec{a}$ are very low.
+However, this is not always true.
+First, we may experience interference from unknown variables.
 
-Imaginemos um conjunto de medidas antropométricas, como altura e peso de indivíduos.  
-É esperado que a altura de um ser humano esteja relacionada com seu peso. Entretanto, outras características não medidas, como percentual de gordura total, podem interferir nos valores finais. Normalmente, tratamos essas flutuações como erros aleatórios[^11].
+Imagine a set of anthropometric measures, such as the height and weight of individuals.
+A human's height is expected to be related to his weight. However, other unmeasured characteristics, such as the percentage of total fat, may interfere with the final values. We normally treat these fluctuations as random errors [^ 11].
 
-Podemos simular este cenário partindo de variáveis idênticas e adicionando ruído aleatório.
+We can simulate this scenario starting from identical variables and adding random noise.
+
 ```r
     >set.seed(2600)
     >a <- seq(1:100)+rnorm(n=100,sd=3)
@@ -149,29 +151,29 @@ Podemos simular este cenário partindo de variáveis idênticas e adicionando ru
 ```
 ![](images/chap2-scatterline.png)  
 
-O resultado sugere que há uma forte relação linear entre $x$ e $y$. Por outro lado, notamos que é impossível para uma reta cruzar todos os pontos. A seguir, vamos investigar como quantificar a correlação linear, assim como encontrar a reta que minimiza a distancia para todas as observações.  
+The result suggests that there is a strong linear relationship between $x$ and $y$. On the other hand, we note that it is impossible for a line to cross all points. Next, we will investigate how to quantify the linear correlation, as well as find the line that minimizes the distance for all observations.  
 
-Com essas ferramentas, podemos estender nossas inferências. Além de comparações, teremos noções sobre a magnitude de uma relação, assim como poderemos prever o valor esperado para novas observações.   
+With these tools, we can extend our inferences. In addition to comparisons, we will have notions about the magnitude of a relationship, as well as we can predict the expected value for new observations.   
 
-[^11]:A natureza da aleatoriedade é uma questão filosófica. Em última instância, podemos imaginar que seria possível explicar flutuações randômicas através de variáveis desconhecidas (*hidden variables*). Isso é verdade para a maioria dos fenômenos naturais. Entretanto, descobertas experimentais recentes em física quântica (*Bell's inequality experiment*) sugerem que variáveis ocultas não podem explicar a natureza probabilística das observações.  
+[^ 11]: The nature of randomness is a philosophical question. Ultimately, we can imagine that it would be possible to explain random fluctuations through unknown variables (*hidden variables*). This is true of most natural phenomena. However, recent experimental findings in quantum physics (*Bell's inequality experiment*) suggest that hidden variables cannot explain the probabilistic nature of observations.  
 
-### O coeficiente de correlação produto-momento de Pearson, ou, simplesmente, $\rho$ de Pearson.
+### Pearson's product-moment correlation coefficient, or simply Pearson's $(\rho)$.
 
-O coeficiente de correlação $(\rho)$ de Pearson é um número real garantidamente[^12] entre -1 e 1. Expressa a magnitude e o sentido de uma relação linear, sendo -1 uma relação inversa perfeita e 1 uma relação direta perfeita.  
+Pearson's $(\ rho)$ correlation coefficient is a real number guaranteed [^ 12] between -1 and 1. Expresses the magnitude and direction of a linear relationship, with -1 being a perfect inverse relationship and 1 being a direct relationship perfect.  
 
-Para os dados que geramos, a correlação é quase perfeita: $\rho = 0.989$.  
-O coeficiente possui *produto-momento* em seu nome, pois usa uma abstração originalmente empregada na física, que estudamos no capítulo anterior: o momento(torque). 
+For the data we generate, the correlation is almost perfect: $\rho = 0.989$.
+The coefficient has *product-moment* in its name, because it uses an abstraction originally used in physics, which we studied in the previous chapter: the moment (torque). 
 
-[^12]: Inequalidade de Cauchy–Schwarz
+[^12]: Cauchy – Schwarz inequality
 
 \pagebreak
 
 ![](images/chap2-vitruv.jpg)
 
-### Calculando correlações lineares
+### Calculating linear correlations
 
-A noção de **distância** ou **desvio** se repetiu muitas vezes.  
-De fato, o coeficiente de correlação linear nasceu quando Francis Galton (1888) estudava numericamente dois problemas aparentemente distintos em antropometria [^16] :
+The notion of **distance**or* *deviation** was repeated many times.
+In fact, the linear correlation coefficient was born when Francis Galton (1888) numerically studied two apparently distinct problems in anthropometry [^16]:
 
 1.  **Antropologia:** Se recuperássemos de um túmulo antigo apenas um osso da coxa (fêmur) de um indivíduo, o que podereríamos dizer sobre sua altura?
 2.  **Ciência forense:** Com o intuito de identificar criminosos, o que pode ser dito sobre medidas diferentes de uma mesma pessoa?
@@ -554,60 +556,64 @@ Como a relação é perfeitamente monotônica, os pares ordenados $(x_{i},y_{i})
       1 
 ```
 
-O coeficiente $\rho$ de Spearman é preferível quando as medidas parecem diferir muito quanto à família da distribuição de origem. Especialmente, quando a média não parece corresponder bem ao centro das distribuições. Lembre-se que de o coeficiente de Pearson é baseado nos desvios em relação à média em ambas as amostras.    
+The coefficient $\rho$ Spearman's is preferable when the measurements appear to differ greatly in terms of the family of the distribution of origin. Especially, when the average does not seem to correspond well to the center of the distributions. Remember that Pearson's coefficient is based on deviations from the mean in both samples.
 
-[^20]: Como observamos no gráfico, a correlação linear não é tão alta. O coeficiente se aproxima de 1 $\rho \sim 0.850$ pois os desvios superiores compensam simetricamente os inferiores. O exemplo reforça a importância de plotar os dados para um melhor entendimento (ver Quarteto de Anscombe). 
+[^ 20]: As noted in the graph, the linear correlation is not that high. The coefficient approaches 1 $\rho \sim 0.850$ because the upper deviations symmetrically compensate for the lower ones. The example reinforces the importance of plotting the data for better understanding (see Anscombe Quartet).
 
 
 \pagebreak
 
-## Teste U de Mann-Whitney
+## Mann-Whitney U test
 
-O teste U de Mann-Whitney faz uso da estatística U para fazer inferências. O racional é idêntico ao do teste t de Student.  
-Estabelecemos hipótese nula $H_{0}$ e hipótese alternativa $H_{1}$.  
-Então, calculamos a probabilidade de nossas observações acontecerem caso a hipótese nula seja verdadeira.  
-Desta vez, usaremos a estatística U. Lembremos que a estatística t era calculada com base em parâmetros extraídos da amostra:  
+The Mann-Whitney U test uses U statistics to make inferences. The rationale is identical to the Student's t test.
+We establish null hypothesis $H_{0}$and alternative hypothesis $H_{1}$.  
+Then, we calculate the probability that our observations will happen if the null hypothesis is true.
+This time, we will use the U statistic. Remember that the t statistic was calculated based on parameters extracted from the sample:
+  
 $$t = Z/s=(\mu'-\mu)/\frac{\sigma}{\sqrt{n}}$$
 
-A estatística U não depende de parâmetros (e.g. $\mu$, $\sigma$), sendo calculada com base em cada observação.  
+The U statistic does not depend on parameters (e.g. $\mu$, $\sigma$), being calculated based on each observation.
 
-Primeiro, calculamos os ranks de cada medida $r_{i}$ unindo as observações das amostras A e B, de tamanhos amostrais $n_{a}$ e $n_{b}$ em apenas um conjunto $(N_{tot} = n_{a} + n_{b})$.  
+First, we calculate the ranks for each measure $r_{i}$ joining the observations of samples A and B, of sample sizes $n_{a}$ and $n_{b}$ in just one set $(N_{tot} = n_{a} + n_{b})$.  
 
-Depois, separamos novamente as amostras e calculamos a soma dos ranks em cada grupo, chamadas $R_{a}$ e $R_{b}$.  
-A estatística U é dada pela seguinte expressão: 
+Then, we separate the samples again and calculate the sum of the ranks in each group, called $R_{a}$ and $R_{b}$.  
+The U statistic is given by the following expression: 
 
 $$U_{a}= R_{a} - \frac{n_{a}(n_{a}+1)}{2}$$
 $$U_{b}=R_{b} - \frac{n_{b}(n_{b}+1)}{2}$$
 
-Usamos o menor valor de U para consultar a probabilidade (valor p) correspondente para a hipótese nula.  
+We use the smallest value of U to query the corresponding probability (p-value) for the null hypothesis.
+  
 
-O termo $\frac{n(n+1)}{2}$ corresponde à soma mínima dos ranks para a amostra.  
-Os ranks são uma sequência regular $(1,2,3,...)$, de forma que a soma de todos os valores é idêntica à soma de uma progressão aritmética de N termos.  
+The term $\frac{n(n+1)}{2}$ corresponds to the minimum sum of ranks for the sample.
+Ranks are a regular sequence $(1,2,3,...)$, so that the sum of all values is identical to the sum of an arithmetic progression of N terms. 
 $$\Sigma_{ranks}=\frac{N(N+1)}{2}$$  
-Enquanto $R_{i}$ corresponde à soma dos ranks calculados com as duas amostras, o termo acima corresponderia à soma mínima dos ranks para uma amostra, caso os ranks ocupassem a sequência inicial $A=(1,2,3,4,...,n_{a})$ na amostra conjunta.  
-A definição para o teste não é unânime na literatura, de forma que alguns autores e softwares (e.g. R) implementam o cálculo com a subtração acima e outros (e.g. S-PLUS) não o fazem.  
-Em R, as funções **dwilcox(x,m,n)** e **pwilcox(q,m,n)** retornam a distribuição e a densidade cumulativa para a estatística U correspondente a amostras com tamanhos m e n.  **wilcox.test(x,y,...)** é a implementação base do teste de Mann Whitney. O teste de Mann Whitney é o teste de Wilcoxon de duas amostras.  
+While $R_{i}$ corresponds to the sum of the ranks calculated with the two samples, the term above would correspond to the minimum sum of the ranks for a sample, if the ranks occupied the initial sequence $A=(1,2,3,4,...,n_{a})$in the joint sample.
+
+The definition for the test is not unanimous in the literature, so that some authors and software (e.g. R) implement the calculation with the above subtraction and others (e.g. S-PLUS) do not.
+In R, the functions **dwilcox (x, m, n)** and **pwilcox (q, m, n)** return the cumulative distribution and density for the U statistic corresponding to samples with sizes m and n. **wilcox.test (x, y, ...)** is the basic implementation of the Mann Whitney test. The Mann Whitney test is the Wilcoxon test for two samples.  
 
 \pagebreak
 
-### Exercícios
+### Exercises
 
-1. O coeficiente produto-momento de Pearson descreve quais tipos de relação?   
-  * Ele é útil para modelar relações quadráticas entre variáveis?  
-  * Citamos relações não lineares, como $E=mc^{2}$. Cite um outro exemplo de fenômeno natural de perfil não-linear em que o $\rho$ de Pearson não funciona.   
+1. Pearson's product-moment coefficient describes which types of relationship?
+   * Is it useful for modeling quadratic relationships between variables?
+   * We cite non-linear relationships, such as $E=mc^{2}$.Cite another example of a natural phenomenon with a non-linear profile where the $\rho$ Pearson's does not work.   
   
-2. Crie uma função que calcula o n-ésimo momento para uma amostra:
+2. Create a function that calculates the nth moment for a sample:
   * `n_moment <- function(x,n) {sum((x- mean(x))^n)/length(x)}`
-  * Calcule o valor de skewness. Como citado no capítulo, é o 3o momento normalizado [pelo 2o momento ao expoente 3/2].  $$\frac{\mu_{3}}{\mu_{2}^{3/2}}$$
-  * Calcule o valor de kurtosis. Como citado, é o 4 momento noramlizado [pelo quadrado do 2o momento menos 3].  $$\frac{\mu_{4}}{\mu_{2}^{2} - 3}$$
-  * Os valores podem ser conferidos com as implementações `e1071::skewness` e `e1071::kurtosis`  
+  * Calculate the skewness value. As mentioned in the chapter, it is the 3rd moment normalized [by the 2nd moment to the exponent 3/2].  $$\frac{\mu_{3}}{\mu_{2}^{3/2}}$$
+  * Calculate the value of kurtosis. As mentioned, it is the 4th standardized moment [by the square of the 2nd moment minus 3]. $$\frac{\mu_{4}}{\mu_{2}^{2} - 3}$$
+  * Values can be checked with implementations `e1071::skewness` and `e1071::kurtosis`  
 
-3. Usando o dataset *iris*, compare as 4 variáveis numéricas (*Sepal/Petal* *Lenght/Width*) entre espécies (*Species*) usando teste t de Student e teste de U Mann Whitney. Em algum caso os métodos divergem quanto à rejeição da hipótese nula?   
-  * Obtenha o tamanho de efeito (D de Cohen) para as diferenças.  
+3. Using the * iris * dataset, compare the 4 numerical variables (*Sepal / Petal* *Lenght / Width*) between species (*Species*) using Student's t test and U Mann Whitney test. In any case, do the methods differ regarding the rejection of the null hypothesis?
+   * Get the effect size (Cohen's D) for the differences.  
 
-4. Usando o dataset *iris*:  
-  * Faça um scatterplot entre duas medidas. A função `pairs` pode ajudar.    
-    * Verifique se há correlação linear significativa entre as variáveis.  
-    * Se existir, ajuste um modelo de regressão linear.  
-    * Ajuste um modelo de regressão para cada espécie.  
-    * Observe os valores de $R^{2}$ para cada modelo. Qual a sua impressão sobre as mudanças de performance?  
+4. Using the * iris * dataset:
+   * Make a scatterplot between two measurements. The pairs function can help.
+     * Check for significant linear correlation between variables.
+     * If present, adjust a linear regression model.
+     * Adjust a regression model for each species.
+     * Note the values of $R^{2}$ for each model. What is your impression of the performance changes?
+
