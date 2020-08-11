@@ -45,7 +45,7 @@ In general, *we speak of moments when multiplying a physical quantity by a dista
 ![As the toy above is balanced on only one point?](images/chap2-birdeq.jpg)
 
 In the case of the lever, we saw that each force applied to the object is associated with a moment (torque). We know that gravity acts on each piece with mass making up the whole. We can then calculate the resulting moment by adding the moments of all $N$ points. Let $F_{i}$ be the function describing the force in each i-th:
-$$M= \ sum_{i=1}^{N} F_{i}d_{i}$$
+$$M = \sum_{i=1}^{N} F_{i}d_{i}$$
 
 A system, like the bird resting on the finger, is in equilibrium when the sum of the moments in relation to the fixed point is zero. For electrical charges, the system is nonpolar when the moment is zero. In the figure below, we see how the $CO_{2}$ molecule is nonpolar, while the water molecule is polar: 
 
@@ -413,7 +413,7 @@ Gaussian is the one that introduces less extra information in relation to possib
 
 ---  
 
-The proof is reasonably complex, involving calculation of variations to optimize the expression:
+The proof is reasonably complex, involving calculus of variations to optimize the expression:
 $$H(x) = -\int_{-\infty}^{+\infty}p(x) -\text{log}\ p(x) dx$$ 
 
 ---  
