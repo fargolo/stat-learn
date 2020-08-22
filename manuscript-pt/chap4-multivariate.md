@@ -263,7 +263,8 @@ Como podemos ver, usar duas variáveis preditoras (regressão múltipla) não co
 ```
 \pagebreak
 
-#### Mediação e Moderação
+#### Mediação e Moderação  
+
 
 **Mediação**
 
@@ -279,7 +280,7 @@ Ajustamos 3 modelos:
 O efeito direto da variável independente sobre a variável alvo é quantificado $\beta_{1}$.
 
 **2.** Verificar mudanças obtidas pela introdução da variável mediadora.  
-Ajustamos um quarto modelo *(4)*, com a combinação linear de variável independente e variável mediadora. Abservamos então a diferença entre o novo $(\beta_{1}')$ coeficiente de $X_{1}$ e o antigo $(\beta_{1})$ $Y = X_{1}\beta_{1}' + X_{2}\beta_{4}$.  
+Ajustamos um quarto modelo *(4)*, com a combinação linear de variável independente e variável mediadora. Observamos então a diferença entre o novo $(\beta_{1}')$ coeficiente de $X_{1}$ e o antigo $(\beta_{1})$ $Y = X_{1}\beta_{1}' + X_{2}\beta_{4}$.  
 
 Caso exista mediação, espera-se que o coefiente $\beta_{1}'$ seja não significativo ou que possua magnitude bastante reduzida em relação ao coeficiente do efeito direto $\beta_{1}$.  
 
@@ -294,7 +295,7 @@ As 3 regressões para checar premissas estão na sessão superior e a regressão
 
 ---
 
-Não há garantias de que os sistemas reais se comportarão seguindos os parâmetros estimados. Usamos regressão múltipla para estimar o efeito parcial atribuído aos medidadores, porém a retirada desses fatores no fenômeno real pode resultar em alterações no sistema não previstas pelo modelo.  
+Não há garantias de que os sistemas reais se comportarão seguindos os parâmetros estimados. Usamos regressão múltipla para estimar o efeito parcial atribuído aos mediadores, porém a retirada desses fatores no fenômeno real pode resultar em alterações no sistema não previstas pelo modelo.  
 A certeza dependeria de uma descrição bastante acurada do fenômeno pelas regressões $(R^2 \sim 1)$, o que raramente é verificado fora de fenômenos físicos mais simples.   
 
 Portanto, é recomendável que ajustes sejam feitos na fase experimental. Em nosso exemplo, isso implicaria em controlar a concentração de nicotina absorvida *in vivo*. Obviamente, razões éticas e limitação de recursos precluem muitas vezes a manipulação direta do objeto de estudo. Métodos tais como o descrito, ainda que frágeis, permitem estudar interações e relações causais. Entretanto, é necessário atenção aumentada ao fazer conclusões e, especialmente, ao traduzí-las para linguagem natural.  
@@ -316,7 +317,7 @@ Em R:
     (...)
 ```
 A diferença numérica entre valores de $\beta_{x_{1}}$ é a magnitude do efeito indireto (*Ind. Effect*). Podemos usar uma estimativa do erro padrão para derivar uma estatística t e um valor p associados (teste de Sobel). Usando libs do CRAN:  
-Usando o dataset `bh1996`, com medidades sobre liderança, bem-estar e horas de trabalho.  
+Usando o dataset `bh1996`, com medidas sobre liderança, bem-estar e horas de trabalho.  
 A pergunta é: clima de liderança media relação entre horas de trabalho e bem-estar?   
 
 ```r
@@ -423,7 +424,7 @@ $$x_{2,n} = F_{1,n}\lambda _{2} + F_{2,n}\lambda _{2}' + \epsilon$$
 $$x_{3,n} = F_{1,n}\lambda _{3} + F_{2,n}\lambda _{3}' + \epsilon$$
 $$x_{4,n} = F_{1,n}\lambda _{4} + F_{2,n}\lambda _{4}' + \epsilon$$
 
-Podemos perceber que a matriz $\Lambda$ terá 8 elementos, com 4 pesos para o fator $F_{1}$ e 4 pesos para o fator $F_{2}$. Sabendo os dois scores latentes de cada sujeito, seria possível reconstruir as observações com algum grau de perda. Perceba que expressamos qualquer item com apenas dois parâmetros ($F_{1}$ e $F_{2}$). As informações em nosso dataset poderiam então então ser condensadas de $[nx4]$ dimensões para $[nx2]$.
+Podemos perceber que a matriz $\Lambda$ terá 8 elementos, com 4 pesos para o fator $F_{1}$ e 4 pesos para o fator $F_{2}$. Sabendo os dois scores latentes de cada sujeito, seria possível reconstruir as observações com algum grau de perda. Perceba que expressamos qualquer item com apenas dois parâmetros ($F_{1}$ e $F_{2}$). As informações em nosso dataset poderiam então ser condensadas de $[n \times 4]$ dimensões para $[n \times 2]$.
 
 ![](images/chap3-cfa.png)
 
@@ -556,7 +557,7 @@ Os processos descritos acima são exploratórios por natureza. Buscamos o melhor
 
 Pensando na elaboração de uma escala para medir um traço de personalidade, retomamos o argumento de Popper (capítulo 2) contra o indutivismo. É desejável que tenhamos um modelo prévio e hipóteses testáveis de antemão. Do contrário, é fácil encontrar um modelo oferecendo bom ajuste em quase qualquer caso.  
 
-Na análise fatorial confirmatória, fazemos uma restrição direta ao modelo. Os parâmetros são pré-determinados com base em diagrama (grafo) expresso por quem conduz a análise. Assim, podemos especificar uma relações. No diagrama acima, o primeiro fator latente possui cargas nas relações com items $X_{3},X_{4},X_{5}$ e o segundo fator com $X_{1},X_{2}$.  
+Na análise fatorial confirmatória, fazemos uma restrição direta ao modelo. Os parâmetros são pré-determinados com base em diagrama (grafo) expresso por quem conduz a análise. Assim, podemos especificar uma relação. No diagrama acima, o primeiro fator latente possui cargas nas relações com items $X_{3},X_{4},X_{5}$ e o segundo fator com $X_{1},X_{2}$.  
 
 Nesse caso, os estimadores serão um pouco mais complexos.
 
@@ -615,9 +616,9 @@ Vamos verificar o que acontece se ajustarmos um modelo com 5 fatores latentes:
     (..)
     RMSEA index =  0.055  and the 90 % confidence intervals are  0.054 0.055
 ```
-Observamos um valor baixo de RMSEA, o que indica baixa magnitude de erros por grau de liberdade.  É interessante notar que não termos indicamos quais items avaliam quais fatores (e.g. Items O1 e O2 estão atrelados à abertura a experiência). Se as premissas estiverem corretas, para cada item, a solução encontrada deve indicar alta carga em um fator e baixa em outros.  
+Observamos um valor baixo de RMSEA, o que indica baixa magnitude de erros por grau de liberdade.  É interessante notar que os termos indicam quais items avaliam quais fatores (e.g. Items O1 e O2 estão atrelados à abertura a experiência). Se as premissas estiverem corretas, para cada item, a solução encontrada deve indicar alta carga em um fator e baixa em outros.  
 
-É o que se verificar. Selecionando as estimativas para três items de três grupos. O fator com maior carga está marcado com um asterisco.    
+É o que se verifica. Selecionando as estimativas para três items de três grupos. O fator com maior carga está marcado com um asterisco.    
 
 ```r
     (...)

@@ -415,8 +415,12 @@ The estimated difference of beak mean  sizes among samples A and B was significa
 
 ![](images/chap1-birds-hist2.png) 
 
-#### Nota
+#### Cálculo de tamanho amostral  
 
+Para realizar um teste estastítico, é recomendável que o tamanho da amostra seja calculado de antemão. Para tanto, decidimos qual o tamanho de efeito que acreditamos que exista, assim como a taxa de erros aceitável.  
+Cometemos erros do tipo 1 quando rejeitamos a hipótese nula e ela é verdadeira. Em geral quando o efeito não existe e concluímos que existe.  
+Cometemos erros do tipo 2 quando a aceitamos a hipótese nula e ela é falsa. Em geral,quando o efeito existe e rejeitamos sua existência.  
+Por convenção, aceitamos uma taxa de erro 5% para o tipo 1 ($\alpha$) e uma taxa de erro de 20% para erros do tipo 2 ($\beta$). O cálculo amostral é realizado com base nesses parâmetros para determinar o tamanho necessário. 
 
 
 \pagebreak
