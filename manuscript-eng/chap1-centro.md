@@ -629,7 +629,7 @@ julia> plot (iris,
       Geom.point, Geom.boxplot),
     Guide.ylabel ("Petal Size"))
 ```
-Petals with density (`Geom.violin`) and Sepals in boxplot (` Geom.boxplot`).
+Petals with density (`Geom.violin`) and Sepals in boxplot (`Geom.boxplot`).
 
 ``` julia
 julia> plot (iris,
@@ -638,3 +638,6 @@ julia> plot (iris,
     layer (y =: SepalLength, x =: Species, color =: Species,
       Geom.boxplot))
 ```
+
+\pagebreak  
+

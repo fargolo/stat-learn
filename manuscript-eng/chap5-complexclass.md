@@ -847,5 +847,6 @@ https://rpubs.com/FaiHas/197581
 
 5. Explore other neural network architectures using *caret*. 
 
-\pagebreak
+\pagebreak  
+
 
