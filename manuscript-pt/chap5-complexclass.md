@@ -397,7 +397,7 @@ Na regressão linear, ajustamos o ângulo e a altura de uma barra fixa para redu
 
 A introdução de termos polinomiais de ordem maior torna consideravelmente mais difícil a otimização das estimativas.  
 
-Um neurônio *linearmente sensível* a input e dotado de uma barreira (*threhold*) para disparos é capaz de resolver problemas de classificação mais simples. Para problemas mais difíceis, ao invés de implementar células de processamento radicalmente diferentes e/ou mais complexas, a natureza usa um artifício engenhoso. Neurônios comuns são encadedados: cálculos simples e comunicação local das unidades possibilita a aprendizagem.  
+Um neurônio *linearmente sensível* a input e dotado de uma barreira (*thrsehold*) para disparos é capaz de resolver problemas de classificação mais simples. Para problemas mais difíceis, ao invés de implementar células de processamento radicalmente diferentes e/ou mais complexas, a natureza usa um artifício engenhoso. Neurônios comuns são encadedados: cálculos simples e comunicação local das unidades possibilita a aprendizagem.  
 
 Os dados são apresentados aos perceptrons na linha de frente. O output das primeiras células é usado como input para neurônios da próxima camada.  
 Assim, conseguimos implementar transformações adequadas (rotações, torções, escalonamentos, dobras) em sequência, de maneira que abstrações complexas possam ser capturadas.  

@@ -21,7 +21,7 @@ Ou múltipla com dois preditores:
 ![$y = \beta_{1}*X_{1} + \beta_{2}*X_{2}$](images/chap3-three-node-diagram.png)  
 
 É fácil relacionar *nodos com variáveis* e *conexões com relações* descritas pelas equações estimadas. Formalmente, tratamos essas abstrações com o nome de **grafos**. O campo começou a ser tratado por Euler em 1736. Chamamos os pontos de nodos, ou vértices, e as ligações de arestas (*edges*). Cada aresta conecta dois nodos.  
-O conceito foi usado para resolver o problema das pontes de Königsberg. Dada uma série de pontes conectando partes diferentes da cidade, fazer um percurso que cruzae cada uma apenas uma vez?  
+O conceito foi usado para resolver o problema das pontes de Königsberg. Dada uma série de pontes conectando partes diferentes da cidade, como fazer um percurso que cruze cada uma apenas uma vez?  
 
 ![.](images/chap3-konigsberg.jpg)  
 
@@ -39,7 +39,7 @@ A pouco conhecida origem deste campo está no trabalho de um geneticista, Sewall
 
 ![Diagrama mostrando relação entre fatores influenciando peso de um porquinho-da-índia. Wright, 1921](images/chap3-guinea.jpg)
 
-Usando grafos direcionados (as conexões têm uma origem e um destino), é atrelar as noções de correlação e regressão de forma a ilustrar caminhos causais entre relações lineares. Sewall começou usando apenas grafos acíclicos (sem trajetórias retornando a um mesmo ponto de origem) direcionados, DAGs, em condições restritas.  
+Usando grafos direcionados (as conexões têm uma origem e um destino), é possível atrelar as noções de correlação e regressão de forma a ilustrar caminhos causais entre relações lineares. Sewall começou usando apenas grafos acíclicos (sem trajetórias retornando a um mesmo ponto de origem) direcionados, DAGs, em condições restritas.  
 
 Décadas depois, o campo foi extrapolado para outros cenários mais gerais. Em específico, o boom de disponibilidade de poder computacional nas décadas de 1960 e 1970 impulsionou o surgimento de estimadores diversos para parâmetros nesses modelos.  
 É esperado que a quantidade de parâmetros cresça conforme a complexibilidade.  
@@ -136,7 +136,7 @@ beer_data <- simulateSEM(dagified,b.lower = 0.20,b.upper=0.25)
 # HopsMalt _||_ Water | Soil
 lm(HopsMalt ~ Water + Soil,beer_data)
 # Quality _||_ Soil | HopsMalt, Water
-lm(Quality ~ Soil + HopsMalt,beer_data)
+lm(Quality ~ Soil + HopsMalt + Water,beer_data)
 ```  
 O esperado é que a estimativa do efeito (coeficiente) seja próxima de zero (associação inexistente) uma vez que condicionamos ela às covariáveis indicadas. Verificamos que isso acontece para o exemplo:  
 
@@ -157,7 +157,7 @@ O esperado é que a estimativa do efeito (coeficiente) seja próxima de zero (as
 
 Uma vez que aceitamos o DAG como adequado, podemos usá-lo como referência para calcular estimativas não-enviesadas (unbiased estimates). Isso significa que estamos ajustando o valor final de acordo com vias pelas quais a informação pode correr nas covariáveis examinadas.  
 
-A função `adjustmentSets` quais conjuntos de covariáveis podemos incluir para obter estimativas não enviesadas. A função `ggdag_adjustment_set` informa visualmente quais caminhos estamos fechando ao condicionarmos num grupo de covariáveis. Por vezes (como no exemplo), temos conjuntos alternativos:  
+A função `adjustmentSets` retorna quais conjuntos de covariáveis podemos incluir para obter estimativas não enviesadas. A função `ggdag_adjustment_set` informa visualmente quais caminhos estamos fechando ao condicionarmos num grupo de covariáveis. Por vezes (como no exemplo), temos conjuntos alternativos:  
 
 ```r
 p2 <- ggdag_adjustment_set(dagified,exposure="HopsMalt",outcome="Quality")
@@ -263,7 +263,8 @@ Como podemos ver, usar duas variáveis preditoras (regressão múltipla) não co
 ```
 \pagebreak
 
-#### Mediação e Moderação
+#### Mediação e Moderação  
+
 
 **Mediação**
 
@@ -279,7 +280,7 @@ Ajustamos 3 modelos:
 O efeito direto da variável independente sobre a variável alvo é quantificado $\beta_{1}$.
 
 **2.** Verificar mudanças obtidas pela introdução da variável mediadora.  
-Ajustamos um quarto modelo *(4)*, com a combinação linear de variável independente e variável mediadora. Abservamos então a diferença entre o novo $(\beta_{1}')$ coeficiente de $X_{1}$ e o antigo $(\beta_{1})$ $Y = X_{1}\beta_{1}' + X_{2}\beta_{4}$.  
+Ajustamos um quarto modelo *(4)*, com a combinação linear de variável independente e variável mediadora. Observamos então a diferença entre o novo $(\beta_{1}')$ coeficiente de $X_{1}$ e o antigo $(\beta_{1})$ $Y = X_{1}\beta_{1}' + X_{2}\beta_{4}$.  
 
 Caso exista mediação, espera-se que o coefiente $\beta_{1}'$ seja não significativo ou que possua magnitude bastante reduzida em relação ao coeficiente do efeito direto $\beta_{1}$.  
 
@@ -294,7 +295,7 @@ As 3 regressões para checar premissas estão na sessão superior e a regressão
 
 ---
 
-Não há garantias de que os sistemas reais se comportarão seguindos os parâmetros estimados. Usamos regressão múltipla para estimar o efeito parcial atribuído aos medidadores, porém a retirada desses fatores no fenômeno real pode resultar em alterações no sistema não previstas pelo modelo.  
+Não há garantias de que os sistemas reais se comportarão seguindos os parâmetros estimados. Usamos regressão múltipla para estimar o efeito parcial atribuído aos mediadores, porém a retirada desses fatores no fenômeno real pode resultar em alterações no sistema não previstas pelo modelo.  
 A certeza dependeria de uma descrição bastante acurada do fenômeno pelas regressões $(R^2 \sim 1)$, o que raramente é verificado fora de fenômenos físicos mais simples.   
 
 Portanto, é recomendável que ajustes sejam feitos na fase experimental. Em nosso exemplo, isso implicaria em controlar a concentração de nicotina absorvida *in vivo*. Obviamente, razões éticas e limitação de recursos precluem muitas vezes a manipulação direta do objeto de estudo. Métodos tais como o descrito, ainda que frágeis, permitem estudar interações e relações causais. Entretanto, é necessário atenção aumentada ao fazer conclusões e, especialmente, ao traduzí-las para linguagem natural.  
@@ -316,7 +317,7 @@ Em R:
     (...)
 ```
 A diferença numérica entre valores de $\beta_{x_{1}}$ é a magnitude do efeito indireto (*Ind. Effect*). Podemos usar uma estimativa do erro padrão para derivar uma estatística t e um valor p associados (teste de Sobel). Usando libs do CRAN:  
-Usando o dataset `bh1996`, com medidades sobre liderança, bem-estar e horas de trabalho.  
+Usando o dataset `bh1996`, com medidas sobre liderança, bem-estar e horas de trabalho.  
 A pergunta é: clima de liderança media relação entre horas de trabalho e bem-estar?   
 
 ```r
@@ -423,7 +424,7 @@ $$x_{2,n} = F_{1,n}\lambda _{2} + F_{2,n}\lambda _{2}' + \epsilon$$
 $$x_{3,n} = F_{1,n}\lambda _{3} + F_{2,n}\lambda _{3}' + \epsilon$$
 $$x_{4,n} = F_{1,n}\lambda _{4} + F_{2,n}\lambda _{4}' + \epsilon$$
 
-Podemos perceber que a matriz $\Lambda$ terá 8 elementos, com 4 pesos para o fator $F_{1}$ e 4 pesos para o fator $F_{2}$. Sabendo os dois scores latentes de cada sujeito, seria possível reconstruir as observações com algum grau de perda. Perceba que expressamos qualquer item com apenas dois parâmetros ($F_{1}$ e $F_{2}$). As informações em nosso dataset poderiam então então ser condensadas de $[nx4]$ dimensões para $[nx2]$.
+Podemos perceber que a matriz $\Lambda$ terá 8 elementos, com 4 pesos para o fator $F_{1}$ e 4 pesos para o fator $F_{2}$. Sabendo os dois scores latentes de cada sujeito, seria possível reconstruir as observações com algum grau de perda. Perceba que expressamos qualquer item com apenas dois parâmetros ($F_{1}$ e $F_{2}$). As informações em nosso dataset poderiam então ser condensadas de $[n \times 4]$ dimensões para $[n \times 2]$.
 
 ![](images/chap3-cfa.png)
 
@@ -556,7 +557,7 @@ Os processos descritos acima são exploratórios por natureza. Buscamos o melhor
 
 Pensando na elaboração de uma escala para medir um traço de personalidade, retomamos o argumento de Popper (capítulo 2) contra o indutivismo. É desejável que tenhamos um modelo prévio e hipóteses testáveis de antemão. Do contrário, é fácil encontrar um modelo oferecendo bom ajuste em quase qualquer caso.  
 
-Na análise fatorial confirmatória, fazemos uma restrição direta ao modelo. Os parâmetros são pré-determinados com base em diagrama (grafo) expresso por quem conduz a análise. Assim, podemos especificar uma relações. No diagrama acima, o primeiro fator latente possui cargas nas relações com items $X_{3},X_{4},X_{5}$ e o segundo fator com $X_{1},X_{2}$.  
+Na análise fatorial confirmatória, fazemos uma restrição direta ao modelo. Os parâmetros são pré-determinados com base em diagrama (grafo) expresso por quem conduz a análise. Assim, podemos especificar uma relação. No diagrama acima, o primeiro fator latente possui cargas nas relações com items $X_{3},X_{4},X_{5}$ e o segundo fator com $X_{1},X_{2}$.  
 
 Nesse caso, os estimadores serão um pouco mais complexos.
 
@@ -615,9 +616,9 @@ Vamos verificar o que acontece se ajustarmos um modelo com 5 fatores latentes:
     (..)
     RMSEA index =  0.055  and the 90 % confidence intervals are  0.054 0.055
 ```
-Observamos um valor baixo de RMSEA, o que indica baixa magnitude de erros por grau de liberdade.  É interessante notar que não termos indicamos quais items avaliam quais fatores (e.g. Items O1 e O2 estão atrelados à abertura a experiência). Se as premissas estiverem corretas, para cada item, a solução encontrada deve indicar alta carga em um fator e baixa em outros.  
+Observamos um valor baixo de RMSEA, o que indica baixa magnitude de erros por grau de liberdade.  É interessante notar que os termos indicam quais items avaliam quais fatores (e.g. Items O1 e O2 estão atrelados à abertura a experiência). Se as premissas estiverem corretas, para cada item, a solução encontrada deve indicar alta carga em um fator e baixa em outros.  
 
-É o que se verificar. Selecionando as estimativas para três items de três grupos. O fator com maior carga está marcado com um asterisco.    
+É o que se verifica. Selecionando as estimativas para três items de três grupos. O fator com maior carga está marcado com um asterisco.    
 
 ```r
     (...)
