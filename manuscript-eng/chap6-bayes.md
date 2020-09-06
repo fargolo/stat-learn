@@ -697,7 +697,7 @@ In the lower panel, we have the chains for A (lower average, with signal oscilla
    * Compare the mean of the posterior ones for the coefficients $\beta$ with the classic point estimate using `glm`.  
 
 
-2. With the library `BEST` conduct the comparison of means of the final example, invoking the function `BESTmcmc` and specify the argument` numSavedSteps = 3000`.   
+2. With the library `BEST` conduct the comparison of means of the final example, invoking the function `BESTmcmc` and specify the argument `numSavedSteps = 3000`.   
   * Extract the subsequent distributions, `mu1` and` mu2`, from the resulting object.
    * Get the difference between `mu1 - mu2` distributions and compare visually (density or histogram) with the posterior one that we generate through the handmade MCMC.  
 

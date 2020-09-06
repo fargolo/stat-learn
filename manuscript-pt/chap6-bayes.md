@@ -160,7 +160,7 @@ Obviamente, vamos entender a arte envolvida aqui. A flexibilidade e o poder dos 
 
 É extremamente importante entender os componentes envolvidos para não cometer erros importantes.  
 
-![https://xkcd.com/2059/ Teorema de Bayes modificado, incluindo a probabilidade de você estar usando estatística bayesiana correntamente](images/chap5-xkcd.jpg)
+![https://xkcd.com/2059/ Teorema de Bayes modificado, incluindo a probabilidade de você estar usando estatística bayesiana corretamente](images/chap5-xkcd.jpg)
 
 ### O Teorema do Bayes 
 
@@ -169,7 +169,7 @@ $$P(B\mid A)= \frac{P(A) \mid B)P(B)}{P(A)}, P(A)\neq 0$$
 
 Costuma ser apresentado para tratar problemas simples: *sabendo o resultado de um teste médico positivo, qual a probabilidade de o paciente ter a doença?*. O teorema de Bayes relaciona a probabilidade basal da doença com a probabilidade de um teste positivo subsequente. Algumas armadilhas da intuição são quebradas: ainda que o teste tenha boa sensibilidade (probabilidade alta de resultado positivo diante da doença), a probabilidade será baixa se as chances basais também forem.    
  
-O teorema foi concebido num esforço maior do reverendo (Thomas Bayes, 1701-1761) para um problema de inferência. Curiosamente, ele é bastante semelhante ao que empreenderemos.  
+O teorema foi concebido num esforço maior do reverendo Thomas Bayes (1701-1761) para um problema de inferência. Curiosamente, ele é bastante semelhante ao que empreenderemos.  
 Suponha que atribuímos uma probabilidade *p*($0 \leqslant p \leqslant 1$) para o lançamento de uma moeda com resultado *coroa*. Ao observar alguns resultados, podemos calibrar nossa estimativa. 
 Podemos começar supondo uma moeda honesta $0.5$. Com uma frequência alta de *coroas*, é racional aumentar a nossa estimativa sobre o valor de *p* $(p \sim 1)$. Bayes demonstrou como fazer essas atualizações diante de evidência.   
 
@@ -667,6 +667,93 @@ Podemos então obter nossas distribuições posteriores para $\mu_{A}, \mu_{B}$ 
 
 O painel superior da visualização destaca distribuições posteriores de A (verde claro) e B (verde escuro), assim como da diferença. Elas refletem razoavelmente bem as distribuições de origem ($N(0,1) , N(0.6,1$) inferidas a partir dos dados.  
 No painel inferior, temos as cadeias para A (média menor, com sinal oscilando num nível menor) e B(média maior, com sinal osicilando acima). Ainda que seja um modelo ilustrativo, o resultado parece bom, com distribuições representativas.  
+
+#### Escolhendo priors e verificando posteriors  
+A escolha adequada de priors é importante para obtermos modelos acurados. Em estruturas simples, é relativamente fácil considerar distribuições que reflitam a realidade. Um exemplo: se o objetivo é modelar a distribuição de pressão sanguínea em uma amostra, um profissional de saúde possui boas intuições sobre tendência central e dispersão. Por outro lado, se o modelo envolve diversos parâmetros, o efeito combinado das escolhas é pouco intuitivo.  
+Uma boa maneira de checar a plausibilidade dos priors é verificar como se comportam dados aleatórios gerados usando o modelo. Isto é, a estrutura e as distribuições escolhidas a priori resultariam em medidas plausíveis?  
+
+---  
+A seguir, usaremos a biblioteca **rethinking**. Ele usa o motor do Stan, porém aproveita a sintaxe mais simples de R para especificação dos modelos e outras utilidades. Para uma introdução mais detalhada ao software, veja o livro *Statisical rethinking* (Richard McElreath).  
+---  
+
+Vamos ajustar uma regressão linear entre tamanho e largura das sépalas no dataset **iris** (incluído nas bibliotecas de base R) com a sintaxe a seguir.  
+
+$$\text{Width}= \beta_{1} + \beta_{Species}*\text{Length} + \epsilon$$  
+
+Temos um valor para o intercepto $\beta_{1}$ e um valor de inclinação de reta para cada espécie: $\beta_{Species}*\text{Length}$. A princípio, vamos especificar priors pouco informativos, uma distribuição normal $N(0,1)$).  
+
+```r
+library(rethinking)
+iris_lm <- alist(
+  Sepal.Width ~ dnorm(mu, sigma), # O ~ B(n,p)
+  mu <- beta1 + beta2[Species]*Sepal.Length, 
+  beta1 ~ dnorm(0,1), # Prior 1 - Intercepto
+  beta2[Species] ~ dnorm(0,1),
+  sigma ~ dcauchy(0,1)) # Prior 2 - Inclinações por espécie
+fitted_iris <- map2stan(iris_lm,data=iris)
+```
+
+Podemos extrair os priors para cada parâmetro e observar como seriam as possíveis retas antes do ajuste.   
+
+```r
+iris_priors <- extract.prior(fitted_iris)
+prior_preds <- data.frame(cbind(iris_priors$beta2,iris_priors$beta1))
+prior_preds <- prior_preds[1:100,] # 100 retas vindas to prior
+names(prior_preds) <- c("spec1","spec2","spec3","inter")
+ggplot(prior_preds)+geom_abline(slope=prior_preds$spec1,
+                     intercept=prior_preds$inter)+
+  ylim(0,5)+xlim(0,8)
+```
+
+Uma vez que estabelecemos os priors para inclinação e intercepto com centro próximo de 0, notamos que muitas retas "estranhas", com inclinação negativa (sépala diminui em largura quando cresce em comprimento).  
+
+![](images/chap6-priorpredcheck1.png)  
+
+Vamos mudar os priors, colocando uma inclinação positiva e menor variação ($N(0.4,0.5)$). Também vamos testar um intercepto com média em 2.    
+
+```r
+iris_lm2 <- alist(
+  Sepal.Width ~ dnorm(mu, sigma), # O ~ B(n,p)
+  mu <- beta1 + beta2[Species]*Sepal.Length, 
+  beta1 ~ dnorm(2,1), # Prior 1 - Intercepto
+  beta2[Species] ~ dnorm(0.4,0.5),
+  sigma ~ dcauchy(0,1)) # Prior 2 - Inclinações por espécie
+fitted_iris2 <- map2stan(iris_lm2,data=iris)
+```
+
+Plotando os dados gerados com as novas distribuições:  
+
+```r
+iris_priors <- extract.prior(fitted_iris2)
+prior_preds <- data.frame(cbind(iris_priors$beta2,iris_priors$beta1))
+prior_preds <- prior_preds[1:100,] # 100 retas vindas to prior
+names(prior_preds) <- c("spec1","spec2","spec3","inter")
+ggplot(prior_preds)+geom_abline(slope=prior_preds$spec1,
+                     intercept=prior_preds$inter)+
+  ylim(0,5)+xlim(0,8)
+```
+
+Agora, a maioria das retas agora apresenta um comportamento mais compatível com o esperado. Algumas possuem inclinação próxima de 0 (paralelas ao eixo x) e, ainda, algumas poucas apresentam inclinação negativa. Estes priors são mais restritos, descrevendo melhor os cenários mais prováveis. Ao mesmo tempo, são flexíveis o suficiente para outras ocasiões (e.g. não há relação entre largura e comprimento ou esta relação é inversa).  
+
+![](images/chap6-priorpredcheck2.png)  
+
+Os dados usados para ajuste do modelo final **não** devem ser considerados para o ajuste fino. O ideal é que a lapidação dos priors seja feita com base em concepções prévias.   
+Para fins de ilustração, podemos examinar como seriam as previsões para largura, sabendo o comprimeto e usando a média dos priors como estimativa pontual.  
+
+```r
+iris_priors <- extract.prior(fitted_iris2)
+iris_new <- iris ; colnames(iris_new)[1:2] <- c("Sepal_Length","Sepal_Width")
+mu <- link(fitted_iris, post=iris_priors , data=iris_new)
+mu_mean <- apply(mu,2,mean) ; iris_new <- cbind(iris_new,mu_mean)
+ggplot(iris_new,aes(x=Sepal_Length,y=Sepal_Width,color=Species))+
+    geom_point(alpha=1)+
+    geom_point(aes(x=Sepal_Length,y=mu_mean,color=Species),
+            alpha=0.3, shape = 23)
+```  
+
+![](images/chap6-prior-predictions.png)  
+
+Os valores preditos para cada observação estão razoavelmente dentro da faixa esperada.  
 
 \pagebreak
 

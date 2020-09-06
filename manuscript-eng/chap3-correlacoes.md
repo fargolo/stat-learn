@@ -7,7 +7,7 @@ output:
 
 ![](images/adinkras/FUNTUNFUNEFU-DENKYEMFUNEFU.jpg)  
 
-# Chapter 3: About associations  
+# Chapter 3: On associations  
 
 ## Prelude: *Hypotheses non fingo*?
 
