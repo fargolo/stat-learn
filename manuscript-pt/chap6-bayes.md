@@ -88,11 +88,11 @@ Conhecido pela personalidade ímpar e por ideias radicais, Paul Feyerabend, em *
 
 Crenças pessoais e detalhes biográficos são responsáveis por mudanças em nosso conhecimento. Mais que isso, usar falsificabilidade e o método hipotético-dedutivo teriam nos feito rejeitar o heliocentrismo e outras ideias chave para o progresso. Na verdade, o sistema geocêntrico (Terra no centro do sistema) de Ptolomeu era mais acurado (!) que o de Copérnico (Sol ao centro) usando um mesmo número de parâmetros para cálculos das órbitas. O modelo copernicano estava mais próximo da realidade como entendida hoje, porém o estágio intermediário de concepção teórica era 'pior' [^28].    
 
-Além de menos acurado, era mais complexo em alguns aspectos, incluindo mais epiciclos: órbitas auxiliares usadas como artifício para cálculos. A Revolução Copernicana somente consolidou a mudança de paradigma com contribuições subsequentes de Tycho Brahe, Kepler, Galileo e Newton, cerca de 1 século depois.
+Além de menos acurado, era mais complexo em alguns aspectos. A Revolução Copernicana somente consolidou a mudança de paradigma com contribuições subsequentes de Tycho Brahe, Kepler, Galileo e Newton, cerca de 1 século depois.
 
 ![](images/chap5-orbits.jpg)
 
-[^28]: Stanley E. Babb, “Accuracy of Planetary Theories, Particularly for Mars”, Isis, Sep. 1977, pp. 426
+[^28]: Stanley E. Babb, “Accuracy of Planetary Theories, Particularly for Mars”, Isis, Sep. 1977, pp. 426; Citado em 'Contra o Método' (P. Feyerabend)  
 
 Diante das incongruências entre um método e as inevitáveis imprevisibilidades da empreitada humana em conhecer o Universo, Feyerabend propõe o *anarquismo epistêmico* sob o mote *"Anything goes"* ('Vale tudo'). Isto é, quaisquer recursos são válidos na tentativa de atacar um problema ou conceber um modelo de realidade.  
 
@@ -456,7 +456,7 @@ E então, vamos observar nossa estimativa posterior para o valor de $\rho$:
 ```
 ![](images/chap5-corr-post1.png)
 
-Notamos que as estimativa posterior para $\rho$ foram razoavelmente distribuídas ao redor do valor empiricamente calculado na amostra. Podemos ainda observar na distribuição  intervalos com alta densidade de probabilidade (HDI, High density intervals) ou ainda outros fins.  
+Notamos que as estimativa posterior para $\rho$ foram razoavelmente distribuídas ao redor do valor pontual calculado para a amostra. Podemos ainda observar na distribuição  intervalos com alta densidade de probabilidade (HDI, High density intervals) ou ainda outros fins.  
 
 ```r
     > quantile(posterior$rho,probs = c(0.025,0.5,0.975))
@@ -668,19 +668,23 @@ Podemos então obter nossas distribuições posteriores para $\mu_{A}, \mu_{B}$ 
 O painel superior da visualização destaca distribuições posteriores de A (verde claro) e B (verde escuro), assim como da diferença. Elas refletem razoavelmente bem as distribuições de origem ($N(0,1) , N(0.6,1$) inferidas a partir dos dados.  
 No painel inferior, temos as cadeias para A (média menor, com sinal oscilando num nível menor) e B(média maior, com sinal osicilando acima). Ainda que seja um modelo ilustrativo, o resultado parece bom, com distribuições representativas.  
 
-#### Escolhendo priors e verificando posteriors  
-A escolha adequada de priors é importante para obtermos modelos acurados. Em estruturas simples, é relativamente fácil considerar distribuições que reflitam a realidade. Um exemplo: se o objetivo é modelar a distribuição de pressão sanguínea em uma amostra, um profissional de saúde possui boas intuições sobre tendência central e dispersão. Por outro lado, se o modelo envolve diversos parâmetros, o efeito combinado das escolhas é pouco intuitivo.  
-Uma boa maneira de checar a plausibilidade dos priors é verificar como se comportam dados aleatórios gerados usando o modelo. Isto é, a estrutura e as distribuições escolhidas a priori resultariam em medidas plausíveis?  
+### Escolhendo priors e verificando posteriors  
+
+#### Plausibilidade de priors  
+
+A escolha adequada de priors é importante para a obtenção de modelos acurados. Em estruturas simples, é relativamente fácil considerar distribuições que reflitam a realidade. Um exemplo: se escolhemos um modelo gaussiano para a pressão sanguínea em uma amostra, um profissional de saúde possui boas intuições sobre tendência central e dispersão. Por outro lado, se o modelo envolve diversas relações e parâmetros (e.g.regressões com muitas variáveis), o efeito combinado das escolhas é pouco intuitivo.  
+Uma boa maneira de checar a plausibilidade dos priors é verificar como se comportam dados aleatórios gerados usando o modelo.  
+Isto é, a estrutura e as distribuições escolhidas a priori resultariam em medidas plausíveis?  
 
 ---  
-A seguir, usaremos a biblioteca **rethinking**. Ele usa o motor do Stan, porém aproveita a sintaxe mais simples de R para especificação dos modelos e outras utilidades. Para uma introdução mais detalhada ao software, veja o livro *Statisical rethinking* (Richard McElreath).  
+A seguir, usaremos a biblioteca **rethinking** disponível em R. Ela usa o motor do Stan, porém com sintaxe simples e próxima da notação matemática. Para uma introdução mais detalhada ao software, veja o livro *Statisical rethinking* (Richard McElreath).  
 ---  
 
 Vamos ajustar uma regressão linear entre tamanho e largura das sépalas no dataset **iris** (incluído nas bibliotecas de base R) com a sintaxe a seguir.  
 
 $$\text{Width}= \beta_{1} + \beta_{Species}*\text{Length} + \epsilon$$  
 
-Temos um valor para o intercepto $\beta_{1}$ e um valor de inclinação de reta para cada espécie: $\beta_{Species}*\text{Length}$. A princípio, vamos especificar priors pouco informativos, uma distribuição normal $N(0,1)$).  
+Temos um valor para o intercepto $\beta_{1}$ e um valor de inclinação de reta para cada espécie: $\beta_{Species}*\text{Length}$. A princípio, vamos especificar priors pouco informativos: uma distribuição normal $N(0,1)$).  
 
 ```r
 library(rethinking)
@@ -688,8 +692,8 @@ iris_lm <- alist(
   Sepal.Width ~ dnorm(mu, sigma), # O ~ B(n,p)
   mu <- beta1 + beta2[Species]*Sepal.Length, 
   beta1 ~ dnorm(0,1), # Prior 1 - Intercepto
-  beta2[Species] ~ dnorm(0,1),
-  sigma ~ dcauchy(0,1)) # Prior 2 - Inclinações por espécie
+  beta2[Species] ~ dnorm(0,1), # Prior 2 - Inclinações por espécie
+  sigma ~ dcauchy(0,1)) # Prior 3 - Desvio-padrão
 fitted_iris <- map2stan(iris_lm,data=iris)
 ```
 
@@ -733,11 +737,11 @@ ggplot(prior_preds)+geom_abline(slope=prior_preds$spec1,
   ylim(0,5)+xlim(0,8)
 ```
 
-Agora, a maioria das retas agora apresenta um comportamento mais compatível com o esperado. Algumas possuem inclinação próxima de 0 (paralelas ao eixo x) e, ainda, algumas poucas apresentam inclinação negativa. Estes priors são mais restritos, descrevendo melhor os cenários mais prováveis. Ao mesmo tempo, são flexíveis o suficiente para outras ocasiões (e.g. não há relação entre largura e comprimento ou esta relação é inversa).  
+Agora, a maioria das retas apresenta um comportamento mais compatível com o esperado. Algumas possuem inclinação próxima de 0 (paralelas ao eixo x) e, ainda, algumas poucas apresentam inclinação negativa. Estes priors são mais restritos, descrevendo melhor os cenários mais prováveis. Ao mesmo tempo, são flexíveis o suficiente para outras ocasiões (e.g. não há relação entre largura e comprimento ou esta relação é inversa).  
 
 ![](images/chap6-priorpredcheck2.png)  
 
-Os dados usados para ajuste do modelo final **não** devem ser considerados para o ajuste fino. O ideal é que a lapidação dos priors seja feita com base em concepções prévias.   
+Os dados experimentais que serão usados para ajuste do modelo final **não** devem ser considerados para o ajuste fino de priors. O ideal é que a lapidação seja feita com base em concepções prévias.   
 Para fins de ilustração, podemos examinar como seriam as previsões para largura, sabendo o comprimeto e usando a média dos priors como estimativa pontual.  
 
 ```r
@@ -753,7 +757,18 @@ ggplot(iris_new,aes(x=Sepal_Length,y=Sepal_Width,color=Species))+
 
 ![](images/chap6-prior-predictions.png)  
 
-Os valores preditos para cada observação estão razoavelmente dentro da faixa esperada.  
+Os valores preditos para cada observação estão razoavelmente dentro da faixa esperada.   
+
+#### Performance de posteriors  
+
+Uma vez que o modelo foi ajustado, é prudente avaliarmos seu desempenho. Anteriormente, em $R^{2}$ para regressão linear, estudamos os valores dos erros (resíduos) em relação às observações. Entretanto, medir apenas o resultado final é perigoso.   
+Quando aumentamos a complexidade de um modelo (e.g. número de parâmetros associados às variáveis preditoras), aumentamos sua flexibilidade. Isso permite que ele se adapte aos dados disponíveis e corremos o risco de fazer *sobreajuste* (overfitting). Isto é, aprendemos características específicas do conjunto de dados disponíveis e não sobre o fenômeno de origem que buscamos entender.  
+Para contornar esse empecilho, podemos penalizar a medida de performance de acordo.  
+
+**Critérios de informação**  
+AIC,WAIC.  
+
+**Validação cruzada**  
 
 \pagebreak
 
