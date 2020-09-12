@@ -71,7 +71,7 @@ O **segundo momento** de massa é $M_{2} = \sum_{i=1}^{N} m_{i}d_{i}^{2}$ e é o
 O n-ésimo momento é dado por $$M_{n} = \sum_{i=1}^{N} m_{i}d_{i}^{n}$$.
 
 [^13]:Pappus de Alexandria, Synagoge, Livro VIII
-[^14]: https://physics.stackexchange.com/a/371165/218274
+[^14]: https://physics.stackexchange.com/a/371165/218274 . Apesar de "momento de inércia" ser mais popular, "inércia rotacional" é um termo que reflete melhor a abstração.  
 
 ### Generalizando momentos 
 

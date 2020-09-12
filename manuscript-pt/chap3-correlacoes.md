@@ -162,7 +162,7 @@ O coeficiente de correlação $(\rho)$ de Pearson é um número real garantidame
 Para os dados que geramos, a correlação é quase perfeita: $\rho = 0.989$.  
 O coeficiente possui *produto-momento* em seu nome, pois usa uma abstração originalmente empregada na física, que estudamos no capítulo anterior: o momento(torque). 
 
-[^12]: Inequalidade de Cauchy–Schwarz
+[^12]: O valor é normalizado pelas variâncias de cada amostra. Formalmente, pela inequalidade de Cauchy–Schwarz: ${( \sum_{i=1}^{n}u_{i}v_{i} ) }^{2} \leq \sum_{i=1}^{n}u_{i}^{2} \sum_{i=1}^{n}v_{i}^{2}$
 
 \pagebreak
 
@@ -381,7 +381,7 @@ $$\text{log likelihood}(\beta_{0},\beta_{1},\sigma^{2})=log\prod_{i=1}^{n} P(y_{
 $$=\sum_{i=1}^{n} log P(y_{i}|x_{i}; \beta_{0},\beta_{1},\sigma^{2})$$
 $$=-\frac{n}{2}\text{log}({2\pi\sigma^{2}}) - \frac{1}{2\sigma^{2}}\sum_{i=1}^{n}(y_{i}-(\beta_{0} + \beta_{1}x_{i}))^{2}$$
 
-Os parâmetros que maximizam a função de verossimilhança (max. likelihood, ML) são os mesmos que maximizam o logaritmo da função de verossimilhança (log-likelihood).  
+Os parâmetros que maximizam a função de verossimilhança (max. likelihood, ML) são equivalentes aos que maximizam o logaritmo da função de verossimilhança (log-likelihood).  
 
 Introduzimos o racional do estimador ML pois ele será útil futuramente. Em verdade, é fácil entender as fórmulas fechadas para nossos parâmetros, pois apenas expressam as relações lineares exploradas [^19]:  
 
