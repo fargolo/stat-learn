@@ -765,10 +765,26 @@ Uma vez que o modelo foi ajustado, é prudente avaliarmos seu desempenho. Anteri
 Quando aumentamos a complexidade de um modelo (e.g. número de parâmetros associados às variáveis preditoras), aumentamos sua flexibilidade. Isso permite que ele se adapte aos dados disponíveis e corremos o risco de fazer *sobreajuste* (overfitting). Isto é, aprendemos características específicas do conjunto de dados disponíveis e não sobre o fenômeno de origem que buscamos entender.  
 Para contornar esse empecilho, podemos penalizar a medida de performance de acordo.  
 
-**Critérios de informação**  
-AIC,WAIC.  
+**Critérios de informação e Validação cruzada**  
+  
+AIC,WAIC (baseado em log-pointwise-predictive-density).  
 
-**Validação cruzada**  
+lppd
+$$lppd(y, \Theta) =\sum_{i} log \frac{1}{S} \sum_{s} p(y_{i}|\Theta_{s})$$
+"where S is the number of samples and $\Theta_{s}$ is the s-th set of sampled parameter values in the posterior distribution."
+
+AIC obtido via expansão de Taylor
+$$AIC = -2lppd + 2p$$
+
+WAIC
+$$WAIC = -2(lppd - \sum_{i} var_{\theta} log p(y_{i}/\theta))$$
+"The penalty term means,“compute the variance in log-probabilities for each observation i, and then sum up these variances to get the total penalty.”"
+
+
+```r
+compare(m1,m2)
+```
+
 
 \pagebreak
 
