@@ -837,9 +837,12 @@ $$WAIC = -2(lppd - \sum_{i} var_{\theta} (log\ p(y_{i}|\theta)))$$
 
 Obter os valores para usando a biblioteca **rethinking** é relativametne simples com as funções `WAIC(model)` ou `compare(model1,model2)`.     
 
+Vale lembrar que, quando comparamos dois modelos, assumimos que aquele com menor WAIC é melhor. Além disso, eles são comparáveis se ajustados para um mesmo conjunto de observações.  
+
+
 ```r
 compare(m1,m2)
-```
+```  
 
 
 \pagebreak
