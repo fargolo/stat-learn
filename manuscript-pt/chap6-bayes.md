@@ -761,25 +761,81 @@ Os valores preditos para cada observação estão razoavelmente dentro da faixa 
 
 #### Performance de posteriors  
 
-Uma vez que o modelo foi ajustado, é prudente avaliarmos seu desempenho. Anteriormente, em $R^{2}$ para regressão linear, estudamos os valores dos erros (resíduos) em relação às observações. Entretanto, medir apenas o resultado final é perigoso.   
+Uma vez que o modelo foi ajustado, é prudente avaliarmos seu desempenho. Anteriormente, em $R^{2}$ para regressão linear, estudamos os valores dos erros (resíduos) em relação às observações. Entretanto, medir apenas o valor  final total dos erros é perigoso.   
 Quando aumentamos a complexidade de um modelo (e.g. número de parâmetros associados às variáveis preditoras), aumentamos sua flexibilidade. Isso permite que ele se adapte aos dados disponíveis e corremos o risco de fazer *sobreajuste* (overfitting). Isto é, aprendemos características específicas do conjunto de dados disponíveis e não sobre o fenômeno de origem que buscamos entender.  
 Para contornar esse empecilho, podemos penalizar a medida de performance de acordo.  
 
-**Critérios de informação e Validação cruzada**  
+**Critérios de informação**  
+
+Medidas advindas do estudo de teoria da informação são bastante úteis. Um estudo detalhado sobre premissas e dedução das fórmulas envolvidas requer bastante tempo. Vamos nos ater a uma compreensão geral das ferramentas.  
+
+**Entropia**  
+
+Vamos considerar um sistema pode assumir $n$ estados e tem probabilidades $P$ associadas a cada possibilidade. Por exemplo, imaginemos alguns possíveis desfechos para um paciente apresentando quadro característico de acidente vascular cerebral (AVC). Ele pode (1) evoluir sem sintomas residuais; (2) evoluir com sequelas neurológicas e (3) evoluir para óbito dentro de 1 ano.
+
+Se o AVC é brando, podemos pensar em probabilidades maiores para evolução com sintomas residuais ($p_{1}=0.4$) e sequelas neurológicas ($p_{2}=0.4$) e um risco de óbito ($p_{3}=0.2$)
+
+A medida de entropia para esse sistema é dada pela soma dos produtos entre cada probabilidade pelos respectivos logaritmos.  
+
+$$H(P) = -\sum_{i}^{n} p_{i} log(p_{i})$$
+
+Essa definição surge de algumas restrições para a função $H(x)$: (1) continuidade, (2) monotonicidade entre número de eventos e incerteza, (3) propriedade de aditividade.  
+
+
+Calculando o falor de entropia para o cenário de AVC acima, temos:  
+$$H(P) = -\sum_{i}^{n} p_{i} log(p_{i}) = -(0.4 log(0.4) + 0.4 log(0.4) + 0.2 log(0.2))$$
+
+```r
+p <- c( 0.4 , 0.4, 0.2 )
+-sum( p*log(p) )
+[1] 1.05492
+``` 
+
+Em contraste, podemos avaliar um AVC extremamente grave. Há uma probabilidade maior de óbito em 1 ano, assim como de sintomas residuais. Vamos chamar o conjunto de probabilidades de $Q$: $q_{1} = 0.1 , q_{2} = 0.2 , q_{3} = 0.7$. Nesse caso, a medida de incerteza é:  
+
+```r
+q <- c( 0.1 , 0.2, 0.7 )
+-sum( q*log(q) )
+[1] 0.8018186
+``` 
+Como esperado, temos entropia menor no segundo cenário. Isso é congruente com o fato de que o desfecho é mais previsível, sendo um evento muito mais provável que os outros.  Lidamos brevemente com esse conceito no Capítulo 2, quando descobrimos que a distribuição Gaussiana é aquela que maximiza entropia em relação a possibilidades desconhecidas.  
+
+**Divergência**  
+Ainda, podemos comparar duas distribuições probabilísticas quanto à incerteza adicional que uma delas representa. Recorremos à *Divergência de Kullback-Leibler*, cuja definição é bastante semelhante.  
+
+$$D_{KL}(P,Q) = \sum_{i}^{n} p_{i} (log(p_{i} - log(q_{i}))) = \sum_{i}^{n} p_{i} log(\frac{p_{i}}{q_{i}})$$
+
+Calculando a divergência para as distribuições fictícias enter um AVC brando e outro grave:  
+
+```r
+p <- c(0.4, 0.4, 0.2)
+q <- c(0.1, 0.2, 0.7)
+sum( p*log(p/q) )
+[1] 0.581224
+```
   
-AIC,WAIC (baseado em log-pointwise-predictive-density).  
+Neste caso, comparamos dois cenários hipotéticas cujas probabilidades de base são conhecidas. Na prática, costumamos comparar dois ou mais modelos e gostaríamos de saber qual deles está mais próximo das probabilidades reais, que são desconhecidas.   
 
-lppd
+**Log Pointwise Predicitive Density (LPPD)**  
+Com as definições acima, a soma dos logaritmos das probabilidades para cada observação (log probabilities) costuma ser um score popular para comparar modelos.
+
+$$S(q) = \sum_{i} log(q_{i})$$
+
+No contexto de inferência Bayesiana, em que temos estimativas posteriores para cada parâmetro $\theta$, levamos em conta as probabilidades de cada amostra do posterior e dividimos pelo número total de amostras ($S$).  
+
+$$\frac{1}{S}\sum_{s} p(y_{i}|\Theta_{s})$$
+
+Chamamos lppd (log-pointwise-predicitive-density) a soma dos logaritmos desse resultado para cada i-ésima observação.
+
 $$lppd(y, \Theta) =\sum_{i} log \frac{1}{S} \sum_{s} p(y_{i}|\Theta_{s})$$
-"where S is the number of samples and $\Theta_{s}$ is the s-th set of sampled parameter values in the posterior distribution."
 
-AIC obtido via expansão de Taylor
-$$AIC = -2lppd + 2p$$
+O AIC é obtido considerando o lppd e penalizando o número $n_{par}$ de parâmetros $$AIC = -2lppd + 2n_{par}$$  
 
-WAIC
-$$WAIC = -2(lppd - \sum_{i} var_{\theta} log p(y_{i}/\theta))$$
-"The penalty term means,“compute the variance in log-probabilities for each observation i, and then sum up these variances to get the total penalty.”"
+Para o WAIC, penalizamos cada observação de acordo com a variância no posterior $var_{\theta}$. Calculamos a variância do logaritmo das probabilities (log prabilities) em cada observação $log\  p(y_{i}|\theta)$ e a soma é o termo de penalização.  
 
+$$WAIC = -2(lppd - \sum_{i} var_{\theta} (log\ p(y_{i}|\theta)))$$  
+
+Obter os valores para usando a biblioteca **rethinking** é relativametne simples com as funções `WAIC(model)` ou `compare(model1,model2)`.     
 
 ```r
 compare(m1,m2)
