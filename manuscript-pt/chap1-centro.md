@@ -136,7 +136,7 @@ Os programas aqui apresentados são escritos em R e Julia. São linguagens volta
 
 ---  
 
-#### R
+#### R  
 
 Instruções para download e instalação podem ser encontradas em:
 https://cloud.r-project.org/
@@ -167,7 +167,7 @@ sum(x) retorna a soma de todos os elementos do vetor x. length(x) retorna o tama
 
 Como descrito anteriormente, a média é uma medida de tendência central para um conjunto de observações. É o ponto mais perto de todos os outros.  
 
-#### Muitas formas de calcular a variância
+#### Muitas formas de calcular a variância  
 
 Também podemos calcular uma medida relacionada ao quanto nossos valores se afastam do centro. 
 
@@ -343,7 +343,7 @@ $$\int_{-\infty}^{+\infty} e^{-x^{2}}dx = \sqrt{\pi}$$
 ---  
 
 
-**Intuições**
+**Intuições**  
 A definição possui um fator constante $\frac{1}{\sqrt{2\pi}}$ (aproximadamente 0.4), multiplicando o resultado da exponencial no formato $e^{-x}$.
 Em Julia, podemos definir a função e observar a probabilidade associada a alguns pontos em torno do máximo ($f(0)=0.4$):
 
@@ -388,7 +388,7 @@ $$f(x) = \frac{1}{\sqrt{2\pi\sigma^{2}}}e^{ -\frac{(x-\mu)^{2}}{2\sigma^{2}}}$$
 
 
 
-#### Por que usamos a distribuição normal?   
+#### Por que usamos a distribuição normal?  
 
 Distribuições binomiais grandes e moedas são tão importantes? Os lançamentos são exemplo de uma classe maior de fenômenos. Cada série de resultados é composta por muitos eventos quase idênticos (lançamentos individuais).  
 
@@ -436,8 +436,9 @@ Para Linux, envolve baixar o binario/código-fonte/tarball diretamente do websit
 #### IDE  
 
 Com Julia instalado, recomendo o uso do ambiente de desenvolvimento Juno ( http://docs.junolab.org/stable/ ) para obter algumas facilidades. Entre elas: atalhos, editor com highlight de sintaxe, autocompletar, renderização em tempo real de animações e plots, visualização de datasets, ambiente de desenvolvimento, logs, suporte a markup languages.  
+  
+---  
 
----
 O código em Julia a seguir gera os dados e as visualizações de que precisamos:  
 
 ```julia
@@ -483,7 +484,7 @@ A figura 2 mostra a soma de distribuições uniformes para dados honestos, evide
 $X \sim U_{1}(1,6) + U_{2}(1,6) + … + U_{11}(1,6) = X \sim N(38.5,\sigma^{2})$
 
 Vamos visualizar o mesmo processo para uma outra família de distribuições, gamma:
-
+  
 $X \sim \gamma_{1}(\alpha, \beta) + ... + \gamma_{n}(\alpha, \beta) = X \sim N(\mu',\sigma')$
 
 Para valores grandes de n:
